@@ -8,6 +8,7 @@ const userSchema= new mongoose.Schema({
     userImg:String,
     userPhone:Number,
     userPayPal:String,
+    userGoogle:Boolean,
     userRol:{type:String,default: "User"},
 })
 

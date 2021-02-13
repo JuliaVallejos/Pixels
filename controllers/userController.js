@@ -14,7 +14,6 @@ const userController={
             const newUserSaved=await newUser.save()
             var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
         }
-        console.log(token)
         return res.json({
             sucess: errors.length===0 ? true : false,
             errors,
@@ -40,7 +39,7 @@ const userController={
     },
     logInLS:(req,res)=>{
         res.json({
-            sucess:true, 
+            sucess:true,
             response:{token: req.body.token, userFirstName: req.user.firstName, userImg: req.user.userPic, id:req.user._id}})
     }
 }
