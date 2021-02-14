@@ -2,8 +2,8 @@
 const LatestNews = () =>{ 
     return (
         <div>
-            <div >
-                <h2 className="textCenter">Latest News</h2>
+            <div id="latestNews" className="fondoWall ">
+                <h2  className="">Latest News</h2>
             </div>
         </div>
     )
