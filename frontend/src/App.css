@@ -1,6 +1,13 @@
 .App {
   text-align: center;
 }
+:root {
+  --primary-color: #FFB5FF;
+  --secondary-color: #FF7FFF;
+  --background-color: #11050F;
+  --news-color: #FD90FF;
+  --terciary-color: #FFDF37;
+}
 
 .App-logo {
   height: 40vmin;
@@ -87,3 +94,15 @@
 
 
 /* CODIGO DISEÑO WEB */
+
+#headerContainer{
+  width: 100vw;
+  height: 15vh;
+  background-color: #11050F;
+  display: flex;
+}
+.logo {
+  width: 20vw;
+  height: 15vh;
+  background-size: cover;
+}
