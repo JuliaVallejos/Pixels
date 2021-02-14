@@ -17,7 +17,7 @@ const userController={
         return res.json({
             sucess: errors.length===0 ? true : false,
             errors,
-            response: errors.length===0 && {token,userFirstName,userImg}
+            response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg}
         })
     },
     logIn: async (req,res)=>{
@@ -34,7 +34,7 @@ const userController={
         return res.json({
             sucess:errors.length===0? true : false,
             errors,
-            response:errors.length===0 && {token, id: userExists._id, userFirstName: userExists.firstName, userImg: userExists.userImg }
+            response:errors.length===0 && {token, id: userExists._id, userFirstName: userExists.userFirstName, userImg: userExists.userImg }
         })
     },
     logInLS:(req,res)=>{

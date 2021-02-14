@@ -7,8 +7,8 @@ import usersActions from '../redux/actions/usersActions'
 
 const LogIn = (props) => {
     const [loggedUser,setLoggedUser] = useState({
-        username:'',
-        password:''
+        userName:'',
+        userPass:''
     })
     const [errors,setErrors] = useState([])
 
@@ -24,11 +24,12 @@ const LogIn = (props) => {
     }
     const send_data = async e =>{
         e.preventDefault()
-        if(loggedUser.name==='' || loggedUser.password===''){
+        if(loggedUser.userName==='' || loggedUser.userPass===''){
             setErrors([{message:'All fields must be completed'}])
             return false
         }
         const data = await props.login_user(loggedUser)
+        
         if(data.errores){
             setErrors(data.errores.details)
         }else{
@@ -41,8 +42,8 @@ const LogIn = (props) => {
         <div>
             <h3>Log In</h3>
                 <form>
-                <input id='username' name='username' type='text' placeholder='Username(email)' onChange={read_input}/>
-                <input id='password'name='password' type='password' placeholder='Password' onChange={read_input}/>
+                <input id='username' name='userName' type='text' placeholder='Username(email)' onChange={read_input}/>
+                <input id='password'name='userPass' type='password' placeholder='Password' onChange={read_input}/>
 
                     <button onClick={send_data} type='submit'>Log In</button>
                     {errors&& errors.map((error,index) =>{
