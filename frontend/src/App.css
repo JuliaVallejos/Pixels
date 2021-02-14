@@ -113,13 +113,13 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 #cardPadre {
   padding-top: 5vh;
   
+  
 }
 
 .news {
   width: 100%;
   background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
  
-  bottom: 0;
   border-radius: 0px 0px 44px 44px;
   opacity: 0.6;
  
@@ -131,7 +131,10 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;
+  display: flex;
+  align-items: center;
   
+
   
 }
 
