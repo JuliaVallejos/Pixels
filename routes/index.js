@@ -10,6 +10,7 @@ router.route("/user/signUp")
     .post(validator.validateNewAccount,userController.signUp)
 router.route("/user/logIn")
     .post(userController.logIn)
+    //hola
 // RUTAS PARA VIDEOJUEGOS
 
 
