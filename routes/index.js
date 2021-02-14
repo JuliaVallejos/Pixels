@@ -11,6 +11,7 @@ require("../config/passport");
 
 // RUTAS PARA VIDEOJUEGOS
 router.route('/games')
+.get(GameController.allGames)
 .post(GameController.addGame)
 
 

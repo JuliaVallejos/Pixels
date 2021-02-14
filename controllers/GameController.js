@@ -15,6 +15,15 @@ const GameController ={
         .catch(error=>{
             return res.json({success:false, response: error})
         })
+    },
+    allGames: (req, res)=>{
+        Game.find()
+        .then(respuesta =>{
+            return res.json({success: true, response: respuesta})
+        })
+        .catch(error =>{
+            return res.json({success: false, error: error})
+        })
     }
 }
 
