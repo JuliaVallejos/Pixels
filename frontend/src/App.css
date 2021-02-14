@@ -35,13 +35,9 @@
   color: #11afdb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+*{
+margin: 0;
+padding: 0;
 }
 
 
@@ -105,4 +101,16 @@
   width: 20vw;
   height: 15vh;
   background-size: cover;
+}
+.fondoWall{
+  background-image: url("https://us.123rf.com/450wm/gn8/gn81902/gn8190200052/124886197-brick-wall-background-illuminated-texture-dark-neon-light-.jpg?ver=6");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-bottom: 5vh;
+}
+
+#latestNews {
+  font-size: 2rem;
+  color: palevioletred;
 }

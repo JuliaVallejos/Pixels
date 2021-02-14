@@ -20,7 +20,7 @@ const SignUp = (props) =>{
            setNewUser({
                ...newUser,
                userPhone:'',
-               userPaypal:''
+               userPayPal:''
            })
        }
    }, [dev])
@@ -38,14 +38,14 @@ const SignUp = (props) =>{
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
-        const {userFirstName,userLastName,userName,userPass,userImg,rol,userPhone,userPaypal} = newUser
+        const {userFirstName,userLastName,userName,userPass,userImg,rol,userPhone,userPayPal} = newUser
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||rol===''){
            
             setErrors([{message:'All required(*) fields must be completed'}])
            return false
         
-        }else if(dev===true && (userPhone==='' || userPaypal==='')){
+        }else if(dev===true && (userPhone==='' || userPayPal==='')){
    
             setErrors([{message:'All required(*) fields must be completed'}])
             return false
@@ -74,7 +74,7 @@ const SignUp = (props) =>{
             {dev && 
             <div>
                 <input type='text' name='userPhone'  placeholder='Phone*'  onChange={read_input}/>
-                <input type='text' name='userPaypal' placeholder='Your PayPal.me*'  onChange={read_input}/>
+                <input type='text' name='userPayPal' placeholder='Your PayPal.me*'  onChange={read_input}/>
             </div>} 
             <button type='submit' onClick={send_data}>Send</button>
   
