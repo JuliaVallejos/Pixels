@@ -39,6 +39,11 @@
 
 
 /* CODIGO PARA NO REPETIR */
+.centerCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .displayFlex {
   display: flex;
