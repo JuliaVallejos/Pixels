@@ -36,3 +36,49 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* CODIGO PARA NO REPETIR */
+
+.displayFlex {
+  display: flex;
+}
+
+.displayBlock {
+  display: block;
+}
+
+.displayInline {
+  display: inline;
+}
+
+.justifyCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.justifyAround {
+  display: flex;
+  justify-content: space-around;
+}
+
+.justifyBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.justifyFlexEnd {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+
+/* CODIGO DISEÑO WEB */
