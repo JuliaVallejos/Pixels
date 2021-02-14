@@ -78,6 +78,8 @@ padding: 0;
 .justifyFlexEnd {
   display: flex;
   justify-content: flex-end;
+  
+  
 }
 
 .uppercase {
@@ -113,4 +115,73 @@ padding: 0;
 #latestNews {
   font-size: 2rem;
   color: palevioletred;
+}
+
+.estiloCard{
+  color: black;
+    font-size: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    
+  }
+  .estiloCardIt{
+    color: black;
+      font-size: 50px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      font-weight: bold;
+      text-transform: uppercase;
+    background-size: cover;
+      
+      
+  }
+
+.bordes {
+  -webkit-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+-moz-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+border-radius: 44px 44px 44px 44px;
+-moz-border-radius: 44px 44px 44px 44px;
+-webkit-border-radius: 44px 44px 44px 44px;
+border: 0px solid #000000;
+-webkit-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+-moz-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+    
+}
+
+#cardPadre {
+  padding-top: 5vh;
+  
+}
+
+.news {
+  width: 100%;
+  background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+ 
+  bottom: 0;
+  border-radius: 0px 0px 44px 44px;
+  opacity: 0.6;
+ 
+}
+
+.cardHijo {
+  width:60vw;
+  height:50vh;
+  background-Size: cover;
+  background-Repeat: no-repeat;
+  background-Position:center;
+  
+  
+}
+
+h2 {
+  font-size: 3rem;
 }
