@@ -4,9 +4,11 @@ import SignUp from './pages/SignUp'
 import Header from './components/Header'
 import Category from './components/Category';
 import Footer from './components/Footer'
+import usersActions from "./redux/actions/usersActions"
+import {connect} from "react-redux"
 
 
-function App() {
+function App({loggedUser,login_with_LS}) {
   return (
     <div className="App">
       <BrowserRouter>
@@ -22,5 +24,13 @@ function App() {
     </div>
   );
 }
+const mapStateToProps=(state)=>{
+  return {
+    loggedUser: state.user.loggedUser
+  }
+}
+const mapDispatchToProps={
+  login_with_LS: usersActions.login_with_LS
+}
 
-export default App;
+export default connect(mapStateToProps,mapDispatchToProps)(App);
