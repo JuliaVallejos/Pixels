@@ -149,6 +149,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 #cardPadre {
   padding-top: 5vh;
+
 }
 
 .news {
@@ -195,7 +196,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   background-color: var(--background-color);
   align-items: center;
   border-bottom: 5px solid var(--active-color);
-  box-shadow: 0px 3px 10px var(--active-color);
+  box-shadow: 3px 3px 10px var(--active-color);
 }
 .logo{
   width: 25vw;
@@ -264,4 +265,87 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   color: var(--active-color);
   text-shadow: 0 0 10px #11afdb;
   border-bottom: 3px solid var(--active-color) ;
+}
+
+/* ----- SIGN UP ----- */
+.signUp{
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  padding: 4vh 0;
+}
+.signUp h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  text-shadow: 0px 0px 10px var(--secondary-color);
+  margin-bottom: 2vh;
+}
+.radioButtons{
+  display: block;
+
+}
+.devInputs {
+  display: block;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 40%
+}
+form p {
+  color: white;
+}
+form input {
+  padding: 1vh 2vw;
+  border-radius: 50px;
+  outline:none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  margin: 2vh 0 ;
+  transition: 0.3s ease;
+  background-color:rgba(39, 0, 36, 0.616);
+  color: white;
+}
+form input::placeholder{
+  color: white;
+}
+form input:checked {
+  background: var(--secondary-color);
+  color: var(--secondary-color);
+  outline: none
+}
+form input [type="radio"]:checked {
+  background-color: #F87DA9;
+  color: #F87DA9;
+}
+form input:hover {
+  transform: scale(1.05);
+}
+form button {
+  margin: 2vh 0;
+  padding: 1vh 0;
+  border-radius: 50px;
+  border: none;
+  height: 2rem;
+  color: white;
+  background-color: var(--secondary-color);
+  transition: 0.2s ease;
+  box-shadow: 0px 0px 10px var(--primary-color);
+  outline: none;
+}
+form button:hover{
+  transform:scale(1.05);
+  cursor: pointer;
+}
+form button:active{
+  background-color: var(--terciary-color);
+  color: black;
+  box-shadow: 0px 0px 10px var(--terciary-color);
+}
+.logInRedirect{
+  color: var(--terciary-color);
+}
+
+.selection{
+  display: flex;
 }
