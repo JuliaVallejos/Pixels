@@ -23,6 +23,7 @@ router.route('/games')
 //ruta para noticia 
 router.route("/news")
 .post(newsController.addNews)
+.get(newsController.allNews)
 
 
 module.exports=router;

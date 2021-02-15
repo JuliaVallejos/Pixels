@@ -13,6 +13,15 @@ const newsController ={
        .catch(error =>{
            return res.json({success: false, response: error})
        })
+    },
+    allNews : (req, res)=>{
+        News.find()
+        .then(news =>{
+            return res.json({success: true, response:news})
+        })
+        .catch(error =>{
+            return res.json({success:false, response:error})
+        })
     }
 }
 module.exports = newsController
