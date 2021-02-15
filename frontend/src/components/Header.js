@@ -1,13 +1,16 @@
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 const Header = () =>{
     return (
         <>
-        <div id="headerContainer" style={{backgroundColor:"#11050F"}}>
-            <div className="logo" style={{backgroundImage: `url("../assets/logo")`}}></div>
-            <div className="links">
-                <Link to ='/login'><p>LogIn</p></Link>
-                <Link to ='/signup'><p>SignUp</p></Link>
+        <div id="headerContainer" className="justifyBetween">
+            <div className="logo" style={{backgroundImage: `url("../assets/logo.png")`}}></div>
+            <div className="links justifyBetween">
+                <NavLink to ='/'><p>Home</p></NavLink>
+                <NavLink to ='/library'><p>Library</p></NavLink>
+                <NavLink to ='/developers'><p>Developers</p></NavLink>
+                <NavLink to ='/login'><p>LogIn</p></NavLink>
+                <NavLink to ='/signup'><p>SignUp</p></NavLink>
             </div>
         </div>
 
