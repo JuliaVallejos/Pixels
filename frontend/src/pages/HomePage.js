@@ -1,8 +1,19 @@
-const { response } = require("express")
+import CarrouselNews from '../components/CarrouselNews'
+import CarrouselGames from '../components/CarrouselGames'
 
 const HomePage = ()=>{
     return(
-        <h1>Hola</h1>
+        <section>
+            <div>
+                <h1>Textos Sobre la empresa</h1>
+            </div>
+            <div>
+                <CarrouselNews/>
+            </div>
+            <div>
+                <CarrouselGames/>
+            </div>
+        </section>
     )
 }
 

@@ -30,9 +30,5 @@ const usersActions = {
               const data ={errores:{details:[{message:'An error occurred'}]}}
               return data
             }}}
-
     }
-
-
-
 export default usersActions
