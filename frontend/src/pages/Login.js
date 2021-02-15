@@ -39,8 +39,8 @@ const LogIn = (props) => {
         }
     }
     return(
-        <div>
-            <h3>Log In</h3>
+        <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
+            <h2>Log In</h2>
                 <form>
                 <input id='username' name='userName' type='text' placeholder='Username(email)' onChange={read_input}/>
                 <input id='password'name='userPass' type='password' placeholder='Password' onChange={read_input}/>
