@@ -2,7 +2,7 @@ import {useState,useEffect} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import userActions from '../redux/actions/usersActions'
-import GoogleLogin from 'react-google-login';//traer logIn de google
+// import GoogleLogin from 'react-google-login';//traer logIn de google
 
 
 const SignUp = (props) =>{
