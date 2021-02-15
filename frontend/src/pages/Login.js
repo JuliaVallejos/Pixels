@@ -39,7 +39,7 @@ const LogIn = (props) => {
         }
     }
     return(
-        <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
+        <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
             <h2>Log In</h2>
                 <form>
                 <input id='username' name='userName' type='text' placeholder='Username(email)' onChange={read_input}/>
@@ -49,7 +49,7 @@ const LogIn = (props) => {
                     {errors&& errors.map((error,index) =>{
                             return ( <p key={index}>{error.message}</p>)
                         })}
-                     <Link to ='/signup'><p>Don't have account? Create one!</p></Link>
+                     <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
                      <Link to ='/'><p>Home</p></Link>
                 </form>
 
