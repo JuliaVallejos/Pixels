@@ -1,26 +1,30 @@
-import {Route,BrowserRouter,Switch} from 'react-router-dom'
+import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import LogIn from './pages/Login';
 import SignUp from './pages/SignUp'
-import Header from './components/Header'
 import News from './components/News';
-import Footer from './components/Footer'
+import HomePage from './pages/HomePage';
+import DeveloperPage from './pages/DeveloperPage';
+import Category from './components/Category';
 
-
-function App() {
+function App()  {
   return (
     <div className="App">
       <BrowserRouter>
+        <Switch>
         <Header/>
-        <Switch>        
-          <Route path='/signup' component={SignUp}/>
-          <Route path='/login' component={LogIn}/>
-          <Route path='/test' component={News}/>
+        <Route exact path='/' component={HomePage}/>
+        <Route path='/signup' component={SignUp}/>
+        <Route path='/login' component={LogIn}/>
+        <Route path='/test' component={Category}/>
+        <Route path='/developer' component={DeveloperPage}/>
+        <Redirect to='/'/>  
         </Switch>
         <Footer/>
-      </BrowserRouter>
-      
+      </BrowserRouter>    
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
