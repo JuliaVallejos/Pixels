@@ -31,9 +31,7 @@ const gamesActions = {
             
               const data ={errores:{details:[{message:'An error occurred'}]}}
               return error
-            }}
-  
-        
+            }}        
     },
     filterGames: search => {
         return async (dispatch,getstate) => {

@@ -1,5 +1,6 @@
 const initialState ={
-    gamesList:[]   
+    gamesList: [],  
+    categories: ["Horror","Action","RPG","Adventure","Survival","Arcade","Shooter","MOBA"]
 
 }
  function gamesReducer(state= initialState,action){

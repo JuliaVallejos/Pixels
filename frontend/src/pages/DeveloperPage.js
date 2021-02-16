@@ -1,4 +1,3 @@
-import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {useState,useEffect} from 'react'
 import gamesActions from '../redux/actions/gamesActions';
@@ -13,7 +12,7 @@ const DeveloperPage = (props) =>{
         clasificationPEGI:'',
         gameImg:''
     })
-
+    console.log(props)
     const read_input = e =>{
         const property= e.target.name
         const value = e.target.value
@@ -41,7 +40,6 @@ const DeveloperPage = (props) =>{
 
     const clasificationPEGI = [3,7,12,16,18]
 
-
     return(
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
             <h2>Upload your game</h2>
@@ -51,15 +49,17 @@ const DeveloperPage = (props) =>{
                     <textarea id='gameInfo'name='gameInfo' type='text' placeholder='Game description' onChange={read_input}/>
 
                     <select name="gameCategories"onChange={read_input}>
-                        <option value="value1" disabled="true">Category</option>
-                        {gameCategories.map(category=>{
-                            return(<option value="value2">{category}</option>)
+
+                        <option value="" disabled="true" selected="true">Select Category</option>
+
+                        {props.categories.map(category=>{
+                            return(<option value={category}>{category}</option>)
                         })}
                     </select>
                     <select name="clasificationPEGI"onChange={read_input}>
-                        <option value="value1" disabled="true">ClasificationPGI</option>
+                        <option value="value1" disabled="true" selected="true">ClasificationPGI</option>
                         {clasificationPEGI.map(clasification =>{
-                            return(<option value="value3">{clasification}</option>)
+                            return(<option value={clasification}>{clasification}</option>)
                         })}
                     </select>
 
@@ -74,8 +74,16 @@ const DeveloperPage = (props) =>{
     )
 }
 
-const mapDispatchToProps= {   
-    submitNewGame: gamesActions.submitNewGame
+const mapStateToProps= state =>{
+    return {
+        gamesList: state.game.gamesList,
+        categories: state.game.categories
+    }
 }
 
-export default connect(null,mapDispatchToProps)(DeveloperPage)
+const mapDispatchToProps= {   
+    submitNewGame: gamesActions.submitNewGame,
+    allGames: gamesActions.allGames
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(DeveloperPage)

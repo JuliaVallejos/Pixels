@@ -5,7 +5,6 @@ import News from './components/News'
 import Footer from './components/Footer'
 import LogIn from './pages/Login'
 import SignUp from './pages/SignUp'
-import News from './components/News'
 import HomePage from './pages/HomePage'
 import DeveloperPage from './pages/DeveloperPage'
 import Category from './components/Category'
@@ -24,7 +23,7 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/login' component={LogIn}/>
         <Route path='/test' component={News}/>
         <Route path='/developer' component={DeveloperPage}/>
-        <Route path='/library' component={Library}/> 
+        {/* <Route path='/library' component={Library}/>  */}
         <Redirect to='/'/>  
         </Switch>
         <Footer/>
