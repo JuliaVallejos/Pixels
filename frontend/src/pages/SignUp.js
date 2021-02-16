@@ -59,34 +59,38 @@ const SignUp = (props) =>{
 
     return (
         <>
-        <h2>Create an Account</h2>
-        <form>
+        <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
+            <h2>Create an Account</h2>
+            <form>
+                <input type='text'  name='userFirstName' placeholder='First Name*' onChange={read_input}/>
+                <input type='text'  name='userLastName' placeholder='Last Name*' onChange={read_input}/>
+                <input type='email' name='userName' placeholder='Username (email)*' onChange={read_input}/>
+                <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
+                <input type='text' name='userImg' placeholder='Profile Photo*' onChange={read_input}/>
+                <div className="selection">
+                    <div className="radioButtons">
+                        <label htmlFor='rol' onChange={read_input}><p>Account Type:</p>
+                        <input type='radio'  onClick={()=>setDev(false)}  value='user' name='rol'/><p>User</p>
+                        <input type='radio' onClick={()=>setDev(true)} value='developer' name='rol'/><p>Developer</p>
+                        </label>
+                    </div>
 
-            <input type='text'  name='userFirstName' placeholder='First Name*' onChange={read_input}/>
-            <input type='text'  name='userLastName' placeholder='Last Name*' onChange={read_input}/>
-            <input type='email' name='userName' placeholder='Username(email)*' onChange={read_input}/>
-            <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
-            <input type='text' name='userImg' placeholder='Profile Photo*' onChange={read_input}/>
-            <label htmlFor='rol' onChange={read_input}>Account Type:
-            <input type='radio'  onClick={()=>setDev(false)}  value='user' name='rol'/>User
-            
-            <input type='radio' onClick={()=>setDev(true)} value='developer' name='rol'/>Developer
-            </label>
-            {dev && 
-            <div>
-                <input type='text' name='userPhone'  placeholder='Phone*'  onChange={read_input}/>
-                <input type='text' name='userPayPal' placeholder='Your PayPal.me*'  onChange={read_input}/>
-            </div>} 
-            <button type='submit' onClick={send_data}>Send</button>
-  
-            {errors&& errors.map((error,index) =>{
-                        return ( <p key={index}>{error.message}</p>)
-                    })}
-            <Link to ='/login'><p>Do you already have an account? Log in here</p></Link>
-            <Link to ='/'><p>Home</p></Link>
+                    {dev && 
+                    <div className="devInputs">
+                        <input type='text' name='userPhone'  placeholder='Phone*'  onChange={read_input}/>
+                        <input type='text' name='userPayPal' placeholder='Your PayPal.me*'  onChange={read_input}/>
+                    </div>}  
+                </div>
 
-
-        </form>
+                <button type='submit' onClick={send_data}>Send</button>
+                
+                {errors&& errors.map((error,index) =>{
+                            return ( <p key={index}>{error.message}</p>)
+                        })}
+                <Link to ='/login'><p >Do you already have an account? <span className="logInRedirect">Log in here</span></p></Link>
+            </form>
+        </div>
+        
         </>
 
 
