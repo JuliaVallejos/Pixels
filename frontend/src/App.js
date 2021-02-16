@@ -14,14 +14,13 @@ function App({loggedUser,login_with_LS}) {
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>
-        <Route exact path='/' component={Header}/>
-        <Route path='/signup' component={SignUp}/>
-        <Route path='/login' component={LogIn}/>
-        <Route path='/test' component={News}/>
-        <Route path='/library' component={Library}/>
-         
-        </Switch>
+        <Header/>
+          <Switch>
+            <Route path='/signup' component={SignUp}/>
+            <Route path='/login' component={LogIn}/>
+            <Route path='/test' component={News}/>
+            <Route path='/library' component={Library}/> 
+          </Switch>
         <Footer/>
       </BrowserRouter >
       
