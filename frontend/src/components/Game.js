@@ -2,21 +2,7 @@
  const Game = (props) =>{
 
     var prom=0
-/*      props.newGamesList.map((game,index) =>{
-         game.valoration.map(valoration =>{  
-         const sum = game.valoration.reduce((a,b) =>{  
-        
-                return {
-                  valoration: (a.valoration+ b.valoration)
-                };
-              }, {valoration: 0}); 
-              
-              prom = sum.valoration
-            })
-            console.log(prom/game.valoration.length)
-         })
-  
- */
+
         return(
             <>
            
