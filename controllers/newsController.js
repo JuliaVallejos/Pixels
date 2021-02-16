@@ -2,9 +2,9 @@ const News = require('../models/News')
 
 const newsController ={
     addNews : (req,res)=>{
-       const {newsTitle, newsImg, newDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
+       const {newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
        const creatNews =  new News ({
-        newsTitle, newsImg, newDescription, newsBody, newsAuthor,dateOfTheNews
+        newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews
        })
        creatNews.save()
        .then(savedNews=>{
