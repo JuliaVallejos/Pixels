@@ -9,6 +9,7 @@ import {connect} from "react-redux"
 
 
 function App({loggedUser,login_with_LS}) {
+  console.log(loggedUser)
   return (
     <div className="App">
       <BrowserRouter>

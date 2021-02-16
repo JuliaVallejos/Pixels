@@ -54,10 +54,9 @@ const SignUp = (props) =>{
         const data = await props.createNewUser(newUser)
         if(data && !data.sucess){
             setErrors([data.errors])
-        }else{
-            alert(`welcome `)
+        }else {
+            console.log("aass")
         }
-        return false
     }
 
     // GOOGLE SIGN UP
@@ -81,7 +80,6 @@ const SignUp = (props) =>{
             }
         }
     }
-
     return (
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
@@ -109,9 +107,8 @@ const SignUp = (props) =>{
 
                 <button type='submit' onClick={send_data}>Send</button>
                 
-                {errors&& errors.map((error,index) =>{
-                    return ( <p key={index}>{error.message}</p>)})
-                }
+                {errors.map(error=> <p>{error}</p> )}
+
                 <GoogleLogin
                     clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
                     buttonText="Sign Up with Google"
@@ -134,6 +131,7 @@ const mapStateToProps= state =>{
     }
 }
 const mapDispatchToProps ={
+    login_user:userActions.login_user,
     createNewUser: userActions.createNewUser
 }
 export default connect(mapStateToProps,mapDispatchToProps)(SignUp)

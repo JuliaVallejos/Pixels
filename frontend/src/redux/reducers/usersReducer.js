@@ -5,6 +5,8 @@ const initialState ={
 function usersReducer(state= initialState,action){
     switch (action.type) {
         case 'LOGIN':
+            console.log("2")
+            console.log(action.payload)
             localStorage.setItem("userFirstName",action.payload.response.userFirstName);
             localStorage.setItem("token",action.payload.response.token);
             localStorage.setItem("id",action.payload.response.id);
