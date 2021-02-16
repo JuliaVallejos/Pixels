@@ -11,6 +11,8 @@ router.route("/user/signUp")
     // .post(validator.validateNewAccount,userController.signUp) SIGN UP CON JOI
 router.route("/user/logIn")
     .post(userController.logIn)
+router.route("/user/logInLS")
+    .post(passport.authenticate("jwt",{session:false}),userController.logInLS)
 // RUTAS PARA VIDEOJUEGOS
 
 
