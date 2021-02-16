@@ -1,13 +1,14 @@
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const Categories = (props) =>{ 
     const{categories} = props
    
     return (
         <div className="displayFlex justifyAround padre">
-            {categories.map(category =>{
+            {categories.map((category,index) =>{
                 return(
-                    <div id="cardPadreCategory" className="justifyCenter ">  
+                    <Link key={index}  to={`/categories/${category.name}`}><div id="cardPadreCategory" className="justifyCenter ">  
                         <div className="bordesCategory estiloCardItCategory estiloCardCategory cardHijoCategory justifyFlexEnd" style={{ backgroundImage: `url(${category.img})` }}>
                             <div className="Category ">
                                 <div className="tituloCategory textCenter ">
@@ -15,7 +16,8 @@ const Categories = (props) =>{
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>
+                    </Link>
 
 
                 )

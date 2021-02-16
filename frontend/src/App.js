@@ -5,7 +5,7 @@ import News from './components/News';
 import Footer from './components/Footer'
 import LogIn from './pages/Login';
 import SignUp from './pages/SignUp'
-import Category from './components/Category';
+import CategoryList from './pages/CategoryList'
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
 import Home from './components/Home'
