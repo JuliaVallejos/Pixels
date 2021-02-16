@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import usersActions from '../redux/actions/usersActions'
-// import GoogleLogin from 'react-google-login';//traer logIn de google
+import { GoogleLogin } from 'react-google-login'
 
 const LogIn = (props) => {
     const [loggedUser,setLoggedUser] = useState({
@@ -37,6 +37,22 @@ const LogIn = (props) => {
             props.history.push('/')
         }
     }
+    // GOOGLE SIGN UP ACCOUNT
+    const responseGoogle = async (googleResponse) => {
+        if(googleResponse.error){
+            alert("error login con google")
+        }else{
+            const response= await props.login_user({
+                userName: googleResponse.profileObj.email,
+                userPass: googleResponse.profileObj.googleId
+            })
+            if(response && !response.sucess){
+                setErrors([response.response])
+            }else{
+                alert(`Welcome ${localStorage.getItem("firstName")}`)
+            }
+        }
+    }
     return(
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
             <h2>Log In</h2>
@@ -46,10 +62,17 @@ const LogIn = (props) => {
 
                     <button onClick={send_data} type='submit'>Log In</button>
                     {errors&& errors.map((error,index) =>{
-                            return ( <p key={index}>{error.message}</p>)
-                        })}
-                     <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
-                     <Link to ='/'><p>Home</p></Link>
+                        return (<p key={index}>{error.message}</p>)})
+                    }
+                    <GoogleLogin
+                        clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
+                        buttonText="Login with Google"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                    />
+                    <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
+                    <Link to ='/'><p>Home</p></Link>
                 </form>
 
         </div>

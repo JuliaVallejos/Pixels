@@ -9,10 +9,11 @@ const userController={
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
         if(errors.length===0){
-            const passHashed=bcryptjs.hashSync(userPass,10);
+            console.log("entre")
+            var passHashed=bcryptjs.hashSync(userPass,10);
             var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userImg,userPhone,userPayPal});
-            const newUserSaved=await newUser.save()
-            var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
+            // const newUserSaved=await newUser.save()
+            // var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
         }
         return res.json({
             sucess: errors.length===0 ? true : false,
