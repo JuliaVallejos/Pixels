@@ -3,12 +3,18 @@ const mongoose = require('mongoose')
 const GameSchema = new mongoose.Schema({
     gameImg: {type: String, required:true},
     gameTitle: {type: String, required: true},
-    gameCategory:[String],
-    gameInfo: String,
-    valoration:[{type:mongoose.Schema.ObjectId, ref:'user'}],
-    userComment:[{type:mongoose.Schema.ObjectId, ref:'user', comment: String}],
-    clasificationPEGI: Number,
-    idUser: {type:mongoose.Schema.ObjectId, ref:'user'}
+    gameCategories:[String],
+    gameInfo: {type:String},
+    valoration: {type:[{
+        idUser: {type:mongoose.Schema.ObjectId,ref:'user',required:true},
+        valoration: Number,
+    }]},
+    userComments: {type:[{
+        idUser: {type:mongoose.Schema.ObjectId,ref:'user'},
+        comment: String
+    }]},
+    clasificationPEGI: {type:Number},
+    idUser: {type:mongoose.Schema.ObjectId,ref:'user'}
     
 })
 
