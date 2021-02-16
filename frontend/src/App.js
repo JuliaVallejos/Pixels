@@ -5,10 +5,14 @@ import LogIn from './pages/Login';
 import SignUp from './pages/SignUp'
 import News from './components/News';
 import HomePage from './pages/HomePage';
+<<<<<<< HEAD
 import DeveloperPage from './pages/DeveloperPage';
 import Category from './components/Category';
+=======
 
-function App() {
+>>>>>>> master
+
+function App()  {
   return (
     <div className="App">
       <BrowserRouter>
@@ -17,15 +21,19 @@ function App() {
         <Route exact path='/' component={HomePage}/>
         <Route path='/signup' component={SignUp}/>
         <Route path='/login' component={LogIn}/>
+<<<<<<< HEAD
         <Route path='/test' component={Category}/>
         <Route path='/developer' component={DeveloperPage}/>
         <Redirect to="/"/>  
+=======
+        <Route path='/test' component={News}/>
+        <Redirect to='/'/>  
+>>>>>>> master
         </Switch>
         <Footer/>
-      </BrowserRouter>
-      
+      </BrowserRouter>    
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
