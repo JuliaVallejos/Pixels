@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import {useState,useEffect} from 'react'
 import gamesActions from '../redux/actions/gamesActions';
+import usersActions from '../redux/actions/usersActions';
 
 
 const DeveloperPage = (props) =>{
@@ -13,19 +14,23 @@ const DeveloperPage = (props) =>{
         gameImg:''
     })
     console.log(props)
+
     const read_input = e =>{
         const property= e.target.name
         const value = e.target.value
 
         setNewGame({
             ...newGame, 
-            [property]:value
+            [property]:value,
+            idUser: props.loggedUser.id
         })      
     }
 
+    
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
+
         const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg} = newGame
         
         if(gameTitle==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI==='' || gameImg===''){
@@ -33,20 +38,30 @@ const DeveloperPage = (props) =>{
             setErrors([{message:'All required(*) fields must be completed'}])
             return false        
         }
-        const data = await props.createNewGame(newGame)
      
-        return false
+        const data = await props.submitNewGame(newGame)
+        if(data && !data.sucess){
+            setErrors([data.errors])
+            alert('Error when recording a new game')
+            console.log(errors)
+        }else {
+            alert('New game saved successfully')
+            //CLEAN INPUT FUNCTION
+        } 
     }
+// CLEAN INPUTS
 
     const clasificationPEGI = [3,7,12,16,18]
-
+    console.log(errors)
+    console.log(newGame)
+    
     return(
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
             <h2>Upload your game</h2>
                 <form>
-                    <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title' onChange={read_input}/>
+                    <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
-                    <textarea id='gameInfo'name='gameInfo' type='text' placeholder='Game description' onChange={read_input}/>
+                    <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' onChange={read_input}/>
 
                     <select name="gameCategories"onChange={read_input}>
 
@@ -63,12 +78,13 @@ const DeveloperPage = (props) =>{
                         })}
                     </select>
 
-                    <input type="text" name="gameImg" placeholder="Pic" onChange={read_input}/>
+                    <input type="text" name="gameImg" placeholder="Pic*" onChange={read_input}/>
 
                     <button onClick={send_data} type='submit'>Submit</button>
-                    {errors&& errors.map((error,index) =>{
+                    
+                    {/* {errors.length !==0 && errors.map((error,index) =>{
                             return (<p key={index}>{error.message}</p>)
-                        })}
+                        })} */}
                 </form>
         </div>
     )
@@ -77,7 +93,8 @@ const DeveloperPage = (props) =>{
 const mapStateToProps= state =>{
     return {
         gamesList: state.game.gamesList,
-        categories: state.game.categories
+        categories: state.game.categories,
+        loggedUser: state.user.loggedUser
     }
 }
 

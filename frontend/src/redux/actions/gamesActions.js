@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const gamesActions = {
-    submitNewGame: newGame => {
+    submitNewGame: (newGame) => {
+        console.log(newGame)
         return async (dispatch,getstate) => {
         try{
             const data = await axios.post("http://localhost:4000/api/games",newGame);
