@@ -10,6 +10,7 @@ import DeveloperPage from './pages/DeveloperPage'
 import Category from './components/Category'
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
+import Home from './components/Home'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -22,7 +23,7 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/signup' component={SignUp}/>
         <Route path='/login' component={LogIn}/>
         <Route path='/test' component={News}/>
-        <Route path='/developer' component={DeveloperPage}/>
+        <Route path='/developers' component={DeveloperPage}/>
         <Route path='/library' component={Library}/> 
         <Redirect to='/'/>  
         </Switch>

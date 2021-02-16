@@ -3,21 +3,7 @@ import { useState } from "react"
  const Game = (props) =>{
 
     var prom=0
-/*      props.newGamesList.map((game,index) =>{
-         game.valoration.map(valoration =>{  
-         const sum = game.valoration.reduce((a,b) =>{  
-        
-                return {
-                  valoration: (a.valoration+ b.valoration)
-                };
-              }, {valoration: 0}); 
-              
-              prom = sum.valoration
-            })
-            console.log(prom/game.valoration.length)
-         })
-  
- */
+
         return(
             <>
            
@@ -28,7 +14,6 @@ import { useState } from "react"
                  <div key={_id}>
                      <h4>{gameTitle}</h4>
                      <div style={{width:'85px',height:'85px',backgroundColor:'yellowgreen',backgroundImage:`url(${gameImg})`,backgroundSize:'cover'}}></div>
-                     
                         <p>{gameInfo}</p><p>Valoration</p>
                         { valoration.map(() =>{  
                             const sum =valoration.reduce((a,b) =>{  
@@ -40,20 +25,14 @@ import { useState } from "react"
                                 prom = sum.valoration/valoration.length
                                 })        
                             }
-                    
-                    
-                       
+                      
                         <p>{prom}</p> <p>Clasification {clasificationPEGI}</p>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
                         {gameCategories.map((category,index) =>{
-                            return (
-                            <p key={index}> {category} </p>)
-                        })}
+                            return (<p key={index}> {category} </p>)})}
                         </div>
                         {userComments.map(comment =>{
-                            return (
-                                <p key={comment._id}>{comment.comment}</p>
-                            )
+                            return (<p key={comment._id}>{comment.comment}</p>)
                         })}
                  </div>
                  ) 
