@@ -7,7 +7,8 @@ const userController=require("../controllers/userController");
 
 // RUTAS PARA USUARIOS
 router.route("/user/signUp")
-    .post(validator.validateNewAccount,userController.signUp)
+    .post(userController.signUp)
+    // .post(validator.validateNewAccount,userController.signUp) SIGN UP CON JOI
 router.route("/user/logIn")
     .post(userController.logIn)
 // RUTAS PARA VIDEOJUEGOS

@@ -3,26 +3,35 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import LogIn from './pages/Login';
 import SignUp from './pages/SignUp'
-import News from './components/News';
-import HomePage from './pages/HomePage';
+import Header from './components/Header'
+import Category from './components/Category';
+import Footer from './components/Footer'
+import usersActions from "./redux/actions/usersActions"
+import {connect} from "react-redux"
 
 
-function App()  {
+function App({loggedUser,login_with_LS}) {
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>
         <Header/>
-        <Route exact path='/' component={HomePage}/>
-        <Route path='/signup' component={SignUp}/>
-        <Route path='/login' component={LogIn}/>
-        <Route path='/test' component={News}/>
-        <Redirect to='/'/>  
+        <Switch>        
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/login' component={LogIn}/>
+          <Route path='/test' component={Category}/>
         </Switch>
         <Footer/>
       </BrowserRouter>    
     </div>
   )
 }
+const mapStateToProps=(state)=>{
+  return {
+    loggedUser: state.user.loggedUser
+  }
+}
+const mapDispatchToProps={
+  login_with_LS: usersActions.login_with_LS
+}
 
-export default App
+export default connect(mapStateToProps,mapDispatchToProps)(App);

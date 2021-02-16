@@ -349,3 +349,158 @@ form button:active{
 .selection{
   display: flex;
 }
+
+/* ----- RECOMMENDED ----- */
+
+.estiloCardRecommend{
+  color: black;
+    font-size: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    
+    
+  }
+  .estiloCardItRecommend{
+    color: black;
+      font-size: 50px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      font-weight: bold;
+      text-transform: uppercase;
+    background-size: cover;
+    
+      
+      
+  }
+
+.bordesRecommend {
+-webkit-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+-moz-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+border-radius: 44px 44px 44px 44px;
+-moz-border-radius: 44px 44px 44px 44px;
+-webkit-border-radius: 44px 44px 44px 44px;
+border: 0px solid #000000;
+-webkit-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+-moz-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+    
+}
+
+#cardPadreRecommend {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  
+
+}
+
+.Recommend {
+  width: 100%;
+  background-color: #fd90ff9a;
+  position: absolute;
+  bottom: 0;
+  border-radius: 0px 0px 44px 44px;
+  
+  padding-bottom: 1vh;
+ 
+}
+
+.cardHijoRecommend {
+  
+  width:30vw;
+  height:30vh;
+  background-Size: cover;
+  background-Repeat: no-repeat;
+  background-Position:center;
+  
+}
+.tituloRecommend{
+  font-size: 3rem;
+  color: white;
+  -webkit-text-stroke: 1px black;
+  color: white;
+}
+
+/* ----- CATEGORY ----- */
+
+.estiloCardCategory{
+  color: black;
+    font-size: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    
+    
+  }
+  .estiloCardItCategory{
+    color: black;
+      font-size: 50px;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      font-weight: bold;
+      text-transform: uppercase;
+    background-size: cover;
+    
+      
+      
+  }
+
+.bordesCategory {
+-webkit-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+-moz-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
+border-radius: 44px 44px 44px 44px;
+-moz-border-radius: 44px 44px 44px 44px;
+-webkit-border-radius: 44px 44px 44px 44px;
+border: 0px solid #000000;
+-webkit-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+-moz-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+    
+}
+
+#cardPadreCategory {
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+ 
+}
+
+.padre {
+  display: flex;
+  flex-wrap: wrap;
+ 
+}
+
+.Category {
+  width: 100%;
+  background-color: #fd90ff9a;
+}
+
+.cardHijoCategory {
+  
+  width:15vw;
+  height:40vh;
+  background-Size: cover;
+  background-Repeat: no-repeat;
+  background-Position:center;
+  
+}
+.tituloCategory {
+  font-size: 4rem;
+  color: white;
+  -webkit-text-stroke: 1px black;
+  color: white;
+}
