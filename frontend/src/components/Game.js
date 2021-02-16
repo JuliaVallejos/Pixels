@@ -2,6 +2,7 @@ import { useState } from "react"
 
  const Game = (props) =>{
 
+
     var prom=0
 
         return(
@@ -14,7 +15,9 @@ import { useState } from "react"
                  <div key={_id}>
                      <h4>{gameTitle}</h4>
                      <div style={{width:'85px',height:'85px',backgroundColor:'yellowgreen',backgroundImage:`url(${gameImg})`,backgroundSize:'cover'}}></div>
-                        <p>{gameInfo}</p><p>Valoration</p>
+                        <p>{gameInfo}</p>
+                       
+                        
                         { valoration.map(() =>{  
                             const sum =valoration.reduce((a,b) =>{  
                                     return {
@@ -26,9 +29,8 @@ import { useState } from "react"
                                 })        
                             }
                     
-                    
-                       
-                        <p>{prom}</p> <p>Clasification {clasificationPEGI}</p>
+                        <p>Valoration: {prom}</p>
+                        <p>Clasification: {clasificationPEGI}</p>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
                         {gameCategories.map((category,index) =>{
                             return (

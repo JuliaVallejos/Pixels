@@ -24,6 +24,7 @@ function App({loggedUser,login_with_LS}) {
             <Route exact path= "/" component={Home}/>
             <Route path='/test' component={News}/>
             <Route path='/library' component={Library}/> 
+            <Route path='/categories/:category' component={CategoryList}/>
           </Switch>
         <Switch>
           {!loggedUser && 
@@ -31,7 +32,7 @@ function App({loggedUser,login_with_LS}) {
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
           </>}        
-          <Route path='/test' component={Category}/>
+          
           <Redirect to="/" />
         </Switch>
         <Footer/>
