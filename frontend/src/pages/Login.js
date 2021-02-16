@@ -48,7 +48,7 @@ const LogIn = (props) => {
             if(response && !response.sucess){
                 setErrors([response.response])
             }else{
-                alert(`Welcome ${localStorage.getItem("firstName")}`)
+                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
             }
         }
     }

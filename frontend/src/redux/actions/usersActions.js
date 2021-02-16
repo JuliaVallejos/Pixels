@@ -21,10 +21,8 @@ const usersActions = {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
         console.log(data.data.sucess)
-        if (data.data.success){
-          console.log("ENTRE")  
-          dispatch({type:'LOGIN', payload:data.data.response})
-        } else{
+        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data.response})
+        }else{
           return data.data
         }
       }catch(error){
@@ -42,11 +40,12 @@ const usersActions = {
   login_with_LS: (token)=>{
     return async (dispatch,getState)=>{
       try{ 
-        const response= await axios.post("http://localhost:4000/api/user/logIn",{token},{
+        const response= await axios.post("http://localhost:4000/api/user/logInLS",{token},{
           headers:{
             Authorization: `Bearer ${token}` 
           }
         })
+        console.log(response.data.sucess)
         if(response.data.sucess){
           dispatch({type:"LOGIN", payload: {
             response:{...response.data.response}

@@ -9,7 +9,10 @@ import {connect} from "react-redux"
 
 
 function App({loggedUser,login_with_LS}) {
-  console.log(loggedUser)
+  if (!loggedUser && localStorage.getItem("token")){
+    login_with_LS(localStorage.getItem("token"))
+    console.log("hay usuario")
+  }
   return (
     <div className="App">
       <BrowserRouter>
