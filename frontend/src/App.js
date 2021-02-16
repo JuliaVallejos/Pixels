@@ -17,7 +17,7 @@ function App() {
           <Route path='/test' component={Category}/>
         </Switch>
         <Footer/>
-      </BrowserRouter>
+      </BrowserRouter >
       
     </div>
   );
