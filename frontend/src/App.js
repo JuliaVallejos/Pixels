@@ -14,18 +14,27 @@ import Home from './components/Home'
 
 
 function App({loggedUser,login_with_LS}) {
+  if (!loggedUser && localStorage.getItem("token")){
+    login_with_LS(localStorage.getItem("token"))
+    console.log("hay usuario")
+  }
   return (
     <div className="App">
       <BrowserRouter>
         <Header/>
         <Switch>
         <Route exact path='/' component={HomePage}/>
-        <Route path='/signup' component={SignUp}/>
-        <Route path='/login' component={LogIn}/>
         <Route path='/test' component={News}/>
         <Route path='/developers' component={DeveloperPage}/>
         <Route path='/library' component={Library}/> 
         <Redirect to='/'/>  
+          {!loggedUser && 
+          <>
+            <Route path='/signup' component={SignUp}/>
+            <Route path='/login' component={LogIn}/>
+          </>}        
+          <Route path='/test' component={Category}/>
+          <Redirect to="/" />
         </Switch>
         <Footer/>
       </BrowserRouter>    

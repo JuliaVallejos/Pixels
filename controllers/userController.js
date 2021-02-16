@@ -9,15 +9,14 @@ const userController={
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
         if(errors.length===0){
-            console.log("entre")
-            var passHashed=bcryptjs.hashSync(userPass,10);
+            var passHashed=await bcryptjs.hashSync(userPass,10);
             var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userImg,userPhone,userPayPal});
             const newUserSaved=await newUser.save()
             var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
         }
         return res.json({
             sucess: errors.length===0 ? true : false,
-            errors,
+            errors:errors,
             response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg}
         })
     },
@@ -33,8 +32,8 @@ const userController={
             var token=jasonWebToken.sign({...userExists}, process.env.JWT_SECRET_KEY, {});
         }
         return res.json({
-            sucess:errors.length===0? true : false,
-            errors,
+            sucess: errors.length===0 ? true : false,
+            errors:errors,
             response:errors.length===0 && {token, id: userExists._id, userFirstName: userExists.userFirstName, userImg: userExists.userImg }
         })
     },
