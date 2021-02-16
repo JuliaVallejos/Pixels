@@ -148,7 +148,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 #cardPadre {
-  padding-top: 5vh;
+  padding: 3vh 0;
 
 }
 
@@ -349,6 +349,9 @@ form button:active{
 .selection{
   display: flex;
 }
+.redirect {
+  margin: 2vh 0;
+}
 
 /* ----- RECOMMENDED ----- */
 
@@ -503,4 +506,59 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   color: white;
   -webkit-text-stroke: 1px black;
   color: white;
+}
+
+/* ------ HOME ------ */
+.homeContainer{
+  background-color: var(--background-color);
+}
+
+.homeHero{
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0px -3px 10px var(--active-color);
+}
+.homeHero h1{
+  color: white;
+  text-shadow: 0px 0px 10px var(--secondary-color);
+  font-size: 3rem;
+}
+.homeHero h3{
+  color: white;
+  text-shadow: 0px 0px 10px var(--secondary-color);
+  font-size: 2rem;
+}
+.homeHero button {
+  color: rgb(255, 255, 255);
+  background-color: rgba(247,104,247,0.8);
+  padding: 2vh 4vw;
+  font-size: 2rem;
+  border-radius: 4rem;
+  border:none;
+  box-shadow: 0px 0px 20px var(--secondary-color);
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+.homeHero button:hover{
+  transform: scale(1.1);
+}
+.homeHero button:active{
+  color: black;
+  background-color: var(--terciary-color);
+}
+.homeTitle{
+  color: white;
+  text-shadow: 0px 0px 20px var(--secondary-color);
+  background-position: center;
+  background-size: cover;
+  font-size: 3rem;
+  height: 10vh;
+  background-color: rgba(247,104,247,0.67);
+  box-shadow: 0px 0px 10px var(--secondary-color);
 }

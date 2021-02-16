@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp'
 import Category from './components/Category';
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
+import Home from './components/Home'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -16,6 +17,7 @@ function App({loggedUser,login_with_LS}) {
       <BrowserRouter>
         <Header/>
           <Switch>
+            <Route exact path= "/" component={Home}/>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
             <Route path='/test' component={News}/>
