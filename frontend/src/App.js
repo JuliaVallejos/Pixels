@@ -1,7 +1,15 @@
 import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import Header from './components/Header'
+<<<<<<< HEAD
 import Library from './pages/Library'
 import News from './components/News';
+=======
+<<<<<<< HEAD
+=======
+import Library from './pages/Library'
+import News from './components/News';
+>>>>>>> 9e796a7fd41fc74714ef2290da3aa8cfa4272643
+>>>>>>> julia
 import Footer from './components/Footer'
 import LogIn from './pages/Login';
 import SignUp from './pages/SignUp'
@@ -14,6 +22,16 @@ function App({loggedUser,login_with_LS}) {
   return (
     <div className="App">
       <BrowserRouter>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        <Header/>
+        <Switch>        
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/login' component={LogIn}/>
+          <Route path='/test' component={Category}/>
+=======
+>>>>>>> julia
         <Switch>
         <Route exact path='/' component={Header}/>
         <Route path='/signup' component={SignUp}/>
@@ -21,6 +39,10 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/test' component={News}/>
         <Route path='/library' component={Library}/>
          
+<<<<<<< HEAD
+=======
+>>>>>>> 9e796a7fd41fc74714ef2290da3aa8cfa4272643
+>>>>>>> julia
         </Switch>
         <Footer/>
       </BrowserRouter >
