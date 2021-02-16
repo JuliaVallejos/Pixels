@@ -54,21 +54,21 @@ const SignUp = (props) =>{
         const data = await props.createNewUser(newUser)
         if(data && !data.sucess){
             setErrors([data.errors])
-        }else{
-            alert(`welcome `)
+        }else {
+            alert(`Welcome ${localStorage.getItem("userFirstName")}`)
         }
-        return false
+        
     }
-
     // GOOGLE SIGN UP
     const responseGoogle = async (googleResponse) => {
+        
         if(googleResponse.error){
             alert("algo paso con el registro de google")
         }
         else {
             const response= await props.createNewUser({
-                userFirstName: googleResponse.profileObj.givenName.split(" ").slice(0,-1).join(" "),
-                userLastName: googleResponse.profileObj.givenName.split(" ").slice(-1).join(" "),
+                userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
+                userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
                 userName: googleResponse.profileObj.email,
                 userPass: googleResponse.profileObj.googleId,
                 userImg: googleResponse.profileObj.imageUrl,
@@ -77,11 +77,10 @@ const SignUp = (props) =>{
             if(response && !response.sucess){
                 setErrors([response.errors])
             }else {
-                alert(`Welcome ${localStorage.getItem("firstName")}`)
+                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
             }
         }
     }
-
     return (
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
@@ -109,9 +108,9 @@ const SignUp = (props) =>{
 
                 <button type='submit' onClick={send_data}>Send</button>
                 
-                {errors&& errors.map((error,index) =>{
-                    return ( <p key={index}>{error.message}</p>)})
-                }
+                {errors && errors.map(error=> <p>{error}</p> )}
+
+            </form>
                 <GoogleLogin
                     clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
                     buttonText="Sign Up with Google"
@@ -120,7 +119,6 @@ const SignUp = (props) =>{
                     cookiePolicy={'single_host_origin'}
                 />
                 <Link to ='/login'><p >Do you already have an account? <span className="logInRedirect">Log in here</span></p></Link>
-            </form>
         </div>
         
         </>
@@ -134,6 +132,7 @@ const mapStateToProps= state =>{
     }
 }
 const mapDispatchToProps ={
+    login_user:userActions.login_user,
     createNewUser: userActions.createNewUser
 }
 export default connect(mapStateToProps,mapDispatchToProps)(SignUp)

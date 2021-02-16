@@ -22,21 +22,19 @@ const LogIn = (props) => {
         })
        
     }
-    const send_data = async e =>{
+    const send_data = async (e) =>{
         e.preventDefault()
         if(loggedUser.userName==='' || loggedUser.userPass===''){
             setErrors([{message:'All fields must be completed'}])
             return false
         }
-        const data = await props.login_user(loggedUser)
-        
-        if(data.errores){
-            setErrors(data.errores.details)
+        const data = await props.login_user(loggedUser)   
+        if(data && !data.sucess){
+            setErrors([data.errors])
         }else{
-            setErrors([])
-            alert(`Welcome ${data.name}`)
-            props.history.push('/')
+            alert(`Welcome ${localStorage.getItem("userFirstName")}`)
         }
+        
     }
     // GOOGLE SIGN UP ACCOUNT
     const responseGoogle = async (googleResponse) => {
@@ -50,10 +48,11 @@ const LogIn = (props) => {
             if(response && !response.sucess){
                 setErrors([response.response])
             }else{
-                alert(`Welcome ${localStorage.getItem("firstName")}`)
+                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
             }
         }
     }
+    console.log(errors)
     return(
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
             <h2>Log In</h2>
@@ -62,9 +61,8 @@ const LogIn = (props) => {
                 <input id='password'name='userPass' type='password' placeholder='Password' onChange={read_input}/>
 
                     <button onClick={send_data} type='submit'>Log In</button>
-                    {errors&& errors.map((error,index) =>{
-                        return (<p key={index}>{error.message}</p>)})
-                    }
+                    {errors && errors.map(error=> <p>{error}</p> )}
+                </form>
                     <GoogleLogin
                         clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
                         buttonText="Login with Google"
@@ -74,8 +72,6 @@ const LogIn = (props) => {
                     />
                     <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
                     <Link to ='/'><p>Home</p></Link>
-                </form>
-
         </div>
                 )
 }
