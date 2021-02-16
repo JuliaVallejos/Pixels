@@ -13,6 +13,7 @@ const DeveloperPage = (props) =>{
         clasificationPEGI:'',
         gameImg:''
     })
+
     console.log(props)
 
     const read_input = e =>{
@@ -26,7 +27,8 @@ const DeveloperPage = (props) =>{
         })      
     }
 
-    
+        console.log(props.loggedUser.id)
+
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
@@ -40,9 +42,10 @@ const DeveloperPage = (props) =>{
         }
      
         const data = await props.submitNewGame(newGame)
+
         if(data && !data.sucess){
             setErrors([data.errors])
-            alert('Error when recording a new game')
+            alert('Error recording a new game')
             console.log(errors)
         }else {
             alert('New game saved successfully')
@@ -73,8 +76,8 @@ const DeveloperPage = (props) =>{
                     </select>
                     <select name="clasificationPEGI"onChange={read_input}>
                         <option value="value1" disabled="true" selected="true">ClasificationPGI</option>
-                        {clasificationPEGI.map(clasification =>{
-                            return(<option value={clasification}>{clasification}</option>)
+                        {clasificationPEGI.map((clasification,index) =>{
+                            return(<option value={clasification} key={index}>{clasification}</option>)
                         })}
                     </select>
 
@@ -82,9 +85,14 @@ const DeveloperPage = (props) =>{
 
                     <button onClick={send_data} type='submit'>Submit</button>
                     
-                    {/* {errors.length !==0 && errors.map((error,index) =>{
+                    {/* {errors.length !==0 ?
+                        errors.map((error,index) =>{
                             return (<p key={index}>{error.message}</p>)
-                        })} */}
+                        })
+                    : 
+                    return false
+
+                    } */}
                 </form>
         </div>
     )
