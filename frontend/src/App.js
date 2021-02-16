@@ -24,17 +24,15 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>
         <Route exact path='/' component={HomePage}/>
-        <Route path='/test' component={News}/>
+        <Route path='/test' component={Category}/>
         <Route path='/developers' component={DeveloperPage}/>
         <Route path='/library' component={Library}/> 
-        <Redirect to='/'/>  
           {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
           </>}        
-          <Route path='/test' component={Category}/>
-          <Redirect to="/" />
+        <Redirect to="/" />
         </Switch>
         <Footer/>
       </BrowserRouter>    
