@@ -4,7 +4,7 @@ import Library from './pages/Library'
 import Footer from './components/Footer'
 import LogIn from './pages/Login'
 import SignUp from './pages/SignUp'
-import HomePage from './pages/HomePage'
+import Home from './pages/Home'
 import DeveloperPage from './pages/DeveloperPage'
 import Category from './components/Category'
 import usersActions from "./redux/actions/usersActions"
@@ -22,7 +22,7 @@ function App({loggedUser,login_with_LS}) {
       <BrowserRouter>
         <Header/>
         <Switch>
-        <Route exact path='/' component={HomePage}/>
+        <Route exact path='/' component={Home}/>
         <Route path='/test' component={Category}/>
         <Route path='/developers' component={DeveloperPage}/>
         <Route path='/library' component={Library}/> 
