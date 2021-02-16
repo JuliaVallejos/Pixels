@@ -8,9 +8,10 @@ const Header = ({loggedUser,logOut}) =>{
         <div id="headerContainer" className="justifyBetween">
             <div className="logo" style={{backgroundImage: `url("../assets/logo.png")`}}></div>
             <div className="links justifyBetween">
-                <NavLink to ='/'><p>Home</p></NavLink>
+                <NavLink exact to ='/'><p>Home</p></NavLink>
                 <NavLink to ='/library'><p>Library</p></NavLink>
-                <NavLink to ='/developers'><p>Developers</p></NavLink>
+                
+                    <NavLink to ='/developers'><p>Developers</p></NavLink>
                 {loggedUser===null
                 ? <>
                     <NavLink to ='/login'><p>LogIn</p></NavLink>
@@ -18,12 +19,9 @@ const Header = ({loggedUser,logOut}) =>{
                   </>
                 :   <NavLink to ="#" onClick={logOut}>LogOut</NavLink>
                 }
-                
             </div>
         </div>
-
-        </>
-        
+        </>    
     )
 }
 const mapStateToProps=state=>{

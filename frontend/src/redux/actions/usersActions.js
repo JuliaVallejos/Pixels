@@ -1,12 +1,11 @@
 import axios from 'axios'
 const usersActions = {
   createNewUser: newUser => {
-    console.log(newUser)
     return async (dispatch,getstate) => {
       try{
         const data = await axios.post("http://localhost:4000/api/user/signUp",newUser); 
         if (data.data.sucess){
-          dispatch({type:'LOGIN', payload:data.data.response})
+          dispatch({type:'LOGIN', payload:data.data})
         } else{
           return data.data
         }
@@ -20,13 +19,11 @@ const usersActions = {
     return async (dispatch,getstate) => {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
-        console.log(data.data.sucess)
-        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data.response})
+        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data})
         }else{
           return data.data
         }
       }catch(error){
-            
         const data ={errores:{details:[{message:'An error occurred'}]}}
         return data
       }
@@ -45,7 +42,6 @@ const usersActions = {
             Authorization: `Bearer ${token}` 
           }
         })
-        console.log(response.data.sucess)
         if(response.data.sucess){
           dispatch({type:"LOGIN", payload: {
             response:{...response.data.response}
