@@ -1,6 +1,5 @@
 const initialState ={
-    gamesList:[]
-    
+    gamesList:[]   
 
 }
  function gamesReducer(state= initialState,action){
@@ -23,7 +22,6 @@ const initialState ={
         
         default:
             return state
-
 
 }}
 

@@ -24,6 +24,7 @@ router.route('/games')
 
 router.route('/games/:idGame')
 .delete(GameController.deleteGame)
+
 //ruta para noticia 
 router.route("/news")
 .post(newsController.addNews)

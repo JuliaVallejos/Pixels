@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {useState,useEffect} from 'react'
-import gameActions from '../redux/actions/gameActions';
+import gamesActions from '../redux/actions/gamesActions';
 
 
 const DeveloperPage = (props) =>{
@@ -21,8 +21,7 @@ const DeveloperPage = (props) =>{
         setNewGame({
             ...newGame, 
             [property]:value
-        })
-       
+        })      
     }
 
     const send_data= async e =>{
@@ -30,7 +29,7 @@ const DeveloperPage = (props) =>{
         e.preventDefault()
         const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg} = newGame
         
-        if(gameTitle==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI==='' || gameImg==='' || !gameTitle || !gameInfo || !gameCategories || !clasificationPEGI || !gameImg ){
+        if(gameTitle==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI==='' || gameImg===''){
            
             setErrors([{message:'All required(*) fields must be completed'}])
             return false        
@@ -40,6 +39,7 @@ const DeveloperPage = (props) =>{
         return false
     }
 
+    const clasificationPEGI = [3,7,12,16,18]
 
 
     return(
@@ -47,29 +47,27 @@ const DeveloperPage = (props) =>{
             <h2>Upload your game</h2>
                 <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title' onChange={read_input}/>
+
                     <textarea id='gameInfo'name='gameInfo' type='text' placeholder='Game description' onChange={read_input}/>
+
                     <select name="gameCategories"onChange={read_input}>
                         <option value="value1" disabled="true">Category</option>
                         {gameCategories.map(category=>{
-                            return(
-                                <option value="value2">{category}</option>
-                            )
+                            return(<option value="value2">{category}</option>)
                         })}
                     </select>
                     <select name="clasificationPEGI"onChange={read_input}>
                         <option value="value1" disabled="true">ClasificationPGI</option>
-                        <option value="value2">ClasificationPGI</option>
-                        <option value="value3">3</option>
-                        <option value="value4">7</option>
-                        <option value="value5">12</option>
-                        <option value="value6">16</option>
-                        <option value="value7">18</option>
+                        {clasificationPEGI.map(clasification =>{
+                            return(<option value="value3">{clasification}</option>)
+                        })}
                     </select>
+
                     <input type="text" name="gameImg" placeholder="Pic" onChange={read_input}/>
 
                     <button onClick={send_data} type='submit'>Submit</button>
                     {errors&& errors.map((error,index) =>{
-                            return ( <p key={index}>{error.message}</p>)
+                            return (<p key={index}>{error.message}</p>)
                         })}
                 </form>
         </div>
@@ -77,7 +75,7 @@ const DeveloperPage = (props) =>{
 }
 
 const mapDispatchToProps= {   
-    submitNewGame: gameActions.submitNewGame
+    submitNewGame: gamesActions.submitNewGame
 }
 
 export default connect(null,mapDispatchToProps)(DeveloperPage)
