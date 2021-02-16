@@ -1,7 +1,6 @@
 import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import Header from './components/Header'
 import Library from './pages/Library'
-import News from './components/News'
 import Footer from './components/Footer'
 import LogIn from './pages/Login'
 import SignUp from './pages/SignUp'
@@ -10,7 +9,7 @@ import DeveloperPage from './pages/DeveloperPage'
 import Category from './components/Category'
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
-import Home from './components/Home'
+
 
 
 function App({loggedUser,login_with_LS}) {
