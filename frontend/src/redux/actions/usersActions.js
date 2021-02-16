@@ -2,9 +2,8 @@ import axios from 'axios'
 const usersActions = {
     createNewUser: newUser => {
         return async (dispatch,getstate) => {
-        console.log(newUser)
         try{
-             const data = 'hola todavia no tengo api'/*await axios.post(RUTA DE NUEVO USUARIO,newUser) */
+            const data = await axios.post("http://localhost:4000/api/user/signUp",newUser);
             if (data.data.success){
               dispatch({type:'LOGIN', payload:data.data.response})
               return data.data.response
@@ -16,12 +15,10 @@ const usersActions = {
           return data
         }}},
         login_user:loginUser=>{
-            console.log(loginUser)
             return async (dispatch,getstate) => {
               try{
-                const data = 'hola' /* await axios.post('RUTA DE LOGIN,loginUser) */
+                const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
                 if (data.data.success){
-                  
                   dispatch({type:'LOGIN', payload:data.data.response})
                   return data.data.response
                 } else{
