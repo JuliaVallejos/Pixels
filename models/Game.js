@@ -9,6 +9,7 @@ const GameSchema = new mongoose.Schema({
         idUser: {type:mongoose.Schema.ObjectId,ref:'user',required:true},
         valoration: Number,
     }]},
+    prom:Number,
     userComments: {type:[{
         idUser: {type:mongoose.Schema.ObjectId,ref:'user'},
         comment: String

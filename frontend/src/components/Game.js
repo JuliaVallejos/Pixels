@@ -1,6 +1,6 @@
+import { useState } from "react"
 
  const Game = (props) =>{
-  
 
         return(
             <>
@@ -13,13 +13,12 @@
                      <h4>{gameTitle}</h4>
                      <div style={{width:'85px',height:'85px',backgroundColor:'yellowgreen',backgroundImage:`url(${gameImg})`,backgroundSize:'cover'}}></div>
                         <p>{gameInfo}</p><p>Valoration</p>{
-                        
-                           valoration.map( (valoration,index) => {
-                                return(
-                                    <p key={index}>{valoration.valoration}</p>
-                                    )
-                                
-                            })
+                           valoration.map( (valoration1,index) => {  
+                               return(
+                                   <p key={index}>{valoration1.valoration}</p>
+                                   )
+                                   
+                                })
                             
                         }<p>Clasification {clasificationPEGI}</p>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
