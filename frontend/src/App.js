@@ -1,4 +1,4 @@
-import {Route,BrowserRouter,Switch} from 'react-router-dom'
+import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
 import LogIn from './pages/Login';
 import SignUp from './pages/SignUp'
 import Header from './components/Header'
@@ -14,10 +14,14 @@ function App({loggedUser,login_with_LS}) {
     <div className="App">
       <BrowserRouter>
         <Header/>
-        <Switch>        
-          <Route path='/signup' component={SignUp}/>
-          <Route path='/login' component={LogIn}/>
+        <Switch>
+          {!loggedUser && 
+          <>
+            <Route path='/signup' component={SignUp}/>
+            <Route path='/login' component={LogIn}/>
+          </>}        
           <Route path='/test' component={Category}/>
+          <Redirect to="/" />
         </Switch>
         <Footer/>
       </BrowserRouter>

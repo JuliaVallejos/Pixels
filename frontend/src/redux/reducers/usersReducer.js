@@ -1,16 +1,14 @@
 const initialState ={
-    loggedUser:null
+    loggedUser:null,
 }
 
 function usersReducer(state= initialState,action){
     switch (action.type) {
         case 'LOGIN':
-            console.log("2")
-            console.log(action.payload)
-            localStorage.setItem("userFirstName",action.payload.response.userFirstName);
-            localStorage.setItem("token",action.payload.response.token);
-            localStorage.setItem("id",action.payload.response.id);
-            localStorage.setItem("userImg",action.payload.response.userImg);
+            localStorage.setItem("userFirstName",action.payload.userFirstName);
+            localStorage.setItem("token",action.payload.token);
+            localStorage.setItem("id",action.payload.id);
+            localStorage.setItem("userImg",action.payload.userImg);
             return {
                 ...state,
                 loggedUser:action.payload,
