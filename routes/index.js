@@ -13,13 +13,20 @@ const userController=require("../controllers/userController");
 
 // RUTAS PARA USUARIOS
 router.route("/user/signUp")
-    .post(validator.validateNewAccount,userController.signUp)
+    .post(userController.signUp)
+    // .post(validator.validateNewAccount,userController.signUp) SIGN UP CON JOI
 router.route("/user/logIn")
     .post(userController.logIn)
+router.route("/user/logInLS")
+    .post(passport.authenticate("jwt",{session:false}),userController.logInLS)
 // RUTAS PARA VIDEOJUEGOS
 router.route('/games')
 .get(GameController.allGames)
 .post(GameController.addGame)
+
+router.route('/games/:idGame')
+.delete(GameController.deleteGame)
+
 //ruta para noticia 
 router.route("/news")
 .post(newsController.addNews)

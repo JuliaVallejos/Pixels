@@ -2,7 +2,7 @@ import {useState,useEffect} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import userActions from '../redux/actions/usersActions'
-
+import { GoogleLogin } from 'react-google-login'
 
 const SignUp = (props) =>{
     const [errors,setErrors] = useState([])
@@ -51,11 +51,36 @@ const SignUp = (props) =>{
             return false
         }
 
-         const data = await props.createNewUser(newUser)
-     
-        return false
+        const data = await props.createNewUser(newUser)
+        if(data && !data.sucess){
+            setErrors([data.errors])
+        }else {
+            alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+        }
+        
     }
-
+    // GOOGLE SIGN UP
+    const responseGoogle = async (googleResponse) => {
+        
+        if(googleResponse.error){
+            alert("algo paso con el registro de google")
+        }
+        else {
+            const response= await props.createNewUser({
+                userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
+                userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
+                userName: googleResponse.profileObj.email,
+                userPass: googleResponse.profileObj.googleId,
+                userImg: googleResponse.profileObj.imageUrl,
+                rol: "user"
+            })
+            if(response && !response.sucess){
+                setErrors([response.errors])
+            }else {
+                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+            }
+        }
+    }
     return (
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
@@ -76,18 +101,24 @@ const SignUp = (props) =>{
 
                     {dev && 
                     <div className="devInputs">
-                        <input type='text' name='userPhone'  placeholder='Phone*'  onChange={read_input}/>
-                        <input type='text' name='userPayPal' placeholder='Your PayPal.me*'  onChange={read_input}/>
+                        <input type='text' name='userPhone'  placeholder='Phone*' onChange={read_input}/>
+                        <input type='text' name='userPayPal' placeholder='Your PayPal.me*' onChange={read_input}/>
                     </div>}  
                 </div>
 
                 <button type='submit' onClick={send_data}>Send</button>
                 
-                {errors&& errors.map((error,index) =>{
-                            return ( <p key={index}>{error.message}</p>)
-                        })}
-                <Link to ='/login'><p >Do you already have an account? <span className="logInRedirect">Log in here</span></p></Link>
+                {errors && errors.map(error=> <p>{error}</p> )}
+
             </form>
+                <GoogleLogin
+                    clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
+                    buttonText="Sign Up with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
+                <Link to ='/login'><p >Do you already have an account? <span className="logInRedirect">Log in here</span></p></Link>
         </div>
         
         </>
@@ -101,6 +132,7 @@ const mapStateToProps= state =>{
     }
 }
 const mapDispatchToProps ={
+    login_user:userActions.login_user,
     createNewUser: userActions.createNewUser
 }
 export default connect(mapStateToProps,mapDispatchToProps)(SignUp)

@@ -1,6 +1,8 @@
 import {NavLink} from 'react-router-dom'
+import {connect} from "react-redux"
+import usersActions from "../redux/actions/usersActions"
 
-const Header = () =>{
+const Header = ({loggedUser,logOut}) =>{
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
@@ -9,8 +11,14 @@ const Header = () =>{
                 <NavLink to ='/'><p>Home</p></NavLink>
                 <NavLink to ='/library'><p>Library</p></NavLink>
                 <NavLink to ='/developers'><p>Developers</p></NavLink>
-                <NavLink to ='/login'><p>LogIn</p></NavLink>
-                <NavLink to ='/signup'><p>SignUp</p></NavLink>
+                {loggedUser===null
+                ? <>
+                    <NavLink to ='/login'><p>LogIn</p></NavLink>
+                    <NavLink to ='/signup'><p>SignUp</p></NavLink>
+                  </>
+                :   <NavLink to ="#" onClick={logOut}>LogOut</NavLink>
+                }
+                
             </div>
         </div>
 
@@ -18,5 +26,13 @@ const Header = () =>{
         
     )
 }
+const mapStateToProps=state=>{
+    return{
+        loggedUser:state.user.loggedUser
+    }
+}
+const mapDispatchToProps={
+    logOut:usersActions.logOut
+}
 
-export default Header
+export default connect(mapStateToProps,mapDispatchToProps)(Header)
