@@ -1,4 +1,4 @@
-import { date } from "joi"
+
 import { useState } from "react"
 import { connect } from "react-redux"
 import newsActions from "../redux/actions/newsActions"
@@ -6,6 +6,7 @@ import newsActions from "../redux/actions/newsActions"
 
 const AddNews = (props)=>{
     const [news, setNews]=useState({})
+    const [errors,setErrors] = useState([])
 
 const read_input = e=>{
     const property= e.target.name
@@ -18,16 +19,19 @@ const read_input = e=>{
 
 
 const send_data = async e=>{
+    
     e.preventDefault()
   if(news.newsTitle ==='' || news.newsImg === '' || news.newsDescription === '' || news.newsBody === '' || news.newsAuthor === '' || news.dateOfTheNews === '' ){
-      alert('completar los campos')
+     setErrors([{message:'All required(*) fields must be completed'}])
       return false 
   }
+  setErrors([])
   const data = await props.createNews(news)
-  console.log(data)
-    
+  if(data && !data.success){
+    setErrors([{message:'All required(*) fields must be completed'}])
+  }
 }
-
+console.log(props.news)
 return(
     <>
      <h1>create your news</h1>
@@ -38,8 +42,11 @@ return(
      <input placeholder="author of the news" name="newsAuthor" onChange={read_input}></input>
      <input placeholder="yyyy-mm-dd"  name="dateOfTheNews" onChange={read_input}></input>
      <button onClick={send_data}>Create News</button>
+     {errors&& errors.map((error,index) =>{
+                            return (<p key={index}>{error.message}</p>)
+                        })}
     </>
-  
+
 )
 }
 const mapStateToProps =state=>{

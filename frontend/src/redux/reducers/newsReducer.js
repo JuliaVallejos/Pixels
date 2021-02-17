@@ -10,6 +10,12 @@
                  ...state,
                  news: action.payload
              }
+             break
+             case "ALL_NEWS":
+                 return{
+                     ...state,
+                     news: action.payload
+                 }
          default:
              return state
              
