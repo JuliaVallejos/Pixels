@@ -8,14 +8,17 @@ const userController={
         // const {userName,userPass,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol}=req.body;
         const {userName,userPass,userFirstName,userLastName,userPhone,userPayPal,userRol}=req.body;
         const {userImg}= req.files;
-        console.log(userImg)
+        const imgType=userImg.name.split(".").slice(-1).join(" ");
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
         if(errors.length===0){
             var passHashed=await bcryptjs.hashSync(userPass,10);
             var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userPhone,userPayPal,userRol});
-            userImg.mv(`${__dirname}/frontend/src/userImages/${newUser._id}`,error=>{
-                if(error){errors.push(error)}
+            userImg.mv(`${__dirname}/../frontend/src/userImages/${newUser._id}.${imgType}`,error=>{
+                if(error){
+                    console.log(error)
+                    errors.push(error)}
+                else{ console.log(userImg)}
             })
             // if(errors.length===0){
             //     const newUserSaved=await newUser.save()
