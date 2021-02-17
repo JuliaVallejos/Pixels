@@ -61,53 +61,49 @@ const SignUp = (props) =>{
         
     }
     // GOOGLE SIGN UP
+    /* inputOptions can be an object or Promise */
+    const inputOptions = new Promise((resolve) => {
+        setTimeout(() => {
+        resolve({
+            'User': 'User',
+            'Developer': 'Developer'
+        })
+        }, 1000)
+    })
+    
+   
     const responseGoogle = async (googleResponse) => {
         
         if(googleResponse.error){
             alert("algo paso con el registro de google")
         }
         else {
-
-            /* inputOptions can be an object or Promise */
-            const inputOptions = new Promise((resolve) => {
-                setTimeout(() => {
-                resolve({
-                    'User': 'User',
-                    'Developer': 'Developer'
-                })
-                }, 1000)
-            })
-            
             const { value: userRol } = await Swal.fire({
                 title: 'Select user type account',
                 input: 'radio',
                 inputOptions: inputOptions,
                 inputValidator: (value) => {
-                if (!value) {
-                    return 'You need to choose something!'
-                }
-                }
+                    if (!value) {
+                        return 'You need to choose something!'
+                    }
+                },
+                showCancelButton: true
             })
             
             if (userRol) {
-                Swal.fire({ html: `You selected: ${userRol}` })
-            }
-
-            alert(userRol);
-
-
-            const response= await props.createNewUser({
-                userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
-                userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
-                userName: googleResponse.profileObj.email,
-                userPass: googleResponse.profileObj.googleId,
-                userImg: googleResponse.profileObj.imageUrl,
-                userRol: userRol,
-            })
-            if(response && !response.sucess){
-                setErrors([response.errors])
-            }else {
-                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                const response= await props.createNewUser({
+                    userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
+                    userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
+                    userName: googleResponse.profileObj.email,
+                    userPass: googleResponse.profileObj.googleId,
+                    userImg: googleResponse.profileObj.imageUrl,
+                    userRol: userRol,
+                })
+                if(response && !response.sucess){
+                    setErrors([response.errors])
+                }else {
+                    alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                }
             }
         }
     }
