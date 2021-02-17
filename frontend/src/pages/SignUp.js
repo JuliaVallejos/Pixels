@@ -27,32 +27,40 @@ const SignUp = (props) =>{
    }, [dev])
     const read_input = e =>{
         const property= e.target.name
-        const value = e.target.value
-
+        var value = e.target.value
+        if(property==="userImg"){
+            value=e.target.files[0];
+        }
         setNewUser({
             ...newUser, 
             [property]:value
-        })
-       
+        }) 
     }
     
-    const send_data= async e =>{
+    const send_data= async (e) =>{
         setErrors([])
         e.preventDefault()
+        console.log(newUser)
         const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
+        const formSignUp= new FormData();
+        formSignUp.append("userFirstName",userFirstName)
+        formSignUp.append("userLastName",userLastName)
+        formSignUp.append("userName",userName)
+        formSignUp.append("userPass",userPass)
+        formSignUp.append("userImg",userImg)
+        formSignUp.append("userRol",userRol)
+        formSignUp.append("userPhone",userPhone)
+        formSignUp.append("userPayPal",userPayPal)
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
-           
-            setErrors([{message:'All required(*) fields must be completed'}])
-           return false
-        
+            setErrors(['All required(*) fields must be completed'])
+            return false
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
-   
-            setErrors([{message:'All required(*) fields must be completed'}])
+            setErrors(['All required(*) fields must be completed'])
             return false
         }
-
-        const data = await props.createNewUser(newUser)
+        const data = await props.createNewUser(formSignUp)     
+        // const data = await props.createNewUser(newUser)
         if(data && !data.sucess){
             setErrors([data.errors])
         }else {
@@ -116,7 +124,8 @@ const SignUp = (props) =>{
                 <input type='text'  name='userLastName' placeholder='Last Name*' onChange={read_input}/>
                 <input type='email' name='userName' placeholder='Username (email)*' onChange={read_input}/>
                 <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
-                <input type='text' name='userImg' placeholder='Profile Photo*' onChange={read_input}/>
+                <label htmlFor="userImg"><p>Upload your pic</p></label>
+                <input type='file' id="userImg" name='userImg' onChange={read_input}/>
                 <div className="selection">
                     <div className="radioButtons">
                         <label htmlFor='userRol' onChange={read_input}><p>Account Type:</p>
