@@ -28,5 +28,8 @@ router.route("/news")
 .post(newsController.addNews)
 .get(newsController.allNews)
 
+router.route("/news/:idNews")
+.delete(newsController.deleteNews)
+
 
 module.exports=router;

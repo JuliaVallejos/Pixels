@@ -1,10 +1,11 @@
 const News = require('../models/News')
 
+
 const newsController ={
     addNews : (req,res)=>{
-       const {newsTitle, newsImg, newDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
+       const {newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
        const creatNews =  new News ({
-        newsTitle, newsImg, newDescription, newsBody, newsAuthor,dateOfTheNews
+        newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews
        })
        creatNews.save()
        .then(savedNews=>{
@@ -21,6 +22,16 @@ const newsController ={
         })
         .catch(error =>{
             return res.json({success:false, response:error})
+        })
+    },
+    deleteNews:(req, res) =>{
+        const {idNews} = req.params
+        News.findOneAndDelete(_id=idNews)
+        .then(deletenews =>{
+            return res.json({success: true, response: deletenews, message:"delete new"})
+        })
+        .catch(error =>{
+            return res.json({success:false, response: error})
         })
     }
 }

@@ -10,6 +10,7 @@ import Home from './pages/Home'
 import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
+import AddNews from './pages/AddNews'
 
 
 
@@ -28,7 +29,12 @@ function App({loggedUser,login_with_LS}) {
         && <Route exact path='/developers' component={DeveloperPage}/>
         }
         <Route path='/library' component={Library}/> 
+<<<<<<< HEAD
         {!loggedUser && 
+=======
+        <Route path='/news' component={AddNews}/>
+          {!loggedUser && 
+>>>>>>> f9901fc59919c2dd879ef412db13d836ba026c57
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
