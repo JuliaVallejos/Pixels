@@ -5,10 +5,6 @@ const newsController= require('../controllers/newsController')
 const validator=require("../controllers/validator");
 const passport= require("passport");
 require("../config/passport");
-
-// RUTAS PARA USUARIOS
-
-
 const userController=require("../controllers/userController");
 
 // RUTAS PARA USUARIOS

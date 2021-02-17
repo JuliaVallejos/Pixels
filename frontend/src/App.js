@@ -16,24 +16,24 @@ import {connect} from "react-redux"
 function App({loggedUser,login_with_LS}) {
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
-    console.log("hay usuario")
   }
   return (
     <div className="App">
       <BrowserRouter>
         <Header/>
-          <Switch>
-            <Route exact path= "/" component={Home}/>
-            <Route path='/test' component={News}/>
-            <Route path='/library' component={Library}/>
-            <Route path='/developer' component={DeveloperPage}/>
-            <Route path='/categories/:category' component={CategoryList}/>
-       
-          {!loggedUser && 
+        <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/test' component={Category}/>
+        {(loggedUser && loggedUser.userRol==="Developer")
+        && <Route exact path='/developers' component={DeveloperPage}/>
+        }
+        <Route path='/library' component={Library}/> 
+        {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
-          </>}        
+          </>
+        }        
         <Redirect to="/" />
         </Switch>
         <Footer/>
