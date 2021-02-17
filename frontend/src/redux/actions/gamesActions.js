@@ -6,6 +6,7 @@ const gamesActions = {
         return async (dispatch,getstate) => {
         try{
             const data = await axios.post("http://localhost:4000/api/games",newGame);
+            console.log(data.data.response)
             if (data.data.success){
               dispatch({type:'NEW_GAME', payload:data.data.response})
               return data.data.response

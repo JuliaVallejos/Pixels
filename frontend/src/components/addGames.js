@@ -52,7 +52,6 @@ const AddGames = (props) =>{
 
         } 
     }
-
     
     const clasificationPEGI = [3,7,12,16,18]
 
@@ -85,14 +84,9 @@ const AddGames = (props) =>{
 
                     <button onClick={send_data} type='submit'>Submit</button>
                     
-                    {/* {errors.length !==0 ?
-                        errors.map((error,index) =>{
-                            return (<p key={index}>{error.message}</p>)
-                        })
-                    : 
-                    return false
-
-                    } */}
+                    {errors&& errors.map((error,index) =>{
+                                return (<p key={index}>{error.message}</p>)
+                            })}
                 </form>
         </div>
     )
