@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import usersActions from "../redux/actions/usersActions"
 
 const Header = ({loggedUser,logOut}) =>{
+    console.log(loggedUser)
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
@@ -10,8 +11,10 @@ const Header = ({loggedUser,logOut}) =>{
             <div className="links justifyBetween">
                 <NavLink exact to ='/'><p>Home</p></NavLink>
                 <NavLink to ='/library'><p>Library</p></NavLink>
-                
-                <NavLink to ='/developers'><p>Developers</p></NavLink>
+                {(loggedUser && loggedUser.userRol==="Developer")
+                ? <NavLink to ='/developers'><p>Developers</p></NavLink>
+                : <NavLink onClick={()=>alert("You need to be a developer")} to exact ='#'><p>Developers</p></NavLink>
+                }
                 {loggedUser===null
                 ? <>
                     <NavLink to ='/login'><p>LogIn</p></NavLink>

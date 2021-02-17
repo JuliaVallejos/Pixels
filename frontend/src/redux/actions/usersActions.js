@@ -5,7 +5,7 @@ const usersActions = {
       try{
         const data = await axios.post("http://localhost:4000/api/user/signUp",newUser); 
         if (data.data.sucess){
-          dispatch({type:'LOGIN', payload:data.data})
+          dispatch({type:'LOGIN', payload:data.data.response})
         } else{
           return data.data
         }
@@ -19,7 +19,9 @@ const usersActions = {
     return async (dispatch,getstate) => {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
-        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data})
+        console.log(data.data.response)
+        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data.response})
+        
         }else{
           return data.data
         }
@@ -43,9 +45,7 @@ const usersActions = {
           }
         })
         if(response.data.sucess){
-          dispatch({type:"LOGIN", payload: {
-            response:{...response.data.response}
-          }})
+          dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
         if(error.response.status===401){

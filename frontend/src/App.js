@@ -23,7 +23,9 @@ function App({loggedUser,login_with_LS}) {
         <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/test' component={Category}/>
-        <Route path='/developers' component={DeveloperPage}/>
+        {(loggedUser && loggedUser.userRol==="Developer")
+        && <Route exact path='/developers' component={DeveloperPage}/>
+        }
         <Route path='/library' component={Library}/> 
         {!loggedUser && 
           <>

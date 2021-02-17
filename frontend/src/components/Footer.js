@@ -7,9 +7,12 @@ const Footer = ({loggedUser,logOut}) => {
         <>
             <div className="footer centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
                 <div className="footerLinks justifyBetween">
-                    <NavLink to ='/'><p>Home</p></NavLink>
+                    <NavLink exact to ='/'><p>Home</p></NavLink>
                     <NavLink to ='/library'><p>Library</p></NavLink>
-                    <NavLink to ='/developers'><p>Developers</p></NavLink>
+                    {(loggedUser && loggedUser.userRol==="Developer")
+                    ? <NavLink to ='/developers'><p>Developers</p></NavLink>
+                    : <NavLink onClick={()=>alert("You need to be a developer")} to exact ='#'><p>Developers</p></NavLink>
+                    }
                     {loggedUser===null
                     ? <>
                         <NavLink to ='/login'><p>LogIn</p></NavLink>
