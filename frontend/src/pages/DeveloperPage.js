@@ -53,7 +53,7 @@ const DeveloperPage = (props) =>{
                         <option value="" disabled="true" selected="true">Select Category</option>
 
                         {props.categories.map(category=>{
-                            return(<option value={category}>{category}</option>)
+                            return(<option value={category.name}>{category.name}</option>)
                         })}
                     </select>
                     <select name="clasificationPEGI"onChange={read_input}>

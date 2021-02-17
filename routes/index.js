@@ -5,10 +5,6 @@ const newsController= require('../controllers/newsController')
 const validator=require("../controllers/validator");
 const passport= require("passport");
 require("../config/passport");
-
-// RUTAS PARA USUARIOS
-
-
 const userController=require("../controllers/userController");
 
 // RUTAS PARA USUARIOS
@@ -31,6 +27,9 @@ router.route('/games/:idGame')
 router.route("/news")
 .post(newsController.addNews)
 .get(newsController.allNews)
+
+router.route("/news/:idNews")
+.delete(newsController.deleteNews)
 
 
 module.exports=router;
