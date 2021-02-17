@@ -107,8 +107,8 @@ const SignUp = (props) =>{
                 </div>
 
                 <button type='submit' onClick={send_data}>Send</button>
-                
-                {errors && errors.map(error=> <p>{error}</p> )}
+                {console.log(errors[0])}
+                {errors && errors[0].map(error=> <p>{error.message}</p> )}
 
             </form>
                 <GoogleLogin
