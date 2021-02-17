@@ -1,5 +1,5 @@
-import News from './News'
-import RecommendedGame from './RecommendedGame'
+import News from '../components/News'
+import RecommendedGame from '../components/RecommendedGame'
 import {Link} from 'react-router-dom'
 
 const Home = () =>{

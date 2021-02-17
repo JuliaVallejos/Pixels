@@ -33,14 +33,10 @@ import { useState } from "react"
                         <p>Clasification: {clasificationPEGI}</p>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
                         {gameCategories.map((category,index) =>{
-                            return (
-                            <p key={index}> {category} </p>)
-                        })}
+                            return (<p key={index}> {category} </p>)})}
                         </div>
                         {userComments.map(comment =>{
-                            return (
-                                <p key={comment._id}>{comment.comment}</p>
-                            )
+                            return (<p key={comment._id}>{comment.comment}</p>)
                         })}
                  </div>
                  ) 

@@ -10,7 +10,7 @@ const Header = ({loggedUser,logOut}) =>{
             <div className="links justifyBetween">
                 <NavLink to ='/'><p>Home</p></NavLink>
                 <NavLink to ='/library'><p>Library</p></NavLink>
-                <NavLink to ='/developers'><p>Developers</p></NavLink>
+                <NavLink to ='/developer'><p>Developers</p></NavLink>
                 {loggedUser===null
                 ? <>
                     <NavLink to ='/login'><p>LogIn</p></NavLink>
