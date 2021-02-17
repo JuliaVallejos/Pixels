@@ -53,8 +53,6 @@ const Library = (props) =>{
   
         const data = await props.allGames()
         data&& setLoading(false)
-  
-
     }
       
 

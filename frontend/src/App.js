@@ -10,6 +10,7 @@ import Home from './pages/Home'
 import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
+import AddNews from './pages/AddNews'
 
 
 
@@ -23,11 +24,13 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>
         <Route exact path='/' component={Home}/>
+        <Route path='/categories/:category' component={CategoryList}/>
         {(loggedUser && loggedUser.userRol==="Developer")
         && <Route exact path='/developers' component={DeveloperPage}/>
         }
         <Route path='/library' component={Library}/> 
-        {!loggedUser && 
+        <Route path='/news' component={AddNews}/>
+          {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
