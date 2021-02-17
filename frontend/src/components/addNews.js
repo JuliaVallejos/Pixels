@@ -37,12 +37,12 @@ return(
     <>
     <div className="signUp centerCenter" style={{height: "65vh"}}>
         <h2>create your news</h2>
-        <input type="text" placeholder="title of the news" name="newsTitle" onChange={read_input}></input>
-        <input type="text" placeholder="image of the news" name="newsImg" onChange={read_input}></input>
-        <input type="text" placeholder="description of the news" name="newsDescription" onChange={read_input}></input>
-        <input type="text" placeholder="body of the news" name="newsBody" onChange={read_input}></input>
-        <input type="text" placeholder="author of the news" name="newsAuthor" onChange={read_input}></input>
-        <input type="date" placeholder="yyyy-mm-dd"  name="dateOfTheNews" onChange={read_input}></input>
+        <input type="text" placeholder="title of the news" name="newsTitle" onChange={read_input}/>
+        <input type="text" placeholder="image of the news" name="newsImg" onChange={read_input}/>
+        <input type="text" placeholder="description of the news" name="newsDescription" onChange={read_input}/>
+        <textarea type="text" placeholder="body of the news" name="newsBody" onChange={read_input}/>
+        <input type="text" placeholder="author of the news" name="newsAuthor" onChange={read_input}/>
+        <input type="date" placeholder="yyyy-mm-dd"  name="dateOfTheNews" onChange={read_input}/>
         <button onClick={send_data}>Create News</button>
         {errors&& errors.map((error,index) =>{
                                 return (<p key={index}>{error.message}</p>)
