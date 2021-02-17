@@ -11,7 +11,7 @@ const Header = ({loggedUser,logOut}) =>{
                 <NavLink exact to ='/'><p>Home</p></NavLink>
                 <NavLink to ='/library'><p>Library</p></NavLink>
                 
-                    <NavLink to ='/developers'><p>Developers</p></NavLink>
+                <NavLink to ='/developers'><p>Developers</p></NavLink>
                 {loggedUser===null
                 ? <>
                     <NavLink to ='/login'><p>LogIn</p></NavLink>
