@@ -13,7 +13,7 @@ const SignUp = (props) =>{
         userName:'',
         userPass:'',
         userImg:'',
-        rol:''
+        userRol:''
     })
    useEffect(() => {
        if(!dev){
@@ -38,9 +38,9 @@ const SignUp = (props) =>{
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
-        const {userFirstName,userLastName,userName,userPass,userImg,rol,userPhone,userPayPal} = newUser
+        const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
         
-        if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||rol===''){
+        if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
            
             setErrors([{message:'All required(*) fields must be completed'}])
            return false
@@ -72,7 +72,7 @@ const SignUp = (props) =>{
                 userName: googleResponse.profileObj.email,
                 userPass: googleResponse.profileObj.googleId,
                 userImg: googleResponse.profileObj.imageUrl,
-                rol: "user"
+                userRol: "User"
             })
             if(response && !response.sucess){
                 setErrors([response.errors])
@@ -93,9 +93,9 @@ const SignUp = (props) =>{
                 <input type='text' name='userImg' placeholder='Profile Photo*' onChange={read_input}/>
                 <div className="selection">
                     <div className="radioButtons">
-                        <label htmlFor='rol' onChange={read_input}><p>Account Type:</p>
-                        <input type='radio'  onClick={()=>setDev(false)}  value='user' name='rol'/><p>User</p>
-                        <input type='radio' onClick={()=>setDev(true)} value='developer' name='rol'/><p>Developer</p>
+                        <label htmlFor='userRol' onChange={read_input}><p>Account Type:</p>
+                        <input type='radio'  onClick={()=>setDev(false)}  value='User' name='userRol'/><p>User</p>
+                        <input type='radio' onClick={()=>setDev(true)} value='Developer' name='userRol'/><p>Developer</p>
                         </label>
                     </div>
 

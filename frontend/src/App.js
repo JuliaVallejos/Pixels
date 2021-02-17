@@ -15,7 +15,6 @@ import {connect} from "react-redux"
 function App({loggedUser,login_with_LS}) {
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
-    console.log("hay usuario")
   }
   return (
     <div className="App">
@@ -26,11 +25,12 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/test' component={Category}/>
         <Route path='/developers' component={DeveloperPage}/>
         <Route path='/library' component={Library}/> 
-          {!loggedUser && 
+        {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
-          </>}        
+          </>
+        }        
         <Redirect to="/" />
         </Switch>
         <Footer/>
