@@ -1,6 +1,9 @@
 import { useState } from "react"
+import ReactStars from "react-rating-stars-component";
+import React from "react";
+import { render } from "react-dom";
 
- const Game = (props) =>{
+ const Games = (props) =>{
 
 
     var prom=0
@@ -12,10 +15,13 @@ import { useState } from "react"
              {props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
              
                 return(
-                 <div key={_id}>
-                     <h4>{gameTitle}</h4>
-                     <div style={{width:'85px',height:'85px',backgroundColor:'yellowgreen',backgroundImage:`url(${gameImg})`,backgroundSize:'cover'}}></div>
-                        <p>{gameInfo}</p>
+                 <div className="zoom" key={_id}>
+                     
+                     <div className="portadaJuego " style={{backgroundImage:`url(${gameImg})`}}></div>
+                        <div>
+                            <h4 className="tituloJuego">{gameTitle}</h4>
+                            <p>{gameInfo}</p>
+                        </div>
                        
                         
                         { valoration.map(() =>{  
@@ -29,15 +35,30 @@ import { useState } from "react"
                                 })        
                             }
                     
-                        <p>Valoration: {prom}</p>
-                        <p>Clasification: {clasificationPEGI}</p>
-                       <div style={{display:'flex',justifyContent:'space-between'}}>
+                            <p className="valoracion justifyCenter"><ReactStars
+                                    count={5}
+                                    isHalf={true}
+                                    value={prom}
+                                    size={50}
+                                    activeColor="#ffd700"
+                                    edit= {false}
+                            /></p>
+                        
+                        
+                            
+                            
+                           
+                        
+                        
+                        
+                        {/* <p>Clasification: {clasificationPEGI}</p> */}
+                       {/* <div style={{display:'flex',justifyContent:'space-between'}}>
                         {gameCategories.map((category,index) =>{
                             return (<p key={index}> {category} </p>)})}
                         </div>
                         {userComments.map(comment =>{
                             return (<p key={comment._id}>{comment.comment}</p>)
-                        })}
+                        })} */}
                  </div>
                  ) 
  
@@ -47,4 +68,4 @@ import { useState } from "react"
 
 }
 
-export default Game
+export default Games
