@@ -40,7 +40,7 @@ return(
         <input type="text" placeholder="title of the news" name="newsTitle" onChange={read_input}/>
         <input type="text" placeholder="image of the news" name="newsImg" onChange={read_input}/>
         <input type="text" placeholder="description of the news" name="newsDescription" onChange={read_input}/>
-        <textarea type="text" placeholder="body of the news" name="newsBody" onChange={read_input}/>
+        <textarea type="text" placeholder="body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
         <input type="text" placeholder="author of the news" name="newsAuthor" onChange={read_input}/>
         <input type="date" placeholder="yyyy-mm-dd"  name="dateOfTheNews" onChange={read_input}/>
         <button onClick={send_data}>Create News</button>

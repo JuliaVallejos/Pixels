@@ -562,6 +562,33 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   background-color: rgba(247,104,247,0.67);
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+/* ------ JUEGOS (CATEGORIA) ------ */
+
+.portadaJuego {
+  width:  20vw;
+  height: 40vh;
+  background-position: center;
+  background-size: cover;
+}
+.tituloJuego {
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+.valoracion {
+  font-size: 2rem;
+  
+}
+.zoom {
+  transition: transform .2s; /* Animation */
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
+
+.zoom:hover {
+  transform: scale(1.1); 
+}
+
 /* ------ DEVELOPER_PAGE ------ */
 .developerContainer{
   height: 100%;

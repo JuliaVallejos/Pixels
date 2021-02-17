@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import usersActions from "../redux/actions/usersActions"
 
 const Header = ({loggedUser,logOut}) =>{
-    console.log(loggedUser)
+ 
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
