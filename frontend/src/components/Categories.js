@@ -1,17 +1,30 @@
-const Category = () =>{ 
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+
+const Categories = (props) =>{ 
+    const{categories} = props
+   
     return (
         <div className="displayFlex justifyAround padre">
-            <div id="cardPadreCategory" className="justifyCenter ">  
-                <div className="bordesCategory estiloCardItCategory estiloCardCategory cardHijoCategory justifyFlexEnd" style={{ backgroundImage: `url("https://images3.alphacoders.com/863/863669.jpg")` }}>
-                    <div className="Category ">
-                        <div className="tituloCategory textCenter ">
-                            <h5>Indie</h5>
+            {categories.map((category,index) =>{
+                return(
+                    <Link key={index}  to={`/categories/${category.name}`}><div id="cardPadreCategory" className="justifyCenter ">  
+                        <div className="bordesCategory estiloCardItCategory estiloCardCategory cardHijoCategory justifyFlexEnd" style={{ backgroundImage: `url(${category.img})` }}>
+                            <div className="Category ">
+                                <div className="tituloCategory textCenter ">
+                                    <h5>{category.name}</h5>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div> 
+                    </Link>
 
-            <div id="cardPadreCategory" className="justifyCenter ">  
+
+                )
+            })}
+        </div>)
+            
+           /*  <div id="cardPadreCategory" className="justifyCenter ">  
                 <div className="bordesCategory estiloCardItCategory estiloCardCategory cardHijoCategory justifyFlexEnd" style={{ backgroundImage: `url("https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg")` }}>
                     <div className="Category ">
                         <div className="tituloCategory textCenter ">
@@ -39,13 +52,15 @@ const Category = () =>{
                     </div>
                 </div>
             </div> 
-          
-            
-
-
+   
 
         </div>
-    )
+    ) */
 }
 
-export default Category
+const mapStateToProps = state =>{
+    return{
+        categories:state.game.categories
+    }
+}
+export default connect(mapStateToProps)(Categories)

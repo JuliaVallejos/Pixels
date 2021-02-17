@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {useState,useEffect} from 'react'
-import gamesActions from '../redux/actions/gamesActions';
-import usersActions from '../redux/actions/usersActions';
+import gamesActions from '../redux/actions/gamesActions'
+
 
 
 const DeveloperPage = (props) =>{
@@ -23,11 +23,11 @@ const DeveloperPage = (props) =>{
         setNewGame({
             ...newGame, 
             [property]:value,
-            idUser: props.loggedUser.id
+            idUser: props.loggedUser.response.id
         })      
     }
 
-        console.log(props.loggedUser.id)
+        // console.log(props.loggedUser.response.id)
 
     const send_data= async e =>{
         setErrors([])
@@ -71,7 +71,7 @@ const DeveloperPage = (props) =>{
                         <option value="" disabled="true" selected="true">Select Category</option>
 
                         {props.categories.map(category=>{
-                            return(<option value={category}>{category}</option>)
+                            return(<option value={category.name}>{category.name}</option>)
                         })}
                     </select>
                     <select name="clasificationPEGI"onChange={read_input}>
