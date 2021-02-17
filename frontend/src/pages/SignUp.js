@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import userActions from '../redux/actions/usersActions'
 import { GoogleLogin } from 'react-google-login'
+import Swal from 'sweetalert2'
 
 const SignUp = (props) =>{
     const [errors,setErrors] = useState([])
@@ -66,13 +67,42 @@ const SignUp = (props) =>{
             alert("algo paso con el registro de google")
         }
         else {
+
+            /* inputOptions can be an object or Promise */
+            const inputOptions = new Promise((resolve) => {
+                setTimeout(() => {
+                resolve({
+                    'User': 'User',
+                    'Developer': 'Developer'
+                })
+                }, 1000)
+            })
+            
+            const { value: userRol } = await Swal.fire({
+                title: 'Select user type account',
+                input: 'radio',
+                inputOptions: inputOptions,
+                inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to choose something!'
+                }
+                }
+            })
+            
+            if (userRol) {
+                Swal.fire({ html: `You selected: ${userRol}` })
+            }
+
+            alert(userRol);
+
+
             const response= await props.createNewUser({
                 userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
                 userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
                 userName: googleResponse.profileObj.email,
                 userPass: googleResponse.profileObj.googleId,
                 userImg: googleResponse.profileObj.imageUrl,
-                userRol: "User"
+                userRol: userRol,
             })
             if(response && !response.sucess){
                 setErrors([response.errors])

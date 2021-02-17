@@ -23,7 +23,7 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path='/test' component={Category}/>
+        <Route path='/categories/:category' component={CategoryList}/>
         {(loggedUser && loggedUser.userRol==="Developer")
         && <Route exact path='/developers' component={DeveloperPage}/>
         }
