@@ -2,7 +2,7 @@ import {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import Categories from '../components/Categories'
-import Game from '../components/Game'
+import Games from '../components/Games'
 import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
@@ -10,6 +10,7 @@ const Library = (props) =>{
     const [filter,setFilter]=useState(false)
     const [noResults,setNoResults] = useState(false)
     const [loading,setLoading] = useState(true)
+    const [newOrder,setNewOrder] =  useState(newGamesList)
 
 
     useEffect(() => {
@@ -68,7 +69,7 @@ const Library = (props) =>{
             
       
             {noResults?<h1>No results</h1>:
-            (!loading)&&<Game newGamesList={newGamesList}/>}
+            (!loading)&&<Games newGamesList={newGamesList}/>}
  
         
         </div>

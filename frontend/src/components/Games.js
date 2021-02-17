@@ -1,6 +1,5 @@
-import { useState } from "react"
 
- const Game = (props) =>{
+ const Games = (props) =>{
 
 
     var prom=0
@@ -47,4 +46,4 @@ import { useState } from "react"
 
 }
 
-export default Game
+export default Games
