@@ -29,12 +29,8 @@ function App({loggedUser,login_with_LS}) {
         && <Route exact path='/developers' component={DeveloperPage}/>
         }
         <Route path='/library' component={Library}/> 
-<<<<<<< HEAD
-        {!loggedUser && 
-=======
         <Route path='/news' component={AddNews}/>
           {!loggedUser && 
->>>>>>> f9901fc59919c2dd879ef412db13d836ba026c57
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
