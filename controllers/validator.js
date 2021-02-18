@@ -24,5 +24,6 @@ const validator={
             next();
         }
     }
+    
 }
 module.exports=validator;
