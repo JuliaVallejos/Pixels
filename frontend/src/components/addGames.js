@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {useState} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
-
+import {Redirect} from 'react-router-dom'
 
 
 const AddGames = (props) =>{
@@ -14,7 +14,7 @@ const AddGames = (props) =>{
         gameImg:''
     })
 
-    // console.log(props)
+    console.log(props)
 
     const read_input = e =>{
         const property= e.target.name
@@ -51,6 +51,9 @@ const AddGames = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
+        console.log(data)
+        alert('Game ok')
+        {<Redirect to="/developers" />}
         console.log(data)
         // if(data && !data.sucess){
         //     setErrors([data.errors])

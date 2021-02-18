@@ -14,7 +14,7 @@ const GameController ={
         const createGame= new Game({
             gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
-
+        var imgName= `${createGame._id}.${imgType}`
         var imgPath= `${__dirname}/../frontend/public/gamesImages/${createGame._id}.${imgType} `
 
         console.log("hola")
@@ -25,6 +25,8 @@ const GameController ={
                 errors.push(error)}
             else{console.log("Todo OK")}
         })
+        
+        createGame.gameImg=imgName;
 
         createGame.save()
 
