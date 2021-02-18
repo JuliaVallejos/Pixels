@@ -11,6 +11,7 @@
              {props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
              
                 return(
+                    <Link to={`/games/${_id}`}>
                  <div key={_id}>
                      <h4>{gameTitle}</h4>
                      <div style={{width:'85px',height:'85px',backgroundColor:'yellowgreen',backgroundImage:`url(${gameImg})`,backgroundSize:'cover'}}></div>
@@ -37,10 +38,12 @@
                             return (<p key={comment._id}>{comment.comment}</p>)
                         })}
                  </div>
+                 </Link>
                  ) 
  
              })}
              </div>
+            
              </>)
 
 }

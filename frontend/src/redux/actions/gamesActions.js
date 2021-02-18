@@ -128,5 +128,22 @@ const gamesActions = {
         }
     }
     
-}}
+},
+gamesById : (id)=>{
+    return async (dispatch , getstate) =>{
+        try{
+            const data = await axios.get(`http://localhost:4000/api/games`,id)
+            if (data.data.success){
+                dispatch({type:'GAMEBYID', payload:data.data.game})
+                return data
+            }  }  
+            catch(error){
+            
+            const data ={errores:{details:[{message:'An error occurred'}]}}
+            return data
+            
+        }
+    }
+}
+}
 export default gamesActions

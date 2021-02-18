@@ -11,8 +11,6 @@ import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
 
 
-
-
 function App({loggedUser,login_with_LS}) {
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))

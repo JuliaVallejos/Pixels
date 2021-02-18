@@ -37,6 +37,12 @@ const initialState ={
                 newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
              
             }
+            break
+            case "GAMEBYID":
+                return{
+                    ...state,
+                    gamesList:action.payload
+                }
         
         default:
             return state
