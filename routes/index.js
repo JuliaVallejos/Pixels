@@ -6,6 +6,7 @@ const validator=require("../controllers/validator");
 const passport= require("passport");
 require("../config/passport");
 const userController=require("../controllers/userController");
+const emailController= require('../controllers/emailController')
 
 
 // RUTAS PARA USUARIOS
@@ -36,5 +37,8 @@ router.route("/news/:idNews")
 .delete(newsController.deleteNews)
 .get(newsController.newsForId)
 
+/* ruta para envío de emails */
+router.route('/contact/send')
+.post(emailController.sendEmail)
 
 module.exports=router;
