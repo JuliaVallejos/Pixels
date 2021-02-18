@@ -6,7 +6,6 @@ const GameController ={
         const {gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
         const {gameFile}= req.files;
 
-        // console.log(gameFile)
 
         const imgType= gameFile.name.split(".").slice(-1).join(" ");
 
@@ -14,8 +13,8 @@ const GameController ={
         const createGame= new Game({
             gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
-
-        var imgPath= `${__dirname}/../frontend/public/gamesImages/${createGame._id}.${imgType} `
+        var imgName=`${createGame._id}.${imgType}`
+        var imgPath= `${__dirname}/../frontend/public/gamesImages/${createGame._id}.${imgType}`
 
         console.log("hola")
 
@@ -25,10 +24,8 @@ const GameController ={
                 errors.push(error)}
             else{console.log("Todo OK")}
         })
-
+        createGame.gameImg=imgName
         createGame.save()
-
-
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser')
             
