@@ -585,8 +585,11 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   background-color: rgba(247,104,247,0.67);
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 66781c8dfb79941aba44094260798c2317b7a419
 /* ------ JUEGOS (CATEGORIA) ------ */
 
 .portadaJuego {
@@ -633,6 +636,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 }
 
+<<<<<<< HEAD
 .portadaJuego{
 background-color: #ffffff;
 border: 0.5rem solid rgba(247,104,247,0.8);
@@ -645,6 +649,20 @@ border-radius: 43px 43px 43px 43px;
 .infoJuego{
   padding-left: 1vh;
 }
+=======
+/* ------ DEVELOPER_PAGE ------ */
+.developerContainer{
+  height: 100%;
+
+}
+.developerSection{
+  width: 50vw ;
+  background-color: var(--background-color);
+}
+
+
+
+>>>>>>> 66781c8dfb79941aba44094260798c2317b7a419
 
 /* ------- MEDIA QUERIES ------- */
 @media(min-width:900px){
@@ -693,6 +711,7 @@ border-radius: 43px 43px 43px 43px;
 .links p{
   padding:0 1vw;
 }
+}
 
 /* ------- MENU DE HAMBURGESA ------- */
 
@@ -709,4 +728,8 @@ border-radius: 43px 43px 43px 43px;
 .hamburgerIcon{
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> 66781c8dfb79941aba44094260798c2317b7a419
