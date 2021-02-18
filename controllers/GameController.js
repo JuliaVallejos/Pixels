@@ -2,11 +2,19 @@ const Game = require('../models/Game')
 const GameController ={
     addGame: async (req, res) =>{
         var prom = 0
-        const {gameImg, gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
-  
+        const {gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
+        const {gameImg}= req.files;
+        const imgType= gameImg.name.split(".").slice(-1).join(" ");
         const createGame= new Game({
-            gameImg, gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
+            gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
+        gameImg.mv(`${__dirname}/../frontend/src/gamesImages/${gameImg._id}.${imgType}`,error=>{
+            if(error){
+                console.log(error)
+                errors.push(error)}
+            else{ console.log(gameImg)}
+        })
+        // GRABAR EN EL BACK?
         createGame.save()
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser')

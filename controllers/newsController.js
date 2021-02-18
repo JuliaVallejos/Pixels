@@ -3,13 +3,21 @@ const News = require('../models/News')
 
 const newsController ={
     addNews : (req,res)=>{
-       const {newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
-       const creatNews =  new News ({
-        newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews
+       const {newsTitle, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
+       const {newsImg}= req.files;
+       const imgType= newsImg.name.split(".").slice(-1).join(" ");
+       const createNews =  new News ({
+        newsTitle, newsDescription, newsBody, newsAuthor,dateOfTheNews
        })
-       creatNews.save()
+       newsImg.mv(`${__dirname}/../frontend/src/newsImages/${newsImg._id}.${imgType}`,error=>{
+        if(error){
+            console.log(error)
+            errors.push(error)}
+        else{ console.log(newsImg)}
+    })
+       createNews.save()
        .then(savedNews=>{
-           return res.json({success:true, response:savedNews})
+           return res.json({success: true, response: savedNews})
        })
        .catch(error =>{
            return res.json({success: false, response: error})

@@ -14,12 +14,13 @@ const AddGames = (props) =>{
         gameImg:''
     })
 
-    console.log(props)
+    // console.log(props)
 
     const read_input = e =>{
         const property= e.target.name
-        const value = e.target.value
-        if(property==="gameImg"){
+        var value = e.target.value
+        // console.log(e.target.files[0])
+        if(property ==="gameImg"){
             value=e.target.files[0];
         }
         setNewGame({
@@ -29,12 +30,12 @@ const AddGames = (props) =>{
         })      
     }
 
-        console.log(props.loggedUser.id)
+        // console.log(props.loggedUser.id)
 
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
-
+        // console.log(newGame)
         const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg} = newGame
         const formNewGame= new FormData();
 
@@ -44,8 +45,7 @@ const AddGames = (props) =>{
         formNewGame.append("clasificationPEGI",clasificationPEGI)
         formNewGame.append("gameImg",gameImg)
 
-        if(gameTitle==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI==='' || gameImg===''){
-           
+        if(gameTitle ==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI ==='' || gameImg ===''){           
             setErrors([{message:'All required(*) fields must be completed'}])
             return false        
         }
@@ -64,7 +64,7 @@ const AddGames = (props) =>{
     
     const clasificationPEGI = [3,7,12,16,18]
 
-    console.log(errors)
+    // console.log(errors)
     console.log(newGame)
     
     return(
