@@ -4,8 +4,10 @@ const GameController ={
         var prom = 0
         const {gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
         const {gameImg}= req.files;
+
         const imgType= gameImg.name.split(".").slice(-1).join(" ");
-        var imgPath= `${__dirname}/../frontend/src/gamesImages/${gameImg.md5}.${imgType} `
+        
+        var imgPath= `${__dirname}/../frontend/src/gamesImages/${gameImg._id}.${imgType} `
 
         const createGame= new Game({
             gameImg:imgPath, gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
@@ -16,7 +18,7 @@ const GameController ={
                 errors.push(error)}
             else{ console.log(gameImg)}
         })
-        // GRABAR EN EL BACK?
+
         createGame.save()
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser')

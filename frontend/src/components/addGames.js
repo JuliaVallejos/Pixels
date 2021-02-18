@@ -52,14 +52,14 @@ const AddGames = (props) =>{
      
         const data = await props.submitNewGame(formNewGame)
         console.log(data)
-        if(data && !data.sucess){
-            setErrors([data.errors])
-            alert('Error recording a new game')
-            console.log(errors)
-        }else {
-            alert('New game saved successfully')
+        // if(data && !data.sucess){
+        //     setErrors([data.errors])
+        //     alert('Error recording a new game')
+        //     console.log(errors)
+        // }else {
+        //     alert('New game saved successfully')
 
-        } 
+        // } 
     }
     
     const clasificationPEGI = [3,7,12,16,18]
