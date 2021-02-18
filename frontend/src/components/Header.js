@@ -15,6 +15,7 @@ const Header = ({loggedUser,logOut}) =>{
             <div className="links justifyBetween">
                 <NavLink exact to='/'><p>Home</p></NavLink>
                 <NavLink to='/library'><p>Library</p></NavLink>
+                <NavLink to='/news'><p>News</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
                 ? <NavLink to='/developers'><p>Developers</p></NavLink>
                 : <NavLink onClick={()=>alert("You need to be a developer")} exact to='#'><p>Developers</p></NavLink>

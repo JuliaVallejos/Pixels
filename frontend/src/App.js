@@ -13,7 +13,7 @@ import WhatsApp from "./components/WhatsApp"
 import Contact from "./pages/Contact"
 import AddNews from './components/AddNews'
 import gameById  from '../src/components/GameById'
-
+import News from './pages/News'
 
 
 
@@ -34,6 +34,7 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/library' component={Library}/> 
         <Route path='/library' component={Library}/> 
         <Route path='/games/:id' component={gameById}/>
+        <Route path='/news' component={News}/>
 
         {(loggedUser && loggedUser.userRol==="Developer")
         && 
