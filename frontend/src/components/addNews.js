@@ -19,13 +19,14 @@ const read_input = e=>{
 
 
 const send_data = async e=>{
-    
+    setErrors([])
     e.preventDefault()
+
   if(news.newsTitle ==='' || news.newsImg === '' || news.newsDescription === '' || news.newsBody === '' || news.newsAuthor === '' || news.dateOfTheNews === '' ){
      setErrors([{message:'All required(*) fields must be completed'}])
       return false 
   }
-  setErrors([])
+
   const data = await props.createNews(news)
   if(data && !data.success){
     setErrors([{message:'All required(*) fields must be completed'}])

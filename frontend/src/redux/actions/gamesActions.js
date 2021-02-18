@@ -1,12 +1,14 @@
 import axios from 'axios'
 
 const gamesActions = {
-    submitNewGame: (newGame) => {
-        console.log(newGame)
+    submitNewGame: (formNewGame) => {
+
         return async (dispatch,getstate) => {
         try{
-            const data = await axios.post("http://localhost:4000/api/games",newGame);
-            console.log(data.data.response)
+            const data = await axios.post("http://localhost:4000/api/games", formNewGame,{
+                headers: {"Content-Type": "multipart: form-data"}
+            });
+            // console.log(data.data.response)
             if (data.data.success){
               dispatch({type:'NEW_GAME', payload:data.data.response})
               return data.data.response

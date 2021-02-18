@@ -24,16 +24,16 @@ function App({loggedUser,login_with_LS}) {
         <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/categories/:category' component={CategoryList}/>
+        <Route path='/library' component={Library}/> 
         {(loggedUser && loggedUser.userRol==="Developer")
         && <Route exact path='/developers' component={DeveloperPage}/>
-        }
+      }
         {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
           </>
         }        
-        <Route path='/library' component={Library}/> 
         <Redirect to="/" />
         </Switch>
         <Footer/>

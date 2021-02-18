@@ -19,7 +19,9 @@ const AddGames = (props) =>{
     const read_input = e =>{
         const property= e.target.name
         const value = e.target.value
-
+        if(property==="gameImg"){
+            value=e.target.files[0];
+        }
         setNewGame({
             ...newGame, 
             [property]:value,
@@ -34,14 +36,21 @@ const AddGames = (props) =>{
         e.preventDefault()
 
         const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg} = newGame
-        
+        const formNewGame= new FormData();
+
+        formNewGame.append("gameTitle",gameTitle)
+        formNewGame.append("gameInfo",gameInfo)
+        formNewGame.append("gameCategories",gameCategories)
+        formNewGame.append("clasificationPEGI",clasificationPEGI)
+        formNewGame.append("gameImg",gameImg)
+
         if(gameTitle==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI==='' || gameImg===''){
            
             setErrors([{message:'All required(*) fields must be completed'}])
             return false        
         }
      
-        const data = await props.submitNewGame(newGame)
+        const data = await props.submitNewGame(formNewGame)
         console.log(data)
         if(data && !data.sucess){
             setErrors([data.errors])
@@ -64,23 +73,25 @@ const AddGames = (props) =>{
                 <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
-                    <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: "unset", height:"150px" }} onChange={read_input}/>
+                    <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: 'unset', height:'150px' }} onChange={read_input}/>
 
-                    <select name="gameCategories"onChange={read_input}>
-                        <option value="" disabled="true" selected="true">Select Category</option>
+                    <select name='gameCategories'onChange={read_input}>
+                        <option value='' disabled='true' selected='true'>Select Category</option>
                         {props.categories.map(category=>{
                             return(<option value={category.name}>{category.name}</option>)
                         })}
                     </select>
                     
-                    <select name="clasificationPEGI"onChange={read_input}>
-                        <option value="value1" disabled="true" selected="true">ClasificationPGI</option>
+                    <select name='clasificationPEGI'onChange={read_input}>
+                        <option value='value1' disabled='true' selected='true'>ClasificationPGI</option>
                         {clasificationPEGI.map((clasification,index) =>{
                             return(<option value={clasification} key={index}>{clasification}</option>)
                         })}
                     </select>
 
-                    <input type="text" name="gameImg" placeholder="Pic*" onChange={read_input}/>
+                    {/* <input type="text" name="gameImg" placeholder="Pic*" onChange={read_input}/> */}
+                    <label htmlFor='gameImg'><p>Upload your game pic</p></label>
+                    <input type='file' id='gameImg' name='gameImg' onChange={read_input}/>
 
                     <button onClick={send_data} type='submit'>Submit</button>
                     
