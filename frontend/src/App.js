@@ -17,6 +17,7 @@ import AddNews from './pages/AddNews'
 function App({loggedUser,login_with_LS}) {
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
+    console.log(localStorage.getItem("token"))
   }
   return (
     <div className="App">

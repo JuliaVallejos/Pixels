@@ -9,21 +9,21 @@ const userController={
         const {userName,userPass,userFirstName,userLastName,userPhone,userPayPal,userRol}=req.body;
         const {imgFile}= req.files;
         const imgType=imgFile.name.split(".").slice(-1).join(" ");
-        var imgPath= `${__dirname}/../frontend/src/userImages/${imgFile.md5}.${imgType} `
-        console.log(req.body) 
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
         if(errors.length===0){
             var passHashed=await bcryptjs.hashSync(userPass,10);
-            var newUser= new User({userName,userPass:passHashed,
-                userImg:`${imgFile.md5}.${imgType}`,userFirstName,userLastName,userPhone,userPayPal,userRol});
-            imgFile.mv(imgPath,error=>{
+            var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userPhone,userPayPal,userRol});
+            var imgName= `${newUser._id}.${imgType}`
+            var imgPath= `${__dirname}/../frontend/public/userImages/${newUser._id}.${imgType}`
+            await imgFile.mv(imgPath,error=>{
                 if(error){
                     console.log(error)
                     errors.push(error)}
                 else{
                     console.log(newUser)
                 }})
+            newUser.userImg=imgName;
             if(errors.length===0){
             const newUserSaved=await newUser.save()
             var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})

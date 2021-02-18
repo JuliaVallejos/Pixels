@@ -4,11 +4,6 @@ import usersActions from "../redux/actions/usersActions"
 
 const Header = ({loggedUser,logOut}) =>{
     
-    if (loggedUser) {
-        // const foto = require(`../userImages/${loggedUser.userImg}`)
-        console.log(loggedUser)     
-    
-    }
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
@@ -31,7 +26,7 @@ const Header = ({loggedUser,logOut}) =>{
                 }
                 {loggedUser 
                 ? <>
-                    <div className="userImg"style={{backgroundImage: `url("../assets/logo.png")`}}></div></>
+                    <div className="userImg"style={{backgroundImage: `url("/userImages/${loggedUser.userImg}")`}}></div></>
                 : <></>}
             </div>
         </div>
