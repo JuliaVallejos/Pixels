@@ -24,6 +24,7 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>
         <Route exact path='/' component={Home}/>
+        <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
         <Route path='/library' component={Library}/> 
         {(loggedUser && loggedUser.userRol==="Developer")
@@ -34,7 +35,8 @@ function App({loggedUser,login_with_LS}) {
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
           </>
-        }        
+        }       
+        
         <Redirect to="/" />
         </Switch>
         <Footer/>
