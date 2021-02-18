@@ -722,8 +722,7 @@ border-radius: 43px 43px 43px 43px;
 .hamburgerIcon{
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
-<<<<<<< HEAD
-}
+
 
 /* ------- NOTICIA ------- */
 .cajaNoticia{
@@ -783,7 +782,18 @@ background-color: rgba(247,104,247,0.8);
   font-weight: 900;
   
 }
-=======
 
+/* ------ CONTACT PAGE ------ */
 
->>>>>>> ba6abda1d9fda863e1650b5c84555f6e48ec8158
+textarea{
+  padding: 2vh 2vw;
+  border-radius: 20px;
+  outline:none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  margin: 2vh 0 ;
+  transition: 0.3s ease;
+  background-color:rgba(39, 0, 36, 0.616);
+  color: white;
+  min-height: 30vh;
+}
