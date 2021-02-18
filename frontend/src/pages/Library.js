@@ -8,9 +8,10 @@ import gamesActions from '../redux/actions/gamesActions'
 const Library = (props) =>{
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
-    const [newOrder,setNewOrder] =  useState(newGamesList)
+    /* const [newOrder,setNewOrder] =  useState(newGamesList) */
     const ages=[]
     var gamesFiltered=[]
+    const gamesFilterAll=[]
      const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([])
 
 
@@ -36,32 +37,36 @@ const Library = (props) =>{
       
        
         if(ages.indexOf(value)!==-1){
-            console.log('ya existe')
+       
             const ind= ages.indexOf(value)
             ages.splice(ind,1)
            
         }else{
-            console.log('lo agregue')
             ages.push(value)
-         
         }
-        console.log(ages)
-        /* 
+         console.log(ages)
+   
+      
            newGamesList.map(game =>{
               
                ages.map(age=>{
-                   
-            gamesFiltered =newGamesList.filter(game => game.clasificationPEGI===age)
+                   if(game.clasificationPEGI===age){
+                       gamesFiltered.push(game)
+                   }
+           
+           
                     
            })
         
         })
-        setGamesFilteredPEGI(gamesFiltered)
-        console.log(gamesFilteredPEGI) */
+        gamesFilterAll.push(gamesFiltered)
+        setGamesFilteredPEGI(gamesFilteredPEGI,gamesFilterAll)
+       
+      
           
-                   
-        
     }
+        
+    
 
 
 
@@ -80,7 +85,7 @@ const Library = (props) =>{
         </label>
   
             {loading && <h2>Loading...</h2>}
-         
+         {console.log(gamesFilteredPEGI)}
       
           {/*   {(!loading)&&<Games newGamesList={ages.length!==0? gamesFilteredPEGI : newGamesList }/>} */}
  
