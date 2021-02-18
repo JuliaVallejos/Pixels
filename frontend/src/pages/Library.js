@@ -2,17 +2,19 @@ import {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import Categories from '../components/Categories'
-import Games from '../components/Games'
+import GamesLib from '../components/GamesLib'
 import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
     /* const [newOrder,setNewOrder] =  useState(newGamesList) */
-    const ages=[]
+    
+    const [agesState,setAgesState] = useState([])
+    var ages=[]
     var gamesFiltered=[]
-    const gamesFilterAll=[]
-     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([])
+    var gamesConcat=[]
+     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
 
     useEffect(() => {
@@ -33,38 +35,35 @@ const Library = (props) =>{
         data&& setLoading(false)
     }
     const filterPEGI = e =>{
+        ages=ages.concat(agesState)
         const value=parseInt(e.target.value)
-      
-       
-        if(ages.indexOf(value)!==-1){
-       
-            const ind= ages.indexOf(value)
+
+        if(ages.indexOf(value)===-1){
+             ages.push(value)
+            
+           
+        }else{ 
+           const ind= ages.indexOf(value)
             ages.splice(ind,1)
-           
-        }else{
-            ages.push(value)
         }
-         console.log(ages)
-   
-      
-           newGamesList.map(game =>{
-              
-               ages.map(age=>{
-                   if(game.clasificationPEGI===age){
-                       gamesFiltered.push(game)
-                   }
-           
-           
-                    
-           })
-        
-        })
-        gamesFilterAll.push(gamesFiltered)
-        setGamesFilteredPEGI(gamesFilteredPEGI,gamesFilterAll)
-       
-      
-          
+  
     }
+    const filt_games = () =>{
+        setGamesFilteredPEGI([])
+     
+        ages.map(age=>{
+           
+             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
+                gamesConcat = gamesConcat.concat(gamesFiltered)
+            })
+     setGamesFilteredPEGI(gamesConcat)
+     setAgesState(ages)
+    
+        
+    }
+    
+    
+    
         
     
 
@@ -77,17 +76,17 @@ const Library = (props) =>{
         <Categories/>
         <input type='text' onChange={read_input} placeholder='Search'/>
         <label onChange={filterPEGI} htmlFor='PEGI'>Select clasification PEGI
-            <input type='checkbox' name='PEGI' value='3'/>3
-            <input type='checkbox' name='PEGI' value='7'/>7
-            <input type='checkbox' name='PEGI' value='12'/>12
-            <input type='checkbox' name='PEGI' value='16'/>16
-            <input type='checkbox' name='PEGI' value='18'/>18
+            <input type='checkbox' name='PEGI' value='3' />3
+            <input type='checkbox' name='PEGI' value='7' />7
+            <input type='checkbox' name='PEGI' value='12' />12
+            <input type='checkbox' name='PEGI' value='16' />16
+            <input type='checkbox' name='PEGI' value='18' />18
+            <button onClick={filt_games}>Search</button>
         </label>
   
             {loading && <h2>Loading...</h2>}
-         {console.log(gamesFilteredPEGI)}
-      
-          {/*   {(!loading)&&<Games newGamesList={ages.length!==0? gamesFilteredPEGI : newGamesList }/>} */}
+     
+           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0? gamesFilteredPEGI : newGamesList }/>} 
  
         
         </div>
