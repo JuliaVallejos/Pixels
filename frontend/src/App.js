@@ -11,6 +11,7 @@ import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
 import AddNews from './pages/AddNews'
+import WhatsApp from './components/WhatsApp'
 
 
 
@@ -38,6 +39,7 @@ function App({loggedUser,login_with_LS}) {
         }        
         <Redirect to="/" />
         </Switch>
+        <WhatsApp/>
         <Footer/>
       </BrowserRouter>    
 
