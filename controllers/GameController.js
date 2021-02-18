@@ -5,10 +5,12 @@ const GameController ={
         const {gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
         const {gameImg}= req.files;
         const imgType= gameImg.name.split(".").slice(-1).join(" ");
+        var imgPath= `${__dirname}/../frontend/src/gamesImages/${gameImg.md5}.${imgType} `
+
         const createGame= new Game({
-            gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
+            gameImg:imgPath, gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
-        gameImg.mv(`${__dirname}/../frontend/src/gamesImages/${gameImg._id}.${imgType}`,error=>{
+        gameImg.mv(imgPath,error=>{
             if(error){
                 console.log(error)
                 errors.push(error)}

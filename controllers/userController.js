@@ -10,29 +10,30 @@ const userController={
         const {userImg}= req.files;
 
         const imgType=userImg.name.split(".").slice(-1).join(" ");
-
+        var imgPath= `${__dirname}/../frontend/src/userImages/${userImg.md5}.${imgType} `
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
         
         if(errors.length===0){
             var passHashed=await bcryptjs.hashSync(userPass,10);
-            var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userPhone,userPayPal,userRol});
-            userImg.mv(`${__dirname}/../frontend/src/userImages/${newUser._id}.${imgType}`,error=>{
+            var newUser= new User({userName,userPass:passHashed,userImg:imgPath,userFirstName,userLastName,userPhone,userPayPal,userRol});
+            userImg.mv(imgPath,error=>{
                 if(error){
                     console.log(error)
                     errors.push(error)}
-                else{ console.log(userImg)}
-            })
-            // if(errors.length===0){
-            //     const newUserSaved=await newUser.save()
-            //     var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
-            // }
+                else{
+                    console.log(newUser)
+                }})
+            if(errors.length===0){
+            const newUserSaved=await newUser.save()
+            var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
+            }
         }
-        // return res.json({
-        //     sucess: errors.length===0 ? true : false,
-        //     errors:errors,
-        //     response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg,userRol}
-        // })
+        return res.json({
+            sucess: errors.length===0 ? true : false,
+            errors:errors,
+            response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg,userRol}
+        })
     },
     logIn: async (req,res)=>{
         var errors=[];
