@@ -3,7 +3,12 @@ import {connect} from "react-redux"
 import usersActions from "../redux/actions/usersActions"
 
 const Header = ({loggedUser,logOut}) =>{
-    console.log(loggedUser)
+    
+    if (loggedUser) {
+        const foto = require(`${loggedUser.userImg}`)
+        console.log(foto)  
+    
+    }
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
@@ -25,7 +30,8 @@ const Header = ({loggedUser,logOut}) =>{
                 :   <NavLink to ="#" onClick={logOut}>LogOut</NavLink>
                 }
                 {loggedUser 
-                ? <><div className="userImg"style={{backgroundImage: `url(${loggedUser.userImg})`}}></div></>
+                ? <>
+                    <div className="userImg"style={{backgroundImage: `url("../assets/logo.png")`}}></div></>
                 : <></>}
             </div>
         </div>

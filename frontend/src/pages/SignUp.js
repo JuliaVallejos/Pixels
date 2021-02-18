@@ -144,7 +144,7 @@ const SignUp = (props) =>{
                 <button type='submit' onClick={send_data}>Send</button>
                 {errors[0] && (
                 <div className="signUpErrorContainer">
-                    {errors[0] && errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
+                    {errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
                 </div>
                 )}
 

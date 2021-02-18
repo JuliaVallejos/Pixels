@@ -10,6 +10,7 @@ const userController={
         const {userImg}= req.files;
         const imgType=userImg.name.split(".").slice(-1).join(" ");
         var imgPath= `${__dirname}/../frontend/src/userImages/${userImg.md5}.${imgType} `
+        console.log(imgPath)
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
         if(errors.length===0){
@@ -18,7 +19,7 @@ const userController={
             userImg.mv(imgPath,error=>{
                 if(error){
                     console.log(error)
-                    errors.push(error)}
+                    errors.push([error])}
                 else{
                     console.log(newUser)
                 }})
