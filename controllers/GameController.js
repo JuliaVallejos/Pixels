@@ -37,6 +37,16 @@ const GameController ={
             return res.json({success: false, error: error})
         })
     
+    },
+    gameForId:(req, res)=>{
+       const  id=req.params.idGame
+        Game.find({"_id":id})
+        .then(respuesta=>{
+            return res.json({success:true, response:respuesta})
+        })
+        .catch(error=>{
+            return res.json({success:false, response:error})
+        })
     }
 }
 
