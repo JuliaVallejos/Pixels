@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
  const Game = (props) =>{
 
 
-    var prom=0
 
         return(
             <>

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import Game from '../components/Game'
+import Games from '../components/Games'
 
 
 const CategoryList = (props) =>{
@@ -12,7 +12,7 @@ const CategoryList = (props) =>{
             <div>
                 <h2>{category}</h2><Link to='/library'>See all games</Link>
  
-                {arrayCategory.length!==0? <Game newGamesList={arrayCategory}/>:
+                {arrayCategory.length!==0? <Games newGamesList={arrayCategory}/>:
                 <h2>There are no games in this category</h2>}
             </div>)
 }
