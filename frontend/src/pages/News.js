@@ -13,7 +13,7 @@ const News = (props) => {
        {props.news.map(article=> {
            return(
                <div className="centerCenter ">
-               <div className="cajaNoticia ">
+               <div className="cajaNoticia zoom">
                 
                 
                 <div className="imgNoticia boxBackNoticia" style={{backgroundImage: `url(${article.newsImg})`}}>

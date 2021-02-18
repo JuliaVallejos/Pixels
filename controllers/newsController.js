@@ -44,7 +44,7 @@ const newsController ={
             return res.json({success:false, response: error})
         })
     },
-    newsForId: (req, res) =>{
+    newsById: (req, res) =>{
         const id= req.params.idNews
         console.log(id)
         News.find({"_id":id})

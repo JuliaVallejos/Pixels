@@ -28,3 +28,4 @@ const HomeNews = () =>{
     )
 }
 export default HomeNews
+

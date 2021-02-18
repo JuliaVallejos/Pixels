@@ -33,7 +33,24 @@ const newsActions ={
               
                 const data ={errores:{details:[{message:'An error occurred'}]}}
                 return error
-              }}}
+              }}},
+              newsById: (id)=>{
+                return async (dispatch, setState)=>{
+                  try{
+                    const data = await axios.get("http://localhost:4000/api/news"+id)
+                
+                    if (data.data.success){
+            
+                        dispatch({type:'NEWSBYID',payload:data.data.response})
+                      return data.data.response
+                    } else{
+                    return data.data
+                    }
+                }catch(error){
+                
+                  const data ={errores:{details:[{message:'An error occurred'}]}}
+                  return error
+                }}}
 }
 
 
