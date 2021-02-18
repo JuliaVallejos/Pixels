@@ -18,7 +18,7 @@
     "react-whatsapp-widget": "^1.2.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "sweetalert2": "^10.15.1",
+    "sweetalert2": "^10.15.2",
     "web-vitals": "^1.1.0"
   },
   "scripts": {

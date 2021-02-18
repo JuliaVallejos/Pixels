@@ -1,17 +1,14 @@
 import {Route,BrowserRouter,Switch,Redirect} from 'react-router-dom'
+import {connect} from "react-redux"
 import Header from './components/Header'
 import Library from './pages/Library'
 import Footer from './components/Footer'
 import LogIn from './pages/Login'
 import SignUp from './pages/SignUp'
-import News from './pages/News'
 import CategoryList from './pages/CategoryList'
 import Home from './pages/Home'
 import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
-import {connect} from "react-redux"
-import AddNews from './pages/AddNews'
-import WhatsApp from './components/WhatsApp'
 
 
 
@@ -25,19 +22,18 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>
         <Route exact path='/' component={Home}/>
-        <Route exact path='/news' component={News}/>
+        <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
         {(loggedUser && loggedUser.userRol==="Developer")
         && <Route exact path='/developers' component={DeveloperPage}/>
         }
-        <Route path='/library' component={Library}/> 
-        <Route path='/addnews' component={AddNews}/>
-          {!loggedUser && 
+        {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
           </>
         }        
+        
         <Redirect to="/" />
         </Switch>
         <WhatsApp/>

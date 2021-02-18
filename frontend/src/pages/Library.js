@@ -7,41 +7,19 @@ import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
     const {newGamesList} = props
-    const [filter,setFilter]=useState(false)
-    const [noResults,setNoResults] = useState(false)
     const [loading,setLoading] = useState(true)
+    /* const [newOrder,setNewOrder] =  useState(newGamesList) */
+    const ages=[]
+    var gamesFiltered=[]
+    const gamesFilterAll=[]
+     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([])
 
 
     useEffect(() => {
         getGames() 
-     
+    
     }, [])
 
-    const filterByCategory= e =>{
-        
-        const arrayCategory = []
-        const category= e.target.value
-     
-        if(category==='all'){
-            setNoResults(false)
-            setFilter(false)
-           
-        }else{
-            setFilter(true)
-        }
-        newGamesList.map((game) =>{
-            if(game.gameCategories.includes(category)){
-            return arrayCategory.push(game)
-            } 
-        })
-        if(arrayCategory.length!==0){
-            setNoResults(false)
-            setFilter(arrayCategory)
-        }else {
-            category!=='all'&&setNoResults(true)
-        }
-    }
-   
   
     const read_input= e =>{
         const search = e.target.value
@@ -54,7 +32,43 @@ const Library = (props) =>{
         const data = await props.allGames()
         data&& setLoading(false)
     }
+    const filterPEGI = e =>{
+        const value=parseInt(e.target.value)
       
+       
+        if(ages.indexOf(value)!==-1){
+       
+            const ind= ages.indexOf(value)
+            ages.splice(ind,1)
+           
+        }else{
+            ages.push(value)
+        }
+         console.log(ages)
+   
+      
+           newGamesList.map(game =>{
+              
+               ages.map(age=>{
+                   if(game.clasificationPEGI===age){
+                       gamesFiltered.push(game)
+                   }
+           
+           
+                    
+           })
+        
+        })
+        gamesFilterAll.push(gamesFiltered)
+        setGamesFilteredPEGI(gamesFilteredPEGI,gamesFilterAll)
+       
+      
+          
+    }
+        
+    
+
+
 
     return (
         <>
@@ -62,13 +76,18 @@ const Library = (props) =>{
         <h2  className="textCenter">Library</h2>
         <Categories/>
         <input type='text' onChange={read_input} placeholder='Search'/>
-       
+        <label onChange={filterPEGI} htmlFor='PEGI'>Select clasification PEGI
+            <input type='checkbox' name='PEGI' value='3'/>3
+            <input type='checkbox' name='PEGI' value='7'/>7
+            <input type='checkbox' name='PEGI' value='12'/>12
+            <input type='checkbox' name='PEGI' value='16'/>16
+            <input type='checkbox' name='PEGI' value='18'/>18
+        </label>
   
             {loading && <h2>Loading...</h2>}
-            
+         {console.log(gamesFilteredPEGI)}
       
-            {noResults?<h1>No results</h1>:
-            (!loading)&&<Games newGamesList={newGamesList}/>}
+          {/*   {(!loading)&&<Games newGamesList={ages.length!==0? gamesFilteredPEGI : newGamesList }/>} */}
  
         
         </div>

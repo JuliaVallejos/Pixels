@@ -27,32 +27,40 @@ const SignUp = (props) =>{
    }, [dev])
     const read_input = e =>{
         const property= e.target.name
-        const value = e.target.value
-
+        var value = e.target.value
+        if(property==="userImg"){
+            value=e.target.files[0];
+        }
         setNewUser({
             ...newUser, 
             [property]:value
-        })
-       
+        }) 
     }
     
-    const send_data= async e =>{
+    const send_data= async (e) =>{
         setErrors([])
         e.preventDefault()
+        console.log(newUser)
         const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
+        const formSignUp= new FormData();
+        formSignUp.append("userFirstName",userFirstName)
+        formSignUp.append("userLastName",userLastName)
+        formSignUp.append("userName",userName)
+        formSignUp.append("userPass",userPass)
+        formSignUp.append("userImg",userImg)
+        formSignUp.append("userRol",userRol)
+        formSignUp.append("userPhone",userPhone)
+        formSignUp.append("userPayPal",userPayPal)
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
-           
-            setErrors([{message:'All required(*) fields must be completed'}])
-           return false
-        
+            setErrors(['All required(*) fields must be completed'])
+            return false
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
-   
-            setErrors([{message:'All required(*) fields must be completed'}])
+            setErrors(['All required(*) fields must be completed'])
             return false
         }
-
-        const data = await props.createNewUser(newUser)
+        const data = await props.createNewUser(formSignUp)     
+        // const data = await props.createNewUser(newUser)
         if(data && !data.sucess){
             setErrors([data.errors])
         }else {
@@ -61,53 +69,49 @@ const SignUp = (props) =>{
         
     }
     // GOOGLE SIGN UP
+    /* inputOptions can be an object or Promise */
+    const inputOptions = new Promise((resolve) => {
+        setTimeout(() => {
+        resolve({
+            'User': 'User',
+            'Developer': 'Developer'
+        })
+        }, 1000)
+    })
+    
+   
     const responseGoogle = async (googleResponse) => {
         
         if(googleResponse.error){
             alert("algo paso con el registro de google")
         }
         else {
-
-            /* inputOptions can be an object or Promise */
-            const inputOptions = new Promise((resolve) => {
-                setTimeout(() => {
-                resolve({
-                    'User': 'User',
-                    'Developer': 'Developer'
-                })
-                }, 1000)
-            })
-            
             const { value: userRol } = await Swal.fire({
                 title: 'Select user type account',
                 input: 'radio',
                 inputOptions: inputOptions,
                 inputValidator: (value) => {
-                if (!value) {
-                    return 'You need to choose something!'
-                }
-                }
+                    if (!value) {
+                        return 'You need to choose something!'
+                    }
+                },
+                showCancelButton: true
             })
             
             if (userRol) {
-                Swal.fire({ html: `You selected: ${userRol}` })
-            }
-
-            alert(userRol);
-
-
-            const response= await props.createNewUser({
-                userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
-                userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
-                userName: googleResponse.profileObj.email,
-                userPass: googleResponse.profileObj.googleId,
-                userImg: googleResponse.profileObj.imageUrl,
-                userRol: userRol,
-            })
-            if(response && !response.sucess){
-                setErrors([response.errors])
-            }else {
-                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                const response= await props.createNewUser({
+                    userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
+                    userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
+                    userName: googleResponse.profileObj.email,
+                    userPass: googleResponse.profileObj.googleId,
+                    userImg: googleResponse.profileObj.imageUrl,
+                    userRol: userRol,
+                })
+                if(response && !response.sucess){
+                    setErrors([response.errors])
+                }else {
+                    alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                }
             }
         }
     }
@@ -120,7 +124,8 @@ const SignUp = (props) =>{
                 <input type='text'  name='userLastName' placeholder='Last Name*' onChange={read_input}/>
                 <input type='email' name='userName' placeholder='Username (email)*' onChange={read_input}/>
                 <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
-                <input type='text' name='userImg' placeholder='Profile Photo*' onChange={read_input}/>
+                <label htmlFor="userImg"><p>Upload your pic</p></label>
+                <input type='file' id="userImg" name='userImg' onChange={read_input}/>
                 <div className="selection">
                     <div className="radioButtons">
                         <label htmlFor='userRol' onChange={read_input}><p>Account Type:</p>

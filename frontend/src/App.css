@@ -645,6 +645,18 @@ border-radius: 43px 43px 43px 43px;
 .infoJuego{
   padding-left: 1vh;
 }
+/* ------ DEVELOPER_PAGE ------ */
+.developerContainer{
+  height: 100%;
+
+}
+.developerSection{
+  width: 50vw ;
+  background-color: var(--background-color);
+}
+
+
+
 
 /* ------- MEDIA QUERIES ------- */
 @media(min-width:900px){
@@ -693,6 +705,7 @@ border-radius: 43px 43px 43px 43px;
 .links p{
   padding:0 1vw;
 }
+}
 
 /* ------- MENU DE HAMBURGESA ------- */
 
@@ -709,6 +722,7 @@ border-radius: 43px 43px 43px 43px;
 .hamburgerIcon{
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+<<<<<<< HEAD
 }
 
 /* ------- NOTICIA ------- */
@@ -769,3 +783,7 @@ background-color: rgba(247,104,247,0.8);
   font-weight: 900;
   
 }
+=======
+
+
+>>>>>>> ba6abda1d9fda863e1650b5c84555f6e48ec8158

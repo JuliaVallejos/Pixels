@@ -1,9 +1,13 @@
 import axios from 'axios'
 const usersActions = {
-  createNewUser: newUser => {
+  // createNewUser: newUser => {
+    createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
       try{
-        const data = await axios.post("http://localhost:4000/api/user/signUp",newUser); 
+        const data = await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
+          headers: {"Content-Type": "multipart: form-data"}
+        }); 
+        // const data = await axios.post("http://localhost:4000/api/user/signUp",newUser); 
         if (data.data.sucess){
           dispatch({type:'LOGIN', payload:data.data.response})
         } else{

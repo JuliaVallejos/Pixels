@@ -7,14 +7,17 @@ const passport= require("passport");
 require("../config/passport");
 const userController=require("../controllers/userController");
 
+
 // RUTAS PARA USUARIOS
+/*.post(userController.signUp) */
 router.route("/user/signUp")
-/*     .post(userController.signUp) */
     .post(validator.validateNewAccount,userController.signUp)
 router.route("/user/logIn")
     .post(userController.logIn)
+    
 router.route("/user/logInLS")
     .post(passport.authenticate("jwt",{session:false}),userController.logInLS)
+
 // RUTAS PARA VIDEOJUEGOS
 router.route('/games')
 .get(GameController.allGames)
