@@ -4,7 +4,7 @@ import Library from './pages/Library'
 import Footer from './components/Footer'
 import LogIn from './pages/Login'
 import SignUp from './pages/SignUp'
-import News from './components/News'
+import News from './pages/News'
 import CategoryList from './pages/CategoryList'
 import Home from './pages/Home'
 import DeveloperPage from './pages/DeveloperPage'
@@ -24,12 +24,13 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>
         <Route exact path='/' component={Home}/>
+        <Route exact path='/news' component={News}/>
         <Route path='/categories/:category' component={CategoryList}/>
         {(loggedUser && loggedUser.userRol==="Developer")
         && <Route exact path='/developers' component={DeveloperPage}/>
         }
         <Route path='/library' component={Library}/> 
-        <Route path='/news' component={AddNews}/>
+        <Route path='/addnews' component={AddNews}/>
           {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>

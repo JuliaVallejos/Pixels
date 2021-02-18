@@ -1,4 +1,4 @@
-import News from '../components/News'
+import HomeNews from '../components/HomeNews'
 import RecommendedGame from '../components/RecommendedGame'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -17,7 +17,7 @@ const Home = ({loggedUser}) =>{
                 </div>
                 <div>
                     <h2 className="homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>LATEST NEWS</h2>
-                    <News/>  
+                    <HomeNews/>  
                 </div>  
                 <div>
                     <h2 className="homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>RECOMMENDED</h2>

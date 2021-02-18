@@ -13,6 +13,7 @@ const Header = ({loggedUser,logOut}) =>{
             <div className="logo" style={{backgroundImage: `url("../assets/logo.png")`}}></div>
             <div className="links justifyBetween">
                 <NavLink exact to ='/'><p>Home</p></NavLink>
+                <NavLink exact to ='/news'><p>News</p></NavLink>
                 <NavLink to ='/library'><p>Library</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
                 ? <>

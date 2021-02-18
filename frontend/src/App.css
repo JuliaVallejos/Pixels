@@ -517,7 +517,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 .cardHijoCategory {
   
-  width:15vw;
+  width:18vw;
   height:40vh;
   background-Size: cover;
   background-Repeat: no-repeat;
@@ -709,4 +709,63 @@ border-radius: 43px 43px 43px 43px;
 .hamburgerIcon{
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+}
+
+/* ------- NOTICIA ------- */
+.cajaNoticia{
+  width: 50%;
+  
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+.tituloArticle{
+  text-transform: uppercase;
+  
+}
+
+
+
+.bodyNoticia{
+  text-align: justify;
+  
+}
+
+.imgNoticia{
+  width: 50vw;
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.boxBackNoticia{
+  width: 50vw;
+  height: 60vh;
+  background-color: #ffffff;
+border: 0.5rem solid rgba(247,104,247,0.8);
+box-shadow: 0px 0px 20px var(--secondary-color);
+border-radius: 43px 43px 43px 43px;
+-moz-border-radius: 43px 43px 43px 43px;
+-webkit-border-radius: 43px 43px 0px 0px;
+  
+}
+
+.boxBackTitulo{
+width: 50vw;
+padding-bottom: 2vh;
+border: 0.5rem solid rgba(247,104,247,0.8);
+box-shadow: 0px 0px 20px var(--secondary-color);
+border-radius: 43px 43px 43px 43px;
+-moz-border-radius: 43px 43px 43px 43px;
+-webkit-border-radius: 0px 0px 43px 43px ;
+background-color: rgba(247,104,247,0.8);
+
+}
+
+.paddingTexto{
+  padding-left: 1vh;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 900;
+  
 }
