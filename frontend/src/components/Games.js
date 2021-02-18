@@ -1,6 +1,6 @@
 
  const Games = (props) =>{
-
+    
 
     var prom=0
 
@@ -15,8 +15,7 @@
                      <h4>{gameTitle}</h4>
                      <div style={{width:'85px',height:'85px',backgroundColor:'yellowgreen',backgroundImage:`url(${gameImg})`,backgroundSize:'cover'}}></div>
                         <p>{gameInfo}</p>
-                       
-                        
+     
                         { valoration.map(() =>{  
                             const sum =valoration.reduce((a,b) =>{  
                                     return {
@@ -27,7 +26,7 @@
                                 prom = sum.valoration/valoration.length
                                 })        
                             }
-                    
+
                         <p>Valoration: {prom}</p>
                         <p>Clasification: {clasificationPEGI}</p>
                        <div style={{display:'flex',justifyContent:'space-between'}}>
