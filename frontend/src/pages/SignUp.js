@@ -133,12 +133,16 @@ const SignUp = (props) =>{
                     <div className="devInputs">
                         <input type='text' name='userPhone'  placeholder='Phone*' onChange={read_input}/>
                         <input type='text' name='userPayPal' placeholder='Your PayPal.me*' onChange={read_input}/>
-                    </div>}  
+                    </div>}
                 </div>
 
                 <button type='submit' onClick={send_data}>Send</button>
-                
-                {errors && errors.map(error=> <p>{error}</p> )}
+                {errors[0] && (
+                <div className="signUpErrorContainer">
+                    {errors[0] && errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
+                </div>
+                )}
+
 
             </form>
                 <GoogleLogin
