@@ -9,12 +9,14 @@ const usersActions = {
         }); 
         // const data = await axios.post("http://localhost:4000/api/user/signUp",newUser); 
         if (data.data.sucess){
+          console.log(data.data.response)
           dispatch({type:'LOGIN', payload:data.data.response})
         } else{
+          console.log(data.data)
           return data.data
         }
         }catch(error){
-          const data ={errores:{details:[{message:'An error occurred'}]}}
+          const data =[{message:'An error occurred'}]
           return data
         }
     }
@@ -30,7 +32,7 @@ const usersActions = {
           return data.data
         }
       }catch(error){
-        const data ={errores:{details:[{message:'An error occurred'}]}}
+        const data =[{message:'An error occurred'}]
         return data
       }
     }
@@ -52,6 +54,7 @@ const usersActions = {
           dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
+        console.log(error)
         if(error.response.status===401){
           alert("Access denied")
           localStorage.clear()

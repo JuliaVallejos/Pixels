@@ -5,8 +5,8 @@ import usersActions from "../redux/actions/usersActions"
 const Header = ({loggedUser,logOut}) =>{
     
     if (loggedUser) {
-        const foto = require(`${loggedUser.userImg}`)
-        console.log(foto)  
+        // const foto = require(`../userImages/${loggedUser.userImg}`)
+        console.log(loggedUser)     
     
     }
     return (

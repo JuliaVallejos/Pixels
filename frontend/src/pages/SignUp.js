@@ -40,14 +40,13 @@ const SignUp = (props) =>{
     const send_data= async (e) =>{
         setErrors([])
         e.preventDefault()
-        console.log(newUser)
         const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
         const formSignUp= new FormData();
         formSignUp.append("userFirstName",userFirstName)
         formSignUp.append("userLastName",userLastName)
         formSignUp.append("userName",userName)
         formSignUp.append("userPass",userPass)
-        formSignUp.append("userImg",userImg)
+        formSignUp.append("imgFile",userImg)
         formSignUp.append("userRol",userRol)
         formSignUp.append("userPhone",userPhone)
         formSignUp.append("userPayPal",userPayPal)
@@ -62,6 +61,7 @@ const SignUp = (props) =>{
         const data = await props.createNewUser(formSignUp)     
         // const data = await props.createNewUser(newUser)
         if(data && !data.sucess){
+            console.log(data)
             setErrors([data.errors])
         }else {
             alert(`Welcome ${localStorage.getItem("userFirstName")}`)
