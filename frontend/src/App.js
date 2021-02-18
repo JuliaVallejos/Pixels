@@ -11,6 +11,8 @@ import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
 import {connect} from "react-redux"
 import AddNews from './pages/AddNews'
+import gameById  from '../src/components/GameById'
+
 
 
 
@@ -30,7 +32,11 @@ function App({loggedUser,login_with_LS}) {
         && <Route exact path='/developers' component={DeveloperPage}/>
         }
         <Route path='/library' component={Library}/> 
+
+        <Route path='/games/:id' component={gameById}/>
+
         <Route path='/addnews' component={AddNews}/>
+
           {!loggedUser && 
           <>
             <Route path='/signup' component={SignUp}/>
