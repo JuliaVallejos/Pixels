@@ -517,7 +517,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 .cardHijoCategory {
   
-  width:15vw;
+  width:18vw;
   height:40vh;
   background-Size: cover;
   background-Repeat: no-repeat;
@@ -585,6 +585,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   background-color: rgba(247,104,247,0.67);
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
+
+
 /* ------ JUEGOS (CATEGORIA) ------ */
 
 .portadaJuego {
@@ -592,10 +594,18 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   height: 40vh;
   background-position: center;
   background-size: cover;
+  
+  
 }
 .tituloJuego {
   font-size: 3rem;
   text-transform: uppercase;
+}
+
+.gameInfo{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0.5;
 }
 
 .valoracion {
@@ -609,9 +619,32 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .zoom:hover {
-  transform: scale(1.1); 
+  transform: scale(1.07); 
 }
 
+.cajaInformacion{
+  width: 20vw ;
+  background-color: #ffffff;
+  border: 0.5rem solid rgba(247,104,247,0.8);
+  box-shadow: 0px 0px 20px var(--secondary-color);
+  border-radius: 43px 43px 43px 43px;
+  -moz-border-radius: 43px 43px 43px 43px;
+  -webkit-border-radius: 0px 0px 43px 43px;
+
+}
+
+.portadaJuego{
+background-color: #ffffff;
+border: 0.5rem solid rgba(247,104,247,0.8);
+box-shadow: 0px 0px 20px var(--secondary-color);
+border-radius: 43px 43px 43px 43px;
+-moz-border-radius: 43px 43px 43px 43px;
+-webkit-border-radius: 43px 43px 0px 0px;
+}
+
+.infoJuego{
+  padding-left: 1vh;
+}
 /* ------ DEVELOPER_PAGE ------ */
 .developerContainer{
   height: 100%;
@@ -690,3 +723,77 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
 
+
+/* ------- NOTICIA ------- */
+.cajaNoticia{
+  width: 50%;
+  
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+
+.tituloArticle{
+  text-transform: uppercase;
+  
+}
+
+
+
+.bodyNoticia{
+  text-align: justify;
+  
+}
+
+.imgNoticia{
+  width: 50vw;
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.boxBackNoticia{
+  width: 50vw;
+  height: 60vh;
+  background-color: #ffffff;
+border: 0.5rem solid rgba(247,104,247,0.8);
+box-shadow: 0px 0px 20px var(--secondary-color);
+border-radius: 43px 43px 43px 43px;
+-moz-border-radius: 43px 43px 43px 43px;
+-webkit-border-radius: 43px 43px 0px 0px;
+  
+}
+
+.boxBackTitulo{
+width: 50vw;
+padding-bottom: 2vh;
+border: 0.5rem solid rgba(247,104,247,0.8);
+box-shadow: 0px 0px 20px var(--secondary-color);
+border-radius: 43px 43px 43px 43px;
+-moz-border-radius: 43px 43px 43px 43px;
+-webkit-border-radius: 0px 0px 43px 43px ;
+background-color: rgba(247,104,247,0.8);
+
+}
+
+.paddingTexto{
+  padding-left: 1vh;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 900;
+  
+}
+
+/* ------ CONTACT PAGE ------ */
+
+textarea{
+  padding: 2vh 2vw;
+  border-radius: 20px;
+  outline:none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  margin: 2vh 0 ;
+  transition: 0.3s ease;
+  background-color:rgba(39, 0, 36, 0.616);
+  color: white;
+  min-height: 30vh;
+}

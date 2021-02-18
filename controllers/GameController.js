@@ -8,15 +8,14 @@ const GameController ={
 
 
         const imgType= gameFile.name.split(".").slice(-1).join(" ");
-
+        console.log(imgType)
 
         const createGame= new Game({
             gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
-        var imgName=`${createGame._id}.${imgType}`
+        var imgName= `${createGame._id}.${imgType}`
         var imgPath= `${__dirname}/../frontend/public/gamesImages/${createGame._id}.${imgType}`
 
-        console.log("hola")
 
         await gameFile.mv(imgPath,error=>{
             if(error){
@@ -24,7 +23,9 @@ const GameController ={
                 errors.push(error)}
             else{console.log("Todo OK")}
         })
-        createGame.gameImg=imgName
+        
+        createGame.gameImg=imgName;
+
         createGame.save()
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser')
@@ -55,6 +56,16 @@ const GameController ={
             return res.json({success: false, error: error})
         })
     
+    },
+    gameById:(req, res)=>{
+       const  id=req.params.idGame
+        Game.find({"_id":id})
+        .then(respuesta=>{
+            return res.json({success:true, response:respuesta})
+        })
+        .catch(error=>{
+            return res.json({success:false, response:error})
+        })
     }
 }
 

@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {useState} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
-
+import {Redirect} from 'react-router-dom'
 
 
 const AddGames = (props) =>{
@@ -14,7 +14,7 @@ const AddGames = (props) =>{
         gameImg:''
     })
 
-    // console.log(props)
+    console.log(props)
 
     const read_input = e =>{
         const property= e.target.name
@@ -51,6 +51,10 @@ const AddGames = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
+
+        console.log(data)
+        alert('Game ok')
+        {<Redirect to="/developers" />}
         console.log(data)
         // if(data && !data.sucess){
         //     setErrors([data.errors])
@@ -70,7 +74,7 @@ const AddGames = (props) =>{
     return(
         <div className="signUp centerCenter" style={{height: "65vh"}}>
             <h2>Upload your game</h2>
-                <form>
+                {/* <form> */}
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
                     <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: 'unset', height:'150px' }} onChange={read_input}/>
@@ -97,7 +101,7 @@ const AddGames = (props) =>{
                     {errors&& errors.map((error,index) =>{
                                 return (<p key={index}>{error.message}</p>)
                             })}
-                </form>
+                {/* </form> */}
         </div>
     )
 }

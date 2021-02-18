@@ -43,6 +43,17 @@ const newsController ={
         .catch(error =>{
             return res.json({success:false, response: error})
         })
+    },
+    newsById: (req, res) =>{
+        const id= req.params.idNews
+        console.log(id)
+        News.find({"_id":id})
+        .then(respuesta =>{
+            return res.json({success:true, response: respuesta})
+        })
+        .catch(error =>{
+            return res.json({success:false, response: error})
+        })
     }
 }
 module.exports = newsController

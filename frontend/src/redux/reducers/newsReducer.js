@@ -16,6 +16,12 @@
                      ...state,
                      news: action.payload
                  }
+                 break
+                 case "NEWSBYID":
+                     return{
+                         ...state,
+                         news:action.payload
+                     }
          default:
              return state
              

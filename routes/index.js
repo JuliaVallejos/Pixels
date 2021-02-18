@@ -27,6 +27,7 @@ router.route('/games')
 
 router.route('/games/:idGame')
 .delete(GameController.deleteGame)
+.get(GameController.gameById)
 
 //ruta para noticia 
 router.route("/news")
@@ -35,6 +36,7 @@ router.route("/news")
 
 router.route("/news/:idNews")
 .delete(newsController.deleteNews)
+.get(newsController.newsById)
 
 
 module.exports=router;
