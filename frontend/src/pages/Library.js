@@ -1,21 +1,20 @@
 import {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
+import Categories from '../components/Categories'
 import Game from '../components/Game'
 import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
+    const {newGamesList} = props
     const [filter,setFilter]=useState(false)
     const [noResults,setNoResults] = useState(false)
     const [loading,setLoading] = useState(true)
 
-    const categories=["Horror","Action","RPG","Adventure","Survival","Arcade","Shooter","MOBA"]
-
 
     useEffect(() => {
-            
         getGames() 
-        
+     
     }, [])
 
     const filterByCategory= e =>{
@@ -25,12 +24,12 @@ const Library = (props) =>{
      
         if(category==='all'){
             setNoResults(false)
-            setFilter(props.newGamesList)
+            setFilter(false)
            
         }else{
             setFilter(true)
         }
-        props.newGamesList.map((game) =>{
+        newGamesList.map((game) =>{
             if(game.gameCategories.includes(category)){
             return arrayCategory.push(game)
             } 
@@ -47,35 +46,31 @@ const Library = (props) =>{
     const read_input= e =>{
         const search = e.target.value
         props.filterGames(search)
+      
 
     }
     const getGames = async () =>{
   
         const data = await props.allGames()
         data&& setLoading(false)
-
-
     }
       
 
     return (
         <>
-        
-        <h2>Library</h2>
+        <div id="latestNews" className="fondoWall ">
+        <h2  className="textCenter">Library</h2>
+        <Categories/>
         <input type='text' onChange={read_input} placeholder='Search'/>
-        <div >
-        <select onChange={filterByCategory} name='categories'>
-                <option value='all'>Select Category</option>
-                {categories.map((category,index) =>{
-                    return <option key={index} value={category}>{category}</option>
-                })}
-            </select>
-           
+       
+  
             {loading && <h2>Loading...</h2>}
+            
       
             {noResults?<h1>No results</h1>:
-            (!loading&& props.newGamesList )&&<Game newGamesList={!filter?props.newGamesList : filter}/>}
+            (!loading)&&<Game newGamesList={newGamesList}/>}
  
+        
         </div>
         </>
     )

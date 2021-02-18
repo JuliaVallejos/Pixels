@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import userActions from '../redux/actions/usersActions'
 import { GoogleLogin } from 'react-google-login'
+import Swal from 'sweetalert2'
 
 const SignUp = (props) =>{
     const [errors,setErrors] = useState([])
@@ -13,7 +14,7 @@ const SignUp = (props) =>{
         userName:'',
         userPass:'',
         userImg:'',
-        rol:''
+        userRol:''
     })
    useEffect(() => {
        if(!dev){
@@ -38,9 +39,9 @@ const SignUp = (props) =>{
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
-        const {userFirstName,userLastName,userName,userPass,userImg,rol,userPhone,userPayPal} = newUser
+        const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
         
-        if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||rol===''){
+        if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
            
             setErrors([{message:'All required(*) fields must be completed'}])
            return false
@@ -66,13 +67,42 @@ const SignUp = (props) =>{
             alert("algo paso con el registro de google")
         }
         else {
+
+            /* inputOptions can be an object or Promise */
+            const inputOptions = new Promise((resolve) => {
+                setTimeout(() => {
+                resolve({
+                    'User': 'User',
+                    'Developer': 'Developer'
+                })
+                }, 1000)
+            })
+            
+            const { value: userRol } = await Swal.fire({
+                title: 'Select user type account',
+                input: 'radio',
+                inputOptions: inputOptions,
+                inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to choose something!'
+                }
+                }
+            })
+            
+            if (userRol) {
+                Swal.fire({ html: `You selected: ${userRol}` })
+            }
+
+            alert(userRol);
+
+
             const response= await props.createNewUser({
                 userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
                 userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
                 userName: googleResponse.profileObj.email,
                 userPass: googleResponse.profileObj.googleId,
                 userImg: googleResponse.profileObj.imageUrl,
-                rol: "user"
+                userRol: userRol,
             })
             if(response && !response.sucess){
                 setErrors([response.errors])
@@ -93,9 +123,9 @@ const SignUp = (props) =>{
                 <input type='text' name='userImg' placeholder='Profile Photo*' onChange={read_input}/>
                 <div className="selection">
                     <div className="radioButtons">
-                        <label htmlFor='rol' onChange={read_input}><p>Account Type:</p>
-                        <input type='radio'  onClick={()=>setDev(false)}  value='user' name='rol'/><p>User</p>
-                        <input type='radio' onClick={()=>setDev(true)} value='developer' name='rol'/><p>Developer</p>
+                        <label htmlFor='userRol' onChange={read_input}><p>Account Type:</p>
+                        <input type='radio'  onClick={()=>setDev(false)}  value='User' name='userRol'/><p>User</p>
+                        <input type='radio' onClick={()=>setDev(true)} value='Developer' name='userRol'/><p>Developer</p>
                         </label>
                     </div>
 
@@ -103,12 +133,16 @@ const SignUp = (props) =>{
                     <div className="devInputs">
                         <input type='text' name='userPhone'  placeholder='Phone*' onChange={read_input}/>
                         <input type='text' name='userPayPal' placeholder='Your PayPal.me*' onChange={read_input}/>
-                    </div>}  
+                    </div>}
                 </div>
 
                 <button type='submit' onClick={send_data}>Send</button>
-                
-                {errors && errors.map(error=> <p>{error}</p> )}
+                {errors[0] && (
+                <div className="signUpErrorContainer">
+                    {errors[0] && errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
+                </div>
+                )}
+
 
             </form>
                 <GoogleLogin

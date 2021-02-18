@@ -5,19 +5,19 @@ const jasonWebToken=require("jsonwebtoken");
 const userController={
     signUp: async (req,res)=>{
         var errors=[];
-        const {userName,userPass,userFirstName,userLastName,userImg,userPhone,userPayPal}=req.body;
+        const {userName,userPass,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol}=req.body;
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
         if(errors.length===0){
             var passHashed=await bcryptjs.hashSync(userPass,10);
-            var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userImg,userPhone,userPayPal});
+            var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol});
             const newUserSaved=await newUser.save()
             var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
         }
         return res.json({
             sucess: errors.length===0 ? true : false,
             errors:errors,
-            response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg}
+            response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg,userRol}
         })
     },
     logIn: async (req,res)=>{
@@ -34,13 +34,15 @@ const userController={
         return res.json({
             sucess: errors.length===0 ? true : false,
             errors:errors,
-            response:errors.length===0 && {token, id: userExists._id, userFirstName: userExists.userFirstName, userImg: userExists.userImg }
+            response:errors.length===0 && {token, id: userExists._id,
+                 userFirstName: userExists.userFirstName, userImg: userExists.userImg, userRol:userExists.userRol }
         })
     },
     logInLS:(req,res)=>{
         res.json({
             sucess:true,
-            response:{token: req.body.token, userFirstName: req.user.firstName, userImg: req.user.userPic, id:req.user._id}})
+            response:{token: req.body.token, userFirstName: req.user.userFirstName,
+                 userImg: req.user.userImg, id:req.user._id, userRol: req.user.userRol}})
     }
 }
 
