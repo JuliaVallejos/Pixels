@@ -38,7 +38,7 @@ const GameController ={
         })
     
     },
-    gameForId:(req, res)=>{
+    gameById:(req, res)=>{
        const  id=req.params.idGame
         Game.find({"_id":id})
         .then(respuesta=>{
