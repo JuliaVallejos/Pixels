@@ -1,4 +1,4 @@
-const News = () =>{ 
+const HomeNews = () =>{ 
     return (
         <>
         <div id="cardPadre" className="justifyCenter ">  
@@ -21,8 +21,10 @@ const News = () =>{
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>  
+        
+       
         </>
     )
 }
-export default News
+export default HomeNews

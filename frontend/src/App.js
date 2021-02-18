@@ -9,7 +9,8 @@ import CategoryList from './pages/CategoryList'
 import Home from './pages/Home'
 import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
-
+import WhatsApp from "./components/WhatsApp"
+import Contact from "./pages/Contact"
 
 
 
@@ -22,8 +23,9 @@ function App({loggedUser,login_with_LS}) {
     <div className="App">
       <BrowserRouter>
         <Header/>
-        <Switch>
+        <Switch>        
         <Route exact path='/' component={Home}/>
+        <Route path="/contact" component={Contact}/>
         <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
         <Route path='/library' component={Library}/> 
@@ -39,6 +41,7 @@ function App({loggedUser,login_with_LS}) {
         
         <Redirect to="/" />
         </Switch>
+        <WhatsApp/>
         <Footer/>
       </BrowserRouter>    
 
