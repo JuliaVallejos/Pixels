@@ -8,7 +8,7 @@ import gamesActions from '../redux/actions/gamesActions'
 const Library = (props) =>{
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
-    /* const [newOrder,setNewOrder] =  useState(newGamesList) */
+    const [newOrder,setNewOrder] = useState(newGamesList)
     const ages=[]
     var gamesFiltered=[]
     const gamesFilterAll=[]
@@ -28,7 +28,6 @@ const Library = (props) =>{
 
     }
     const getGames = async () =>{
-  
         const data = await props.allGames()
         data&& setLoading(false)
     }
@@ -46,15 +45,12 @@ const Library = (props) =>{
         }
          console.log(ages)
    
-      
-           newGamesList.map(game =>{
-              
-               ages.map(age=>{
-                   if(game.clasificationPEGI===age){
-                       gamesFiltered.push(game)
-                   }
-           
-           
+            console.log(newGamesList)
+        newGamesList.map(game =>{
+            ages.map(age=>{
+                if(game.clasificationPEGI===age){
+                   gamesFiltered.push(game)
+                }
                     
            })
         
