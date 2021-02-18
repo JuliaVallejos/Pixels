@@ -17,7 +17,7 @@ import { render } from "react-dom";
                 return(
                  <div className="zoom" key={_id}>
                      
-                     <div className="portadaJuego " style={{backgroundImage:`url(${gameImg})`}}></div>
+                     <div className="portadaJuego " style={{backgroundImage:`url(${gameImg})`, backgroundColor:"red"}}></div>
                         <div>
                             <h4 className="tituloJuego">{gameTitle}</h4>
                             <p>{gameInfo}</p>

@@ -43,7 +43,7 @@ const AddGames = (props) =>{
         formNewGame.append("gameInfo",gameInfo)
         formNewGame.append("gameCategories",gameCategories)
         formNewGame.append("clasificationPEGI",clasificationPEGI)
-        formNewGame.append("gameImg",gameImg)
+        formNewGame.append("gameFile",gameImg)
 
         if(gameTitle ==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI ==='' || gameImg ===''){           
             setErrors([{message:'All required(*) fields must be completed'}])
@@ -89,7 +89,6 @@ const AddGames = (props) =>{
                         })}
                     </select>
 
-                    {/* <input type="text" name="gameImg" placeholder="Pic*" onChange={read_input}/> */}
                     <label htmlFor='gameImg'><p>Upload your game pic</p></label>
                     <input type='file' id='gameImg' name='gameImg' onChange={read_input}/>
 

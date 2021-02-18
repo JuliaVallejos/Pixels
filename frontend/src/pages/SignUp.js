@@ -40,14 +40,13 @@ const SignUp = (props) =>{
     const send_data= async (e) =>{
         setErrors([])
         e.preventDefault()
-        console.log(newUser)
         const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
         const formSignUp= new FormData();
         formSignUp.append("userFirstName",userFirstName)
         formSignUp.append("userLastName",userLastName)
         formSignUp.append("userName",userName)
         formSignUp.append("userPass",userPass)
-        formSignUp.append("userImg",userImg)
+        formSignUp.append("imgFile",userImg)
         formSignUp.append("userRol",userRol)
         formSignUp.append("userPhone",userPhone)
         formSignUp.append("userPayPal",userPayPal)
@@ -60,8 +59,9 @@ const SignUp = (props) =>{
             return false
         }
         const data = await props.createNewUser(formSignUp)     
-        // const data = await props.createNewUser(newUser)
+
         if(data && !data.sucess){
+            console.log(data)
             setErrors([data.errors])
         }else {
             alert(`Welcome ${localStorage.getItem("userFirstName")}`)
@@ -81,7 +81,8 @@ const SignUp = (props) =>{
     
    
     const responseGoogle = async (googleResponse) => {
-        
+        console.log(googleResponse)
+        const formSignUp= new FormData();
         if(googleResponse.error){
             alert("algo paso con el registro de google")
         }
@@ -97,21 +98,51 @@ const SignUp = (props) =>{
                 },
                 showCancelButton: true
             })
-            
-            if (userRol) {
-                const response= await props.createNewUser({
-                    userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
-                    userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
-                    userName: googleResponse.profileObj.email,
-                    userPass: googleResponse.profileObj.googleId,
-                    userImg: googleResponse.profileObj.imageUrl,
-                    userRol: userRol,
-                })
-                if(response && !response.sucess){
-                    setErrors([response.errors])
-                }else {
-                    alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+            const { value: imgFile } = await Swal.fire({
+                title: 'Select image',
+                input: 'file',
+                inputAttributes: {
+                  'accept': 'image/*',
+                  'aria-label': 'Upload your profile picture'
                 }
+              })
+              
+              if (imgFile) {
+               
+                const reader = new FileReader()
+                reader.onload = (e) => {
+                  Swal.fire({
+                    title: 'Your uploaded picture',
+                    imageUrl: e.target.result,
+                    imageAlt: 'The uploaded picture'
+                  })
+                }
+                reader.readAsDataURL(imgFile)
+              }
+            
+            if (userRol  && imgFile) {
+                formSignUp.append("userFirstName",googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "))
+                formSignUp.append("userLastName",googleResponse.profileObj.name.split(" ").slice(-1).join(" "))
+                formSignUp.append("userName",googleResponse.profileObj.email)
+                formSignUp.append("userPass",googleResponse.profileObj.googleId)
+                formSignUp.append("imgFile",imgFile)
+                formSignUp.append("userRol",userRol)
+                formSignUp.append("userPhone","")
+                formSignUp.append("userPayPal","")
+
+                const response= await props.createNewUser({formSignUp
+                    // userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
+                    // userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
+                    // userName: googleResponse.profileObj.email,
+                    // userPass: googleResponse.profileObj.googleId,
+                    // userImg: googleResponse.profileObj.imageUrl,
+                    // userRol: userRol,
+                })
+                // if(response && !response.sucess){
+                //     setErrors([response.errors])
+                // }else {
+                //     alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                // }
             }
         }
     }
@@ -144,7 +175,7 @@ const SignUp = (props) =>{
                 <button type='submit' onClick={send_data}>Send</button>
                 {errors[0] && (
                 <div className="signUpErrorContainer">
-                    {errors[0] && errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
+                    {errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
                 </div>
                 )}
 
