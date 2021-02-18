@@ -17,11 +17,13 @@ import { render } from "react-dom";
                 return(
                  <div className="zoom" key={_id}>
                      
-                     <div className="portadaJuego " style={{backgroundImage:`url(${gameImg})`}}></div>
-                        <div>
-                            <h4 className="tituloJuego">{gameTitle}</h4>
-                            <p>{gameInfo}</p>
-                        </div>
+                     <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}></div>
+                        <div className="cajaInformacion">
+                            <div className="infoJuego">
+                                <h4 className="tituloJuego">{gameTitle}</h4>
+                                <p className="gameInfo">{gameInfo}</p>
+                            </div>
+                        
                        
                         
                         { valoration.map(() =>{  
@@ -44,7 +46,7 @@ import { render } from "react-dom";
                                     edit= {false}
                             /></p>
                         
-                        
+                        </div>
                             
                             
                            

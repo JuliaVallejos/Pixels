@@ -17,12 +17,13 @@ const validator={
             const validation = schema.validate(req.body,{abortEarly:false});
             if(!validation.error){next();
             }else{
-                console.log(validation.error.details[0].message)
-                res.json({sucess:false,errors:validation.error.details[0].message})
+                console.log(validation.error.details.message)
+                res.json({sucess:false,errors:validation.error.details})
             }
         }else{
             next();
         }
     }
+    
 }
 module.exports=validator;
