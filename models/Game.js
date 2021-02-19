@@ -13,12 +13,12 @@ const GameSchema = new mongoose.Schema({
 
     prom:Number,
     userComments: {type:[{
-        idUser: {type:mongoose.Schema.ObjectId,ref:'user'},
+        idUser: {type:mongoose.Schema.ObjectId, ref:'user'},
         comment: String
     }]},
     clasificationPEGI: {type:Number},
     
-    idUser: {type:mongoose.Schema.ObjectId,ref:'user'}
+    idUser: {type:mongoose.Schema.ObjectId, ref:'user'}
     
 })
 

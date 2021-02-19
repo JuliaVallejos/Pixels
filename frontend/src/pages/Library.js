@@ -21,7 +21,6 @@ const Library = (props) =>{
         getGames() 
     
     }, [])
-
   
     const read_input= e =>{
         const search = e.target.value

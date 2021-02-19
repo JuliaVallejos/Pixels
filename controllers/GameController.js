@@ -3,13 +3,13 @@ const Game = require('../models/Game')
 const GameController ={
     addGame: async (req, res) =>{
         var prom = 0
-        const {gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
+        const {gameTitle, gameCategories, gameInfo, valoration, userComments, clasificationPEGI, idUser}=req.body
 
-        const {gameFile}= req.files;
+        const {gameFile} = req.files;
 
-        const imgType= gameFile.name.split(".").slice(-1).join(" ");
+        const imgType = gameFile.name.split(".").slice(-1).join(" ");
 
-        const createGame= new Game({
+        const createGame = new Game({
             gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
         var imgName= `${createGame._id}.${imgType}`
@@ -26,18 +26,19 @@ const GameController ={
         createGame.gameImg=imgName;
 
         createGame.save()
-
-        console.log(createGame)
-            
+         
 
         .then( async savedGame =>{
-           const game = await savedGame.populate('idUser').execPopulate()           
+           const game = await savedGame.populate('idUser').execPopulate() 
+           console.log("entró game") 
+           console.log(game)         
             return res.json({success:true, response: game})
         })
         .catch(error=>{
             return res.json({success:false, response: error})
         })
     },
+
     allGames: (req, res)=>{
       
         Game.find()
@@ -48,6 +49,7 @@ const GameController ={
             return res.json({success: false, error: error})
         })
     },
+
     deleteGame:(req,res) =>{
         const idGame= req.params.idGame
         Game.findOneAndDelete({_id:idGame})
@@ -59,6 +61,7 @@ const GameController ={
         })
     
     },
+    
     gameById:(req, res)=>{
        const  id=req.params.idGame
         Game.find({'_id':id}).populate('_id')
