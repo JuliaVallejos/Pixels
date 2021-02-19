@@ -3,11 +3,11 @@ import newsActions from "../redux/actions/newsActions"
 import {useEffect} from "react"
 
 const News = (props) => {
-   console.log(props.news)
     useEffect(() => {
         props.mostrarNews()
     },[])
     if (!props.news){return <h2>loading...</h2> }
+    console.log(props.news)
     return(
         <>
        {props.news && (props.news).map(article=> {

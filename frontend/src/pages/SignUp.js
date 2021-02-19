@@ -117,7 +117,7 @@ const SignUp = (props) =>{
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
-                
+                console.log(response)
                 if(response && !response.sucess){
                     setErrors([response.errors])
                 }else {
