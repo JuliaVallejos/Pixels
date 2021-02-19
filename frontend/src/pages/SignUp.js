@@ -97,26 +97,27 @@ const SignUp = (props) =>{
                 },
                 showCancelButton: true
             })
-            const { value: imgFile1 } = await Swal.fire({
+            const { value: imgFile } = await Swal.fire({
                 title: 'Select image',
                 input: 'file',
                 inputAttributes: {
                   'accept': 'image/*',
                   'aria-label': 'Upload your profile picture'
                 }
-            })
-
-            if (userRol  && imgFile1) {
+              })
+            
+            if (userRol  && imgFile) {
                 formSignUp.append("userFirstName",googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "))
                 formSignUp.append("userLastName",googleResponse.profileObj.name.split(" ").slice(-1).join(" "))
                 formSignUp.append("userName",googleResponse.profileObj.email)
                 formSignUp.append("userPass",googleResponse.profileObj.googleId)
-                formSignUp.append("imgFile",imgFile1)
+                formSignUp.append("imgFile",imgFile)
                 formSignUp.append("userRol",userRol)
                 formSignUp.append("userPhone","")
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
+                console.log(response)
                 if(response && !response.sucess){
                     setErrors([response.errors])
                 }else {
@@ -154,7 +155,7 @@ const SignUp = (props) =>{
                 <button type='submit' onClick={send_data}>Send</button>
                 {errors[0] && (
                 <div className="signUpErrorContainer">
-                    {errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
+                    {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}
                 </div>
                 )}
 
