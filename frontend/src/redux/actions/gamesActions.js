@@ -8,7 +8,7 @@ const gamesActions = {
             const data = await axios.post("http://localhost:4000/api/games", formNewGame,{
                 headers: {"Content-Type": "multipart: form-data"}
             });
-            // console.log(data.data.response)
+           
             if (data.data.success){
               dispatch({type:'NEW_GAME', payload:data.data.response})
               return data.data.response
@@ -26,7 +26,7 @@ const gamesActions = {
                 const data = await axios.get("http://localhost:4000/api/games")
             
                 if (data.data.success){
-        
+               
                     dispatch({type:'ALL_GAMES',payload:data.data.response})
                   return data.data.response
                 } else{
@@ -134,11 +134,13 @@ const gamesActions = {
 gamesById : (id)=>{
     return async (dispatch , getstate) =>{
         try{
-            const data = await axios.get(`http://localhost:4000/api/games`,id)
+            const data = await axios.get(`http://localhost:4000/api/games/${id}`)
+            console.log(data)
             if (data.data.success){
-                dispatch({type:'GAMEBYID', payload:data.data.game})
+                dispatch({type:'GAMEBYID', payload:data.data.response[0]})
                 return data
             }  }  
+
             catch(error){
             
             const data ={errores:{details:[{message:'An error occurred'}]}}
@@ -146,6 +148,13 @@ gamesById : (id)=>{
             
         }
     }
+},
+mostValued : () =>{
+    return async (dispatch , getstate) =>{
+
+       const most_values = getstate().game.newGamesList.sort((a,b) => b.prom - a.prom)
+        dispatch({type:'MOST_VALUED',payload:most_values}) 
+}
 }
 }
 export default gamesActions

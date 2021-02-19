@@ -5,7 +5,7 @@ import Hamburger from 'hamburger-react'
 import {useState} from 'react'
 
 const Header = ({loggedUser,logOut}) =>{
-    console.log(loggedUser)
+
     const [isOpen, setOpen] = useState(false)
     
     return (

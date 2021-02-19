@@ -8,7 +8,7 @@ const userController={
         // const {userName,userPass,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol}=req.body;
         const {userName,userPass,userFirstName,userLastName,userPhone,userPayPal,userRol}=req.body;
         const {imgFile}= req.files;
-        console.log(imgFile)
+        // console.log(imgFile)
         const imgType=imgFile.name.split(".").slice(-1).join(" ");
         
         const userExists=await User.findOne({userName});
