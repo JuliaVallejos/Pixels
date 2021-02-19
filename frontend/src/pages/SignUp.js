@@ -123,6 +123,7 @@ const SignUp = (props) =>{
                     setErrors([response.errors])
                 }else {
                     alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                    props.history.push('/')
                 }
             }
         }

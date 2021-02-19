@@ -28,13 +28,13 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>        
         <Route exact path='/' component={Home}/>
-        <Route path="/contact" component={Contact}/>
+        <Route path='/contact' component={Contact}/>
         <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
         <Route path='/games/:id' component={gameById}/>
         <Route path='/news' component={News}/>
         <Route path='/categories/:category' component={Games}/>
-        {(loggedUser && loggedUser.userRol==="Developer")
+        {(loggedUser && loggedUser.userRol==='Developer')
         && 
         <>
         <Route exact path='/developers' component={DeveloperPage}/>
@@ -49,7 +49,7 @@ function App({loggedUser,login_with_LS}) {
         </>
         }       
         
-        <Redirect to="/" />
+        <Redirect to='/' />
         </Switch>
         <WhatsApp/>
         {/* <Footer/> */}

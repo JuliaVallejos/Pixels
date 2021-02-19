@@ -54,7 +54,7 @@ const AddGames = (props) =>{
 
         console.log(data)
         alert('Game ok')
-        {<Redirect to="/developers" />}
+        props.history.push('/developers')
         console.log(data)
         // if(data && !data.sucess){
         //     setErrors([data.errors])
