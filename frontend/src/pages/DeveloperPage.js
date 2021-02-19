@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
-import AddNews from '../components/AddNews'
-import AddGames from '../components/AddGames'
+import AddNew from '../components/AddNew'
+import AddGame from '../components/AddGame'
 
 
 const DeveloperPage = (props) =>{
@@ -21,7 +21,7 @@ const DeveloperPage = (props) =>{
                     <p>ADD NEWS</p>
                 </div>
             </div>
-            <AddNews/> 
+            <AddNew/> 
             </>
             : 
             <>
@@ -31,7 +31,7 @@ const DeveloperPage = (props) =>{
                     <p onClick={changeSection}>ADD NEWS</p>
                 </div>
             </div>
-            <AddGames/>
+            <AddGame/>
             </>
             }
             </div>
