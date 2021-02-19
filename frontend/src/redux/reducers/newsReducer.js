@@ -20,15 +20,16 @@
                  }
                  break
                  case "NEWSBYID":
+                     console.log(action.payload)
                      return{
-                        ...state,
-                        news:action.payload
+                         ...state,
+                         newsById:action.payload
                      }
+                     
          default:
              return state
              
      }
      
  } 
-
  export default newsReducer

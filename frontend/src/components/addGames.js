@@ -36,7 +36,8 @@ const AddGames = (props) =>{
         setErrors([])
         e.preventDefault()
         // console.log(newGame)
-        const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg} = newGame
+        const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg,idUser} = newGame
+
         const formNewGame= new FormData();
 
         formNewGame.append("gameTitle",gameTitle)
@@ -44,6 +45,7 @@ const AddGames = (props) =>{
         formNewGame.append("gameCategories",gameCategories)
         formNewGame.append("clasificationPEGI",clasificationPEGI)
         formNewGame.append("gameFile",gameImg)
+        formNewGame.append("idUser",idUser)
 
         if(gameTitle ==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI ==='' || gameImg ===''){           
             setErrors([{message:'All required(*) fields must be completed'}])
@@ -54,7 +56,7 @@ const AddGames = (props) =>{
 
         console.log(data)
         alert('Game ok')
-        {<Redirect to="/developers" />}
+        props.history.push('/developers')
         console.log(data)
         // if(data && !data.sucess){
         //     setErrors([data.errors])
@@ -74,7 +76,7 @@ const AddGames = (props) =>{
     return(
         <div className="signUp centerCenter" style={{height: "65vh"}}>
             <h2>Upload your game</h2>
-                {/* <form> */}
+                <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
                     <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: 'unset', height:'150px' }} onChange={read_input}/>
@@ -101,7 +103,7 @@ const AddGames = (props) =>{
                     {errors&& errors.map((error,index) =>{
                                 return (<p key={index}>{error.message}</p>)
                             })}
-                {/* </form> */}
+                </form>
         </div>
     )
 }

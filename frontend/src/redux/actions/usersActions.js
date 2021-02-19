@@ -1,30 +1,20 @@
 import axios from 'axios'
 const usersActions = {
-    createNewUser: (formSignUp) =>{
+    createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
-      
-      const response= await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
-        headers: {"Content-Type": "multipart: form-data"}})
-      if(!response.data.sucess){
-        return response.data
-      }
-      dispatch({type:'LOGIN', payload:response.data.response})
-      
-      
-      
-      // axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
-      //     headers: {"Content-Type": "multipart: form-data"}
-      // })
-      // .then(data=>{
-      //   console.log(data.data)
-      //   if(data && data.data.sucess ){
-      //     dispatch({type:'LOGIN', payload:data.data.response})
-      //   }else {
-      //     return data.data
-      //   }})
-      // .catch(error=>{
-      //   console.log("catch del user action")
-      // })
+      try{
+        const data = await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
+          headers: {"Content-Type": "multipart: form-data"}
+        }); 
+        if (data.data.sucess){
+          dispatch({type:'LOGIN', payload:data.data.response})
+        } else{
+          return data.data
+        }
+        }catch(error){
+          const data =[{errors:'An error occurred'}]
+          return data
+        }
     }
   },
   login_user: (loginUser)=>{

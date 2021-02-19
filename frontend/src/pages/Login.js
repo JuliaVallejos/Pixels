@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import usersActions from '../redux/actions/usersActions'
 import { GoogleLogin } from  'react-google-login'
 
@@ -48,6 +48,8 @@ const LogIn = (props) => {
                 setErrors([response.response])
             }else{
                 alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                props.history.push('/')
+                // <Redirect to="/" />
             }
         }
     }
