@@ -15,6 +15,8 @@ import Contact from "./pages/Contact"
 import AddNews from './components/AddNews'
 import gameById  from '../src/components/GameById'
 import News from './pages/News'
+import Commentary from './components/Commentary'
+import NewsById from './components/NewsById'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -32,9 +34,12 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
         <Route path='/games/:id' component={gameById}/>
+        <Route path='/news/:id' component={NewsById}/>
         <Route path='/news' component={News}/>
         <Route path='/categories/:category' component={Games}/>
-        {(loggedUser && loggedUser.userRol==='Developer')
+        <Route path='/commentary' component={Commentary}/>
+
+        {(loggedUser && loggedUser.userRol==="Developer")
         && 
         <>
         <Route exact path='/developers' component={DeveloperPage}/>
@@ -52,7 +57,7 @@ function App({loggedUser,login_with_LS}) {
         <Redirect to='/' />
         </Switch>
         <WhatsApp/>
-        {/* <Footer/> */}
+        <Footer/>
       </BrowserRouter>    
 
     </div>

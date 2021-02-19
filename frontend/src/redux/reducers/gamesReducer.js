@@ -59,16 +59,16 @@ const initialState ={
             }
             break
             case "GAMEBYID":
+                
                 return{
                     ...state,
                     gameById:action.payload
                 }
             case "MOST_VALUED":
-                console.log(action.payload)
+                // console.log(action.payload)
                 return{
                     ...state,
                     mostValuedList:action.payload
-
                 }
         default:
             return state

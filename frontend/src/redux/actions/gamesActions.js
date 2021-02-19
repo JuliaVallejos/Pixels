@@ -134,11 +134,13 @@ const gamesActions = {
 gamesById : (id)=>{
     return async (dispatch , getstate) =>{
         try{
-            const data = await axios.get(`http://localhost:4000/api/games`,id)
+            const data = await axios.get(`http://localhost:4000/api/games/${id}`)
+            console.log(data)
             if (data.data.success){
-                dispatch({type:'GAMEBYID', payload:data.data.game})
+                dispatch({type:'GAMEBYID', payload:data.data.response[0]})
                 return data
             }  }  
+
             catch(error){
             
             const data ={errores:{details:[{message:'An error occurred'}]}}

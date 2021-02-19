@@ -12,21 +12,24 @@
              }
              break
              case "ALL_NEWS":
+                var lastNews=action.payload.sort((a,b)=>b.newsDate>a.newsDate? 1:-1)
+                
                  return{
                      ...state,
-                     news: action.payload
+                     news: lastNews
                  }
                  break
                  case "NEWSBYID":
+                     console.log(action.payload)
                      return{
                          ...state,
-                         news:action.payload
+                         newsById:action.payload
                      }
+                     
          default:
              return state
              
      }
      
  } 
-
  export default newsReducer

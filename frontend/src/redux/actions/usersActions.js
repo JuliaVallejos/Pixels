@@ -1,6 +1,5 @@
 import axios from 'axios'
 const usersActions = {
-  // createNewUser: newUser => {
     createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
       try{
@@ -8,10 +7,8 @@ const usersActions = {
           headers: {"Content-Type": "multipart: form-data"}
         }); 
         if (data.data.sucess){
-          console.log(data.data.response)
           dispatch({type:'LOGIN', payload:data.data.response})
         } else{
-          console.log(data.data)
           return data.data
         }
         }catch(error){
