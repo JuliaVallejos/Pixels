@@ -15,7 +15,7 @@ const usersActions = {
           return data.data
         }
         }catch(error){
-          const data =[{message:'An error occurred'}]
+          const data =[{errors:'An error occurred'}]
           return data
         }
     }
@@ -25,13 +25,13 @@ const usersActions = {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
         console.log(data.data.response)
-        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data.response})
-        
+        if(data.data.sucess){
+          dispatch({type:'LOGIN', payload:data.data.response})
         }else{
           return data.data
         }
       }catch(error){
-        const data =[{message:'An error occurred'}]
+        const data ={errors:['An error occurred']}
         return data
       }
     }
