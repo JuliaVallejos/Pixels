@@ -1,12 +1,31 @@
 const Game = require('../models/Game')
+
 const GameController ={
     addGame: async (req, res) =>{
         var prom = 0
-        const {gameImg, gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
-  
+        const {gameTitle, gameCategories, gameInfo, valoration,userComments,clasificationPEGI,idUser}=req.body
+        const {gameFile}= req.files;
+
+
+        const imgType= gameFile.name.split(".").slice(-1).join(" ");
+        console.log(imgType)
+
         const createGame= new Game({
-            gameImg, gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
+            gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
+        var imgName= `${createGame._id}.${imgType}`
+        var imgPath= `${__dirname}/../frontend/public/gamesImages/${createGame._id}.${imgType}`
+
+
+        await gameFile.mv(imgPath,error=>{
+            if(error){
+                console.log("Todo mal")
+                errors.push(error)}
+            else{console.log("Todo OK")}
+        })
+        
+        createGame.gameImg=imgName;
+
         createGame.save()
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser')

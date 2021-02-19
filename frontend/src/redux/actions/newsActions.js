@@ -1,9 +1,11 @@
 import axios from "axios"
 const newsActions ={
-    createNews:(news)=>{
+    createNews:(formNews)=>{
         return async (dispatch, setStatus) =>{
             try{
-                const data = await axios.post("http://localhost:4000/api/news", news);
+                const data = await axios.post("http://localhost:4000/api/news", formNews, {
+                  headers: {"Content-Type": "multipart: form-data"}
+              });
                 console.log(data)
                 if (data.data.success){
                   dispatch({type:'NEW_NEWS', payload:data.data.response})

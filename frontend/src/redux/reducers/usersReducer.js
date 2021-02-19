@@ -10,7 +10,6 @@ function usersReducer(state= initialState,action){
             localStorage.setItem("id",action.payload.id);
             localStorage.setItem("userImg",action.payload.userImg);
             localStorage.setItem("userRol",action.payload.userRol);
-
             return {
                 ...state,
                 loggedUser:action.payload,

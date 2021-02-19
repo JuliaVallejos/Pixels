@@ -7,6 +7,7 @@ import {useState} from 'react'
 const Header = ({loggedUser,logOut}) =>{
     console.log(loggedUser)
     const [isOpen, setOpen] = useState(false)
+    
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
@@ -14,6 +15,7 @@ const Header = ({loggedUser,logOut}) =>{
             <div className="links justifyBetween">
                 <NavLink exact to='/'><p>Home</p></NavLink>
                 <NavLink to='/library'><p>Library</p></NavLink>
+                <NavLink to='/news'><p>News</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
                 ? <NavLink to='/developers'><p>Developers</p></NavLink>
                 : <NavLink onClick={()=>alert("You need to be a developer")} exact to='#'><p>Developers</p></NavLink>
@@ -26,7 +28,8 @@ const Header = ({loggedUser,logOut}) =>{
                 :   <NavLink to="#" onClick={logOut}>LogOut</NavLink>
                 }
                 {loggedUser 
-                ? <><div className="userImg"style={{backgroundImage: `url(${loggedUser.userImg})`}}></div></>
+                ? <>
+                    <div className="userImg"style={{backgroundImage: `url("/userImages/${loggedUser.userImg}")`}}></div></>
                 : <></>}
             </div>
         </div>

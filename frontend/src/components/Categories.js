@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Categories = (props) =>{ 
     const{categories} = props
-   
+
     return (
         <div className="displayFlex justifyAround padre">
             {categories.map((category,index) =>{
