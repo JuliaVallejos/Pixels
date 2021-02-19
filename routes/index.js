@@ -12,7 +12,9 @@ const emailController= require('../controllers/emailController')
 // RUTAS PARA USUARIOS
 /*.post(userController.signUp) */
 router.route("/user/signUp")
-    .post(validator.validateNewAccount,userController.signUp)
+
+    .post(userController.signUp) 
+    // .post(validator.validateNewAccount,userController.signUp)
 router.route("/user/logIn")
     .post(userController.logIn)
     
@@ -26,7 +28,7 @@ router.route('/games')
 
 router.route('/games/:idGame')
 .delete(GameController.deleteGame)
-.get(GameController.gameForId)
+.get(GameController.gameById)
 
 //ruta para noticia 
 router.route("/news")
@@ -35,7 +37,7 @@ router.route("/news")
 
 router.route("/news/:idNews")
 .delete(newsController.deleteNews)
-.get(newsController.newsForId)
+.get(newsController.newsById)
 
 /* ruta para envío de emails */
 router.route('/contact/send')

@@ -2,14 +2,29 @@ const News = require('../models/News')
 
 
 const newsController ={
-    addNews : (req,res)=>{
-       const {newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
-       const creatNews =  new News ({
-        newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews
+    addNews : (req,res) =>{
+       const {newsTitle, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
+
+       const {newsImg} = req.files;
+
+       const imgType = newsImg.name.split(".").slice(-1).join(" ");
+
+       const createNews =  new News ({
+        newsTitle,newsImg:imgPath, newsDescription, newsBody, newsAuthor,dateOfTheNews
        })
-       creatNews.save()
+       var imgName= `${createNews._id}.${imgType}`
+       var imgPath = `${__dirname}/../frontend/public/newsImages/${newsImg._id}.${imgType}`
+
+       newsImg.mv(imgPath,error=>{
+        if(error){
+            console.log(error)
+            errors.push(error)}
+        else{ console.log(newsImg)}
+    })
+        createNews.newsImg=imgName;
+       createNews.save()
        .then(savedNews=>{
-           return res.json({success:true, response:savedNews})
+           return res.json({success: true, response: savedNews})
        })
        .catch(error =>{
            return res.json({success: false, response: error})
@@ -34,7 +49,7 @@ const newsController ={
             return res.json({success:false, response: error})
         })
     },
-    newsForId: (req, res) =>{
+    newsById: (req, res) =>{
         const id= req.params.idNews
         console.log(id)
         News.find({"_id":id})

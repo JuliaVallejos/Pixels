@@ -11,12 +11,15 @@ import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
 import WhatsApp from "./components/WhatsApp"
 import Contact from "./pages/Contact"
-
+import AddNews from './components/AddNews'
+import gameById  from '../src/components/GameById'
+import News from './pages/News'
 
 
 function App({loggedUser,login_with_LS}) {
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
+    console.log(localStorage.getItem("token"))
   }
   return (
     <div className="App">
@@ -27,20 +30,29 @@ function App({loggedUser,login_with_LS}) {
         <Route path="/contact" component={Contact}/>
         <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
+        <Route path='/library' component={Library}/> 
+        <Route path='/games/:id' component={gameById}/>
+        <Route path='/news' component={News}/>
+
         {(loggedUser && loggedUser.userRol==="Developer")
-        && <Route exact path='/developers' component={DeveloperPage}/>
+        && 
+        <>
+        <Route exact path='/developers' component={DeveloperPage}/>
+        <Route path='/addnews' component={AddNews}/>
+        </>
         }
+
         {!loggedUser && 
-          <>
-            <Route path='/signup' component={SignUp}/>
-            <Route path='/login' component={LogIn}/>
-          </>
-        }        
+        <>
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/login' component={LogIn}/>
+        </>
+        }       
         
         <Redirect to="/" />
         </Switch>
         <WhatsApp/>
-        <Footer/>
+        {/* <Footer/> */}
       </BrowserRouter>    
 
     </div>
