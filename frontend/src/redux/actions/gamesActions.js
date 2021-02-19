@@ -8,7 +8,7 @@ const gamesActions = {
             const data = await axios.post("http://localhost:4000/api/games", formNewGame,{
                 headers: {"Content-Type": "multipart: form-data"}
             });
-            // console.log(data.data.response)
+           
             if (data.data.success){
               dispatch({type:'NEW_GAME', payload:data.data.response})
               return data.data.response
@@ -26,7 +26,7 @@ const gamesActions = {
                 const data = await axios.get("http://localhost:4000/api/games")
             
                 if (data.data.success){
-        
+                console.log('llegue a la action')
                     dispatch({type:'ALL_GAMES',payload:data.data.response})
                   return data.data.response
                 } else{

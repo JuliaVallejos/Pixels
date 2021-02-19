@@ -14,13 +14,32 @@ const initialState ={
  function gamesReducer(state= initialState,action){
     switch (action.type) {
         case 'ALL_GAMES':
-           
+          
+            var prom = 0
+            var newPayload= action.payload.map(game =>{
+             
+               game.valoration.map(() =>{      
+                   const sum =game.valoration.reduce((a,b) =>{  
+                           return {
+                           valoration: (a.valoration+ b.valoration)
+                           }
+                       }, {valoration: 0})
+                     
+                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length 
+                     
+                       }) 
+                   game= {...game,prom:prom}
+              
+                   return game
+                   
+                   })
+
             
         return{
             ...state,
             gamesList:action.payload,
-            newGamesList:action.payload
-        }
+            newGamesList:newPayload
+                }
         
         case 'FILTER':
          
