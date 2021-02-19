@@ -69,7 +69,6 @@ const SignUp = (props) =>{
         
     }
     // GOOGLE SIGN UP
-    /* inputOptions can be an object or Promise */
     const inputOptions = new Promise((resolve) => {
         setTimeout(() => {
         resolve({
@@ -98,51 +97,31 @@ const SignUp = (props) =>{
                 },
                 showCancelButton: true
             })
-            const { value: imgFile } = await Swal.fire({
+            const { value: imgFile1 } = await Swal.fire({
                 title: 'Select image',
                 input: 'file',
                 inputAttributes: {
                   'accept': 'image/*',
                   'aria-label': 'Upload your profile picture'
                 }
-              })
-              
-              if (imgFile) {
-               
-                const reader = new FileReader()
-                reader.onload = (e) => {
-                  Swal.fire({
-                    title: 'Your uploaded picture',
-                    imageUrl: e.target.result,
-                    imageAlt: 'The uploaded picture'
-                  })
-                }
-                reader.readAsDataURL(imgFile)
-              }
-            
-            if (userRol  && imgFile) {
+            })
+
+            if (userRol  && imgFile1) {
                 formSignUp.append("userFirstName",googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "))
                 formSignUp.append("userLastName",googleResponse.profileObj.name.split(" ").slice(-1).join(" "))
                 formSignUp.append("userName",googleResponse.profileObj.email)
                 formSignUp.append("userPass",googleResponse.profileObj.googleId)
-                formSignUp.append("imgFile",imgFile)
+                formSignUp.append("imgFile",imgFile1)
                 formSignUp.append("userRol",userRol)
                 formSignUp.append("userPhone","")
                 formSignUp.append("userPayPal","")
 
-                const response= await props.createNewUser({formSignUp
-                    // userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
-                    // userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
-                    // userName: googleResponse.profileObj.email,
-                    // userPass: googleResponse.profileObj.googleId,
-                    // userImg: googleResponse.profileObj.imageUrl,
-                    // userRol: userRol,
-                })
-                // if(response && !response.sucess){
-                //     setErrors([response.errors])
-                // }else {
-                //     alert(`Welcome ${localStorage.getItem("userFirstName")}`)
-                // }
+                const response= await props.createNewUser(formSignUp)
+                if(response && !response.sucess){
+                    setErrors([response.errors])
+                }else {
+                    alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                }
             }
         }
     }
