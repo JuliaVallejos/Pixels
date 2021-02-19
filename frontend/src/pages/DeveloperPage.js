@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import AddNews from '../components/AddNews'
 import AddGames from '../components/AddGames'
 
