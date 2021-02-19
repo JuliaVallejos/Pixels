@@ -71,9 +71,10 @@ const AddGames = (props) =>{
     // console.log(errors)
     console.log(newGame)
     
-    return(
+    return(<>
+        <h2 className="centerCenter">Upload your game</h2>
         <div className="signUp centerCenter" style={{height: "65vh"}}>
-            <h2>Upload your game</h2>
+            
                 <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
@@ -103,6 +104,7 @@ const AddGames = (props) =>{
                             })}
                 </form>
         </div>
+        </>
     )
 }
 

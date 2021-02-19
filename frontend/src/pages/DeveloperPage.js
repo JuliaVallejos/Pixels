@@ -15,7 +15,7 @@ const DeveloperPage = (props) =>{
             <div className="developerSection">
             {!section ? 
             <>
-            <div id="headerContainer" className="justifyAround ">
+            <div id="headerDeveloper" className="justifyAround ">
                 <div className="links justifyAround ">
                     <p onClick={changeSection}>ADD GAME</p>
                     <p>ADD NEWS</p>

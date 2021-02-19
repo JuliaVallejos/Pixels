@@ -28,7 +28,6 @@ function App({loggedUser,login_with_LS}) {
         <Switch>        
         <Route exact path='/' component={Home}/>
         <Route path="/contact" component={Contact}/>
-        <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
         <Route path='/library' component={Library}/> 
         <Route path='/games/:id' component={gameById}/>
@@ -52,7 +51,7 @@ function App({loggedUser,login_with_LS}) {
         <Redirect to="/" />
         </Switch>
         <WhatsApp/>
-        {/* <Footer/> */}
+        <Footer/>
       </BrowserRouter>    
 
     </div>

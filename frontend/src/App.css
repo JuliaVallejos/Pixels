@@ -525,7 +525,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   
 }
 .tituloCategory {
-  font-size: 4rem;
+  font-size: 2rem;
   color: white;
   -webkit-text-stroke: 1px black;
   color: white;
@@ -647,12 +647,15 @@ border-radius: 43px 43px 43px 43px;
 }
 /* ------ DEVELOPER_PAGE ------ */
 .developerContainer{
-  height: 100%;
+  min-height: 100vh;
 
 }
 .developerSection{
-  width: 50vw ;
+  min-width: 50vw ;
   background-color: var(--background-color);
+}
+.developersAdd{
+  
 }
 
 
