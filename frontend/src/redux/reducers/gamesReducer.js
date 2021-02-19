@@ -1,5 +1,6 @@
 const initialState ={
     gamesList:[],
+    newGamesList:[],
     categories:[
         {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
         {name:"Action",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
@@ -60,9 +61,15 @@ const initialState ={
             case "GAMEBYID":
                 return{
                     ...state,
-                    gamesList:action.payload
+                    gameById:action.payload
                 }
-        
+            case "MOST_VALUED":
+                console.log(action.payload)
+                return{
+                    ...state,
+                    mostValuedList:action.payload
+
+                }
         default:
             return state
 
