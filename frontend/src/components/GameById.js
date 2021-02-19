@@ -11,13 +11,13 @@ useEffect(()=>{
     props.gamesById(id)
 },[])
 
-    console.log(props.game)
+    // console.log(props.gameById)
     return(
         
-        <div>
+    <div>
         {props.game ?
 
-    <div className="singleGame">
+            <div className="singleGame">
                 <div className="cajaTituloSingleGame">
                     <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
                 </div>
@@ -27,7 +27,7 @@ useEffect(()=>{
                 <div className="cajaTituloSingleGame">
                     <h3 className="textCenter uppercase">{props.game.gameInfo}</h3>
                 </div>
-    </div>
+            </div>
 : <h1> Cargando...</h1> }
 
 <div className="justifyCenter">
@@ -100,7 +100,7 @@ useEffect(()=>{
         
     )
 }
-const maapStateToProps =state=>{
+const mapStateToProps =state=>{
     return {
         game: state.game.gameById
     }
@@ -109,9 +109,4 @@ const mapDispatchToProps={
     gamesById: gamesActions.gamesById,
     
 }
-export default connect (maapStateToProps, mapDispatchToProps) (GameById)
-
-
-
-
-
+export default connect (mapStateToProps, mapDispatchToProps) (GameById)

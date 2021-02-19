@@ -1,4 +1,3 @@
-
  import { useState } from "react"
  import ReactStars from "react-rating-stars-component";
  import React from "react";
@@ -7,6 +6,7 @@
  
   const Games = (props) =>{
  
+    console.log(props)
  
      var prom=0
  
@@ -14,7 +14,7 @@
              <>
             
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-              {props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
+              {props.newGamesList&&props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
               
                  return(
                   <Link to={`/games/${_id}`}>
@@ -28,18 +28,21 @@
                              </div>
                          
                         
-                         
+{/*                          
                          { valoration.map(() =>{  
                              const sum =valoration.reduce((a,b) =>{  
                                      return {
                                      valoration: (a.valoration+ b.valoration)
                                      }
                                  }, {valoration: 0})
-                                 
-                                 prom = sum.valoration/valoration.length
+                                { valoration.length === 0 ?
+                                    prom =0  
+                                 : 
+                                    prom = sum.valoration/valoration.length}
                                  })        
-                             }
+                             } */}
                      
+                        
                              <p className="valoracion justifyCenter"><ReactStars
                                      count={5}
                                      isHalf={true}

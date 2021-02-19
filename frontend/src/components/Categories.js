@@ -18,7 +18,6 @@ const Categories = (props) =>{
                         </div>
                     </div>
                     </Link>
-
                 )
             })}
         </div>)

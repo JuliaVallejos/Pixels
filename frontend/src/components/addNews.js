@@ -86,4 +86,4 @@ const mapDispatchToProps ={
 
 
 
- export default connect (mapStateToProps,mapDispatchToProps)  (AddNews)
+ export default connect(mapStateToProps,mapDispatchToProps)(AddNews)

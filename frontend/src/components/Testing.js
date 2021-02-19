@@ -5,11 +5,12 @@ import Categories from '../components/Categories'
 import GamesLib from '../components/GamesLib'
 import gamesActions from '../redux/actions/gamesActions'
 
-const Library = (props) =>{
+const Testing = (props) =>{
+    console.log(props)
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
     const [editFilter,setEditFilter] = useState(false)
-    const [newOrder,setNewOrder] =  useState([])
+    const [newOrder,setNewOrder] =  useState(newGamesList)
   
     const [agesState,setAgesState] = useState([])
     var ages=[]
@@ -18,8 +19,8 @@ const Library = (props) =>{
      const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
     useEffect(() => {
-        getGames()
-        
+        getGames() 
+    
     }, [])
   
     const read_input= e =>{
@@ -31,7 +32,6 @@ const Library = (props) =>{
   
         const data = await props.allGames()
         data&& setLoading(false)
-    
     }
     const selectAges = e =>{
         
@@ -64,23 +64,6 @@ const Library = (props) =>{
      setGamesFilteredPEGI(gamesConcat)
     
     }
-    const read_sort= e =>{
-     
-        const order = e.target.value
-           console.log(order)
-        if(order==='less_valued'){          
-         return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
-        }
-        if (order==='most_valued'){   
-           return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
-            
-        }else{
-           
-            setNewOrder(newGamesList)
-        }
-        
-    }
- 
 
     return (
         <>
@@ -96,16 +79,9 @@ const Library = (props) =>{
             <input type='checkbox' name='PEGI' value='18' />18
             <button onClick={filt_games}>Search</button>
         </label>
-       <select defaultValue='' onChange={read_sort}>
-            <option value='' >Sort by</option>
-            <option value='most_valued'>Most Valued</option>
-            <option value='less_valued'>Less Valued</option>
-        </select>
-   
-            {loading && <h2>Loading...</h2>}
-      
-           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>} 
- 
+        {loading && <h2>Loading...</h2>}
+     
+        {(!loading)&&<GamesLib newGamesList={(gamesFilteredPEGI.length!==0 ) ?gamesFilteredPEGI : newGamesList }/>} 
         
         </div>
         </>
@@ -123,4 +99,4 @@ const mapDispatchToProps = {
     filterGames: gamesActions.filterGames
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Library)
+export default connect(mapStateToProps,mapDispatchToProps)(Testing)
