@@ -17,6 +17,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.sectionTitle{
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-shadow:0px 0px 10px var(--secondary-color);
+}
 
 .App-header {
   background-color: #282c34;
@@ -454,6 +459,105 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   color: white;
 }
 
+/* ------- LIBRARY ------ */
+#library{
+  background-color: var(--background-color);
+  min-height: 100vh;
+  color: white;
+}
+.libraryLabel{
+  display: flex;
+  flex-direction: column;
+  color: var(--primary-color);
+  font-size: 1.25rem;
+}
+#library form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.libraryCheckbox{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1vh 0;
+  color:white;
+}
+#library select {
+  min-width: 25vw;
+  padding: 1vh 3vw;
+  border-radius: 50px;
+  outline:none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  margin: 2vh 0;
+  transition: 0.3s ease;
+  background-color:rgba(39, 0, 36, 0.616);
+  color: white;
+}
+#library button {
+  min-width: 25vw;
+  margin: 2vh 0;
+  padding: 1vh 0;
+  border-radius: 50px;
+  border: none;
+  height: 2rem;
+  color: white;
+  background-color: var(--secondary-color);
+  transition: 0.2s ease;
+  box-shadow: 0px 0px 10px var(--primary-color);
+  outline: none;
+}
+.gameLibItem{
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 30vh;
+  margin: 1vh 1vw;
+  border: 3px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  border-radius: 10px;
+}
+.gameLibTitle{
+  color: var(--background-color);
+  font-size: 1.25rem;
+  text-align: center;
+  padding-bottom: 5px;
+}
+.gameLib p{
+  font-size: 1rem;
+  text-align: center;
+}
+.innerGameLibItem{
+  background-color: #fd90ffd0;
+  width: 100%;
+  margin: 0;
+  padding: 10px 0;
+}
+.searchLibrary{
+  width: 40vw;
+  padding: 1vh 3vw;
+  border-radius: 50px;
+  outline:none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  margin: 2vh 0;
+  transition: 0.3s ease;
+  background-color:rgba(39, 0, 36, 0.616);
+  color: white;
+}
+.searchLibrary::placeholder{
+  color: white;
+}
+.libraryFilters{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 /* ----- CATEGORY ----- */
 
 .estiloCardCategory{
@@ -499,8 +603,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 #cardPadreCategory {
-  padding-top: 5vh;
-  padding-bottom: 5vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
  
 }
 
@@ -516,9 +620,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cardHijoCategory {
-  
-  width:18vw;
-  height:40vh;
+  width:200px;
+  height:30vh;
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;

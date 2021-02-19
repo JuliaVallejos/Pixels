@@ -5,7 +5,7 @@ const Categories = (props) =>{
     const{categories} = props
 
     return (
-        <div className="displayFlex justifyAround padre">
+        <div className="justifyAround padre">
             {categories.map((category,index) =>{
                 return(
                     <Link key={index}  to={`/categories/${category.name}`}><div id="cardPadreCategory" className="justifyCenter ">  

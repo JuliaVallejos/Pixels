@@ -84,29 +84,33 @@ const Library = (props) =>{
 
     return (
         <>
-        <div id="latestNews" className="fondoWall ">
-        <h2  className="textCenter">Library</h2>
+        <div id="library">
+        <h2  className="textCenter sectionTitle">Library</h2>
         <Categories/>
-        <input type='text' onChange={read_input} placeholder='Search'/>
-        <label onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
+        <h2 className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}} >Find your favorite games</h2>
+        <div className="libraryFilters">
+        <input className="searchLibrary" type='text' onChange={read_input} placeholder='Search'/>
+        <label className="libraryLabel" onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
+        <div className="libraryCheckbox"> 
             <input type='checkbox' name='PEGI' value='3' />3
             <input type='checkbox' name='PEGI' value='7' />7
             <input type='checkbox' name='PEGI' value='12' />12
             <input type='checkbox' name='PEGI' value='16' />16
             <input type='checkbox' name='PEGI' value='18' />18
-            <button onClick={filt_games}>Search</button>
+        </div>
+
+            <button  onClick={filt_games}>Search</button>
         </label>
        <select defaultValue='' onChange={read_sort}>
             <option value='' >Sort by</option>
             <option value='most_valued'>Most Valued</option>
             <option value='less_valued'>Less Valued</option>
         </select>
-   
+
             {loading && <h2>Loading...</h2>}
       
-           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>} 
- 
-        
+           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>}
+           </div>
         </div>
         </>
     )

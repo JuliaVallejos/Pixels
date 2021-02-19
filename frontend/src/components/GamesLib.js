@@ -11,14 +11,15 @@
              {props.newGamesList && props.newGamesList.map( ({_id,gameTitle,gameImg,prom,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
              
                 return(
-                 <div key={_id} style={{fontSize:'0.4em'}}>
-                     <h4>{gameTitle}</h4>
-                     <div style={{width:'85px',height:'85px',backgroundColor:'yellowgreen',backgroundImage:`url(${gameImg})`,backgroundSize:'cover'}}></div>
-                  
+                 <div key={_id} className="gameLib">
+                     <div className="gameLibItem"style={{backgroundImage:`url(${gameImg})`}}>
+                         <div className="innerGameLibItem">
+                            <h4 className="gameLibTitle">{gameTitle.toUpperCase()}</h4>
+                            <p>Valoration: {prom}</p>
+                            <p>Clasification: {clasificationPEGI}</p> 
+                         </div>
 
-                        <p>Valoration: {prom}</p>
-                        <p>Clasification: {clasificationPEGI}</p>
-                       
+                     </div>                    
                  </div>
                  ) 
  
