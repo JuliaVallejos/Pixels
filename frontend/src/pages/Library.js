@@ -46,6 +46,8 @@ const Library = (props) =>{
            const ind= ages.indexOf(value)
             ages.splice(ind,1)
         }
+        setAgesState(ages)
+  
         
     }
     const filt_games = () =>{
@@ -61,19 +63,8 @@ const Library = (props) =>{
                 gamesConcat = gamesConcat.concat(gamesFiltered)
             })
      setGamesFilteredPEGI(gamesConcat)
-     setAgesState(ages)  
-   
+    
     }
-    const clearAges = () =>{
-        setGamesFilteredPEGI([])
-        setAgesState([])
-    }
- 
-    
-    
-        
-    
-
 
 
     return (
@@ -93,7 +84,7 @@ const Library = (props) =>{
   
             {loading && <h2>Loading...</h2>}
      
-           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0? gamesFilteredPEGI : newGamesList }/>} 
+           {(!loading)&&<GamesLib newGamesList={(gamesFilteredPEGI.length!==0 ) ?gamesFilteredPEGI : newGamesList }/>} 
  
         
         </div>
