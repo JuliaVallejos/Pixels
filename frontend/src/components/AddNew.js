@@ -1,10 +1,9 @@
-
 import { useState } from "react"
 import { connect } from "react-redux"
 import newsActions from "../redux/actions/newsActions"
 
 
-const AddNews = (props)=>{
+const AddNew = (props)=>{
     const [errors,setErrors] = useState([])
     const [news, setNews]=useState({})
 
@@ -55,8 +54,9 @@ const send_data = async e=>{
 console.log(props.news)
 return(
     <>
-    <div className="signUp centerCenter" style={{height: "65vh"}}>
-        <h2>create your news</h2>
+    <h2>create your news</h2>
+    <div className="developersAdd centerCenter" style={{height: "65vh"}}>
+        
         {/* <form> */}
             <input type="text" placeholder="title of the news" name="newsTitle" onChange={read_input}/>
             <label htmlFor='newsImg'><p>Image of the news</p></label>
@@ -86,4 +86,4 @@ const mapDispatchToProps ={
 
 
 
- export default connect(mapStateToProps,mapDispatchToProps)(AddNews)
+ export default connect(mapStateToProps,mapDispatchToProps)(AddNew)

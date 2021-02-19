@@ -72,6 +72,7 @@ const LogIn = (props) => {
                         cookiePolicy={'single_host_origin'}
                     />
                     <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
+                    <Link to='/passwordReset'>Can't remember your password? <span className="logInRedirect">Click Here!</span></Link>
                     <Link to ='/'><p>Home</p></Link>
         </div>
                 )

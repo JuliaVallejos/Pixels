@@ -6,6 +6,7 @@ const validator=require("../controllers/validator");
 const passport= require("passport");
 require("../config/passport");
 const userController=require("../controllers/userController");
+const emailController= require('../controllers/emailController')
 
 
 // RUTAS PARA USUARIOS
@@ -37,6 +38,16 @@ router.route("/news")
 router.route("/news/:idNews")
 .delete(newsController.deleteNews)
 .get(newsController.newsById)
+//comentario
+router.route('/comments')
+.post(GameController.addCommentsGames)
+router.route('/modifycomment')
+.post(GameController.modifyComment)
+router.route('/deletecomment/:idgame/:idcomment')
+.delete(GameController.deleteComment)
 
+/* ruta para envío de emails */
+router.route('/contact/send')
+.post(emailController.sendEmail)
 
 module.exports=router;

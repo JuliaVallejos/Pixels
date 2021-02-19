@@ -4,7 +4,7 @@ import gamesActions from '../redux/actions/gamesActions'
 import {Redirect} from 'react-router-dom'
 
 
-const AddGames = (props) =>{
+const AddGame = (props) =>{
     const [errors,setErrors] = useState([])
     const [newGame,setNewGame] = useState({
         gameTitle:'',
@@ -73,9 +73,10 @@ const AddGames = (props) =>{
     // console.log(errors)
     console.log(newGame)
     
-    return(
+    return(<>
+        <h2 className="centerCenter">Upload your game</h2>
         <div className="signUp centerCenter" style={{height: "65vh"}}>
-            <h2>Upload your game</h2>
+            
                 <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
@@ -105,6 +106,7 @@ const AddGames = (props) =>{
                             })}
                 </form>
         </div>
+        </>
     )
 }
 
@@ -121,4 +123,4 @@ const mapDispatchToProps= {
     allGames: gamesActions.allGames
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddGames)
+export default connect(mapStateToProps,mapDispatchToProps)(AddGame)

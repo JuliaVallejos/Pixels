@@ -4,7 +4,6 @@ import {useEffect} from "react"
 import {Link} from 'react-router-dom'
 
 const News = (props) => {
-   console.log(props.news)
     useEffect(() => {
         props.mostrarNews()
     },[])

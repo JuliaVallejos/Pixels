@@ -127,7 +127,6 @@ const SignUp = (props) =>{
             }
         }
     }
-    console.log(errors)
     return (
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>

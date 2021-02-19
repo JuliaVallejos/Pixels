@@ -8,7 +8,7 @@
          case "NEW_NEWS":
              return{
                  ...state,
-                 news: action.payload
+                 news: [...state.news,action.payload]
              }
              break
              case "ALL_NEWS":

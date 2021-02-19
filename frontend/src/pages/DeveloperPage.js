@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
-import AddNews from '../components/AddNews'
-import AddGames from '../components/AddGames'
+import AddNew from '../components/AddNew'
+import AddGame from '../components/AddGame'
 
 
 const DeveloperPage = (props) =>{
@@ -15,23 +15,23 @@ const DeveloperPage = (props) =>{
             <div className="developerSection">
             {!section ? 
             <>
-            <div id="headerContainer" className="justifyAround ">
+            <div id="headerDeveloper" className="justifyAround ">
                 <div className="links justifyAround ">
                     <p onClick={changeSection}>ADD GAME</p>
                     <p>ADD NEWS</p>
                 </div>
             </div>
-            <AddNews/> 
+            <AddNew/> 
             </>
             : 
             <>
-            <div id="headerContainer" className="justifyAround ">
+            <div className="justifyEvenly ">
                 <div className="links justifyAround ">
                     <p>ADD GAME</p>
                     <p onClick={changeSection}>ADD NEWS</p>
                 </div>
             </div>
-            <AddGames/>
+            <AddGame/>
             </>
             }
             </div>

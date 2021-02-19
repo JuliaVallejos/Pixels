@@ -71,7 +71,54 @@ const GameController ={
         .catch(error=>{
             return res.json({success:false, response:error})
         })
+    },
+    addCommentsGames: (req, res)=>{
+           const {idUser, comment}=req.body
+           Game.findOneAndUpdate({_id:req.body.id}, {
+            $push:{
+             userComments:{idUser:idUser, comment:comment}
+            }
+        })
+        .then(respuesta =>{
+            return res.json({success:true, response:respuesta})
+        })
+        .catch(error=>{
+            return res.json({success:false, response:error})
+        })  
+    },
+    
+    modifyComment: (req, res)=>{
+        const {idUser, comment}=req.body
+        Game.findByIdAndUpdate({_id:req.body.id}, {
+         $set:{
+          userComments:{idUser:idUser, comment:comment}
+         }
+     })
+     .then(respuesta =>{
+         return res.json({success:true, response:respuesta})
+     })
+     .catch(error=>{
+         return res.json({success:false, response:error})
+     })  
+    }, 
+    deleteComment: (req, res)=>{
+        const idGames= req.params.idgame
+        const idComment = req.params.idcomment
+        Game.findByIdAndUpdate({_id: idGames},{
+            $pull:{
+                userComments:{_id:idComment}
+            }
+        })
+        .then(respuesta=>{
+            return res.json({success:true, response:respuesta, message:"delete comment"})
+        })
+        .catch(error=>{
+            return res.json({success:false, response:error})
+        })
+
     }
+
+  
 }
 
 
