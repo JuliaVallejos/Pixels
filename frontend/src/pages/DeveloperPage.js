@@ -25,7 +25,7 @@ const DeveloperPage = (props) =>{
             </>
             : 
             <>
-            <div id="headerContainer" className="justifyAround ">
+            <div className="justifyEvenly ">
                 <div className="links justifyAround ">
                     <p>ADD GAME</p>
                     <p onClick={changeSection}>ADD NEWS</p>
