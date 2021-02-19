@@ -14,6 +14,7 @@ import Contact from "./pages/Contact"
 import AddNews from './components/AddNews'
 import gameById  from '../src/components/GameById'
 import News from './pages/News'
+import PasswordReset from './pages/PasswordReset'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -32,6 +33,7 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/library' component={Library}/> 
         <Route path='/games/:id' component={gameById}/>
         <Route path='/news' component={News}/>
+        <Route path='/passwordReset' component={PasswordReset}/>
 
         {(loggedUser && loggedUser.userRol==="Developer")
         && 
