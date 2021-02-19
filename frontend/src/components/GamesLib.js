@@ -8,7 +8,7 @@
             <>
            
            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-               {console.log(props.newGamesList)}
+          
              {props.newGamesList&&props.newGamesList.map( ({_id,gameTitle,gameImg,prom,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
              
                 return(
