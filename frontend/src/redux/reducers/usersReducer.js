@@ -7,7 +7,6 @@ function usersReducer(state= initialState,action){
         case 'LOGIN':
             localStorage.setItem("userFirstName",action.payload.userFirstName);
             localStorage.setItem("token",action.payload.token);
-            localStorage.setItem("id",action.payload.id);
             localStorage.setItem("userImg",action.payload.userImg);
             localStorage.setItem("userRol",action.payload.userRol);
             return {

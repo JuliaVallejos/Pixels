@@ -13,14 +13,20 @@ useEffect(()=>{
 },[])
     
 
-console.log(props.news)
+
 
 return(
 <>
-    <h1>{props.news.newsTitle}</h1>
-    <div className="portadaSingleGame" style={{backgroundImage:`url(${props.news.newsImg})`}}>
-        
-    </div>
+
+{props.news ?
+<div>
+<h1>{props.news.newsTitle}</h1>
+
+<div className="portadaSingleGame" style={{backgroundImage:`url(${props.news.newsImg})`}}></div>
+</div>
+            
+
+: <h1> Cargando...</h1> }
 </>
 )
 }

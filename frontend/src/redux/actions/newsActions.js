@@ -5,13 +5,12 @@ const newsActions ={
             try{
                 const data = await axios.post("http://localhost:4000/api/news", formNews, {
                   headers: {"Content-Type": "multipart: form-data"}
-              });
-                console.log(data)
+              });  
                 if (data.data.success){
                   dispatch({type:'NEW_NEWS', payload:data.data.response})
-                  return data.data.response
-                } else{
-                return data.data
+                  return data.data
+                }else{
+                  return data.data
                 }
             }catch(error){
               const data ={errores:{details:[{message:'An error occurred'}]}}

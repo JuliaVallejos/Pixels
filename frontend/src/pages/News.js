@@ -4,15 +4,14 @@ import {useEffect} from "react"
 import {Link} from 'react-router-dom'
 
 const News = (props) => {
-   
+   console.log(props.news)
     useEffect(() => {
         props.mostrarNews()
     },[])
-console.log(props.news)
+    
     return(
         <>
-        
-       {props.news.map(article=> {
+       {props.news && (props.news).map(article=> {
            return(
             <Link to={`/news/${article._id}`}>
                <div className="centerCenter ">
@@ -20,9 +19,8 @@ console.log(props.news)
                <div className="cajaNoticia zoom">
                 
                 
-                <div className="imgNoticia boxBackNoticia" style={{backgroundImage: `url(${article.newsImg})`}}>
-
-                </div>
+                <div className="imgNo{}ticia boxBackNoticia" style={{backgroundImage: `url(/newsImages/${article.newsImg})`}}>                 
+                {article.newsDate}</div>
                 <div className="boxBackTitulo ">
                     <div className="paddingTexto">
                         <h1 className="tituloArticle ">{article.newsTitle}</h1>
