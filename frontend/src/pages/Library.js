@@ -9,8 +9,8 @@ const Library = (props) =>{
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
     const [editFilter,setEditFilter] = useState(false)
-    /* const [newOrder,setNewOrder] =  useState(newGamesList) */
-    
+    const [newOrder,setNewOrder] =  useState(newGamesList)
+  
     const [agesState,setAgesState] = useState([])
     var ages=[]
     var gamesFiltered=[]
@@ -25,7 +25,6 @@ const Library = (props) =>{
 
   
     const read_input= e =>{
-      /*   setEditFilter(true) */
         const search = e.target.value
         props.filterGames(search)
       
@@ -67,10 +66,11 @@ const Library = (props) =>{
             })
      setGamesFilteredPEGI(gamesConcat)
     
-  
-   
     }
-
+   /*  cont read_sort = () =>{
+        setNewOrder = newGamesList.sort((a,b) => a.valoratio)
+    }
+ */
 
     return (
         <>
@@ -86,7 +86,12 @@ const Library = (props) =>{
             <input type='checkbox' name='PEGI' value='18' />18
             <button onClick={filt_games}>Search</button>
         </label>
-  
+       {/*  <select onChange={read_sort}>
+            <option value=''>Sort by</option>
+            <option value='most_valued'>Most Valued</option>
+            <option value='less_valued'>Less Valued</option>
+        </select>
+   */}
             {loading && <h2>Loading...</h2>}
      
            {(!loading)&&<GamesLib newGamesList={(gamesFilteredPEGI.length!==0 ) ?gamesFilteredPEGI : newGamesList }/>} 

@@ -13,7 +13,7 @@
              <>
             
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-              {props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
+              {props.newGamesList&&props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
               
                  return(
                   <div className="zoom" key={_id}>
@@ -26,18 +26,7 @@
                              </div>
                          
                         
-                         
-                         { valoration.map(() =>{  
-                             const sum =valoration.reduce((a,b) =>{  
-                                     return {
-                                     valoration: (a.valoration+ b.valoration)
-                                     }
-                                 }, {valoration: 0})
-                                 
-                                 prom = sum.valoration/valoration.length
-                                 })        
-                             }
-                     
+                        
                              <p className="valoracion justifyCenter"><ReactStars
                                      count={5}
                                      isHalf={true}
