@@ -8,7 +8,7 @@
             <>
            
            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-             {props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
+             {props.newGamesList&&props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
              
                 return(
                  <div key={_id} style={{fontSize:'0.4em'}}>
