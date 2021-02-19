@@ -7,7 +7,6 @@ const News = (props) => {
     useEffect(() => {
         props.mostrarNews()
     },[])
-    
     return(
         <>
        {props.news && (props.news).map(article=> {
@@ -44,8 +43,8 @@ const News = (props) => {
 
 const mapStateToProps = state => {
     return {
-        news: state.news.news
-        
+        news: state.news.news,
+        latestNews: state.news.latestNews    
     }
   } 
   

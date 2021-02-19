@@ -53,8 +53,7 @@ function App({loggedUser,login_with_LS}) {
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
-          </>
-          }       
+          </>}       
           <Redirect to='/'/>
         </Switch>
         <WhatsApp/>
