@@ -19,13 +19,13 @@ console.log(games)
         <h1>game by id </h1>
     )
 }
-const maapStateToProps =state=>{
+const mapStateToProps =state=>{
     return {
-        gamesList : state.game.gamesList
+        gameById: state.game.gameById
     }
 }
 const mapDispatchToProps={
     gamesById: gamesActions.gamesById,
     allGames: gamesActions.allGames
 }
-export default connect (maapStateToProps, mapDispatchToProps) (GameById)
+export default connect (mapStateToProps, mapDispatchToProps) (GameById)

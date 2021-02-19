@@ -26,7 +26,7 @@ const gamesActions = {
                 const data = await axios.get("http://localhost:4000/api/games")
             
                 if (data.data.success){
-                console.log('llegue a la action')
+               
                     dispatch({type:'ALL_GAMES',payload:data.data.response})
                   return data.data.response
                 } else{
@@ -146,6 +146,13 @@ gamesById : (id)=>{
             
         }
     }
+},
+mostValued : () =>{
+    return async (dispatch , getstate) =>{
+
+       const most_values = getstate().game.newGamesList.sort((a,b) => b.prom - a.prom)
+        dispatch({type:'MOST_VALUED',payload:most_values}) 
+}
 }
 }
 export default gamesActions

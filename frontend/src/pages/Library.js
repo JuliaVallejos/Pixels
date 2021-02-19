@@ -9,7 +9,7 @@ const Library = (props) =>{
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
     const [editFilter,setEditFilter] = useState(false)
-    const [newOrder,setNewOrder] =  useState(newGamesList)
+    const [newOrder,setNewOrder] =  useState([])
   
     const [agesState,setAgesState] = useState([])
     var ages=[]
@@ -18,8 +18,8 @@ const Library = (props) =>{
      const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
     useEffect(() => {
-        getGames() 
-    
+        getGames()
+        
     }, [])
   
     const read_input= e =>{
@@ -31,6 +31,7 @@ const Library = (props) =>{
   
         const data = await props.allGames()
         data&& setLoading(false)
+    
     }
     const selectAges = e =>{
         
@@ -55,7 +56,6 @@ const Library = (props) =>{
         }
         gamesConcat=[]
 
-     console.log(ages)
         ages.map(age=>{
            
              gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
@@ -64,10 +64,23 @@ const Library = (props) =>{
      setGamesFilteredPEGI(gamesConcat)
     
     }
-   /*  cont read_sort = () =>{
-        setNewOrder = newGamesList.sort((a,b) => a.valoratio)
+    const read_sort= e =>{
+     
+        const order = e.target.value
+           console.log(order)
+        if(order==='less_valued'){          
+         return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
+        }
+        if (order==='most_valued'){   
+           return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
+            
+        }else{
+           
+            setNewOrder(newGamesList)
+        }
+        
     }
- */
+ 
 
     return (
         <>
@@ -83,15 +96,15 @@ const Library = (props) =>{
             <input type='checkbox' name='PEGI' value='18' />18
             <button onClick={filt_games}>Search</button>
         </label>
-       {/*  <select onChange={read_sort}>
-            <option value=''>Sort by</option>
+       <select defaultValue='' onChange={read_sort}>
+            <option value='' >Sort by</option>
             <option value='most_valued'>Most Valued</option>
             <option value='less_valued'>Less Valued</option>
         </select>
-   */}
+   
             {loading && <h2>Loading...</h2>}
-     
-           {(!loading)&&<GamesLib newGamesList={(gamesFilteredPEGI.length!==0 ) ?gamesFilteredPEGI : newGamesList }/>} 
+      
+           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>} 
  
         
         </div>
