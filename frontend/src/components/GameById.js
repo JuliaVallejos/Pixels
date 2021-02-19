@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import gamesActions from "../redux/actions/gamesActions"
 import ReactStars from "react-rating-stars-component";
-import e from "cors";
+
 
 
 const GameById = (props)=>{
