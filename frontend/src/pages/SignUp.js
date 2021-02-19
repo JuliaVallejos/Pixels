@@ -69,7 +69,6 @@ const SignUp = (props) =>{
         
     }
     // GOOGLE SIGN UP
-    /* inputOptions can be an object or Promise */
     const inputOptions = new Promise((resolve) => {
         setTimeout(() => {
         resolve({
@@ -106,19 +105,6 @@ const SignUp = (props) =>{
                   'aria-label': 'Upload your profile picture'
                 }
               })
-              
-              if (imgFile) {
-               
-                const reader = new FileReader()
-                reader.onload = (e) => {
-                  Swal.fire({
-                    title: 'Your uploaded picture',
-                    imageUrl: e.target.result,
-                    imageAlt: 'The uploaded picture'
-                  })
-                }
-                reader.readAsDataURL(imgFile)
-              }
             
             if (userRol  && imgFile) {
                 formSignUp.append("userFirstName",googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "))
@@ -130,22 +116,17 @@ const SignUp = (props) =>{
                 formSignUp.append("userPhone","")
                 formSignUp.append("userPayPal","")
 
-                const response= await props.createNewUser({formSignUp
-                    // userFirstName: googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "),
-                    // userLastName: googleResponse.profileObj.name.split(" ").slice(-1).join(" "),
-                    // userName: googleResponse.profileObj.email,
-                    // userPass: googleResponse.profileObj.googleId,
-                    // userImg: googleResponse.profileObj.imageUrl,
-                    // userRol: userRol,
-                })
-                // if(response && !response.sucess){
-                //     setErrors([response.errors])
-                // }else {
-                //     alert(`Welcome ${localStorage.getItem("userFirstName")}`)
-                // }
+                const response= await props.createNewUser(formSignUp)
+                console.log(response)
+                if(response && !response.sucess){
+                    setErrors([response.errors])
+                }else {
+                    alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                }
             }
         }
     }
+    console.log(errors)
     return (
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
@@ -175,7 +156,7 @@ const SignUp = (props) =>{
                 <button type='submit' onClick={send_data}>Send</button>
                 {errors[0] && (
                 <div className="signUpErrorContainer">
-                    {errors[0].map(error=> <p className="signUpErrorText">{error.message}</p>)}
+                    {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}
                 </div>
                 )}
 
