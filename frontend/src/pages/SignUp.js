@@ -117,7 +117,11 @@ const SignUp = (props) =>{
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
+<<<<<<< HEAD
                 
+=======
+                console.log(response)
+>>>>>>> 1fe6fc3321da3679c3fa21565a8a81fba795b2ab
                 if(response && !response.sucess){
                     setErrors([response.errors])
                 }else {
@@ -126,6 +130,7 @@ const SignUp = (props) =>{
             }
         }
     }
+    console.log(errors)
     return (
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`}}>
