@@ -12,7 +12,7 @@ import DeveloperPage from './pages/DeveloperPage'
 import usersActions from "./redux/actions/usersActions"
 import WhatsApp from "./components/WhatsApp"
 import Contact from "./pages/Contact"
-import AddNews from './components/AddNews'
+import AddNew from './components/AddNew'
 import gameById  from '../src/components/GameById'
 import News from './pages/News'
 import PasswordReset from './pages/PasswordReset'
@@ -46,7 +46,7 @@ function App({loggedUser,login_with_LS}) {
         && 
         <>
         <Route exact path='/developers' component={DeveloperPage}/>
-        <Route path='/addnews' component={AddNews}/>
+        <Route path='/addnews' component={AddNew}/>
         </>
         }
 

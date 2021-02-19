@@ -1,10 +1,9 @@
-
 import { useState } from "react"
 import { connect } from "react-redux"
 import newsActions from "../redux/actions/newsActions"
 
 
-const AddNews = (props)=>{
+const AddNew = (props)=>{
     const [errors,setErrors] = useState([])
     const [news, setNews]=useState({})
 
@@ -87,4 +86,4 @@ const mapDispatchToProps ={
 
 
 
- export default connect(mapStateToProps,mapDispatchToProps)(AddNews)
+ export default connect(mapStateToProps,mapDispatchToProps)(AddNew)

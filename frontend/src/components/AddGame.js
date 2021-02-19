@@ -4,7 +4,7 @@ import gamesActions from '../redux/actions/gamesActions'
 import {Redirect} from 'react-router-dom'
 
 
-const AddGames = (props) =>{
+const AddGame = (props) =>{
     const [errors,setErrors] = useState([])
     const [newGame,setNewGame] = useState({
         gameTitle:'',
@@ -123,4 +123,4 @@ const mapDispatchToProps= {
     allGames: gamesActions.allGames
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddGames)
+export default connect(mapStateToProps,mapDispatchToProps)(AddGame)
