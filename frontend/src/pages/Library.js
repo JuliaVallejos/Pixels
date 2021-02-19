@@ -85,7 +85,7 @@ const Library = (props) =>{
     return (
         <>
         <div id="library">
-        <h2  className="textCenter sectionTitle">Library</h2>
+        <h2  className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>Library</h2>
         <Categories/>
         <h2 className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}} >Find your favorite games</h2>
         <div className="libraryFilters">
