@@ -3,7 +3,7 @@ const News = require('../models/News')
 
 const newsController ={
     addNews : (req,res) =>{
-       const {newsTitle, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
+       const {newsTitle, newsDescription, newsBody, newsAuthor, dateOfTheNews} = req.body 
 
        const {newsImg} = req.files;
 

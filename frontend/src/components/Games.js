@@ -1,4 +1,3 @@
-
  import { useState } from "react"
  import ReactStars from "react-rating-stars-component";
  import React from "react";
@@ -33,8 +32,10 @@
                                      valoration: (a.valoration+ b.valoration)
                                      }
                                  }, {valoration: 0})
-                                 
-                                 prom = sum.valoration/valoration.length
+                                { valoration.length === 0 ?
+                                    prom =0  
+                                 : 
+                                    prom = sum.valoration/valoration.length}
                                  })        
                              }
                      

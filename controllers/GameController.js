@@ -26,9 +26,12 @@ const GameController ={
         createGame.gameImg=imgName;
 
         createGame.save()
-        .then( async savedGame =>{
-           const game = await savedGame.populate('idUser')
+
+        console.log(createGame)
             
+
+        .then( async savedGame =>{
+           const game = await savedGame.populate('idUser').execPopulate()           
             return res.json({success:true, response: game})
         })
         .catch(error=>{
@@ -58,7 +61,7 @@ const GameController ={
     },
     gameById:(req, res)=>{
        const  id=req.params.idGame
-        Game.find({"_id":id})
+        Game.find({'_id':id}).populate('_id')
         .then(respuesta=>{
             return res.json({success:true, response:respuesta})
         })

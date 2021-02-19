@@ -5,16 +5,19 @@ const GameSchema = new mongoose.Schema({
     gameTitle: {type: String, required: true},
     gameCategories:[String],
     gameInfo: {type:String},
+
     valoration: {type:[{
-        idUser: {type:mongoose.Schema.ObjectId,ref:'user',required:true},
-        valoration: Number,
+        idUser: {type:mongoose.Schema.ObjectId, ref:'user', required:true},
+        valoration: {type:Number , required:false, default:0},
     }]},
+
     prom:Number,
     userComments: {type:[{
         idUser: {type:mongoose.Schema.ObjectId,ref:'user'},
         comment: String
     }]},
     clasificationPEGI: {type:Number},
+    
     idUser: {type:mongoose.Schema.ObjectId,ref:'user'}
     
 })
