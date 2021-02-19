@@ -21,6 +21,7 @@ return(
 {props.news ?
 <div>
 <h1>{props.news.newsTitle}</h1>
+<h3>{props.news.newsDescription}</h3>
 
 <div className="portadaSingleGame" style={{backgroundImage:`url(${props.news.newsImg})`}}></div>
 </div>
