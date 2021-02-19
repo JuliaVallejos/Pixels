@@ -1,18 +1,22 @@
 import {connect} from 'react-redux'
 import newsActions from "../redux/actions/newsActions"
 import {useEffect} from "react"
+import {Link} from 'react-router-dom'
 
 const News = (props) => {
    
     useEffect(() => {
         props.mostrarNews()
     },[])
-
+console.log(props.news)
     return(
         <>
+        
        {props.news.map(article=> {
            return(
+            <Link to={`/news/${article._id}`}>
                <div className="centerCenter ">
+               
                <div className="cajaNoticia zoom">
                 
                 
@@ -27,10 +31,13 @@ const News = (props) => {
                 </div>
                 
                </div>
+               
                </div>
+               </Link>
+              
            )
        } )}
-       
+      
         
         </>
 

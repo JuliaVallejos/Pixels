@@ -39,9 +39,10 @@ const initialState ={
             }
             break
             case "GAMEBYID":
+                
                 return{
                     ...state,
-                    gamesList:action.payload
+                    gameById:action.payload
                 }
         
         default:

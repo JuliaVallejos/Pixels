@@ -37,11 +37,11 @@ const newsActions ={
               newsById: (id)=>{
                 return async (dispatch, setState)=>{
                   try{
-                    const data = await axios.get("http://localhost:4000/api/news"+id)
-                
+                    const data = await axios.get(`http://localhost:4000/api/news/${id}`)
+                console.log(data)
                     if (data.data.success){
             
-                        dispatch({type:'NEWSBYID',payload:data.data.response})
+                        dispatch({type:'NEWSBYID',payload:data.data.response[0]})
                       return data.data.response
                     } else{
                     return data.data

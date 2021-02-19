@@ -3,6 +3,7 @@
  import ReactStars from "react-rating-stars-component";
  import React from "react";
  import { render } from "react-dom";
+ import {Link} from 'react-router-dom'
  
   const Games = (props) =>{
  
@@ -16,6 +17,7 @@
               {props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
               
                  return(
+                  <Link to={`/games/${_id}`}>
                   <div className="zoom" key={_id}>
                       
                       <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}></div>
@@ -63,6 +65,7 @@
                              return (<p key={comment._id}>{comment.comment}</p>)
                          })} */}
                   </div>
+                  </Link>
                   ) 
   
               })}
