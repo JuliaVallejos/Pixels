@@ -8,7 +8,7 @@ const News = (props) => {
     useEffect(() => {
         props.mostrarNews()
     },[])
-    if (!props.news){return <h2>loading...</h2> }
+    
     return(
         <>
        {props.news && (props.news).map(article=> {
