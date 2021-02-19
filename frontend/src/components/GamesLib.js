@@ -1,15 +1,14 @@
 
  const GamesLib = (props) =>{
-    
-
+    console.log("estoy en GamesLib")
+    console.log(props.newGamesList)
     var prom=0
 
         return(
-            <>
-           
+            <>           
            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
           
-             {props.newGamesList&&props.newGamesList.map( ({_id,gameTitle,gameImg,prom,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
+             {props.newGamesList && props.newGamesList.map( ({_id,gameTitle,gameImg,prom,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
              
                 return(
                  <div key={_id} style={{fontSize:'0.4em'}}>

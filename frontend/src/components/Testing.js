@@ -6,6 +6,7 @@ import GamesLib from '../components/GamesLib'
 import gamesActions from '../redux/actions/gamesActions'
 
 const Testing = (props) =>{
+    console.log(props)
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
     const [editFilter,setEditFilter] = useState(false)

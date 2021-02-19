@@ -5,6 +5,7 @@
  
   const Games = (props) =>{
  
+    console.log(props)
  
      var prom=0
  
