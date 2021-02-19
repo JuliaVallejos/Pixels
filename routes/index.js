@@ -38,6 +38,13 @@ router.route("/news")
 router.route("/news/:idNews")
 .delete(newsController.deleteNews)
 .get(newsController.newsById)
+//comentario
+router.route('/comments')
+.post(GameController.addCommentsGames)
+router.route('/modifycomment')
+.post(GameController.modifyComment)
+router.route('/deletecomment/:idgame/:idcomment')
+.delete(GameController.deleteComment)
 
 /* ruta para envío de emails */
 router.route('/contact/send')
