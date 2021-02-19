@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import gamesActions from "../redux/actions/gamesActions"
 import ReactStars from "react-rating-stars-component";
+import e from "cors";
 
 
 const GameById = (props)=>{
@@ -11,6 +12,9 @@ useEffect(()=>{
     props.gamesById(id)
 },[])
 
+const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
     // console.log(props.gameById)
     return(
         
@@ -92,7 +96,14 @@ useEffect(()=>{
 </div> 
             
         
-
+<p className="valoracion justifyCenter"><ReactStars
+                                     count={5}
+                                     isHalf={true}
+                                     size={50}
+                                     activeColor="#ffd700"
+                                     edit={true}
+                                     onChange={ratingChanged}
+                             /></p>
 
 
         
