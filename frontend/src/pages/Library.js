@@ -16,7 +16,6 @@ const Library = (props) =>{
     var gamesConcat=[]
      const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
-
     useEffect(() => {
         getGames() 
     
@@ -24,9 +23,9 @@ const Library = (props) =>{
 
   
     const read_input= e =>{
+      /*   setEditFilter(true) */
         const search = e.target.value
-        props.filterGames(search)
-      
+        props.filterGames(search)    
 
     }
     const getGames = async () =>{
@@ -34,7 +33,8 @@ const Library = (props) =>{
         const data = await props.allGames()
         data&& setLoading(false)
     }
-    const filterPEGI = e =>{
+    const selectAges = e =>{
+        
         ages=ages.concat(agesState)
         const value=parseInt(e.target.value)
 
@@ -46,22 +46,29 @@ const Library = (props) =>{
            const ind= ages.indexOf(value)
             ages.splice(ind,1)
         }
-  
+        
     }
     const filt_games = () =>{
-        setGamesFilteredPEGI([])
-     
+        if(ages.length===0){
+            ages=ages.concat(agesState)
+        }
+        gamesConcat=[]
+
+     console.log(ages)
         ages.map(age=>{
            
              gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
                 gamesConcat = gamesConcat.concat(gamesFiltered)
             })
      setGamesFilteredPEGI(gamesConcat)
-     setAgesState(ages)
-    
-        
+     setAgesState(ages)  
+   
     }
-    
+    const clearAges = () =>{
+        setGamesFilteredPEGI([])
+        setAgesState([])
+    }
+ 
     
     
         
@@ -75,7 +82,7 @@ const Library = (props) =>{
         <h2  className="textCenter">Library</h2>
         <Categories/>
         <input type='text' onChange={read_input} placeholder='Search'/>
-        <label onChange={filterPEGI} htmlFor='PEGI'>Select clasification PEGI
+        <label onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
             <input type='checkbox' name='PEGI' value='3' />3
             <input type='checkbox' name='PEGI' value='7' />7
             <input type='checkbox' name='PEGI' value='12' />12

@@ -16,7 +16,6 @@ import gameById  from '../src/components/GameById'
 import News from './pages/News'
 
 
-
 function App({loggedUser,login_with_LS}) {
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
@@ -31,7 +30,6 @@ function App({loggedUser,login_with_LS}) {
         <Route path="/contact" component={Contact}/>
         <Route path='/library' component={Library}/> 
         <Route path='/categories/:category' component={CategoryList}/>
-        <Route path='/library' component={Library}/> 
         <Route path='/library' component={Library}/> 
         <Route path='/games/:id' component={gameById}/>
         <Route path='/news' component={News}/>
@@ -54,7 +52,7 @@ function App({loggedUser,login_with_LS}) {
         <Redirect to="/" />
         </Switch>
         <WhatsApp/>
-        <Footer/>
+        {/* <Footer/> */}
       </BrowserRouter>    
 
     </div>

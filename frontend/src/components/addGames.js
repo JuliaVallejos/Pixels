@@ -74,7 +74,7 @@ const AddGames = (props) =>{
     return(
         <div className="signUp centerCenter" style={{height: "65vh"}}>
             <h2>Upload your game</h2>
-                {/* <form> */}
+                <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
                     <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: 'unset', height:'150px' }} onChange={read_input}/>
@@ -101,7 +101,7 @@ const AddGames = (props) =>{
                     {errors&& errors.map((error,index) =>{
                                 return (<p key={index}>{error.message}</p>)
                             })}
-                {/* </form> */}
+                </form>
         </div>
     )
 }
