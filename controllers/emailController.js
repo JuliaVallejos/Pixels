@@ -12,7 +12,7 @@ const emailController = {
         })
         var mailOptions = {
             from: "Remitente",
-            to: "jorte.03@gmail.com",
+            to: "proyectoPixels@gmail.com",
             subject:"Enviado desde nodemailer",
             text: "Hola Mundo!"
         }
