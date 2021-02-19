@@ -17,8 +17,8 @@ const Header = ({loggedUser,logOut}) =>{
                 <NavLink to='/library'><p>Library</p></NavLink>
                 <NavLink to='/news'><p>News</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
-                ? <NavLink to='/developers'><p>Developers</p></NavLink>
-                : <NavLink onClick={()=>alert("You need to be a developer")} exact to='#'><p>Developers</p></NavLink>
+                ? <NavLink exact to='/developers'><p>Developers</p></NavLink>
+                : <NavLink onClick={()=>alert("You need to be a developer")} to="/nodeveloper"><p>Developers</p></NavLink>
                 }
                 {loggedUser===null
                 ? <>
@@ -44,14 +44,14 @@ const Header = ({loggedUser,logOut}) =>{
                     <NavLink to='/library'><p>Library</p></NavLink>
                     {(loggedUser && loggedUser.userRol==="Developer")
                     ? <NavLink to='/developers'><p>Developers</p></NavLink>
-                    : <NavLink onClick={()=>alert("You need to be a developer")} exact to='#'><p>Developers</p></NavLink>
+                    : <NavLink onClick={()=>alert("You need to be a developer")} ><p>Developers</p></NavLink>
                     }
                     {loggedUser===null
                     ? <>
                         <NavLink to ='/login'><p>LogIn</p></NavLink>
                         <NavLink to ='/signup'><p>SignUp</p></NavLink>
                       </>
-                    :   <NavLink to ="#" onClick={logOut}>LogOut</NavLink>
+                    :   <NavLink to ="/" onClick={logOut}>LogOut</NavLink>
                 }
                 </div>
                 </>                

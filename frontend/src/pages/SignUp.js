@@ -52,10 +52,10 @@ const SignUp = (props) =>{
         formSignUp.append("userPayPal",userPayPal)
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
-            setErrors(['All required(*) fields must be completed'])
+            setErrors([['All required(*) fields must be completed']])
             return false
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
-            setErrors(['All required(*) fields must be completed'])
+            setErrors([['All required(*) fields must be completed']])
             return false
         }
         const data = await props.createNewUser(formSignUp)     
@@ -117,7 +117,6 @@ const SignUp = (props) =>{
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
-                console.log(response)
                 if(response && !response.sucess){
                     setErrors([response.errors])
                 }else {

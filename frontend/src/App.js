@@ -30,34 +30,32 @@ function App({loggedUser,login_with_LS}) {
       <BrowserRouter>
         <Header/>
         <Switch>        
-        <Route exact path='/' component={Home}/>
-        <Route path="/contact" component={Contact}/>
-        <Route path='/contact' component={Contact}/>
-        <Route path='/library' component={Library}/> 
-        <Route path='/categories/:category' component={CategoryList}/>
-        <Route path='/games/:id' component={gameById}/>
-        <Route path='/news/:id' component={NewsById}/>
-        <Route path='/news' component={News}/>
-        <Route path='/passwordReset' component={PasswordReset}/>
-        <Route path='/categories/:category' component={Games}/>
-        <Route path='/commentary' component={Commentary}/>
+          <Route exact path='/' component={Home}/>
+          <Route path="/contact" component={Contact}/>
+          <Route path='/library' component={Library}/> 
+          <Route path='/categories/:category' component={CategoryList}/>
+          <Route path='/games/:id' component={gameById}/>
+          <Route path='/news/:id' component={NewsById}/>
+          <Route path='/news' component={News}/>
+          <Route path='/passwordReset' component={PasswordReset}/>
+          <Route path='/categories/:category' component={Games}/>
+          <Route path='/commentary' component={Commentary}/>
 
-        {(loggedUser && loggedUser.userRol==="Developer")
-        && 
-        <>
-        <Route exact path='/developers' component={DeveloperPage}/>
-        <Route path='/addnews' component={AddNew}/>
-        </>
-        }
+          {(loggedUser && loggedUser.userRol==="Developer")
+          && 
+          <>
+            <Route exact path='/developers' component={DeveloperPage}/>
+            <Route path='/addnews' component={AddNew}/>
+          </>
+          }
 
-        {!loggedUser && 
-        <>
-          <Route path='/signup' component={SignUp}/>
-          <Route path='/login' component={LogIn}/>
-        </>
-        }       
-        
-        <Redirect to='/' />
+          {!loggedUser && 
+          <>
+            <Route path='/signup' component={SignUp}/>
+            <Route path='/login' component={LogIn}/>
+          </>
+          }       
+          <Redirect to='/'/>
         </Switch>
         <WhatsApp/>
         <Footer/>
