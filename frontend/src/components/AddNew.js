@@ -58,9 +58,10 @@ return(
         
         <form className="addNews">
             <input type="text" placeholder="Title of the news" name="newsTitle" onChange={read_input}/>
-            <label htmlFor='newsImg'><p>Image of the news</p></label>
-            <label className="inputFile" htmlFor="newsImg">
-                <input type='file' id='newsImg' name='newsImg' onChange={read_input}/>
+            <label htmlFor='newsImg'><p>Image for the news</p></label>
+            <label for="uploadButton" className="inputFile" htmlFor="newsImg">
+                <p>Click here to Upload a news image</p>
+                <input id="uploadButton" type='file' name='newsImg' onChange={read_input}/>
             </label>            
             <input type="text" placeholder="Description of the news" name="newsDescription" onChange={read_input}/>
             <textarea type="text" placeholder="Body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
