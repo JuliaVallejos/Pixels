@@ -1,5 +1,5 @@
-var nodemailer = require('nodemailer')
 require('dotenv').config()
+var nodemailer = require('nodemailer')
 const emailController = {
 
     sendEmail: (req, res) =>{
@@ -7,8 +7,8 @@ const emailController = {
             port: 465,
             host: 'smtp.gmail.com',
             auth: {
-                user: 'process.env.MAIL_USER',
-                pass: 'process.env.MAIL_PASS'
+                user: 'proyectopixels0@gmail.com',
+                pass: 'pixels123'
             },
             tls: {
                   rejectedUnauthorized:false
@@ -19,6 +19,7 @@ const emailController = {
             from: 'proyectopixels0@gmail.com <don`t reply>',
             to: email,
             subject:"Welcome to Pixels!",
+            // text: "TEXTO ALGO",
             html: `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#11050F">
                         <h1 style="color:#FFB5FF">Hi! Greetings from Pixels!</h1>
                         <h2 style="color:#FFFFFF">${content}</h2>
@@ -39,8 +40,8 @@ const emailController = {
             port: 465,
             host: 'smtp.gmail.com',
             auth: {
-                user: 'process.env.MAIL_USER',
-                pass: 'process.env.MAIL_PASS'
+                user: 'proyectopixels0@gmail.com',
+                pass: 'pixels123'
             },
             tls: {
                   rejectedUnauthorized:false
