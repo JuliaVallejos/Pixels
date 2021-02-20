@@ -15,22 +15,28 @@ const initialState ={
 }
 
  function gamesReducer(state= initialState,action){
+     function prom(game){
+       let prom = 0
+  /*       const newPayload= action.payload.map(game =>{   */           
+           game.valoration.map(() =>{      
+              const sum =game.valoration.reduce((a,b) =>{  
+                       return {
+                       valoration: (a.valoration+ b.valoration)
+                       }
+                   }, {valoration: 0})                     
+                  prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
+                   }) 
+            game= {...game,prom:prom} 
+                  
+            return game                    
+     }
+     
     switch (action.type) {
         case 'ALL_GAMES':
-          
-            let prom = 0
-            let newPayload= action.payload.map(game =>{             
-               game.valoration.map(() =>{      
-                   const sum =game.valoration.reduce((a,b) =>{  
-                           return {
-                           valoration: (a.valoration+ b.valoration)
-                           }
-                       }, {valoration: 0})                     
-                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
-                       }) 
-                   game= {...game,prom:prom}              
-                   return game                   
-                   })            
+            const newPayload = action.payload.map(game =>{ 
+            return prom(game)})
+            console.log(newPayload)
+                       
         return{
             ...state,
             gamesList:action.payload,
@@ -44,41 +50,38 @@ const initialState ={
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
         
         }
-        case "GAMEBYID":
-               
-                
-                return{
-                    ...state,
-                    gameById:action.payload
-                }
+      
         case 'CHANGES':
-           console.log('modifique game')
-           console.log(action.payload)
-            let sum =action.payload.valoration.reduce((a,b) =>{  
-                return {
-                valoration: (a.valoration+ b.valoration)
-                }
-            }, {valoration: 0})
+            const newGameChanged= prom(action.payload)
+            console.log(newGameChanged)
+
           
-              let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
+                return {
                     
-              let newPayloadID= {...action.payload,prom:promed}
-                
-            var newGamesList1 = state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
-              
-            return {
-                
-                ...state,
-                loading:false,
-                newGamesList: newGamesList1,
-                gameById: action.payload
-            }
+                    ...state,
+                    loading:false,
+                    newGamesList: state.newGamesList,
+                    gameById: newGameChanged
+                }
             break
             case "GAMEBYID":
-                console.log(action.payload)
+               
+               /*  let sum =action.payload.valoration.reduce((a,b) =>{  
+                    return {
+                    valoration: (a.valoration+ b.valoration)
+                    }
+                }, {valoration: 0})
+              
+                  let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
+                        
+                  let newPayloadID= {...action.payload,prom:promed}
+                    
+                console.log(action.payload) */
+                const newGame= prom(action.payload)
+                console.log(newGame)
                 return{
                     ...state,
-                    gameById:action.payload
+                    gameById:newGame
                 }
                 // gameById:newPayloadID
             
