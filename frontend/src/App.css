@@ -665,6 +665,8 @@ border-radius: 43px 43px 43px 43px;
   background-size: cover;
 }
 
+
+
 .cajaTituloSingleGame{
 width: 100%;
 padding-bottom: 2vh;
@@ -804,8 +806,50 @@ background-color: rgba(247,104,247,0.8);
   color: white;
   font-size: 1.2rem;
   font-weight: 900;
+  padding-bottom: 2vh;
   
 }
+
+.cajaNoticias{
+  width: 80vw;
+}
+
+.parrafoNoticia{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 4vh;
+  text-align: justify;
+  
+}
+
+.portadaSingleNews{
+  width:  80vw;
+  height: 70vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.singleNewsDescription{
+  font-size: 2rem;
+  padding-bottom: 2vh;
+}
+
+.singleNewsTitle{
+  font-size: 3rem; 
+  padding-bottom: 2vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.subtitulo{
+  font-size: 1.3rem;
+  padding-bottom: 2vh;
+  opacity: 0.6;
+}
+
+
 
 /* ------ CONTACT PAGE ------ */
 
