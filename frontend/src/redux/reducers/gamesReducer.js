@@ -17,7 +17,6 @@ const initialState ={
  function gamesReducer(state= initialState,action){
     switch (action.type) {
         case 'ALL_GAMES':
-          
             let prom = 0
             let newPayload= action.payload.map(game =>{             
                game.valoration.map(() =>{      
@@ -36,36 +35,26 @@ const initialState ={
             gamesList:action.payload,
             newGamesList:newPayload
         }
-        
         case 'FILTER':
-         
         return {
             ...state,
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
         
         }
         case "GAMEBYID":
-               
-                
                 return{
                     ...state,
                     gameById:action.payload
                 }
         case 'CHANGES':
-           
             let sum =action.payload.valoration.reduce((a,b) =>{  
-                return {
+            return {
                 valoration: (a.valoration+ b.valoration)
                 }
             }, {valoration: 0})
-          
               let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
-                    
               let newPayloadID= {...action.payload,prom:promed}
                 console.log(newPayloadID)
-            
-         
-         
             return {
                 ...state,
                 loading:false,
@@ -73,23 +62,19 @@ const initialState ={
                 gameById: action.payload
             }
             break
-            case "GAMEBYID":
-                return{
-                    ...state,
-                    gameById:action.payload
-                }
-                // gameById:newPayloadID
-            
+        case "GAMEBYID":
+            return{
+                ...state,
+                gameById:action.payload
+            }
             break
-            
-            case "MOST_VALUED":
-                return{
-                    ...state,
-                    mostValuedList:action.payload
-                }
+        case "MOST_VALUED":
+            return{
+                ...state,
+                mostValuedList:action.payload
+            }
         default:
             return state
-
-}}
-
+    }
+}
 export default gamesReducer

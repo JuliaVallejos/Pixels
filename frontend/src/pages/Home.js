@@ -9,10 +9,10 @@ import newsActions from '../redux/actions/newsActions'
 const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNews,latestNews}) =>{
 
     useEffect(() => {
-        if( !news ||news.length===0 || !mostValuedList||  mostValuedList.length===0 || !latestNews){
+    //     if( !news ||news.length===0 || !mostValuedList||  mostValuedList.length===0 || !latestNews){
             allGames()
             allNews()
-        }
+    //     }
     },[])
     
     if(!news || !mostValuedList||  mostValuedList.length===0  ){

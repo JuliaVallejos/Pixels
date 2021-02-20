@@ -12,14 +12,14 @@ const emailController= require('../controllers/emailController')
 // RUTAS PARA USUARIOS
 /*.post(userController.signUp) */
 router.route("/user/signUp")
+.post(userController.signUp) 
 
-    .post(userController.signUp) 
-    // .post(validator.validateNewAccount,userController.signUp)
+// .post(validator.validateNewAccount,userController.signUp)
 router.route("/user/logIn")
-    .post(userController.logIn)
+.post(userController.logIn)
     
 router.route("/user/logInLS")
-    .post(passport.authenticate("jwt",{session:false}),userController.logInLS)
+.post(passport.authenticate("jwt",{session:false}),userController.logInLS)
 
 // RUTAS PARA VIDEOJUEGOS
 router.route('/games')
@@ -41,8 +41,10 @@ router.route("/news")
 router.route("/news/:idNews")
 .delete(newsController.deleteNews)
 .get(newsController.newsById)
+
 //comentario
 router.route('/comments')
+
 // .post(GameController.addCommentsGames)
 router.route('/modifycomment')
 .post(GameController.modifyComment)

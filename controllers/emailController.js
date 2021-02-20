@@ -1,12 +1,15 @@
 var nodemailer = require('nodemailer')
+require('dotenv').config()
 const emailController = {
+
     sendEmail: (req, res) =>{
         var transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
             port: 465,
+            host: 'smtp.gmail.com',
             auth: {
-                user: 'proyectopixels0@gmail.com    ',
-                pass: 'pixels123'},
+                user: 'process.env.MAIL_USER',
+                pass: 'process.env.MAIL_PASS'
+            },
             tls: {
                   rejectedUnauthorized:false
                 } 
@@ -19,6 +22,7 @@ const emailController = {
             html: `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#11050F">
                         <h1 style="color:#FFB5FF">Hi! Greetings from Pixels!</h1>
                         <h2 style="color:#FFFFFF">${content}</h2>
+                        <link href="http://localhost:3000/passwordReset/${email}"></link>
                     </div>`
         }
         transporter.sendMail(mailOptions, (error, info) =>{
@@ -32,11 +36,12 @@ const emailController = {
     },
     resetPassword: (req,res)=> {
         var transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
             port: 465,
+            host: 'smtp.gmail.com',
             auth: {
-                user: 'proyectopixels0@gmail.com    ',
-                pass: 'pixels123'},
+                user: 'process.env.MAIL_USER',
+                pass: 'process.env.MAIL_PASS'
+            },
             tls: {
                   rejectedUnauthorized:false
                 } 
