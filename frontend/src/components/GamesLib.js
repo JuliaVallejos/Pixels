@@ -1,7 +1,6 @@
 
  const GamesLib = (props) =>{
-    console.log("estoy en GamesLib")
-    console.log(props.newGamesList)
+
     var prom=0
 
         return(

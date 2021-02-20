@@ -24,6 +24,7 @@ const News = (props) => {
                     <div className="paddingTexto">
                         <h1 className="tituloArticle ">{article.newsTitle}</h1>
                         <h3>{article.newsDescription}</h3>
+                        <h1>HOLA</h1>
                     </div>
                 </div>
                 

@@ -5,12 +5,11 @@ import Categories from '../components/Categories'
 import GamesLib from '../components/GamesLib'
 import gamesActions from '../redux/actions/gamesActions'
 
-const Testing = (props) =>{
-    console.log(props)
+const Library = (props) =>{
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
     const [editFilter,setEditFilter] = useState(false)
-    const [newOrder,setNewOrder] =  useState(newGamesList)
+    const [newOrder,setNewOrder] =  useState([])
   
     const [agesState,setAgesState] = useState([])
     var ages=[]
@@ -19,8 +18,8 @@ const Testing = (props) =>{
      const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
     useEffect(() => {
-        getGames() 
-    
+        getGames()
+        
     }, [])
   
     const read_input= e =>{
@@ -32,9 +31,9 @@ const Testing = (props) =>{
   
         const data = await props.allGames()
         data&& setLoading(false)
+    
     }
-    const selectAges = e =>{
-        
+    const selectAges = e =>{        
         ages=ages.concat(agesState)
         const value=parseInt(e.target.value)
 
@@ -56,21 +55,41 @@ const Testing = (props) =>{
         }
         gamesConcat=[]
 
-        ages.map(age=>{
-           
+        ages.map(age=>{           
              gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
                 gamesConcat = gamesConcat.concat(gamesFiltered)
             })
      setGamesFilteredPEGI(gamesConcat)
     
     }
+    const read_sort= e =>{
+     
+        const order = e.target.value
+           console.log(order)
+        if(order==='less_valued'){          
+         return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
+        }
+        if (order==='most_valued'){   
+           return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
+            
+        }else{
+           
+            setNewOrder(newGamesList)
+        }
+        
+    }
+ 
 
     return (
         <>
         <div id="latestNews" className="fondoWall ">
         <h2  className="textCenter">Library</h2>
         <Categories/>
+
+        {/* BUSQUEDA POR NOMBRE */}
         <input type='text' onChange={read_input} placeholder='Search'/>
+
+        {/* CLASIFICACION PGI */}
         <label onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
             <input type='checkbox' name='PEGI' value='3' />3
             <input type='checkbox' name='PEGI' value='7' />7
@@ -79,9 +98,18 @@ const Testing = (props) =>{
             <input type='checkbox' name='PEGI' value='18' />18
             <button onClick={filt_games}>Search</button>
         </label>
-        {loading && <h2>Loading...</h2>}
-     
-        {(!loading)&&<GamesLib newGamesList={(gamesFilteredPEGI.length!==0 ) ?gamesFilteredPEGI : newGamesList }/>} 
+
+        {/* MOST VALUE LESS VALUE */}
+       <select defaultValue='' onChange={read_sort}>
+            <option value='' >Sort by</option>
+            <option value='most_valued'>Most Valued</option>
+            <option value='less_valued'>Less Valued</option>
+        </select>
+   
+            {loading && <h2>Loading...</h2>}
+      
+           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>} 
+ 
         
         </div>
         </>
@@ -99,4 +127,4 @@ const mapDispatchToProps = {
     filterGames: gamesActions.filterGames
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Testing)
+export default connect(mapStateToProps,mapDispatchToProps)(Library)

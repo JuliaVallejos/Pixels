@@ -1,19 +1,107 @@
+import ReactStars from "react-rating-stars-component";
+import React from "react";
+import {useState,useEffect} from 'react'
+import {Link} from 'react-router-dom'
 
- import ReactStars from "react-rating-stars-component";
- import React from "react";
- import {Link} from 'react-router-dom'
  
   const Games = (props) =>{
  
-    console.log(props)
- 
-     var prom=0
+    const {newGamesList} = props
+    const [newOrder,setNewOrder] =  useState([])
+    const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
+    const [agesState,setAgesState] = useState([])
+    var elements = props.newGamesList
+
+
+    const [categories,setCategories] = useState(elements)
+
+          
+    console.log(categories)
+
+
+
+    var ages=[]
+    var gamesFiltered=[]
+    var gamesConcat=[]
+    var arrayGames = ((categories.length === 0, agesState.length === 0) ? elements : categories)
+  
+    const read_input= e =>{
+        const search = e.target.value
+        props.filterGames(search)    
+
+    }
+    const selectAges = e =>{
+        
+        ages = ages.concat(agesState)
+        const value = parseInt(e.target.value)
+
+        if(ages.indexOf(value)===-1){
+             ages.push(value)
+            
+           
+        }else{ 
+           const ind= ages.indexOf(value)
+            ages.splice(ind,1)
+        }
+        setAgesState(ages)         
+    }
+    
+    const filt_games = () =>{
+        if(ages.length===0){
+            ages = ages.concat(agesState)
+        }
+        gamesConcat=[]
+
+        ages.map(age=>{
+           
+             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
+                gamesConcat = gamesConcat.concat(gamesFiltered)
+            })
+     setCategories(gamesConcat)
+    
+    }
+    const read_sort= e =>{     
+        const order = e.target.value
+           console.log(order)
+        if(order==='less_valued'){          
+         return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
+        }
+        if (order==='most_valued'){   
+           return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
+            
+        }else{
+           
+            setNewOrder(newGamesList)
+        }
+        
+    }
+
  
          return(
-             <>
+            <>
+
+            <input type='text' onChange={read_input} placeholder='Search'/>
             
+            <label onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
+                <input type='checkbox' name='PEGI' value='3' />3
+                <input type='checkbox' name='PEGI' value='7' />7
+                <input type='checkbox' name='PEGI' value='12' />12
+                <input type='checkbox' name='PEGI' value='16' />16
+                <input type='checkbox' name='PEGI' value='18' />18
+                <button onClick={filt_games}>Search</button>
+            </label>
+            
+            <select defaultValue='' onChange={read_sort}>
+                <option value='' >Sort by</option>
+                <option value='most_valued'>Most Valued</option>
+                <option value='less_valued'>Less Valued</option>
+            </select>
+
+
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-              {props.newGamesList&&props.newGamesList.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
+            
+
+              {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
               
                  return(
                   <Link to={`/games/${_id}`}>
@@ -26,21 +114,7 @@
                                  <p className="gameInfo">{gameInfo}</p>
                              </div>
                          
-                        
-{/*                          
-                         { valoration.map(() =>{  
-                             const sum =valoration.reduce((a,b) =>{  
-                                     return {
-                                     valoration: (a.valoration+ b.valoration)
-                                     }
-                                 }, {valoration: 0})
-                                { valoration.length === 0 ?
-                                    prom =0  
-                                 : 
-                                    prom = sum.valoration/valoration.length}
-                                 })        
-                             } */}
-                     
+
                         
                              <p className="valoracion justifyCenter"><ReactStars
                                      count={5}
@@ -53,24 +127,13 @@
                          
                          </div>
                              
-                             
-                            
-                         
-                         
-                         
-                         {/* <p>Clasification: {clasificationPEGI}</p> */}
-                        {/* <div style={{display:'flex',justifyContent:'space-between'}}>
-                         {gameCategories.map((category,index) =>{
-                             return (<p key={index}> {category} </p>)})}
-                         </div>
-                         {userComments.map(comment =>{
-                             return (<p key={comment._id}>{comment.comment}</p>)
-                         })} */}
+
                   </div>
                   </Link>
                   ) 
   
               })}
+              
               </div>
               </>)
  

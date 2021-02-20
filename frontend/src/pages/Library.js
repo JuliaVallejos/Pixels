@@ -6,6 +6,7 @@ import GamesLib from '../components/GamesLib'
 import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
+
     const {newGamesList} = props
     const [loading,setLoading] = useState(true)
     const [editFilter,setEditFilter] = useState(false)
@@ -15,6 +16,8 @@ const Library = (props) =>{
     var ages=[]
     var gamesFiltered=[]
     var gamesConcat=[]
+
+    
      const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
     useEffect(() => {
@@ -62,12 +65,13 @@ const Library = (props) =>{
                 gamesConcat = gamesConcat.concat(gamesFiltered)
             })
      setGamesFilteredPEGI(gamesConcat)
+
     
     }
     const read_sort= e =>{
      
         const order = e.target.value
-           console.log(order)
+
         if(order==='less_valued'){          
          return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
         }
@@ -96,6 +100,7 @@ const Library = (props) =>{
             <input type='checkbox' name='PEGI' value='18' />18
             <button onClick={filt_games}>Search</button>
         </label>
+        
        <select defaultValue='' onChange={read_sort}>
             <option value='' >Sort by</option>
             <option value='most_valued'>Most Valued</option>
@@ -104,7 +109,7 @@ const Library = (props) =>{
    
             {loading && <h2>Loading...</h2>}
       
-           {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>} 
+           {/* {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>}  */}
  
         
         </div>

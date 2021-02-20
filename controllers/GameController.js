@@ -61,10 +61,13 @@ const GameController ={
         })
     
     },
-    
     gameById:(req, res)=>{
+        console.log(req.params)
+
        const  id=req.params.idGame
+
         Game.find({'_id':id}).populate('_id')
+
         .then(respuesta=>{
             return res.json({success:true, response:respuesta})
         })
@@ -72,6 +75,7 @@ const GameController ={
             return res.json({success:false, response:error})
         })
     },
+
     addCommentsGames: (req, res)=>{
            const {idUser, comment}=req.body
            Game.findOneAndUpdate({_id:req.body.id}, {
