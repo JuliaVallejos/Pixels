@@ -60,15 +60,15 @@ const ratingChanged = (newRating) => {
 
 
             <div className="justifyCenter">
-    <div className="cajaComentarios">
-        
-        <div className="mensajes">
-    
-    
-        {props.game.userComments.map(comment => <Commentary comment={comment}/>)}
-        
-        </div>
 
+    <div className="cajaComentarios">
+            
+            {console.log(props.game.userComments[0])}
+
+            <div className="mensajes">
+                {props.game.userComments.map(comment => <Commentary comment={comment}/>)}
+            </div>
+       
     
         
     

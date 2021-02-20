@@ -1,3 +1,4 @@
+const { populate } = require('../models/Game');
 const Game = require('../models/Game')
 
 const GameController ={
@@ -90,7 +91,7 @@ const GameController ={
             
         },
         {new: true}
-        )
+        ).populate('userComments.idUser')
 
         .then(respuesta =>{
             
