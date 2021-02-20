@@ -4,41 +4,31 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = (props) =>{
+  const Games = ({newGamesList,filterGames}) =>{
  
-    const {newGamesList} = props
     const [newOrder,setNewOrder] =  useState([])
     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
     const [agesState,setAgesState] = useState([])
-    var elements = props.newGamesList
-
-
-    const [categories,setCategories] = useState(elements)
-
-          
+    const [categories,setCategories] = useState(newGamesList)
+    
     console.log(categories)
-
-
 
     var ages=[]
     var gamesFiltered=[]
     var gamesConcat=[]
-    var arrayGames = ((categories.length === 0, agesState.length === 0) ? elements : categories)
+    var arrayGames = ((categories.length === 0, agesState.length === 0) ? newGamesList : categories)
   
     const read_input= e =>{
         const search = e.target.value
-        props.filterGames(search)    
-
+        filterGames(search)   
     }
     const selectAges = e =>{
         
         ages = ages.concat(agesState)
         const value = parseInt(e.target.value)
-
+        console.log("el value es : "+value)
         if(ages.indexOf(value)===-1){
              ages.push(value)
-            
-           
         }else{ 
            const ind= ages.indexOf(value)
             ages.splice(ind,1)
@@ -53,10 +43,9 @@ import {Link} from 'react-router-dom'
         gamesConcat=[]
 
         ages.map(age=>{
-           
-             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
-                gamesConcat = gamesConcat.concat(gamesFiltered)
-            })
+            gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
+            gamesConcat = gamesConcat.concat(gamesFiltered)
+        })
      setCategories(gamesConcat)
     
     }

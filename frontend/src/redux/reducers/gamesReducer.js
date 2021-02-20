@@ -1,5 +1,6 @@
 const initialState ={
     gamesList:[],
+    loading:false,
     newGamesList:[],
     categories:[
         {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
@@ -15,51 +16,39 @@ const initialState ={
  function gamesReducer(state= initialState,action){
     switch (action.type) {
         case 'ALL_GAMES':
-          
             var prom = 0
             var newPayload= action.payload.map(game =>{
-             
-               game.valoration.map(() =>{      
-                   const sum =game.valoration.reduce((a,b) =>{  
-                           return {
-                           valoration: (a.valoration+ b.valoration)
-                           }
-                       }, {valoration: 0})
-                     
-                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length 
-                     
-                       }) 
-                   game= {...game,prom:prom}
-              
-                   return game
-                   
-                   })
-
-            
-        return{
-            ...state,
-            gamesList:action.payload,
-            newGamesList:newPayload
-                }
+                game.valoration.map(() =>{      
+                const sum =game.valoration.reduce((a,b) =>{
+                    return {valoration: (a.valoration+ b.valoration)}
+                    },{valoration: 0})
+                    prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length 
+                }) 
+                game= {...game,prom:prom}
+                return game
+            })
+            return{
+                ...state,
+                gamesList:action.payload,
+                newGamesList:newPayload
+            }
         
         case 'FILTER':
-         
-        return {
-            ...state,
-            newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
-        
-        }
-        case 'CHANGES':
-         
             return {
                 ...state,
-                loading:false,
+                newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
+            }
+
+        case 'CHANGES':
+            return {
+                ...state,
+                loading:true,
                 newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
              
             }
             break
             case "GAMEBYID":
-                
+            
                 return{
                     ...state,
                     gameById:action.payload

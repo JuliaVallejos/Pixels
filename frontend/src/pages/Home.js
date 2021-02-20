@@ -11,7 +11,6 @@ const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValue
     useEffect(() => {
         allGames()
         allNews()
-        console.log("ypdate")
     },[update])
     
     if(news.length===0 || !news  ){
