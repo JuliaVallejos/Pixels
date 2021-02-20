@@ -9,37 +9,35 @@ const News = (props) => {
     },[])
     return(
         <>
-       {props.news && (props.news).map(article=> {
+        <h2 className="newsTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>NEWS</h2>
+        <div className="newsSection">
+            {props.news && (props.news).map(article=> {
            return(
             <Link to={`/news/${article._id}`}>
-               <div className="centerCenter ">
-               
-               <div className="cajaNoticia zoom">
-                
-                
-                <div className="imgNo{}ticia boxBackNoticia" style={{backgroundImage: `url(/newsImages/${article.newsImg})`}}>                 
-                {article.newsDate}</div>
-                <div className="boxBackTitulo ">
-                    <div className="paddingTexto">
-                        <h1 className="tituloArticle ">{article.newsTitle}</h1>
-                        <h3>{article.newsDescription}</h3>
+                <div className="centerCenter">               
+                    <div className="cajaNoticia zoom">
+                        <div className="imgNoticia  boxBackNoticia" style={{backgroundImage:`url(/newsImages/${article.newsImg})`}} >               
+                            <p>{`Posted: ${article.newsDate.slice(0,10)}`}</p>
+                        </div>
+                        <div className="boxBackTitulo ">
+                            <div className="paddingTexto">
+                                <h1 className="tituloArticle ">
+                                    {article.newsTitle}
+                                </h1>
+                                <h3>
+                                    {article.newsDescription}
+                                </h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-               </div>
-               
-               </div>
                </Link>
-              
-           )
-       } )}
-      
-        
+                )} )}
+        </div>
         </>
 
     )
 }
-
 
 const mapStateToProps = state => {
     return {
