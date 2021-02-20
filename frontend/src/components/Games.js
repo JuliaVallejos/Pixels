@@ -64,14 +64,14 @@ import {Link} from 'react-router-dom'
         const order = e.target.value
            console.log(order)
         if(order==='less_valued'){          
-         return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
+         return   setNewOrder([...categories].sort((a,b) => a.prom - b.prom))       
         }
         if (order==='most_valued'){   
-           return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
+           return  setNewOrder([...categories].sort((a,b) => b.prom - a.prom))
             
         }else{
            
-            setNewOrder(newGamesList)
+            setNewOrder(categories)
         }
         
     }

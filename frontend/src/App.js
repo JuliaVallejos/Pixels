@@ -17,7 +17,7 @@ import gameById  from '../src/components/GameById'
 import News from './pages/News'
 import Commentary from './components/Commentary'
 import NewsById from './components/NewsById'
-import Testing2 from './components/Testing2'
+
 
 
 function App({loggedUser,login_with_LS}) {
@@ -39,7 +39,7 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/news' component={News}/>
         <Route path='/categories/:category' component={Games}/>
         <Route path='/commentary' component={Commentary}/>
-        <Route path='/test' component={Testing2}/>
+
 
           {(loggedUser && loggedUser.userRol==="Developer")
           && 

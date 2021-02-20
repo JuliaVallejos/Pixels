@@ -16,26 +16,44 @@ useEffect(()=>{
 
 
 return(
-<>
+<div className="justifyCenter">
 
-{props.news ?
-<div>
-<h1>{props.news.newsTitle}</h1>
-<h3>{props.news.newsDescription}</h3>
+{props.newsId ?
+<div className="cajaNoticias">
+    
+    <div className="tituloDescripcion">
+        <h1 className="singleNewsTitle uppercase">{props.newsId.newsTitle}</h1>
+        <h3 className="singleNewsDescription">{props.newsId.newsDescription}</h3>
+    </div>
+    
+    <div className="portadaSingleNews" style={{backgroundImage:`url("/newsImages/${props.newsId.newsImg}")`}}></div>
 
-<div className="portadaSingleGame" style={{backgroundImage:`url(${props.news.newsImg})`}}></div>
+
+    <div className="justifyBetween subtitulo uppercase">
+        <h4>Author: {props.newsId.newsAuthor}</h4>
+        <h4>Posted on: {props.newsId.newsDate.slice(0,10)}</h4>
+    </div>
+    
+    <div className="parrafoNoticia ">
+        <h2>{props.newsId.newsBody}</h2>
+    </div>
+
+
+
+
 </div>
+
             
 
 : <h1> Cargando...</h1> }
-</>
+</div>
 )
 }
 
 
 const mapStateToProps =state=>{
     return {
-        news: state.news.newsById
+        newsId: state.news.newsById
     }
 }
 const mapDispatchToProps={
