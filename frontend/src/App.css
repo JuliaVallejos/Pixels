@@ -790,9 +790,16 @@ border-radius: 43px 43px 43px 43px;
   height: 70vh;
   background-position: top;
   background-size: cover;
+  
 }
 
+.cajaPadreSingleGame {
+  background-color: var(--background-color);
+}
 
+.cajaPadreNoticia{
+  background-color: var(--background-color);
+}
 
 .cajaTituloSingleGame{
 width: 100%;
@@ -950,7 +957,7 @@ background-color: rgba(247,104,247,0.8);
   flex-wrap: wrap;
   padding-bottom: 4vh;
   text-align: justify;
-  
+  color: white;
 }
 
 .portadaSingleNews{
@@ -963,6 +970,7 @@ background-color: rgba(247,104,247,0.8);
 .singleNewsDescription{
   font-size: 2rem;
   padding-bottom: 2vh;
+  color: white;
 }
 
 .singleNewsTitle{
@@ -971,12 +979,14 @@ background-color: rgba(247,104,247,0.8);
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  color: white;
   
 }
 .subtitulo{
   font-size: 1.3rem;
   padding-bottom: 2vh;
   opacity: 0.6;
+  color: white;
 }
 
 
@@ -1106,3 +1116,44 @@ textarea{
 .iconEdit{
   padding-left: 1vh;
 }
+
+
+/* ------ BOTONES ------ */
+
+.caja{
+width: 15vw;
+height: 4vh;
+color: white;
+border: 0.5rem solid rgba(247,104,247,0.8);
+  box-shadow: 0px 0px 20px var(--secondary-color);
+  border-radius: 43px 43px 43px 43px;
+  -moz-border-radius: 43px 43px 43px 43px;
+  -webkit-border-radius: 43px 43px 43px 43px ;
+  background-color: rgba(247,104,247,0.8);
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.backGames{
+  margin-right: 4vh;
+}
+
+.iconPaypal{
+  font-size: 1.5rem;
+  padding-right: 1vh;
+}
+
+.cajaRate{
+  width: 15vw;
+height: 4vh;
+color: white;
+border: 0.5rem solid rgba(247,104,247,0.8);
+  box-shadow: 0px 0px 20px var(--secondary-color);
+  border-radius: 43px 43px 43px 43px;
+  -moz-border-radius: 43px 43px 43px 43px;
+  -webkit-border-radius: 43px 43px 43px 43px ;
+  background-color: rgba(247,104,247,0.8);
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
