@@ -1,7 +1,6 @@
 
 const initialState={
-    news:[],
-    latestNews:[]
+    news:[]
 }
 
 function newsReducer (state=initialState, action) {
@@ -9,15 +8,12 @@ function newsReducer (state=initialState, action) {
         case "NEW_NEWS":
             return{
                 ...state,
-                news: [...state.news,action.payload],
-                latestNews: state.news.splice(0,4)
+                news: [...state.news,action.payload]
             }
             break
             case "ALL_NEWS":
                 return{
-                    ...state,
-                    news: action.payload.sort((a,b)=>b.newsDate>a.newsDate? 1:-1),
-                    latestNews: state.news.splice(0,4)
+                    news: action.payload.sort((a,b)=>b.newsDate>a.newsDate? 1:-1)
                 }
                 break
             case "NEWSBYID":

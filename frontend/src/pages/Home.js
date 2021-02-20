@@ -6,13 +6,14 @@ import {useEffect} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import newsActions from '../redux/actions/newsActions'
 
-const Home = ({loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNews,latestNews}) =>{
+const Home = ({news,loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNews,latestNews}) =>{
     
     useEffect(() => {
-        getGames()
-    }, [])
+        allNews()
+    },[])
     
-    {!latestNews.length && allNews()}
+    if(!news){return <h1>loading...</h1> }
+    
 
     const getGames = async () =>{
         const data = await allGames()
@@ -20,7 +21,6 @@ const Home = ({loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNew
             mostValued()
         }
     }
-    if(latestNews.length===0){return <h1>loading...</h1> }
 
     return (
         <> 
@@ -36,7 +36,7 @@ const Home = ({loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNew
                 <div>
                     <h2 className="homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>LATEST NEWS</h2>
                     <div id="cardPadre" className="justifyCenter "> 
-                    {latestNews.map(news=><HomeNews key={news._id} news={news}/>)}  
+                    {(news.splice(0,4)).map(news=><HomeNews key={news._id} news={news}/>)}  
                     </div>      
                 </div>  
                 <div>
@@ -50,7 +50,7 @@ const Home = ({loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNew
 }
 const mapStateToProps=state=>{
     return{
-        latestNews: state.news.latestNews,
+        news: state.news.news,
         loggedUser: state.user.loggedUser,
         newGamesList: state.game.newGamesList,
         mostValuedList: state.game.mostValuedList
