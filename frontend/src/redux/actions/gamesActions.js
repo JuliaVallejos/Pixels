@@ -43,20 +43,22 @@ const gamesActions = {
             dispatch({type:'FILTER',payload:search})
     }},
       
-    add_comment: (newComment,idGame) =>{
+    add_comment: (comment,idGame) =>{
     return async (dispatch,getstate) => {
+
+        console.log(idGame)
        
         const token = getstate().user.loggedUser? getstate().user.loggedUser.token : ''
         
         try{
-        const data = await axios.post(`http://localhost:4000/api/games/${idGame}`,{newComment},
+        const data = await axios.post(`http://localhost:4000/api/games/${idGame}`,{comment},
         {
             headers:{
             Authorization: `Bearer ${token}`
             }})
         
         if (data.data.success){
-            dispatch({type:'CHANGES', payload:data.data.game})
+            dispatch({type:'CHANGES', payload:data.data.response})
             return data
         }
           
