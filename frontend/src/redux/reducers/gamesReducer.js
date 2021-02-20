@@ -50,16 +50,16 @@ const initialState ={
         
         }
         case 'CHANGES':
+            console.log(action.payload)
          
             return {
                 ...state,
                 loading:false,
-                newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
-             
+                newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game),
+                gameById: action.payload
             }
             break
             case "GAMEBYID":
-                
                 return{
                     ...state,
                     gameById:action.payload

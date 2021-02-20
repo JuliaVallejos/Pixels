@@ -76,16 +76,29 @@ const GameController ={
     },
 
     addCommentsGames: (req, res)=>{
-           const {idUser, comment}=req.body
-           Game.findOneAndUpdate({_id:req.body.id}, {
+           const idUser = req.user._id
+           const {comment}=req.body
+           const id=req.params.idGame
+
+           console.log(comment)
+          
+           Game.findOneAndUpdate({_id:id}, {
             $push:{
-             userComments:{idUser:idUser, comment:comment}
+             "userComments":{idUser:idUser, comment:comment}
             }
-        })
+            
+        },
+        {new: true}
+        )
+
         .then(respuesta =>{
+            
             return res.json({success:true, response:respuesta})
+        
+
         })
         .catch(error=>{
+            console.log(error)
             return res.json({success:false, response:error})
         })  
     },

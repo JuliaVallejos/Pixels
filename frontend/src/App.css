@@ -1058,7 +1058,11 @@ textarea{
 }
 
 .cajaComentarios{
+  overflow-y: auto ; 
+  
+ 
   width: 50vw;
+  height: 60vh;
   padding-bottom: 3vh;
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
