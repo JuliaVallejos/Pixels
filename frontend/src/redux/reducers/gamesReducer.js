@@ -35,7 +35,7 @@ const initialState ={
             ...state,
             gamesList:action.payload,
             newGamesList:newPayload
-                }
+        }
         
         case 'FILTER':
          
@@ -83,7 +83,6 @@ const initialState ={
             break
             
             case "MOST_VALUED":
-
                 return{
                     ...state,
                     mostValuedList:action.payload

@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { connect } from "react-redux"
 import newsActions from "../redux/actions/newsActions"
-
+import {Redirect} from "react-router-dom"
+import News from "../pages/News"
 
 const AddNew = (props)=>{
     const [errors,setErrors] = useState([])
@@ -42,7 +43,7 @@ const send_data = async e=>{
   console.log(data)
   if(data && data.success){
     alert("news created")
-    window.location='/news'
+    // window.location='/news'
   }
   else{
       alert("error to create news")
