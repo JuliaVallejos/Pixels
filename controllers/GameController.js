@@ -27,7 +27,7 @@ const GameController ={
 
         createGame.save()
          
-
+        console.log(createGame)
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser').execPopulate() 
            console.log("entró game") 
