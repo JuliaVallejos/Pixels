@@ -31,6 +31,8 @@ router.route('/games/:idGame')
 .get(GameController.gameById)
 .post(passport.authenticate("jwt",{session:false}),GameController.addCommentsGames)
 
+router.route('/valoration/:idGame')
+.post(GameController.setValoration)
 //ruta para noticia 
 router.route("/news")
 .post(newsController.addNews)

@@ -9,19 +9,22 @@ import {Link} from 'react-router-dom'
     const {newGamesList} = props
     const [newOrder,setNewOrder] =  useState([])
     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
+    const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
     var elements = props.newGamesList
+console.log(elements)
 
     const [categories,setCategories] = useState(elements)
 
-    // console.log(elements)
 
     const [search, setSearch] = useState ('')
           
     var ages=[]
     var gamesFiltered=[]
     var gamesConcat=[]
-    var arrayGames = ((categories.length === 0 && agesState.length === 0) ? elements : categories)
+    
+    console.log(agesState)
+    var arrayGames = (categories.length===0 ) ?elements : categories
   
     console.log(search)
 
@@ -55,21 +58,25 @@ import {Link} from 'react-router-dom'
     }
     
     const filt_games = () =>{
-        if(ages.length===0){
-            ages = ages.concat(agesState)
-        }
-        gamesConcat=[]
-
-        ages.map(age=>{
+   
+        agesState.map(age=>{
            
-             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
+             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age)
+       
                 gamesConcat = gamesConcat.concat(gamesFiltered)
             })
-     setCategories(gamesConcat)
+            console.log(gamesConcat)
+            console.log(agesState)
+            if(gamesConcat.length===0 &&agesState.length!==0){
+                setNoResults(true)
+            }else{
+                setNoResults(false)
+                setCategories(gamesConcat)
+            }
     
     }
-    const read_sort= e =>{    
-
+    const read_sort= e =>{  
+           
         const order = e.target.value
 
         if(order==='less_valued'){          
@@ -111,33 +118,36 @@ import {Link} from 'react-router-dom'
                     <option value='less_valued'>Less Valued</option>
                 </select>
             </div>
-
+            {noResults? <h2>No games</h2>:
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-            
+      
                 {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
                  return(
-                    <Link to={`/games/${_id}`}>
+                    <Link key={_id} to={`/games/${_id}`}>
                         <div className="zoom" key={_id}>
+                            <p>{clasificationPEGI}</p>
                             <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}/>
                             <div className="cajaInformacion">
-                                <div className="infoJuego">
+                               <div className="infoJuego">
                                     <h4 className="tituloJuego">{gameTitle}</h4>
                                     <p className="gameInfo">{gameInfo}</p>
-                                </div>
-                                <p className="valoracion justifyCenter"><ReactStars
+                                </div> 
+                                <div className="valoracion justifyCenter">
+                                    <ReactStars
                                         count={5}
                                         isHalf={true}
                                         value={prom}
                                         size={50}
                                         activeColor="#ffd700"
                                         edit= {false}
-                                /></p>                         
-                            </div>
+                                /></div>                         
+                            </div> 
                         </div>
                     </Link>  
                 )
               })}
             </div>
+  }
             </div>
             </>
         ) 

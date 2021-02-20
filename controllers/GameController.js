@@ -65,7 +65,7 @@ const GameController ={
 
        const  id=req.params.idGame
 
-        Game.find({'_id':id}).populate('idUser')
+        Game.findOne({'_id':id}).populate('_id')
 
         .then(respuesta=>{
             return res.json({success:true, response:respuesta})
@@ -131,6 +131,32 @@ const GameController ={
         .catch(error=>{
             return res.json({success:false, response:error})
         })
+
+    },
+    setValoration: (req,res) =>{
+        const idGame= req.params.idGame
+        console.log(req.body)
+     const {idUser,valoration} = req.body
+       const newVal ={idUser,valoration}
+        console.log(idUser)
+        console.log(valoration) 
+        if(req.body.edit){
+            Game.findOneAndUpdate({_id:idGame,'valoration.idUser':idUser},{ $set: {'valoration.$.valoration':valoration}},{new:true})
+             .then(respuesta =>{
+                return res.json({success:true, response:respuesta})
+            })
+            .catch(error=>{
+                return res.json({success:false, response:error})
+            })
+            }else{
+        Game.findOneAndUpdate({_id:idGame}, {$push:{valoration:newVal} },{new:true})
+        .then(respuesta =>{
+            return res.json({success:true, response:respuesta})
+        })
+        .catch(error=>{
+            return res.json({success:false, response:error})
+        })   }
+    
 
     }
 
