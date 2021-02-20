@@ -42,6 +42,7 @@ const send_data = async e=>{
   console.log(data)
   if(data && data.success){
     alert("news created")
+    window.location='/news'
   }
   else{
       alert("error to create news")
