@@ -87,8 +87,7 @@ const mapStateToProps = state =>{
   return {
     gameById:state.game.gameById,
     loggedUser:state.user.loggedUser
-    
-     
+  
     
   }
 }

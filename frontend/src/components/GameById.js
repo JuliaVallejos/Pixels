@@ -37,10 +37,11 @@ const GameById = (props)=>{
     }
     const ratingChanged = (newRating) => {
         newValoration=newRating
-        console.log(newValoration)
+     
     }
-    const send_rate = () =>{
-        props.setValoration(id,newValoration)
+    const send_rate = async() =>{
+      const data = await props.setValoration(id,newValoration)
+
         setEdit(false)
     }
 
@@ -78,6 +79,7 @@ const GameById = (props)=>{
                     </div>
                     {props.loggedUser&& <button onClick={() => setEdit(true)}>Rate this game</button>}
                     <div className="valoracion justifyCenter">
+                        {console.log(props.game.prom)}
                             {edit?
                             <>
                                 <ReactStars

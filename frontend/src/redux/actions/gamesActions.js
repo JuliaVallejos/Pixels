@@ -108,21 +108,18 @@ const gamesActions = {
     }}},
     setValoration: (idGame,valoration) =>{
         return async (dispatch,getstate) =>{
-                console.log(valoration)
+           
         const idUser = getstate().user.loggedUser.id
-          let send_data={}
+          let send_data={idUser,valoration}
 
         getstate().game.gameById.valoration.map(user =>{
-               if (user.idUser===idUser){
+            console.log(user)
+               if (user.idUser&& user.idUser===idUser){
+                   console.log('ya habia votad0')
                    send_data={
-                       idUser,valoration,edit:true
+                       ...send_data,edit:true     
                    }
-
-               }else{
-                    send_data={idUser,valoration}
-               }
-               return send_data
-           })
+           } return send_data})
         
     
             try{
@@ -144,7 +141,7 @@ gamesById : (id)=>{
 
         try{
             const data = await axios.get(`http://localhost:4000/api/games/${id}`)
-         
+         console.log(data)
             if (data.data.success){
                 dispatch({type:'GAMEBYID', payload:data.data.response})
                 return data

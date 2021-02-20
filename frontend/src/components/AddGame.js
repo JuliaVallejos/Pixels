@@ -5,6 +5,9 @@ import {Redirect} from 'react-router-dom'
 
 
 const AddGame = (props) =>{
+     
+    const clasificationPEGI = [3,7,12,16,18]
+
     const [errors,setErrors] = useState([])
     const [newGame,setNewGame] = useState({
         gameTitle:'',
@@ -14,12 +17,9 @@ const AddGame = (props) =>{
         gameImg:''
     })
 
-    console.log(props)
-
     const read_input = e =>{
         const property= e.target.name
         var value = e.target.value
-        // console.log(e.target.files[0])
         if(property ==="gameImg"){
             value=e.target.files[0];
         }
@@ -30,12 +30,11 @@ const AddGame = (props) =>{
         })      
     }
 
-        // console.log(props.loggedUser.id)
 
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
-        // console.log(newGame)
+
         const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg,idUser} = newGame
 
         const formNewGame= new FormData();
@@ -53,24 +52,19 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
-        alert('Game ok')
-        console.log(data)
-        props.history.push('/developers')
-
-        // if(data && !data.sucess){
-        //     setErrors([data.errors])
-        //     alert('Error recording a new game')
-        //     console.log(errors)
-        // }else {
-        //     alert('New game saved successfully')
-
-        // } 
-    }
     
-    const clasificationPEGI = [3,7,12,16,18]
+     if(data && !data.sucess){
+            setErrors([data.errors])
+             alert('Error recording a new game')
+            console.log(errors)
+        }else {
+           alert('New game saved successfully')
 
-    // console.log(errors)
-    console.log(newGame)
+                 window.location='/library'
+        
+    }}
+   
+
     
     return(<>
         <h2 className="centerCenter">Upload your game</h2>
@@ -88,7 +82,7 @@ const AddGame = (props) =>{
                     </select>
                     
                     <select className="gameCategories" name='clasificationPEGI'onChange={read_input}>
-                        <option value='value1' disabled='true' selected='true'>ClasificationPGI</option>
+                        <option value='value1' disabled='true' selected='true'>ClasificationPEGI</option>
                         {clasificationPEGI.map((clasification,index) =>{
                             return(<option value={clasification} key={index}>{clasification}</option>)
                         })}
