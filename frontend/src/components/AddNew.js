@@ -60,7 +60,7 @@ return(
         <form className="addNews">
             <input type="text" placeholder="Title of the news" name="newsTitle" onChange={read_input}/>
             <label htmlFor='newsImg'><p>Image for the news</p></label>
-            <label for="uploadButton" className="inputFile" htmlFor="newsImg">
+            <label htmlFor="uploadButton" className="inputFile" htmlFor="newsImg">
                 <p>Click here to Upload a news image</p>
                 <input id="uploadButton" type='file' name='newsImg' onChange={read_input}/>
             </label>            
