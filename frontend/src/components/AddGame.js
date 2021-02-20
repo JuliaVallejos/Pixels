@@ -53,11 +53,10 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
-
-        console.log(data)
         alert('Game ok')
-        props.history.push('/developers')
         console.log(data)
+        props.history.push('/developers')
+
         // if(data && !data.sucess){
         //     setErrors([data.errors])
         //     alert('Error recording a new game')
@@ -75,21 +74,20 @@ const AddGame = (props) =>{
     
     return(<>
         <h2 className="centerCenter">Upload your game</h2>
-        <div className="signUp centerCenter" style={{height: "65vh"}}>
-            
+        <div className="addGameContainer centerCenter">            
                 <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
                     <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: 'unset', height:'150px' }} onChange={read_input}/>
 
-                    <select name='gameCategories'onChange={read_input}>
+                    <select className="gameCategories" name='gameCategories'onChange={read_input}>
                         <option value='' disabled='true' selected='true'>Select Category</option>
                         {props.categories.map(category=>{
                             return(<option value={category.name}>{category.name}</option>)
                         })}
                     </select>
                     
-                    <select name='clasificationPEGI'onChange={read_input}>
+                    <select className="gameCategories" name='clasificationPEGI'onChange={read_input}>
                         <option value='value1' disabled='true' selected='true'>ClasificationPGI</option>
                         {clasificationPEGI.map((clasification,index) =>{
                             return(<option value={clasification} key={index}>{clasification}</option>)
