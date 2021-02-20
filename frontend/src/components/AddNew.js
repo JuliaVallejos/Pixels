@@ -51,25 +51,25 @@ const send_data = async e=>{
 //   }
 }
 
-console.log(props.news)
 return(
     <>
-    <h2>create your news</h2>
-    <div className="developersAdd centerCenter" style={{height: "65vh"}}>
+    <h2 className="centerCenter">Create your news</h2>
+    <div className="addGameContainer centerCenter">
         
-        {/* <form> */}
-            <input type="text" placeholder="title of the news" name="newsTitle" onChange={read_input}/>
+        <form className="addNews">
+            <input type="text" placeholder="Title of the news" name="newsTitle" onChange={read_input}/>
             <label htmlFor='newsImg'><p>Image of the news</p></label>
-            <input type='file' id='newsImg' name='newsImg' onChange={read_input}/>
-            <input type="text" placeholder="description of the news" name="newsDescription" onChange={read_input}/>
-            <textarea type="text" placeholder="body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
-            <input type="text" placeholder="author of the news" name="newsAuthor" onChange={read_input}/>
-            {/* <input type="date" placeholder="yyyy-mm-dd"  name="dateOfTheNews" onChange={read_input}/> */}
+            <label className="inputFile" htmlFor="newsImg">
+                <input type='file' id='newsImg' name='newsImg' onChange={read_input}/>
+            </label>            
+            <input type="text" placeholder="Description of the news" name="newsDescription" onChange={read_input}/>
+            <textarea type="text" placeholder="Body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
+            <input type="text" placeholder="Author of the news" name="newsAuthor" onChange={read_input}/>
             <button onClick={send_data} >Create News</button>
             {errors&& errors.map((error,index) =>{
                                     return (<p key={index}>{error.message}</p>)
                                 })}
-        {/* </form> */}
+        </form>
     </div>
     </>
 
