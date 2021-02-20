@@ -6,11 +6,14 @@ import gamesActions from "../redux/actions/gamesActions"
 
 const CategoryList = ({allGames,newGamesList,match:{params:{category}}}) =>{
     if(newGamesList.length===0){
-        allGames();
-        return <h1>loading...</h1> }
-        
-    const arrayCategory=newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
+        allGames()
+        console.log("CARGANDO")
+        return <h1>loading...</h1> 
+    }
+    console.log(newGamesList)
 
+    const arrayCategory=newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
+        console.log(arrayCategory)
     return (
             <div>
                 <h2>{category}</h2><Link to='/library'>See all games</Link>

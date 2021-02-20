@@ -34,31 +34,31 @@ const initialState ={
      
     switch (action.type) {
         case 'ALL_GAMES':
-          
             let prom = 0
             let newGameList1= action.payload.map(game =>{             
-               game.valoration.map(() =>{      
-                   const sum =game.valoration.reduce((a,b) =>{  
-                           return {
-                           valoration: (a.valoration+ b.valoration)
-                           }
-                       }, {valoration: 0})                     
-                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
-                       }) 
-                   game= {...game,prom:prom}              
-                   return game                   
-                   })  
-                   var mostValuedList1= newGameList1.sort((a,b) => b.prom - a.prom? 1:-1)
-                   var aux=[]
+                game.valoration.map(() =>{      
+                    const sum =game.valoration.reduce((a,b) =>{  
+                        return {
+                            valoration: (a.valoration+ b.valoration)
+                        }
+                    }, {valoration: 0})                     
+                    prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
+                }) 
+                game= {...game,prom:prom}              
+                return game                   
+            })  
+            var mostValuedList1= newGameList1.sort((a,b) => b.prom - a.prom? 1:-1)
+            var aux=[]
             mostValuedList1.filter((game,index)=>{
                 if(index<3) {aux.push(game)}
             })
-            console.log(newGameList1)
-            console.log(aux[0])
+            // console.log(newGameList1)
+            // console.log(aux[0])
             const newPayload = action.payload.map(game =>{ 
-            return prom(game)})
-            console.log(newPayload)
-                       
+                return prom(game)})
+                // console.log(newPayload)
+                
+                console.log(newGameList1)
         return{
             ...state,
             gamesList:action.payload,
