@@ -1,3 +1,4 @@
+const { populate } = require('../models/Game');
 const Game = require('../models/Game')
 
 const GameController ={
@@ -89,7 +90,7 @@ const GameController ={
             
         },
         {new: true}
-        )
+        ).populate('userComments.idUser')
 
         .then(respuesta =>{
             
@@ -109,7 +110,7 @@ const GameController ={
          $set:{
           userComments:{idUser:idUser, comment:comment}
          }
-     })
+     },{new: true})
      .then(respuesta =>{
          return res.json({success:true, response:respuesta})
      })
@@ -117,18 +118,22 @@ const GameController ={
          return res.json({success:false, response:error})
      })  
     }, 
+    
     deleteComment: (req, res)=>{
-        const idGames= req.params.idgame
-        const idComment = req.params.idcomment
+        const idGames= req.params.idGame
+        const idComment = req.params.idComment
+        console.log(req.params)
         Game.findByIdAndUpdate({_id: idGames},{
             $pull:{
                 userComments:{_id:idComment}
             }
         })
         .then(respuesta=>{
+           
             return res.json({success:true, response:respuesta, message:"delete comment"})
         })
         .catch(error=>{
+            // console.log(error)
             return res.json({success:false, response:error})
         })
 

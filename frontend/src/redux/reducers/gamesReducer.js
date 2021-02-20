@@ -62,14 +62,14 @@ const initialState ={
               let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
                     
               let newPayloadID= {...action.payload,prom:promed}
-                console.log(newPayloadID)
-            
-         
-         
+                
+            var newGamesList1 = state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
+
             return {
+                
                 ...state,
                 loading:false,
-                newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game),
+                newGamesList: newGamesList1,
                 gameById: action.payload
             }
             break
