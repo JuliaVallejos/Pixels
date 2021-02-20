@@ -6,7 +6,7 @@ import GamesLib from '../components/GamesLib'
 import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
-
+  
     // const {newGamesList} = props
     // const [loading,setLoading] = useState(true)
     // const [editFilter,setEditFilter] = useState(false)
@@ -29,14 +29,7 @@ const Library = (props) =>{
     //     const search = e.target.value
     //     props.filterGames(search)    
 
-    // }
-    // const getGames = async () =>{
-  
-    //     const data = await props.allGames()
-    //     data&& setLoading(false)
     
-    // }
-    // const selectAges = e =>{
         
     //     ages=ages.concat(agesState)
     //     const value=parseInt(e.target.value)
