@@ -103,11 +103,26 @@ const gamesActions = {
     }}},
     setValoration: (idGame,valoration) =>{
         return async (dispatch,getstate) =>{
-
+                console.log(valoration)
         const idUser = getstate().user.loggedUser.id
+          let send_data={}
+
+        getstate().game.gameById.valoration.map(user =>{
+               if (user.idUser===idUser){
+                   send_data={
+                       idUser,valoration,edit:true
+                   }
+
+               }else{
+                    send_data={idUser,valoration}
+               }
+               return send_data
+           })
+        
     
             try{
-            const data = await axios.post(`http://localhost:4000/api/valoration/${idGame}`,{idUser,valoration})
+                
+            const data = await axios.post(`http://localhost:4000/api/valoration/${idGame}`,send_data)
             if (data.data.success){
                
                 dispatch({type:'CHANGES', payload:data.data.response})
@@ -137,6 +152,7 @@ gamesById : (id)=>{
         }
     }
 },
+
 mostValued : () =>{
     return async (dispatch , getstate) =>{
 

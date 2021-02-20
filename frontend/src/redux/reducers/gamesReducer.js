@@ -17,8 +17,8 @@ const initialState ={
     switch (action.type) {
         case 'ALL_GAMES':
           
-            var prom = 0
-            var newPayload= action.payload.map(game =>{
+            let prom = 0
+            let newPayload= action.payload.map(game =>{
              
                game.valoration.map(() =>{      
                    const sum =game.valoration.reduce((a,b) =>{  
@@ -52,33 +52,22 @@ const initialState ={
         }
         case "GAMEBYID":
                
-               let sum =action.payload.valoration.reduce((a,b) =>{  
-                            return {
-                            valoration: (a.valoration+ b.valoration)
-                            }
-                        }, {valoration: 0})
-                      
-                let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
-                     
-                let newPayloadID= {...action.payload,prom:promed}
-    
-              
                 
                 return{
                     ...state,
-                    gameById:newPayloadID
+                    gameById:action.payload
                 }
         case 'CHANGES':
            
-             sum =action.payload.valoration.reduce((a,b) =>{  
+            let sum =action.payload.valoration.reduce((a,b) =>{  
                 return {
                 valoration: (a.valoration+ b.valoration)
                 }
             }, {valoration: 0})
           
-               promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
+              let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
                     
-               newPayloadID= {...action.payload,prom:promed}
+              let newPayloadID= {...action.payload,prom:promed}
                 console.log(newPayloadID)
             
          
