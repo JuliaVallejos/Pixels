@@ -29,8 +29,7 @@ const GameController ={
          
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser').execPopulate() 
-           console.log("entró game") 
-           console.log(game)         
+                  
             return res.json({success:true, response: game})
         })
         .catch(error=>{

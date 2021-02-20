@@ -3,6 +3,7 @@ const initialState ={
     gamesList:[],
     loading:false,
     newGamesList:[],
+    mostValuedList:[],
     categories:[
         {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
         {name:"Action",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
@@ -19,7 +20,7 @@ const initialState ={
         case 'ALL_GAMES':
           
             let prom = 0
-            let newPayload= action.payload.map(game =>{             
+            let newGameList1= action.payload.map(game =>{             
                game.valoration.map(() =>{      
                    const sum =game.valoration.reduce((a,b) =>{  
                            return {
@@ -30,11 +31,17 @@ const initialState ={
                        }) 
                    game= {...game,prom:prom}              
                    return game                   
-                   })            
+                   })  
+            var mostValuedList1= newGameList1.sort((a,b) => b.prom - a.prom? 1:-1)
+            var mostValuedList1= mostValuedList1.filter((game,index)=>
+            {if(index<4) return game})
+            console.log(newGameList1)
+            console.log(mostValuedList1)
         return{
             ...state,
             gamesList:action.payload,
-            newGamesList:newPayload
+            newGamesList:newGameList1,
+            mostValuedList:mostValuedList1
         }
         
         case 'FILTER':
