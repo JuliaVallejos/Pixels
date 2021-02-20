@@ -4,41 +4,49 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = (props) =>{
+  const Games = ({newGamesList,filterGames}) =>{
  
-    const {newGamesList} = props
     const [newOrder,setNewOrder] =  useState([])
     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
+    const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
-    var elements = props.newGamesList
+    var elements = newGamesList
 
 
     const [categories,setCategories] = useState(elements)
 
+
+    const [search, setSearch] = useState ('')
           
-    console.log(categories)
-
-
-
     var ages=[]
     var gamesFiltered=[]
     var gamesConcat=[]
-    var arrayGames = ((categories.length === 0, agesState.length === 0) ? elements : categories)
+    
+    console.log(agesState)
+    var arrayGames = (categories.length===0 ) ?elements : categories
   
-    const read_input= e =>{
-        const search = e.target.value
-        props.filterGames(search)    
+    console.log(search)
 
-    }
+    // useEffect(() =>{
+    //     setCategories(
+    //         elements.filter((element) =>{
+    //             return(element.gameTitle.toLowerCase().trim().indexOf(search.toLocaleLowerCase().trim())===0)                              
+    //         })
+    //     )
+    // }, [search] )
+
+    // const read_input= e =>{
+        // const search = e.target.value
+        // filterGames(search)
+    // }
+
     const selectAges = e =>{
         
         ages = ages.concat(agesState)
         const value = parseInt(e.target.value)
-
+        console.log("el value es : "+value)
         if(ages.indexOf(value)===-1){
              ages.push(value)
-            
-           
         }else{ 
            const ind= ages.indexOf(value)
             ages.splice(ind,1)
@@ -47,36 +55,39 @@ import {Link} from 'react-router-dom'
     }
     
     const filt_games = () =>{
-        if(ages.length===0){
-            ages = ages.concat(agesState)
-        }
-        gamesConcat=[]
-
-        ages.map(age=>{
-           
-             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
-                gamesConcat = gamesConcat.concat(gamesFiltered)
-            })
-     setCategories(gamesConcat)
+   
+    agesState.map(age=>{
+        
+            gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age)
     
+            gamesConcat = gamesConcat.concat(gamesFiltered)
+        })
+        console.log(gamesConcat)
+        console.log(agesState)
+        if(gamesConcat.length===0 &&agesState.length!==0){
+            setNoResults(true)
+        }else{
+            setNoResults(false)
+            setCategories(gamesConcat)
+            }    
     }
-    const read_sort= e =>{     
+
+    const read_sort= e =>{  
+           
         const order = e.target.value
-           console.log(order)
+
         if(order==='less_valued'){          
-         return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
+         return   setNewOrder([...categories].sort((a,b) => a.prom - b.prom))       
         }
         if (order==='most_valued'){   
-           return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
+           return  setNewOrder([...categories].sort((a,b) => b.prom - a.prom))
             
-        }else{
-           
-            setNewOrder(newGamesList)
+        }else{           
+            setNewOrder(categories)
         }
         
     }
 
- 
          return(
             <>
             <div id="library">
@@ -84,7 +95,7 @@ import {Link} from 'react-router-dom'
 
             <div className="libraryFilters">
 
-                <input className="searchLibrary" type='text' onChange={read_input} placeholder='Search'/>
+                <input className="searchLibrary" type='text' onChange={e =>setSearch(e.target.value)} placeholder='Search'/>
             
                 <label className="libraryLabel" onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
                 <div className="libraryCheckbox">
@@ -104,34 +115,36 @@ import {Link} from 'react-router-dom'
                     <option value='less_valued'>Less Valued</option>
                 </select>
             </div>
-
+            {noResults? <h2>No games</h2>:
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-            
+      
                 {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
-              
                  return(
-                    <Link to={`/games/${_id}`}>
+                    <Link key={_id} to={`/games/${_id}`}>
                         <div className="zoom" key={_id}>
+                            <p>{clasificationPEGI}</p>
                             <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}/>
                             <div className="cajaInformacion">
-                                <div className="infoJuego">
+                               <div className="infoJuego">
                                     <h4 className="tituloJuego">{gameTitle}</h4>
                                     <p className="gameInfo">{gameInfo}</p>
-                                </div>
-                                <p className="valoracion justifyCenter"><ReactStars
+                                </div> 
+                                <div className="valoracion justifyCenter">
+                                    <ReactStars
                                         count={5}
                                         isHalf={true}
                                         value={prom}
                                         size={50}
                                         activeColor="#ffd700"
                                         edit= {false}
-                                /></p>                         
-                            </div>
+                                /></div>                         
+                            </div> 
                         </div>
                     </Link>  
                 )
               })}
             </div>
+  }
             </div>
             </>
         ) 

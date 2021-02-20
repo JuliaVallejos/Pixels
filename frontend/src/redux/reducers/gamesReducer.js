@@ -1,5 +1,7 @@
+
 const initialState ={
     gamesList:[],
+    loading:false,
     newGamesList:[],
     categories:[
         {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
@@ -16,26 +18,19 @@ const initialState ={
     switch (action.type) {
         case 'ALL_GAMES':
           
-            var prom = 0
-            var newPayload= action.payload.map(game =>{
-             
+            let prom = 0
+            let newPayload= action.payload.map(game =>{             
                game.valoration.map(() =>{      
                    const sum =game.valoration.reduce((a,b) =>{  
                            return {
                            valoration: (a.valoration+ b.valoration)
                            }
-                       }, {valoration: 0})
-                     
-                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length 
-                     
+                       }, {valoration: 0})                     
+                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
                        }) 
-                   game= {...game,prom:prom}
-              
-                   return game
-                   
-                   })
-
-            
+                   game= {...game,prom:prom}              
+                   return game                   
+                   })            
         return{
             ...state,
             gamesList:action.payload,
@@ -49,13 +44,32 @@ const initialState ={
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
         
         }
+        case "GAMEBYID":
+               
+                
+                return{
+                    ...state,
+                    gameById:action.payload
+                }
         case 'CHANGES':
-            console.log(action.payload)
-         
+           
+            let sum =action.payload.valoration.reduce((a,b) =>{  
+                return {
+                valoration: (a.valoration+ b.valoration)
+                }
+            }, {valoration: 0})
+          
+              let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
+                    
+              let newPayloadID= {...action.payload,prom:promed}
+                
+            var newGamesList1 = state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
+
             return {
+                
                 ...state,
                 loading:false,
-                newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game),
+                newGamesList: newGamesList1,
                 gameById: action.payload
             }
             break
@@ -64,8 +78,12 @@ const initialState ={
                     ...state,
                     gameById:action.payload
                 }
+                // gameById:newPayloadID
+            
+            break
+            
             case "MOST_VALUED":
-                // console.log(action.payload)
+
                 return{
                     ...state,
                     mostValuedList:action.payload

@@ -1094,3 +1094,15 @@ textarea{
   font-size: 1.3rem;
   color: #11050F;
 }
+
+.iconos{
+  font-size: 1.3rem;
+}
+.comentarioTexto{
+  font-size: 1.2rem;
+ 
+}
+
+.iconEdit{
+  padding-left: 1vh;
+}

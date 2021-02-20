@@ -53,11 +53,10 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
-
-        console.log(data)
         alert('Game ok')
-        props.history.push('/developers')
         console.log(data)
+        props.history.push('/developers')
+
         // if(data && !data.sucess){
         //     setErrors([data.errors])
         //     alert('Error recording a new game')

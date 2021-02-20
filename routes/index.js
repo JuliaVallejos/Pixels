@@ -31,6 +31,8 @@ router.route('/games/:idGame')
 .get(GameController.gameById)
 .post(passport.authenticate("jwt",{session:false}),GameController.addCommentsGames)
 
+router.route('/valoration/:idGame')
+.post(GameController.setValoration)
 //ruta para noticia 
 router.route("/news")
 .post(newsController.addNews)
@@ -44,7 +46,7 @@ router.route('/comments')
 // .post(GameController.addCommentsGames)
 router.route('/modifycomment')
 .post(GameController.modifyComment)
-router.route('/deletecomment/:idgame/:idcomment')
+router.route('/deletecomment/:idGame/:idComment')
 .delete(GameController.deleteComment)
 
 /* ruta para envío de emails */
