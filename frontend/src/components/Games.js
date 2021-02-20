@@ -4,8 +4,9 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = ({newGamesList,filterGames}) =>{
- 
+  const Games = (props) =>{
+     
+    const {newGamesList,filterGames} = props
     const [newOrder,setNewOrder] =  useState([])
     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
     const [noResults,setNoResults] = useState(false)

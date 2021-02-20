@@ -23,7 +23,7 @@ const GameById = (props)=>{
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
-        console.log(comment)
+    
     }
     const enviarInfo = async e => {
         e.preventDefault()
@@ -39,7 +39,7 @@ const GameById = (props)=>{
         setEdit(false)
     }
 
-    console.log(props.game)
+ 
 
     return(            
         <>
@@ -61,7 +61,8 @@ const GameById = (props)=>{
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                                {props.game.userComments.map(comment => <Commentary comment={comment}/>)}
+                                {console.log(props.game.userComments)}
+                                {props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">

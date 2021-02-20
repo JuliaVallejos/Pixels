@@ -91,7 +91,7 @@ const gamesActions = {
     }},
     deleteComment: (idGame,idComment)=>{
         return async (dispatch,getstate) => {
-            console.log(idComment)
+    
         try{
         const data = await axios.delete(`http://localhost:4000/api/deletecomment/${idGame}/${idComment}`)
         

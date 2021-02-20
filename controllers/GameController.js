@@ -41,7 +41,7 @@ const GameController ={
 
     allGames: (req, res)=>{
       
-        Game.find()
+        Game.find().populate('idGame').populate('userComments.idUser')
         .then(respuesta =>{
             return res.json({success: true, response: respuesta})
         })
@@ -66,7 +66,7 @@ const GameController ={
 
        const  id=req.params.idGame
 
-        Game.findOne({'_id':id}).populate('_id')
+        Game.findOne({'_id':id}).populate('idGame').populate('userComments.idUser')
 
         .then(respuesta=>{
             return res.json({success:true, response:respuesta})
@@ -127,7 +127,7 @@ const GameController ={
             $pull:{
                 userComments:{_id:idComment}
             }
-        })
+        },{new:true})
         .then(respuesta=>{
            
             return res.json({success:true, response:respuesta, message:"delete comment"})
