@@ -5,19 +5,37 @@ const jasonWebToken=require("jsonwebtoken");
 const userController={
     signUp: async (req,res)=>{
         var errors=[];
-        const {userName,userPass,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol}=req.body;
+        // const {userName,userPass,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol}=req.body;
+        const {userName,userPass,userFirstName,userLastName,userPhone,userPayPal,userRol}=req.body;
+        const {imgFile}= req.files;
+        // console.log(imgFile)
+        const imgType=imgFile.name.split(".").slice(-1).join(" ");
+        
         const userExists=await User.findOne({userName});
         if(userExists){errors.push("User already Exists")};
+        
         if(errors.length===0){
             var passHashed=await bcryptjs.hashSync(userPass,10);
-            var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol});
+            var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userPhone,userPayPal,userRol});
+            var imgName= `${newUser._id}.${imgType}`
+            var imgPath= `${__dirname}/../frontend/public/userImages/${newUser._id}.${imgType}`
+            await imgFile.mv(imgPath,error=>{
+                if(error){
+                    console.log(error)
+                    errors.push(error)}
+                else{
+                    console.log(newUser)
+                }})
+            newUser.userImg=imgName;
+            if(errors.length===0){
             const newUserSaved=await newUser.save()
             var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
+            }
         }
         return res.json({
             sucess: errors.length===0 ? true : false,
             errors:errors,
-            response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg,userRol}
+            response: errors.length===0 && {token,id: newUser._id,userFirstName,userImg:newUser.userImg,userRol}
         })
     },
     logIn: async (req,res)=>{

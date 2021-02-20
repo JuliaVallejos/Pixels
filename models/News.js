@@ -8,7 +8,7 @@ const newsSchema = new mongoose.Schema({
     newsDescription: {type:String, required: true},
     newsBody: {type: String, required: true},
     newsAuthor: {type:String, required: true},
-    dateOfTheNews:{type:Date, required:true}
+    newsDate:{type:Date, default: Date.now}
 })
 const News = mongoose.model('news',newsSchema)
 

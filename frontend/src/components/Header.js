@@ -5,31 +5,31 @@ import Hamburger from 'hamburger-react'
 import {useState} from 'react'
 
 const Header = ({loggedUser,logOut}) =>{
-    console.log(loggedUser)
+
     const [isOpen, setOpen] = useState(false)
+    
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
             <div className="logo" style={{backgroundImage: `url("../assets/logo.png")`}}></div>
             <div className="links justifyBetween">
-                <NavLink exact to ='/'><p>Home</p></NavLink>
-                <NavLink exact to ='/news'><p>News</p></NavLink>
-                <NavLink to ='/library'><p>Library</p></NavLink>
+                <NavLink exact to='/'><p>Home</p></NavLink>
+                <NavLink to='/library'><p>Library</p></NavLink>
+                <NavLink to='/news'><p>News</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
-                ? <>
-                <NavLink to ='/developers'><p>Developers</p></NavLink>
-                </>                 
-                : <NavLink onClick={()=>alert("You need to be a developer")} to exact ='#'><p>Developers</p></NavLink>
+                ? <NavLink to='/developers'><p>Developers</p></NavLink>
+                : <NavLink onClick={()=>alert("You need to be a developer")} exact to='#'><p>Developers</p></NavLink>
                 }
                 {loggedUser===null
                 ? <>
-                    <NavLink to ='/login'><p>LogIn</p></NavLink>
-                    <NavLink to ='/signup'><p>SignUp</p></NavLink>
+                    <NavLink to='/login'><p>LogIn</p></NavLink>
+                    <NavLink to='/signup'><p>SignUp</p></NavLink>
                   </>
-                :   <NavLink to ="#" onClick={logOut}>LogOut</NavLink>
+                :   <NavLink to="/" onClick={logOut}>LogOut</NavLink>
                 }
                 {loggedUser 
-                ? <><div className="userImg"style={{backgroundImage: `url(${loggedUser.userImg})`}}></div></>
+                ? <>
+                    <div className="userImg"style={{backgroundImage: `url("/userImages/${loggedUser.userImg}")`}}></div></>
                 : <></>}
             </div>
         </div>
@@ -40,11 +40,11 @@ const Header = ({loggedUser,logOut}) =>{
         {isOpen && 
                 <>
                 <div className="links sideMenu justifyBetween" >
-                    <NavLink exact to ='/'><p>Home</p></NavLink>
-                    <NavLink to ='/library'><p>Library</p></NavLink>
+                    <NavLink exact to='/'><p>Home</p></NavLink>
+                    <NavLink to='/library'><p>Library</p></NavLink>
                     {(loggedUser && loggedUser.userRol==="Developer")
-                    ? <NavLink to ='/developers'><p>Developers</p></NavLink>
-                    : <NavLink onClick={()=>alert("You need to be a developer")} to exact ='#'><p>Developers</p></NavLink>
+                    ? <NavLink to='/developers'><p>Developers</p></NavLink>
+                    : <NavLink onClick={()=>alert("You need to be a developer")} exact to='#'><p>Developers</p></NavLink>
                     }
                     {loggedUser===null
                     ? <>

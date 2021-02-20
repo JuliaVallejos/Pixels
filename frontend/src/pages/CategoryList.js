@@ -14,7 +14,9 @@ const CategoryList = (props) =>{
  
                 {arrayCategory.length!==0? <Games newGamesList={arrayCategory}/>:
                 <h2>There are no games in this category</h2>}
-            </div>)
+            </div>
+            
+            )
 }
 
 const mapStateToProps= state =>{

@@ -1,16 +1,18 @@
 import axios from 'axios'
 const usersActions = {
-  createNewUser: newUser => {
+    createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
       try{
-        const data = await axios.post("http://localhost:4000/api/user/signUp",newUser); 
+        const data = await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
+          headers: {"Content-Type": "multipart: form-data"}
+        }); 
         if (data.data.sucess){
           dispatch({type:'LOGIN', payload:data.data.response})
         } else{
           return data.data
         }
         }catch(error){
-          const data ={errores:{details:[{message:'An error occurred'}]}}
+          const data =[{errors:'An error occurred'}]
           return data
         }
     }
@@ -20,13 +22,13 @@ const usersActions = {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
         console.log(data.data.response)
-        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data.response})
-        
+        if(data.data.sucess){
+          dispatch({type:'LOGIN', payload:data.data.response})
         }else{
           return data.data
         }
       }catch(error){
-        const data ={errores:{details:[{message:'An error occurred'}]}}
+        const data ={errors:['An error occurred']}
         return data
       }
     }
@@ -48,6 +50,7 @@ const usersActions = {
           dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
+        console.log(error)
         if(error.response.status===401){
           alert("Access denied")
           localStorage.clear()

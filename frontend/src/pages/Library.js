@@ -2,75 +2,127 @@ import {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import Categories from '../components/Categories'
-import Games from '../components/Games'
+import GamesLib from '../components/GamesLib'
 import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
-    const {newGamesList} = props
-    const [filter,setFilter]=useState(false)
-    const [noResults,setNoResults] = useState(false)
-    const [loading,setLoading] = useState(true)
+
+    // const {newGamesList} = props
+    // const [loading,setLoading] = useState(true)
+    // const [editFilter,setEditFilter] = useState(false)
+    // const [newOrder,setNewOrder] =  useState([])
+  
+    // const [agesState,setAgesState] = useState([])
+    // var ages=[]
+    // var gamesFiltered=[]
+    // var gamesConcat=[]
 
 
-    useEffect(() => {
-        getGames() 
-     
-    }, [])
+    //  const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
-    const filterByCategory= e =>{
+    // useEffect(() => {
+    //     getGames()
         
-        const arrayCategory = []
-        const category= e.target.value
-     
-        if(category==='all'){
-            setNoResults(false)
-            setFilter(false)
-           
-        }else{
-            setFilter(true)
-        }
-        newGamesList.map((game) =>{
-            if(game.gameCategories.includes(category)){
-            return arrayCategory.push(game)
-            } 
-        })
-        if(arrayCategory.length!==0){
-            setNoResults(false)
-            setFilter(arrayCategory)
-        }else {
-            category!=='all'&&setNoResults(true)
-        }
-    }
-   
+    // }, [])
   
-    const read_input= e =>{
-        const search = e.target.value
-        props.filterGames(search)
-      
+    // const read_input= e =>{
+    //     const search = e.target.value
+    //     props.filterGames(search)    
 
-    }
-    const getGames = async () =>{
+    // }
+    // const getGames = async () =>{
   
-        const data = await props.allGames()
-        data&& setLoading(false)
-    }
-      
+    //     const data = await props.allGames()
+    //     data&& setLoading(false)
+    
+    // }
+    // const selectAges = e =>{
+        
+    //     ages=ages.concat(agesState)
+    //     const value=parseInt(e.target.value)
+
+    //     if(ages.indexOf(value)===-1){
+    //          ages.push(value)
+            
+           
+    //     }else{ 
+    //        const ind= ages.indexOf(value)
+    //         ages.splice(ind,1)
+    //     }
+    //     setAgesState(ages)
+  
+        
+    // }
+    // const filt_games = () =>{
+    //     if(ages.length===0){
+    //         ages=ages.concat(agesState)
+    //     }
+    //     gamesConcat=[]
+
+    //     ages.map(age=>{
+           
+    //          gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
+    //             gamesConcat = gamesConcat.concat(gamesFiltered)
+    //         })
+    //  setGamesFilteredPEGI(gamesConcat)
+
+    
+    // }
+    // const read_sort= e =>{
+     
+    //     const order = e.target.value
+
+    //     if(order==='less_valued'){          
+    //      return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
+    //     }
+    //     if (order==='most_valued'){   
+    //        return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
+            
+    //     }else{
+           
+    //         setNewOrder(newGamesList)
+    //     }
+        
+    // }
+ 
 
     return (
         <>
-        <div id="latestNews" className="fondoWall ">
-        <h2  className="textCenter">Library</h2>
+        <div id="library">
+        <h2  className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>Library</h2>
+
         <Categories/>
-        <input type='text' onChange={read_input} placeholder='Search'/>
-       
-  
-            {loading && <h2>Loading...</h2>}
-            
+
+        {/* <h2 className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}} >Find your favorite games</h2>
+
+        <div className="libraryFilters"> */}
+
+        {/* <input className="searchLibrary" type='text' onChange={read_input} placeholder='Search'/>
+
+        <label className="libraryLabel" onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
+        <div className="libraryCheckbox"> 
+            <input type='checkbox' name='PEGI' value='3' />3
+            <input type='checkbox' name='PEGI' value='7' />7
+            <input type='checkbox' name='PEGI' value='12' />12
+            <input type='checkbox' name='PEGI' value='16' />16
+            <input type='checkbox' name='PEGI' value='18' />18
+        </div>
+
+            <button  onClick={filt_games}>Search</button>
+        </label>
+        
+       <select defaultValue='' onChange={read_sort}>
+            <option value='' >Sort by</option>
+            <option value='most_valued'>Most Valued</option>
+            <option value='less_valued'>Less Valued</option>
+        </select>
+
+            {loading && <h2>Loading...</h2>} */}
       
-            {noResults?<h1>No results</h1>:
-            (!loading)&&<Games newGamesList={newGamesList}/>}
+           {/* {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>}  */}
  
         
+        {/* </div> */}
         </div>
         </>
     )
