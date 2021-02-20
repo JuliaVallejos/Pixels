@@ -8,6 +8,7 @@ const CategoryList = (props) =>{
       
     const category= props.match.params.category
     const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
+    console.log(props.newGamesList)
 
     return (
             <div>
