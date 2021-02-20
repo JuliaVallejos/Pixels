@@ -4,7 +4,8 @@ import Games from '../components/Games'
 
 
 const CategoryList = (props) =>{
-      
+      console.log(props.newGamesList)
+    if(props.newGamesList.length===0){return <h1>loading...</h1> }
     const category= props.match.params.category
     const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
 

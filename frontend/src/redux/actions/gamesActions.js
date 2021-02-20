@@ -24,7 +24,7 @@ const gamesActions = {
         return async(dispatch,getstate) =>{
             try{
                 const data = await axios.get("http://localhost:4000/api/games")
-            
+                console.log(data)
                 if (data.data.success){
                
                     dispatch({type:'ALL_GAMES',payload:data.data.response})
