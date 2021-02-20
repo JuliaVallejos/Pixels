@@ -7,98 +7,108 @@ import gamesActions from '../redux/actions/gamesActions'
 
 const Library = (props) =>{
 
-    const {newGamesList} = props
-    const [loading,setLoading] = useState(true)
-    const [editFilter,setEditFilter] = useState(false)
-    const [newOrder,setNewOrder] =  useState([])
+    // const {newGamesList} = props
+    // const [loading,setLoading] = useState(true)
+    // const [editFilter,setEditFilter] = useState(false)
+    // const [newOrder,setNewOrder] =  useState([])
   
-    const [agesState,setAgesState] = useState([])
-    var ages=[]
-    var gamesFiltered=[]
-    var gamesConcat=[]
+    // const [agesState,setAgesState] = useState([])
+    // var ages=[]
+    // var gamesFiltered=[]
+    // var gamesConcat=[]
 
-    
-     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
 
-    useEffect(() => {
-        getGames()
+    //  const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState(gamesFiltered)
+
+    // useEffect(() => {
+    //     getGames()
         
-    }, [])
+    // }, [])
   
-    const read_input= e =>{
-        const search = e.target.value
-        props.filterGames(search)    
+    // const read_input= e =>{
+    //     const search = e.target.value
+    //     props.filterGames(search)    
 
-    }
-    const getGames = async () =>{
+    // }
+    // const getGames = async () =>{
   
-        const data = await props.allGames()
-        data&& setLoading(false)
+    //     const data = await props.allGames()
+    //     data&& setLoading(false)
     
-    }
-    const selectAges = e =>{
+    // }
+    // const selectAges = e =>{
         
-        ages=ages.concat(agesState)
-        const value=parseInt(e.target.value)
+    //     ages=ages.concat(agesState)
+    //     const value=parseInt(e.target.value)
 
-        if(ages.indexOf(value)===-1){
-             ages.push(value)
+    //     if(ages.indexOf(value)===-1){
+    //          ages.push(value)
             
            
-        }else{ 
-           const ind= ages.indexOf(value)
-            ages.splice(ind,1)
-        }
-        setAgesState(ages)
+    //     }else{ 
+    //        const ind= ages.indexOf(value)
+    //         ages.splice(ind,1)
+    //     }
+    //     setAgesState(ages)
   
         
-    }
-    const filt_games = () =>{
-        if(ages.length===0){
-            ages=ages.concat(agesState)
-        }
-        gamesConcat=[]
+    // }
+    // const filt_games = () =>{
+    //     if(ages.length===0){
+    //         ages=ages.concat(agesState)
+    //     }
+    //     gamesConcat=[]
 
-        ages.map(age=>{
+    //     ages.map(age=>{
            
-             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
-                gamesConcat = gamesConcat.concat(gamesFiltered)
-            })
-     setGamesFilteredPEGI(gamesConcat)
+    //          gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age) 
+    //             gamesConcat = gamesConcat.concat(gamesFiltered)
+    //         })
+    //  setGamesFilteredPEGI(gamesConcat)
 
     
-    }
-    const read_sort= e =>{
+    // }
+    // const read_sort= e =>{
      
-        const order = e.target.value
+    //     const order = e.target.value
 
-        if(order==='less_valued'){          
-         return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
-        }
-        if (order==='most_valued'){   
-           return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
+    //     if(order==='less_valued'){          
+    //      return   setNewOrder([...newGamesList].sort((a,b) => a.prom - b.prom))       
+    //     }
+    //     if (order==='most_valued'){   
+    //        return  setNewOrder([...newGamesList].sort((a,b) => b.prom - a.prom))
             
-        }else{
+    //     }else{
            
-            setNewOrder(newGamesList)
-        }
+    //         setNewOrder(newGamesList)
+    //     }
         
-    }
+    // }
  
 
     return (
         <>
-        <div id="latestNews" className="fondoWall ">
-        <h2  className="textCenter">Library</h2>
+        <div id="library">
+        <h2  className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>Library</h2>
+
         <Categories/>
-        <input type='text' onChange={read_input} placeholder='Search'/>
-        <label onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
+
+        {/* <h2 className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}} >Find your favorite games</h2>
+
+        <div className="libraryFilters"> */}
+
+        {/* <input className="searchLibrary" type='text' onChange={read_input} placeholder='Search'/>
+
+        <label className="libraryLabel" onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
+        <div className="libraryCheckbox"> 
             <input type='checkbox' name='PEGI' value='3' />3
             <input type='checkbox' name='PEGI' value='7' />7
             <input type='checkbox' name='PEGI' value='12' />12
             <input type='checkbox' name='PEGI' value='16' />16
             <input type='checkbox' name='PEGI' value='18' />18
-            <button onClick={filt_games}>Search</button>
+        </div>
+
+            <button  onClick={filt_games}>Search</button>
         </label>
         
        <select defaultValue='' onChange={read_sort}>
@@ -106,12 +116,13 @@ const Library = (props) =>{
             <option value='most_valued'>Most Valued</option>
             <option value='less_valued'>Less Valued</option>
         </select>
-   
-            {loading && <h2>Loading...</h2>}
+
+            {loading && <h2>Loading...</h2>} */}
       
            {/* {(!loading)&&<GamesLib newGamesList={gamesFilteredPEGI.length!==0 ?gamesFilteredPEGI : newOrder.length!==0?newOrder : newGamesList }/>}  */}
  
         
+        {/* </div> */}
         </div>
         </>
     )
