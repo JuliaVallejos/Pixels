@@ -1,19 +1,22 @@
 
-const initialState={
-    news:[]
+var initialState={
+    news:[],
+    update:false
 }
 
 function newsReducer (state=initialState, action) {
     switch (action.type) {
         case "NEW_NEWS":
+            console.log(state.news)
             return{
-                ...state,
-                news: [...state.news,action.payload]
+                news: action.payload,
+                update: true
             }
             break
             case "ALL_NEWS":
                 return{
-                    news: action.payload.sort((a,b)=>b.newsDate>a.newsDate? 1:-1)
+                    news: action.payload,
+                    update:true
                 }
                 break
             case "NEWSBYID":

@@ -6,13 +6,17 @@ import {useEffect} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import newsActions from '../redux/actions/newsActions'
 
-const Home = ({news,loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNews,latestNews}) =>{
+const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNews,latestNews}) =>{
     
     useEffect(() => {
+        allGames()
         allNews()
-    },[])
+        console.log("ypdate")
+    },[update])
     
-    if(!news){return <h1>loading...</h1> }
+    if(news.length===0 || !news  ){
+        allNews()
+        return <h1>loading...</h1> }
     
 
     const getGames = async () =>{
@@ -50,6 +54,7 @@ const Home = ({news,loggedUser,allGames,newGamesList,mostValued,mostValuedList,a
 }
 const mapStateToProps=state=>{
     return{
+        update: state.news.update,
         news: state.news.news,
         loggedUser: state.user.loggedUser,
         newGamesList: state.game.newGamesList,
