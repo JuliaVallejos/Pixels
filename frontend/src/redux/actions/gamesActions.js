@@ -80,7 +80,7 @@ const gamesActions = {
             
             const data = await axios.put(`http://localhost:4000/api/itineraries/${idGame}/${idComment}`,{editedComment})
             if (data.data.success){
-            dispatch({type:'CHANGES', payload:data.data.itinerary})
+            dispatch({type:'CHANGES', payload:data.data.response})
             return data
             }  
         } catch(error){
@@ -91,10 +91,13 @@ const gamesActions = {
     }},
     deleteComment: (idGame,idComment)=>{
         return async (dispatch,getstate) => {
+    
         try{
-        const data = await axios.delete(`http://localhost:4000/api/itineraries/${idGame}/${idComment}`)
+        const data = await axios.delete(`http://localhost:4000/api/deletecomment/${idGame}/${idComment}`)
+        
         if (data.data.success){
-            dispatch({type:'CHANGES', payload:data.data.game})
+            console.log(data.data.response)
+            dispatch({type:'CHANGES', payload:data.data.response})
             return data
         }  }  
         catch(error){
@@ -141,7 +144,7 @@ gamesById : (id)=>{
 
         try{
             const data = await axios.get(`http://localhost:4000/api/games/${id}`)
-          console.log(data)
+         
             if (data.data.success){
                 dispatch({type:'GAMEBYID', payload:data.data.response})
                 return data

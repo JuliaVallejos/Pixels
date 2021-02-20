@@ -46,7 +46,7 @@ router.route('/comments')
 // .post(GameController.addCommentsGames)
 router.route('/modifycomment')
 .post(GameController.modifyComment)
-router.route('/deletecomment/:idgame/:idcomment')
+router.route('/deletecomment/:idGame/:idComment')
 .delete(GameController.deleteComment)
 
 /* ruta para envío de emails */
