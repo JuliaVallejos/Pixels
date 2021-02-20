@@ -11,7 +11,8 @@ const Header = ({loggedUser,logOut}) =>{
     return (
         <>
         <div id="headerContainer" className="justifyBetween">
-            <div className="logo" style={{backgroundImage: `url("../assets/logo.png")`}}></div>
+            
+            <div className="logo"  style={{backgroundImage: `url("../assets/logo.png")`}}></div>
             <div className="links justifyBetween">
                 <NavLink exact to='/'><p>Home</p></NavLink>
                 <NavLink to='/library'><p>Library</p></NavLink>

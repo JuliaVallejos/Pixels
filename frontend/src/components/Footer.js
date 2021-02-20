@@ -14,7 +14,7 @@ const Footer = ({loggedUser,logOut}) => {
                     
                     <div>
                     <NavLink to='/Contact'><p>Contact</p></NavLink>
-                        <div className="redesSociales">
+                        <div className="resdesSociales">
                             <TiSocialInstagram/>
                             <TiSocialLinkedin/>
                             <TiSocialFacebook/>
