@@ -12,24 +12,32 @@ import {Link} from 'react-router-dom'
     const [agesState,setAgesState] = useState([])
     var elements = props.newGamesList
 
-
     const [categories,setCategories] = useState(elements)
 
+    // console.log(elements)
+
+    const [search, setSearch] = useState ('')
           
-    console.log(categories)
-
-
-
     var ages=[]
     var gamesFiltered=[]
     var gamesConcat=[]
-    var arrayGames = ((categories.length === 0, agesState.length === 0) ? elements : categories)
+    var arrayGames = ((categories.length === 0 && agesState.length === 0) ? elements : categories)
   
-    const read_input= e =>{
-        const search = e.target.value
-        props.filterGames(search)    
+    console.log(search)
 
-    }
+    // useEffect(() =>{
+    //     setCategories(
+    //         elements.filter((element) =>{
+    //             return(element.gameTitle.toLowerCase().trim().indexOf(search.toLocaleLowerCase().trim())===0)                              
+    //         })
+    //     )
+    // }, [search] )
+
+    // const read_input= e =>{
+        // const search = e.target.value
+        // props.filterGames(search)
+    // }
+
     const selectAges = e =>{
         
         ages = ages.concat(agesState)
@@ -60,23 +68,22 @@ import {Link} from 'react-router-dom'
      setCategories(gamesConcat)
     
     }
-    const read_sort= e =>{     
+    const read_sort= e =>{    
+
         const order = e.target.value
-           console.log(order)
+
         if(order==='less_valued'){          
          return   setNewOrder([...categories].sort((a,b) => a.prom - b.prom))       
         }
         if (order==='most_valued'){   
            return  setNewOrder([...categories].sort((a,b) => b.prom - a.prom))
             
-        }else{
-           
+        }else{           
             setNewOrder(categories)
         }
         
     }
 
- 
          return(
             <>
             <div id="library">
@@ -84,7 +91,7 @@ import {Link} from 'react-router-dom'
 
             <div className="libraryFilters">
 
-                <input className="searchLibrary" type='text' onChange={read_input} placeholder='Search'/>
+                <input className="searchLibrary" type='text' onChange={e =>setSearch(e.target.value)} placeholder='Search'/>
             
                 <label className="libraryLabel" onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
                 <div className="libraryCheckbox">
@@ -108,7 +115,6 @@ import {Link} from 'react-router-dom'
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
             
                 {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
-              
                  return(
                     <Link to={`/games/${_id}`}>
                         <div className="zoom" key={_id}>

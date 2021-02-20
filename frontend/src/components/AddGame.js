@@ -55,7 +55,7 @@ const AddGame = (props) =>{
         const data = await props.submitNewGame(formNewGame)
         alert('Game ok')
         console.log(data)
-        // props.history.push('/developers')
+        props.history.push('/developers')
 
         // if(data && !data.sucess){
         //     setErrors([data.errors])

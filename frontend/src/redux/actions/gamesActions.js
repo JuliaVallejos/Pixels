@@ -40,7 +40,7 @@ const gamesActions = {
     },
     filterGames: search => {
         return async (dispatch,getstate) => {
-            dispatch({type:'FILTER',payload:search})
+            dispatch({type:'FILTER', payload:search})
     }},
       
     add_comment: (newComment,idGame) =>{

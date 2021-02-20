@@ -65,7 +65,7 @@ const GameController ={
 
        const  id=req.params.idGame
 
-        Game.find({'_id':id}).populate('_id')
+        Game.find({'_id':id}).populate('idUser')
 
         .then(respuesta=>{
             return res.json({success:true, response:respuesta})
