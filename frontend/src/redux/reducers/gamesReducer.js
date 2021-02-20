@@ -65,7 +65,7 @@ const initialState ={
               let newPayloadID= {...action.payload,prom:promed}
                 
             var newGamesList1 = state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
-                console.log(action.payload)
+              
             return {
                 
                 ...state,
@@ -75,6 +75,7 @@ const initialState ={
             }
             break
             case "GAMEBYID":
+                console.log(action.payload)
                 return{
                     ...state,
                     gameById:action.payload

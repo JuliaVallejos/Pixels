@@ -43,11 +43,10 @@ router.route("/news/:idNews")
 .get(newsController.newsById)
 //comentario
 router.route('/comments')
-// .post(GameController.addCommentsGames)
-router.route('/modifycomment')
-.post(GameController.modifyComment)
-router.route('/deletecomment/:idGame/:idComment')
+
+router.route('/games/:idGame/:idComment')
 .delete(GameController.deleteComment)
+.put(GameController.editComment)
 
 /* ruta para envío de emails */
 router.route('/contact/send')
