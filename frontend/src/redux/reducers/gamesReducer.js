@@ -41,10 +41,8 @@ const initialState ={
             ...state,
             gamesList:action.payload,
             newGamesList:newPayload
-                }
-        
+        }
         case 'FILTER':
-         
         return {
             ...state,
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
@@ -66,36 +64,22 @@ const initialState ={
             break
             case "GAMEBYID":
                
-               /*  let sum =action.payload.valoration.reduce((a,b) =>{  
-                    return {
-                    valoration: (a.valoration+ b.valoration)
-                    }
-                }, {valoration: 0})
-              
-                  let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
-                        
-                  let newPayloadID= {...action.payload,prom:promed}
-                    
-                console.log(action.payload) */
                 const newGame= prom(action.payload)
                 console.log(newGame)
                 return{
                     ...state,
                     gameById:newGame
                 }
-                // gameById:newPayloadID
+        
             
             break
-            
-            case "MOST_VALUED":
-
-                return{
-                    ...state,
-                    mostValuedList:action.payload
-                }
+        case "MOST_VALUED":
+            return{
+                ...state,
+                mostValuedList:action.payload
+            }
         default:
             return state
-
-}}
-
+    }
+}
 export default gamesReducer
