@@ -1,13 +1,15 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Games from '../components/Games'
+import gamesActions from "../redux/actions/gamesActions"
 
 
-const CategoryList = (props) =>{
-      console.log(props.newGamesList)
-    if(props.newGamesList.length===0){return <h1>loading...</h1> }
-    const category= props.match.params.category
-    const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
+const CategoryList = ({allGames,newGamesList,match:{params:{category}}}) =>{
+    if(newGamesList.length===0){
+        allGames();
+        return <h1>loading...</h1> }
+        
+    const arrayCategory=newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
 
     return (
             <div>
@@ -25,5 +27,9 @@ const mapStateToProps= state =>{
         newGamesList:state.game.newGamesList
     }
 }
+const mapDispatchToProps={
+    allGames:gamesActions.allGames,
+    mostValued: gamesActions.mostValued
+}
 
-export default connect(mapStateToProps)(CategoryList)
+export default connect(mapStateToProps,mapDispatchToProps)(CategoryList)

@@ -32,16 +32,18 @@ const initialState ={
                    game= {...game,prom:prom}              
                    return game                   
                    })  
-            var mostValuedList1= newGameList1.sort((a,b) => b.prom - a.prom? 1:-1)
-            var mostValuedList1= mostValuedList1.filter((game,index)=>
-            {if(index<4) return game})
+                   var mostValuedList1= newGameList1.sort((a,b) => b.prom - a.prom? 1:-1)
+                   var aux=[]
+            mostValuedList1.filter((game,index)=>{
+                if(index<3) {aux.push(game)}
+            })
             console.log(newGameList1)
-            console.log(mostValuedList1)
+            console.log(aux[0])
         return{
             ...state,
             gamesList:action.payload,
             newGamesList:newGameList1,
-            mostValuedList:mostValuedList1
+            mostValuedList:aux
         }
         
         case 'FILTER':
@@ -90,12 +92,6 @@ const initialState ={
                 // gameById:newPayloadID
             
             break
-            
-            case "MOST_VALUED":
-                return{
-                    ...state,
-                    mostValuedList:action.payload
-                }
         default:
             return state
 

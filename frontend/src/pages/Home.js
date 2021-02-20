@@ -6,7 +6,7 @@ import {useEffect} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import newsActions from '../redux/actions/newsActions'
 
-const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNews,latestNews}) =>{
+const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
 
     useEffect(() => {
         if( !news ||news.length===0 || !mostValuedList||  mostValuedList.length===0 || !latestNews){
@@ -14,9 +14,7 @@ const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValue
             allNews()
         }
     },[])
-    
-    if(!news || !mostValuedList||  mostValuedList.length===0  ){
-        mostValued()
+    if(!news || !allGames ){
         return <h1>loading...</h1> 
     }
     return (
@@ -50,7 +48,6 @@ const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValue
 const mapStateToProps=state=>{
     return{
         latestNews:state.news.latestNews,
-        update: state.news.update,
         news: state.news.news,
         loggedUser: state.user.loggedUser,
         newGamesList: state.game.newGamesList,

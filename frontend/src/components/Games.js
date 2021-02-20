@@ -4,11 +4,10 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = (props) =>{
-     
-    const {newGamesList,filterGames} = props
-    const [newOrder,setNewOrder] =  useState([])
-    const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
+  const Games = ({newGamesList}) =>{
+
+    // const [newOrder,setNewOrder] =  useState([])
+    // const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
     const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
     var elements = newGamesList
@@ -22,8 +21,7 @@ import {Link} from 'react-router-dom'
     var ages=[]
     var gamesFiltered=[]
     var gamesConcat=[]
-    
-    console.log(agesState)
+
     var arrayGames = (categories.length===0 ) ?elements : categories
   
     console.log(search)
@@ -63,8 +61,6 @@ import {Link} from 'react-router-dom'
     
             gamesConcat = gamesConcat.concat(gamesFiltered)
         })
-        console.log(gamesConcat)
-        console.log(agesState)
         if(gamesConcat.length===0 &&agesState.length!==0){
             setNoResults(true)
         }else{
@@ -77,15 +73,15 @@ import {Link} from 'react-router-dom'
            
         const order = e.target.value
 
-        if(order==='less_valued'){          
-         return   setNewOrder([...categories].sort((a,b) => a.prom - b.prom))       
-        }
-        if (order==='most_valued'){   
-           return  setNewOrder([...categories].sort((a,b) => b.prom - a.prom))
+        // if(order==='less_valued'){          
+        //  return   setNewOrder([...categories].sort((a,b) => a.prom - b.prom))       
+        // }
+        // if (order==='most_valued'){   
+        //    return  setNewOrder([...categories].sort((a,b) => b.prom - a.prom))
             
-        }else{           
-            setNewOrder(categories)
-        }
+        // }else{           
+        //     setNewOrder(categories)
+        // }
         
     }
 
@@ -124,7 +120,7 @@ import {Link} from 'react-router-dom'
                     <Link key={_id} to={`/games/${_id}`}>
                         <div className="zoom" key={_id}>
                             <p>{clasificationPEGI}</p>
-                            <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}/>
+                            <div className="portadaJuego" style={{backgroundImage:`url(/gamesImages/${gameImg})`}}/>
                             <div className="cajaInformacion">
                                <div className="infoJuego">
                                     <h4 className="tituloJuego">{gameTitle}</h4>
