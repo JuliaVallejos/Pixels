@@ -9,7 +9,8 @@ const EnterNewPassword = () => {
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
             <h2>Enter your New Password</h2>
             <form>
-                <input type='email' name="userName" placeholder="Enter your new password"></input>
+                <input type='email' name="userName" placeholder="Enter your email"></input>
+                <input type='password' name="userName" placeholder="Enter your new password"></input>
                 <button >Send</button>
                 <p className="centerCenter">Your password will be reseted.</p>
             </form>

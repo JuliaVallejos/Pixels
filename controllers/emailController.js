@@ -12,6 +12,7 @@ const emailController = {
                 } 
         })
         const {email,content}=req.body
+        console.log(email,content)
         var mailOptions = {
             from: 'proyectopixels0@gmail.com <don`t reply>',
             to: email,
