@@ -1,3 +1,4 @@
+
 const initialState ={
     gamesList:[],
     newGamesList:[],
@@ -49,23 +50,50 @@ const initialState ={
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
         
         }
+        case "GAMEBYID":
+               
+               let sum =action.payload.valoration.reduce((a,b) =>{  
+                            return {
+                            valoration: (a.valoration+ b.valoration)
+                            }
+                        }, {valoration: 0})
+                      
+                let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
+                     
+                let newPayloadID= {...action.payload,prom:promed}
+    
+              
+                
+                return{
+                    ...state,
+                    gameById:newPayloadID
+                }
         case 'CHANGES':
+           
+             sum =action.payload.valoration.reduce((a,b) =>{  
+                return {
+                valoration: (a.valoration+ b.valoration)
+                }
+            }, {valoration: 0})
+          
+               promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
+                    
+               newPayloadID= {...action.payload,prom:promed}
+                console.log(newPayloadID)
+            
+         
          
             return {
                 ...state,
                 loading:false,
-                newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game)
+                newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game),
+                gameById:newPayloadID
              
             }
             break
-            case "GAMEBYID":
-                
-                return{
-                    ...state,
-                    gameById:action.payload
-                }
+            
             case "MOST_VALUED":
-                // console.log(action.payload)
+
                 return{
                     ...state,
                     mostValuedList:action.payload

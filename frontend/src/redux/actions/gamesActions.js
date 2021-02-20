@@ -101,32 +101,20 @@ const gamesActions = {
         return data
         
     }}},
-    setValoration: (idGame,bool) =>{
+    setValoration: (idGame,valoration) =>{
         return async (dispatch,getstate) =>{
-        const idUser = getstate().user.loggedUser._id
-        if (bool==='true')
+
+        const idUser = getstate().user.loggedUser.id
+    
             try{
-            const data = await axios.post(`http://localhost:4000/api/valoration/${idGame}`,{idUser})
+            const data = await axios.post(`http://localhost:4000/api/valoration/${idGame}`,{idUser,valoration})
             if (data.data.success){
                
-                dispatch({type:'CHANGES', payload:data.data.game})
+                dispatch({type:'CHANGES', payload:data.data.response})
                 return data
             }}  
             catch(error){
             return error
-        }else  {
-       
-            try{
-            
-            const data = await axios.delete(`http://localhost:4000/api/valoration/${idGame}`,{data:{idUser}})
-            if (data.data.success){
-               
-                dispatch({type:'CHANGES', payload:data.data.game})
-                return data
-            }}  
-            catch(error){
-            return error
-            }
         }
     }
     
@@ -135,9 +123,9 @@ gamesById : (id)=>{
     return async (dispatch , getstate) =>{
         try{
             const data = await axios.get(`http://localhost:4000/api/games/${id}`)
-            console.log(data)
+          
             if (data.data.success){
-                dispatch({type:'GAMEBYID', payload:data.data.response[0]})
+                dispatch({type:'GAMEBYID', payload:data.data.response})
                 return data
             }  }  
 

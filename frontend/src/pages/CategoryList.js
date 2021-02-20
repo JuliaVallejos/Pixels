@@ -6,7 +6,7 @@ import Games from '../components/Games'
 const CategoryList = (props) =>{
       
     const category= props.match.params.category
-    const arrayCategory=props.gamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
+    const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
 
     return (
             <div>
@@ -21,7 +21,7 @@ const CategoryList = (props) =>{
 
 const mapStateToProps= state =>{
     return{
-        gamesList:state.game.gamesList
+        newGamesList:state.game.newGamesList
     }
 }
 

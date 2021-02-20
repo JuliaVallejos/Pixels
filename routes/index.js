@@ -30,6 +30,8 @@ router.route('/games/:idGame')
 .delete(GameController.deleteGame)
 .get(GameController.gameById)
 
+router.route('/valoration/:idGame')
+.post(GameController.setValoration)
 //ruta para noticia 
 router.route("/news")
 .post(newsController.addNews)
