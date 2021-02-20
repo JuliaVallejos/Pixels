@@ -1,9 +1,7 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-const Categories = (props) =>{ 
-    const{categories} = props
-
+const Categories = ({categories}) =>{ 
     return (
         <div className="justifyAround padre">
             {categories.map((category,index) =>{

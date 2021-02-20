@@ -1,6 +1,7 @@
 
 const initialState ={
     gamesList:[],
+    loading:false,
     newGamesList:[],
     categories:[
         {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
@@ -18,25 +19,18 @@ const initialState ={
         case 'ALL_GAMES':
           
             let prom = 0
-            let newPayload= action.payload.map(game =>{
-             
+            let newPayload= action.payload.map(game =>{             
                game.valoration.map(() =>{      
                    const sum =game.valoration.reduce((a,b) =>{  
                            return {
                            valoration: (a.valoration+ b.valoration)
                            }
-                       }, {valoration: 0})
-                     
-                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length 
-                     
+                       }, {valoration: 0})                     
+                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
                        }) 
-                   game= {...game,prom:prom}
-              
-                   return game
-                   
-                   })
-
-            
+                   game= {...game,prom:prom}              
+                   return game                   
+                   })            
         return{
             ...state,
             gamesList:action.payload,

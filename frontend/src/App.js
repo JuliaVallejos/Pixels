@@ -41,22 +41,20 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/commentary' component={Commentary}/>
 
 
-        {(loggedUser && loggedUser.userRol==="Developer")
-        && 
-        <>
-        <Route exact path='/developers' component={DeveloperPage}/>
-        <Route path='/addnews' component={AddNew}/>
-        </>
-        }
+          {(loggedUser && loggedUser.userRol==="Developer")
+          && 
+          <>
+            <Route exact path='/developers' component={DeveloperPage}/>
+            <Route path='/addnews' component={AddNew}/>
+          </>
+          }
 
-        {!loggedUser && 
-        <>
-          <Route path='/signup' component={SignUp}/>
-          <Route path='/login' component={LogIn}/>
-        </>
-        }       
-        
-        <Redirect to='/' />
+          {!loggedUser && 
+          <>
+            <Route path='/signup' component={SignUp}/>
+            <Route path='/login' component={LogIn}/>
+          </>}       
+          <Redirect to='/'/>
         </Switch>
         <WhatsApp/>
         <Footer/>

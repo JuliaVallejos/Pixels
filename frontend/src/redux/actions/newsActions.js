@@ -1,13 +1,14 @@
 import axios from "axios"
 const newsActions ={
     createNews:(formNews)=>{
-        return async (dispatch, setStatus) =>{
+        return async (dispatch, getState) =>{
             try{
                 const data = await axios.post("http://localhost:4000/api/news", formNews, {
                   headers: {"Content-Type": "multipart: form-data"}
               });  
                 if (data.data.success){
-                  dispatch({type:'NEW_NEWS', payload:data.data.response})
+                  
+                  dispatch({type:'NEW_NEWS', payload:[getState().news.news,data.data.response]})
                   return data.data
                 }else{
                   return data.data
@@ -22,8 +23,7 @@ const newsActions ={
                   const data = await axios.get("http://localhost:4000/api/news")
               
                   if (data.data.success){
-          
-                      dispatch({type:'ALL_NEWS',payload:data.data.response})
+                    dispatch({type:'ALL_NEWS',payload:data.data.response.sort((a,b)=>{return b.newsDate>a.newsDate? 1:-1})})
                     return data.data.response
                   } else{
                   return data.data

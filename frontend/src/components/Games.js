@@ -4,15 +4,14 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = (props) =>{
+  const Games = ({newGamesList,filterGames}) =>{
  
-    const {newGamesList} = props
     const [newOrder,setNewOrder] =  useState([])
     const [gamesFilteredPEGI,setGamesFilteredPEGI]=useState([gamesFiltered])
     const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
-    var elements = props.newGamesList
-console.log(elements)
+    var elements = newGamesList
+
 
     const [categories,setCategories] = useState(elements)
 
@@ -38,18 +37,16 @@ console.log(elements)
 
     // const read_input= e =>{
         // const search = e.target.value
-        // props.filterGames(search)
+        // filterGames(search)
     // }
 
     const selectAges = e =>{
         
         ages = ages.concat(agesState)
         const value = parseInt(e.target.value)
-
+        console.log("el value es : "+value)
         if(ages.indexOf(value)===-1){
              ages.push(value)
-            
-           
         }else{ 
            const ind= ages.indexOf(value)
             ages.splice(ind,1)
@@ -59,22 +56,22 @@ console.log(elements)
     
     const filt_games = () =>{
    
-        agesState.map(age=>{
-           
-             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age)
-       
-                gamesConcat = gamesConcat.concat(gamesFiltered)
-            })
-            console.log(gamesConcat)
-            console.log(agesState)
-            if(gamesConcat.length===0 &&agesState.length!==0){
-                setNoResults(true)
-            }else{
-                setNoResults(false)
-                setCategories(gamesConcat)
-            }
+    agesState.map(age=>{
+        
+            gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age)
     
+            gamesConcat = gamesConcat.concat(gamesFiltered)
+        })
+        console.log(gamesConcat)
+        console.log(agesState)
+        if(gamesConcat.length===0 &&agesState.length!==0){
+            setNoResults(true)
+        }else{
+            setNoResults(false)
+            setCategories(gamesConcat)
+            }    
     }
+
     const read_sort= e =>{  
            
         const order = e.target.value
