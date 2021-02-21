@@ -135,14 +135,11 @@ gamesById : (id)=>{
         try{
             const data = await axios.get(`http://localhost:4000/api/games/${id}`)
             if (data.data.success){
-                console.log(data)
-                console.log("ENTRO A LA ACTION")
                 dispatch({type:'GAMEBYID', payload:data.data.response})
                 return data.data.response
             }  }  
 
             catch(error){
-            console.log(error)
             const data ={errores:{details:[{message:'An error occurred'}]}}
             return data
             

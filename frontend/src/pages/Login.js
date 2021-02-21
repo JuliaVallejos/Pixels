@@ -60,12 +60,10 @@ const LogIn = (props) => {
                 userPass: googleResponse.profileObj.googleId,
                 loginGoogle: true
             })
-            console.log(response)
+
             if(response && !response.success){
-                console.log(response)
                 setErrors([response.response])
             }else{
-                console.log(response)
                 Swal.fire({
                     icon: 'success',
                     title:`Welcome ${localStorage.getItem("userFirstName")}!`,

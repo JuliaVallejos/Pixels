@@ -9,7 +9,6 @@ function usersReducer(state= initialState,action){
             localStorage.setItem("token",action.payload.token);
             localStorage.setItem("userImg",action.payload.userImg);
             localStorage.setItem("userRol",action.payload.userRol);
-            console.log("ENTRO")
             return {
                 ...state,
                 loggedUser:action.payload,

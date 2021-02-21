@@ -8,8 +8,6 @@ const usersActions = {
         const data = await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
           headers: {"Content-Type": "multipart: form-data"}
         }); 
-        console.log("ENTRO AL ACTION")
-      
         if (data.data.success){
           dispatch({type:'LOGIN', payload:data.data.response})
           return data

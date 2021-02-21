@@ -63,17 +63,17 @@ const SignUp = (props) =>{
         }
         const data = await props.createNewUser(formSignUp) 
   
-        
-        if(data && !data.success){
-            setErrors([data.errors])
-        }else if(data.success){
+
+        if(data && !data.data.success){
+            setErrors([data.data.errors])
+        }else if(data.data.success){
             Swal.fire({
                 icon: 'success',
                 title:  `Welcome ${localStorage.getItem("userFirstName")}!`,
                 text: 'Enjoy all our content!',
             })
-           
-        }
+            window.location.href="/"
+        } 
         
     }
     // GOOGLE SIGN UP
@@ -135,15 +135,17 @@ const SignUp = (props) =>{
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
-                if(response && !response.success){
-                    setErrors([response.errors])
+                if(response && !response.data.success){
+
+                    setErrors([response.data.errors])
                 }else{
+
                     Swal.fire({
                         icon: 'success',
                         title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                         text: 'Enjoy all our content!',
                     })
-                }
+                } window.location.href="/"
             }
         }
     }
