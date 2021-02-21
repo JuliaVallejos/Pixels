@@ -26,8 +26,12 @@ const emailController = {
             subject:"Welcome to Pixels!",
             html: `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#11050F">
                         <h1 style="color:#FFB5FF">Hi! Greetings from Pixels!</h1>
-                        <h1 style="color:#FFB5FF">TESTEO!</h1>
-                        <link href="http://localhost:3000/passwordReset/${email}"><button>http://localhost:3000/enterNewPassword</button></link>
+                        <h1 style="color:#FFB5FF">please click below to change your password!</h1>
+                        <link href="http://localhost:3000/passwordReset/${email}"><button style="padding:20px; text-decoration:none" >http://localhost:3000/enterNewPassword</button></link>
+                        <h3 style="color:#FFB5FF">If the button does not work, copy and paste the following link in your browser http://localhost:3000/enterNewPassword </h3>
+
+
+                        <h5 style="color:#FFB5FF">If you did not ask for a password change ignore this email :)</h5>
                     </div>`
         }
         transporter.sendMail(mailOptions, (error, info) =>{
