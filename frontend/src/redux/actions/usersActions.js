@@ -77,6 +77,7 @@ const usersActions = {
   },
   contactEmail:(email)=>{
     return async (dispatch,getstate)=>{
+      console.log(email)
       try{
         const data = await axios.post('http://localhost:4000/api/contact/send',email)
         console.log(data)

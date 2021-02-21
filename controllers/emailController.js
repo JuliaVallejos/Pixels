@@ -5,6 +5,7 @@ const bcrypt=require("bcryptjs")
 const emailController = {
 
     sendEmail: (req, res) =>{
+        console.log(req.body)
         var transporter = nodemailer.createTransport({
             port: 465,
             host: 'smtp.gmail.com',
@@ -16,8 +17,9 @@ const emailController = {
                   rejectedUnauthorized:false
                 } 
         })
-        const {email}=req.body
-        console.log(email)
+        
+        const email=req.body.userName
+        
         var mailOptions = {
             from: 'proyectopixels0@gmail.com <don`t reply>',
             to: email,
@@ -30,6 +32,7 @@ const emailController = {
         }
         transporter.sendMail(mailOptions, (error, info) =>{
             if(error){
+                console.log(error)
                 res.status(500).send(error.message)
             }else {
                 console.log("Email enviado.")
