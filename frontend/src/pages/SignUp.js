@@ -52,10 +52,10 @@ const SignUp = (props) =>{
         formSignUp.append("userPayPal",userPayPal)
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
-            setErrors([['All required(*) fields must be completed']])
+            setErrors(['All required(*) fields must be completed'])
             return false
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
-            setErrors([['All required(*) fields must be completed']])
+            setErrors(['All required(*) fields must be completed'])
             return false
         }
         const data = await props.createNewUser(formSignUp)     
@@ -64,7 +64,11 @@ const SignUp = (props) =>{
             console.log(data)
             setErrors([data.errors])
         }else {
-            alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+            Swal.fire({
+                icon: 'success',
+                title:  `Welcome ${localStorage.getItem("userFirstName")}!`,
+                text: 'Enjoy all our content!',
+              })
         }
         
     }
@@ -83,7 +87,11 @@ const SignUp = (props) =>{
         console.log(googleResponse)
         const formSignUp= new FormData();
         if(googleResponse.error){
-            alert("algo paso con el registro de google")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'There was an error trying to register with Google, try again later!',
+              })
         }
         else {
             const { value: userRol } = await Swal.fire({
@@ -120,7 +128,11 @@ const SignUp = (props) =>{
                 if(response && !response.sucess){
                     setErrors([response.errors])
                 }else {
-                    alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Welcome!' `${localStorage.getItem("userFirstName")}`,
+                        text: 'Enjoy all our content!',
+                      })
                     props.history.push('/')
                 }
             }

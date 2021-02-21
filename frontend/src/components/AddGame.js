@@ -2,9 +2,13 @@ import {connect} from 'react-redux'
 import {useState} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import {Redirect} from 'react-router-dom'
+import Swal from "sweetalert2"
 
 
 const AddGame = (props) =>{
+     
+    const clasificationPEGI = [3,7,12,16,18]
+
     const [errors,setErrors] = useState([])
     const [newGame,setNewGame] = useState({
         gameTitle:'',
@@ -14,12 +18,9 @@ const AddGame = (props) =>{
         gameImg:''
     })
 
-    console.log(props)
-
     const read_input = e =>{
         const property= e.target.name
         var value = e.target.value
-        // console.log(e.target.files[0])
         if(property ==="gameImg"){
             value=e.target.files[0];
         }
@@ -30,12 +31,11 @@ const AddGame = (props) =>{
         })      
     }
 
-        // console.log(props.loggedUser.id)
 
     const send_data= async e =>{
         setErrors([])
         e.preventDefault()
-        // console.log(newGame)
+
         const {gameTitle,gameInfo,gameCategories,clasificationPEGI,gameImg,idUser} = newGame
 
         const formNewGame= new FormData();
@@ -53,11 +53,15 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
-
         console.log(data)
-        alert('Game ok')
+        Swal.fire({
+            icon: 'success',
+            title: 'Excellent!',
+            text: 'The game has been uploaded successfully!',
+          })
+        
         props.history.push('/developers')
-        console.log(data)
+
         // if(data && !data.sucess){
         //     setErrors([data.errors])
         //     alert('Error recording a new game')
@@ -68,29 +72,35 @@ const AddGame = (props) =>{
         // } 
     }
     
-    const clasificationPEGI = [3,7,12,16,18]
+    //  if(data && !data.sucess){
+    //         setErrors([data.errors])
+    //          alert('Error recording a new game')
+    //         console.log(errors)
+    //     }else {
+    //        alert('New game saved successfully')
 
-    // console.log(errors)
-    console.log(newGame)
+    //              window.location='/library'
+    //     }
+   
+
     
     return(<>
         <h2 className="centerCenter">Upload your game</h2>
-        <div className="signUp centerCenter" style={{height: "65vh"}}>
-            
+        <div className="addGameContainer centerCenter">            
                 <form>
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
                     <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: 'unset', height:'150px' }} onChange={read_input}/>
 
-                    <select name='gameCategories'onChange={read_input}>
+                    <select className="gameCategories" name='gameCategories'onChange={read_input}>
                         <option value='' disabled='true' selected='true'>Select Category</option>
                         {props.categories.map(category=>{
                             return(<option value={category.name}>{category.name}</option>)
                         })}
                     </select>
                     
-                    <select name='clasificationPEGI'onChange={read_input}>
-                        <option value='value1' disabled='true' selected='true'>ClasificationPGI</option>
+                    <select className="gameCategories" name='clasificationPEGI'onChange={read_input}>
+                        <option value='value1' disabled='true' selected='true'>ClasificationPEGI</option>
                         {clasificationPEGI.map((clasification,index) =>{
                             return(<option value={clasification} key={index}>{clasification}</option>)
                         })}

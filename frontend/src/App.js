@@ -15,9 +15,11 @@ import Contact from "./pages/Contact"
 import AddNew from './components/AddNew'
 import gameById  from '../src/components/GameById'
 import News from './pages/News'
-import PasswordReset from './pages/PasswordReset'
 import Commentary from './components/Commentary'
 import NewsById from './components/NewsById'
+
+import EnterNewPassword from './components/EnterNewPassword'
+import PasswordReset from './pages/PasswordReset'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -30,16 +32,18 @@ function App({loggedUser,login_with_LS}) {
       <BrowserRouter>
         <Header/>
         <Switch>        
-          <Route exact path='/' component={Home}/>
-          <Route path="/contact" component={Contact}/>
-          <Route path='/library' component={Library}/> 
-          <Route path='/categories/:category' component={CategoryList}/>
-          <Route path='/games/:id' component={gameById}/>
-          <Route path='/news/:id' component={NewsById}/>
-          <Route path='/news' component={News}/>
-          <Route path='/passwordReset' component={PasswordReset}/>
-          <Route path='/categories/:category' component={Games}/>
-          <Route path='/commentary' component={Commentary}/>
+        <Route exact path='/' component={Home}/>
+        <Route path='/contact' component={Contact}/>
+        <Route path='/library' component={Library}/> 
+        <Route path='/categories/:category' component={CategoryList}/>
+        <Route path='/games/:id' component={gameById}/>
+        <Route path='/news/:id' component={NewsById}/>
+        <Route path='/news' component={News}/>
+        {/* <Route path='/categories/:category' component={Games}/> */}
+        <Route path='/commentary' component={Commentary}/>
+        <Route path='/passwordReset' component={PasswordReset}/>
+        <Route path='/enterNewPassword' component={EnterNewPassword}/>
+
 
           {(loggedUser && loggedUser.userRol==="Developer")
           && 
@@ -53,8 +57,9 @@ function App({loggedUser,login_with_LS}) {
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
-          </>
-          }       
+            <Route path="/passwordReset" component={PasswordReset}/>
+            <Route path='/enternewpassword' component={EnterNewPassword}/>
+          </>}       
           <Redirect to='/'/>
         </Switch>
         <WhatsApp/>

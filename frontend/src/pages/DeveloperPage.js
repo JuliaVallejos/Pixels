@@ -11,12 +11,11 @@ const DeveloperPage = (props) =>{
     return(
         <> 
         <div className="developerContainer signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
-
             <div className="developerSection">
             {!section ? 
             <>
             <div id="headerDeveloper" className="justifyAround ">
-                <div className="links justifyAround ">
+                <div className="justifyEvenly optionsDevelopers  ">
                     <p onClick={changeSection}>ADD GAME</p>
                     <p>ADD NEWS</p>
                 </div>
@@ -25,7 +24,7 @@ const DeveloperPage = (props) =>{
             </>
             : 
             <>
-            <div className="justifyEvenly ">
+            <div className="justifyEvenly optionsDevelopers ">
                 <div className="links justifyAround ">
                     <p>ADD GAME</p>
                     <p onClick={changeSection}>ADD NEWS</p>

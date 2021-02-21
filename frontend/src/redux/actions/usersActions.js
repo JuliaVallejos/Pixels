@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
 const usersActions = {
     createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
@@ -51,11 +53,48 @@ const usersActions = {
         }
       }catch(error){
         console.log(error)
-        if(error.response.status===401){
-          alert("Access denied")
+        if(error.status===401){
+          Swal.fire({
+            icon: 'error',
+            title: 'ACCESS DENIED!',
+          })
           localStorage.clear()
         }
       }
+    }
+  },
+  recoverPassword: (password)=>{
+    return async (dispatch, getstate)=>{
+      try{
+        const data = await axios.post('http://localhost:4000/api/recoverPassword/',password)
+        console.log(data)
+        if(data.data.sucess){
+          dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
+        }else{
+          return data.data
+        }
+      }catch(error){
+        const data ={errors:['An error occurred']}
+        return data
+      }
+
+    }
+  },
+  contactEmail:(email)=>{
+    return async (dispatch,getstate)=>{
+      try{
+        const data = await axios.post('http://localhost:4000/api/contact/send',email)
+        console.log(data)
+        if(data.data.sucess){
+          dispatch({type:'CONTACTEMAIL', payload:data.data.response})
+        }else{
+          return data.data
+        }
+      }catch(error){
+        const data ={errors:['An error occurred']}
+        return data
+      }
+
     }
   }
 }
