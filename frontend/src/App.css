@@ -918,54 +918,7 @@ background-color: rgba(247,104,247,0.8);
 
 
 
-/* ------- MEDIA QUERIES ------- */
-@media(min-width:900px){
-#headerResponsive{
-    display: none;
-  }
-}
-@media(max-width:900px){
-#headerContainer{
-  display:none;
-}
-#headerResponsive{
-  display:flex;
-  height: 15vh;
-  background-color: var(--background-color);
-  align-items: center;
-  justify-content: space-around;
-}
-.homeHero h1{
-  font-size: 2rem;
-}
-.homeHero h3{
-  font-size: 1.5rem;
-  text-align: center;
-}
-.tituloNoticia{
-  font-size: 1.5rem;
-}
-.homeTitle{
-  font-size: 2rem;
-}
-.cardHijoRecommend h5{
-  font-size:1rem;
-  text-align: center;
-}
-.descripcionNoticia{
-  font-size: 1.25rem;
-}
-.logo{
-  width: 45vw;
-  margin: 0;
-}
-.links{
-  max-width: 100vw;
-}
-.links p{
-  padding:0 1vw;
-}
-}
+
 
 /* ------- MENU DE HAMBURGESA ------- */
 
@@ -1187,7 +1140,23 @@ textarea{
 
   
 }
-
+#sendMessage{
+  border:none;
+  background-color: var(--background-color);
+  color: white;
+  padding: 1vh 3vw;
+  margin-left: 1vw;
+  border-radius: 100px;
+}
+#inputEmail4{
+  border-radius: 100px;
+  border: none;
+  background-color: var(--background-color);
+  color: white;
+}
+#inputEmail4::placeholder{
+  color: white;
+}
 
 .mensajes{
   padding-top: 5vh;
@@ -1261,3 +1230,53 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   align-items: center;
   flex-direction: column;
 }
+
+
+/* ------- MEDIA QUERIES ------- */
+@media(min-width:900px){
+  #headerResponsive{
+      display: none;
+    }
+  }
+  @media(max-width:900px){
+  #headerContainer{
+    display:none;
+  }
+  #headerResponsive{
+    display:flex;
+    height: 15vh;
+    background-color: var(--background-color);
+    align-items: center;
+    justify-content: space-around;
+  }
+  .homeHero h1{
+    font-size: 2rem;
+  }
+  .homeHero h3{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .tituloNoticia{
+    font-size: 1.5rem;
+  }
+  .homeTitle{
+    font-size: 2rem;
+  }
+  .cardHijoRecommend h5{
+    font-size:1rem;
+    text-align: center;
+  }
+  .descripcionNoticia{
+    font-size: 1.25rem;
+  }
+  .logo{
+    width: 45vw;
+    margin: 0;
+  }
+  .links{
+    max-width: 100vw;
+  }
+  .links p{
+    padding:0 1vw;
+  }
+  }
