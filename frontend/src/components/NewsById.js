@@ -16,7 +16,7 @@ useEffect(()=>{
 
 
 return(
-<div className="justifyCenter">
+<div className="justifyCenter cajaPadreNoticia">
 
 {props.newsId ?
 <div className="cajaNoticias">

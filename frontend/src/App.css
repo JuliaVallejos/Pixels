@@ -6,6 +6,9 @@
   --terciary-color: #FFDF37;
   --active-color: #6CC8FC;
 }
+input[type= file]:lang(en){
+  quotes: '\201C' '\201D' '\2018' '\2019';
+}
 
 .App-logo {
   height: 40vmin;
@@ -693,12 +696,18 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 /* ------ JUEGOS (CATEGORIA) ------ */
 
 .portadaJuego {
-  width:  20vw;
+  min-width: 30vw;
   height: 40vh;
   background-position: center;
-  background-size: cover;
-  
-  
+  background-size: cover;  
+}
+.pegiClasification{
+  margin: 1vw;
+  padding: 2vw;
+  border-radius: 200px;
+  width: 2vh;
+  height: 2vh;
+  background-color: rgba(39, 0, 36, 0.616);
 }
 .tituloJuego {
   font-size: 3rem;
@@ -708,8 +717,9 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 .gameInfo{
   font-size: 1.2rem;
   text-transform: uppercase;
-  opacity: 0.5;
+  color: white;
 }
+
 
 .valoracion {
   font-size: 2rem;
@@ -726,13 +736,15 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cajaInformacion{
-  width: 20vw ;
-  background-color: #ffffff;
+  min-width: 30vw ;
+  background-color: var(--background-color);
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
   border-radius: 43px 43px 43px 43px;
   -moz-border-radius: 43px 43px 43px 43px;
   -webkit-border-radius: 0px 0px 43px 43px;
+  padding: 2vh 0;
+
 
 }
 
@@ -749,15 +761,22 @@ border-radius: 43px 43px 43px 43px;
   padding-left: 1vh;
 }
 /* ------ DEVELOPER_PAGE ------ */
-.developerContainer{
-  min-height: 100vh;
 
+.headerDeveloper{
+  min-width: 60vw;
+  padding-bottom: 6vh;
+}
+.developerContainer{
+  min-height: 110vh;
 }
 .developerSection{
+  margin: 1vh;
   min-width: 50vw ;
   background-color: var(--background-color);
 }
 .optionsDevelopers{
+  display: flex;
+  justify-content: space-around;
   margin: 2vh 0;
   height: 2rem;
 }
@@ -769,7 +788,27 @@ border-radius: 43px 43px 43px 43px;
 }
 
 /* ------ Add Games ------ */
+.addGames{
+  width: 50vw;
+  padding: 0 5vw;
+}
+
 .gameCategories{
+  min-width: 25vw;
+  padding: 1vh 3vw;
+  border-radius: 50px;
+  outline:none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  margin: 2vh 0;
+  transition: 0.3s ease;
+  background-color:rgba(39, 0, 36, 0.616);
+  color: white;
+}
+#gameInfo::placeholder{
+  color: white;
+}
+#gameImg{
   min-width: 25vw;
   padding: 1vh 3vw;
   border-radius: 50px;
@@ -790,24 +829,65 @@ border-radius: 43px 43px 43px 43px;
   height: 70vh;
   background-position: top;
   background-size: cover;
+  
 }
 
+.cajaPadreSingleGame {
+  background-color: var(--background-color);
+}
 
+.cajaPadreNoticia{
+  background-color: var(--background-color);
+}
 
 .cajaTituloSingleGame{
 width: 100%;
-padding-bottom: 2vh;
-border: 0.5rem solid rgba(247,104,247,0.8);
+height: 10vh;
 box-shadow: 0px 0px 20px var(--secondary-color);
 border-radius: 43px 43px 43px 43px;
 -moz-border-radius:  0px 0px 0px 0px;
 -webkit-border-radius: 0px 0px 0px 0px ;
 background-color: rgba(247,104,247,0.8);
 }
-
-.singleGame{
-  padding-top: 5vh;
+.cajaTituloSingleGame, p ,h3 {
+  color: white;
 }
+
+
+/* ------ ADD NEWS ------ */
+#uploadButton{
+ display: none;
+}
+.inputFile{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 60%;
+  text-align: center;
+  padding: 1vh 2vw;
+  border-radius: 50px;
+  outline:none;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0px 0px 10px var(--primary-color);
+  margin: 2vh 0 ;
+  transition: 0.1s ease;
+  background-color:var(--secondary-color);
+  color: white;
+}
+.inputFile:active{
+  color: black;
+  background-color: var(--terciary-color);
+}
+.inputFile:hover{
+  transform: scale(1.05);
+}
+.addNews{
+  width: 50vw;
+}
+.addNews textarea::placeholder{
+  color: white;
+}
+
 
 
 
@@ -950,7 +1030,7 @@ background-color: rgba(247,104,247,0.8);
   flex-wrap: wrap;
   padding-bottom: 4vh;
   text-align: justify;
-  
+  color: white;
 }
 
 .portadaSingleNews{
@@ -963,6 +1043,7 @@ background-color: rgba(247,104,247,0.8);
 .singleNewsDescription{
   font-size: 2rem;
   padding-bottom: 2vh;
+  color: white;
 }
 
 .singleNewsTitle{
@@ -971,12 +1052,14 @@ background-color: rgba(247,104,247,0.8);
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  color: white;
   
 }
 .subtitulo{
   font-size: 1.3rem;
   padding-bottom: 2vh;
   opacity: 0.6;
+  color: white;
 }
 
 
@@ -1105,4 +1188,49 @@ textarea{
 
 .iconEdit{
   padding-left: 1vh;
+}
+
+
+/* ------ BOTONES ------ */
+
+.caja{
+width: 15vw;
+height: 4vh;
+color: white;
+border: 0.5rem solid rgba(247,104,247,0.8);
+  box-shadow: 0px 0px 20px var(--secondary-color);
+  border-radius: 43px 43px 43px 43px;
+  -moz-border-radius: 43px 43px 43px 43px;
+  -webkit-border-radius: 43px 43px 43px 43px ;
+  background-color: rgba(247,104,247,0.8);
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.backGames{
+  margin-right: 4vh;
+}
+
+.iconPaypal{
+  font-size: 1.5rem;
+  padding-right: 1vh;
+}
+
+.cajaRate{
+  width: 15vw;
+height: 4vh;
+color: white;
+border: 0.5rem solid rgba(247,104,247,0.8);
+  box-shadow: 0px 0px 20px var(--secondary-color);
+  border-radius: 43px 43px 43px 43px;
+  -moz-border-radius: 43px 43px 43px 43px;
+  -webkit-border-radius: 43px 43px 43px 43px ;
+  background-color: rgba(247,104,247,0.8);
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+.rateGame {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

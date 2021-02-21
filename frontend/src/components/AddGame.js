@@ -52,8 +52,9 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
+        console.log(data)
     
-     if(data && !data.sucess){
+     if(data && !data.success){
             setErrors([data.errors])
              alert('Error recording a new game')
             console.log(errors)
@@ -69,7 +70,7 @@ const AddGame = (props) =>{
     return(<>
         <h2 className="centerCenter">Upload your game</h2>
         <div className="addGameContainer centerCenter">            
-                <form>
+                <form className="addGames">
                     <input id='gameTitle' name='gameTitle' type='text' placeholder='Game Title*' onChange={read_input}/>
 
                     <textarea id='gameInfo' name='gameInfo' type='text' placeholder='Game description*' style={{resize: 'unset', height:'150px' }} onChange={read_input}/>
@@ -89,7 +90,13 @@ const AddGame = (props) =>{
                     </select>
 
                     <label htmlFor='gameImg'><p>Upload your game pic</p></label>
-                    <input type='file' id='gameImg' name='gameImg' onChange={read_input}/>
+                    <label for="uploadButton" className="inputFile" >
+                        <p >Click here to Upload a news image</p>
+                        <input id="uploadButton" className="fileGame" type='file'  name='gameImg' onChange={read_input}/>
+                    </label>
+                    
+                    
+                    
 
                     <button onClick={send_data} type='submit'>Submit</button>
                     

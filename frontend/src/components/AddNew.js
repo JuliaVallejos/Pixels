@@ -20,7 +20,7 @@ const read_input = e=>{
     })
 }
 
-
+console.log( props.loggedUser.userFirstName)
 const send_data = async e=>{
     setErrors([])
     e.preventDefault()
@@ -31,10 +31,10 @@ const send_data = async e=>{
     formNews.append("newsImg", newsImg)
     formNews.append("newsDescription", newsDescription)
     formNews.append("newsBody", newsBody)
-    formNews.append("newsAuthor", newsAuthor)
+    formNews.append("newsAuthor", props.loggedUser.userFirstName)
 
 
-  if(newsTitle ==='' || newsImg === '' || newsDescription === '' || newsBody === '' || newsAuthor === ''  ){
+  if(newsTitle ==='' || newsImg === '' || newsDescription === '' || newsBody === ''   ){
      setErrors([{message:'All required(*) fields must be completed'}])
       return false 
   }
@@ -50,24 +50,26 @@ const send_data = async e=>{
   }
 }
 
-console.log(props.news)
 return(
     <>
-    <h2>create your news</h2>
-    <div className="developersAdd centerCenter" style={{height: "65vh"}}>
+    <h2 className="centerCenter">Create your news</h2>
+    <div className="addGameContainer centerCenter">
         
-        {/* <form> */}
-            <input type="text" placeholder="title of the news" name="newsTitle" onChange={read_input}/>
-            <label htmlFor='newsImg'><p>Image of the news</p></label>
-            <input type='file' id='newsImg' name='newsImg' onChange={read_input}/>
-            <input type="text" placeholder="description of the news" name="newsDescription" onChange={read_input}/>
-            <textarea type="text" placeholder="body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
-            <input type="text" placeholder="author of the news" name="newsAuthor" onChange={read_input}/>
+        <form className="addNews">
+            <input type="text" placeholder="Title of the news" name="newsTitle" onChange={read_input}/>
+            <label htmlFor='newsImg'><p>Image for the news</p></label>
+            <label htmlFor="uploadButton" className="inputFile" >
+                <p>Click here to Upload a news image</p>
+                <input id="uploadButton" type='file' name='newsImg' onChange={read_input}/>
+            </label>            
+            <input type="text" placeholder="Description of the news" name="newsDescription" onChange={read_input}/>
+            <textarea type="text" placeholder="Body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
+           {/*  <input type="text" placeholder="Author of the news" name="newsAuthor" onChange={read_input}/> */}
             <button onClick={send_data} >Create News</button>
             {errors&& errors.map((error,index) =>{
                                     return (<p key={index}>{error.message}</p>)
                                 })}
-        {/* </form> */}
+        </form>
     </div>
     </>
 
@@ -75,7 +77,8 @@ return(
 }
 const mapStateToProps =state=>{
     return{
-        news: state.news.news
+        news: state.news.news,
+        loggedUser : state.user.loggedUser
     }
 }
 const mapDispatchToProps ={

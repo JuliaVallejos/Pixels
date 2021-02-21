@@ -118,31 +118,35 @@ import {Link} from 'react-router-dom'
 
             </div>
             {noResults? <h2>No games</h2>:
-            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
+            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
       
-            {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
-                return(
-                <Link key={_id} to={`/games/${_id}`}>
-                    <div className="zoom" key={_id}>
-                        <p>{clasificationPEGI}</p>
-                        <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}/>
-                        <div className="cajaInformacion">
-                            <div className="infoJuego">
-                                <h4 className="tituloJuego">{gameTitle}</h4>
-                                <p className="gameInfo">{gameInfo}</p>
+                {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
+                 return(
+                    <Link key={_id} to={`/games/${_id}`}>
+                        <div className="zoom" key={_id}> 
+                                                  
+                            <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}>
+                                <p className="pegiClasification centerCenter">{clasificationPEGI}</p>  
+                            </div>                            
+                            <div className="cajaInformacion">
+                               <div className="infoJuego">
+                                    <h4 className="tituloJuego">{gameTitle}</h4>
+                                    <p className="gameInfo">{gameInfo}</p>
+                                </div> 
+                                <div className="valoracion justifyCenter">
+                                    <ReactStars
+                                        count={5}
+                                        isHalf={true}
+                                        value={prom}
+                                        size={50}
+                                        activeColor="#ffd700"
+                                        edit= {false}
+                                /></div>                         
                             </div> 
-                            <div className="valoracion justifyCenter">
-                                <ReactStars
-                                    count={5}
-                                    isHalf={true}
-                                    value={prom}
-                                    size={50}
-                                    activeColor="#ffd700"
-                                    edit= {false}
-                            /></div>                         
+                                                   
                         </div> 
-                    </div>
-                </Link>  
+                   
+                    </Link>  
                 )
               })}
             </div>
