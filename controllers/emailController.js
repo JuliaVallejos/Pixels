@@ -14,12 +14,11 @@ const emailController = {
                   rejectedUnauthorized:false
                 } 
         })
-        const {email,content}=req.body
+        const {email,content}=req.body.userName
         var mailOptions = {
             from: 'proyectopixels0@gmail.com <don`t reply>',
             to: email,
             subject:"Welcome to Pixels!",
-            // text: "TEXTO ALGO",
             html: `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#11050F">
                         <h1 style="color:#FFB5FF">Hi! Greetings from Pixels!</h1>
                         <h2 style="color:#FFFFFF">${content}</h2>
