@@ -662,7 +662,11 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;
+  transition: 0.2s ease;
   
+}
+.cardHijoCategory:hover{
+  transform: scale(1.05);
 }
 .tituloCategory {
   font-size: 2rem;
