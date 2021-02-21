@@ -34,7 +34,7 @@ const userController={
             }
         }
         return res.json({
-            sucess: errors.length===0 ? true : false,
+            success: errors.length===0 ? true : false,
             errors:errors,
             response: errors.length===0 && {token,id: newUser._id,userFirstName,userLastName,userImg:newUser.userImg,userRol}
         })
@@ -46,19 +46,19 @@ const userController={
         const userExists= await User.findOne({userName})
        
         if(!userExists){
-            errors.push("Incorrect username or password, please try again 1");
+            errors.push("Incorrect username or password, please try again");
         }else if (userExists){
             if (!loginGoogle && userExists.userGoogle ){
                 errors.push("You must logged with google")
             }
             else if(errors.lenght!==0){
                 const passwordMatches= bcryptjs.compareSync(userPass,userExists.userPass);
-                if(!passwordMatches){errors.push("Incorrect username or password, please try again 2");}
+                if(!passwordMatches){errors.push("Incorrect username or password, please try again ");}
                 var token=jasonWebToken.sign({...userExists}, process.env.JWT_SECRET_KEY, {});
             }
         }
         return res.json({
-            sucess: errors.length===0 ? true : false,
+            success: errors.length===0 ? true : false,
             errors:errors,
             response:errors.length===0 && {token, id: userExists._id,
                  userFirstName: userExists.userFirstName,userLastName:userExists.userLastName, userImg: userExists.userImg, userRol:userExists.userRol }
@@ -66,7 +66,7 @@ const userController={
     },
     logInLS:(req,res)=>{
         res.json({
-            sucess:true,
+            success:true,
             response:{token: req.body.token, userFirstName: req.user.userFirstName,userLastName:req.user.userLastName,
                  userImg: req.user.userImg, id:req.user._id, userRol: req.user.userRol}})
     }

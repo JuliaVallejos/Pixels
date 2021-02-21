@@ -10,7 +10,6 @@ const Commentary = (props) =>{
   const [editedComment,setEditedComment] = useState(props.comment.comment)
   const [gameNew,setGameNew] =useState(props.game)
 
-  console.log("HOLAAA")
   const deleteComment =async()=>{
      
           const data = await props.deleteComment( props.game._id, props.comment._id)
@@ -36,14 +35,15 @@ const Commentary = (props) =>{
         setEdit(false)
     }  
 } 
-console.log(props.comment.idUser.userImg)
     return(
   
   
     <div className="displayFlex ">
        
         <div className="centerCenter">
-          <div className=" userImg " style={{backgroundImage:`url("/userImages/${props.comment.idUser.userImg}")`}}></div>
+          <div id="userImgComment" className=" userImg " 
+            style={{backgroundImage:`url("/userImages/${props.comment.idUser.userImg}")`}}> 
+          </div>
           
         </div>
 
@@ -53,9 +53,11 @@ console.log(props.comment.idUser.userImg)
               <span className="tip tip-left"></span>
                   <div className="message">
                     
-                  {console.log(props.comment)}
                       <h3 className="NombreUsuario">{props.comment.idUser.userFirstName}  </h3>
-                      {!edit?<span className="comentarioTexto">{props.comment.comment}</span> : <div ><textarea col='1' onChange={readInput} id='edited_comment' value={editedComment}/><button onClick={send_new_comment}><span>Send</span></button></div>}
+                      {!edit?<span className="comentarioTexto">{props.comment.comment}</span> 
+                      : <div className="editComment"><textarea col='1' onChange={readInput} id='edited_comment' value={editedComment}/>
+                        <button onClick={send_new_comment}><span>Send</span></button>
+                      </div>}
               
                   </div>
             </div>

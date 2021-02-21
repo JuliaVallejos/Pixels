@@ -27,7 +27,13 @@ const Games = (props) =>{
 
     useEffect(() =>{
         let filterElement=  newGamesList.filter((element) =>{
-            return(element.gameTitle.toLowerCase().trim().indexOf(search.toLocaleLowerCase().trim()) !== -1)                              
+            if (element.gameTitle.split(" ")[1]){
+                return(element.gameTitle.split(" ")[0].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0
+                    || element.gameTitle.split(" ")[1].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0) 
+            } 
+            else {
+                return(element.gameTitle.toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0)
+            }   
         })
 
         if(filterElement.length===0){
@@ -132,8 +138,8 @@ const Games = (props) =>{
                             </div>                            
                             <div className="cajaInformacion">
                                <div className="infoJuego">
-                                    <h4 className="tituloJuego">{gameTitle}</h4>
-                                    <p className="gameInfo">{gameInfo}</p>
+                                    <h4 className="tituloJuego">{gameTitle.length <= 10 ? gameTitle : gameTitle.slice(0,8)+"..."}</h4>
+                                    <p className="gameInfo">{gameInfo.length <=26 ? gameInfo : gameInfo.slice(0,23)+"..."}</p>
                                 </div> 
                                 <div className="valoracion justifyCenter">
                                     <ReactStars

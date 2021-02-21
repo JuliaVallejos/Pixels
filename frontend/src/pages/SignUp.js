@@ -15,14 +15,16 @@ const SignUp = (props) =>{
         userName:'',
         userPass:'',
         userImg:'',
-        userRol:''
+        userRol:'',
+        userPhone:'', 
+        userPayPal:''
     })
    useEffect(() => {
        if(!dev){
            setNewUser({
                ...newUser,
-               userPhone:'',
-               userPayPal:''
+               userPhone:2,
+               userPayPal:"default"
            })
        }
    }, [dev])
@@ -39,8 +41,8 @@ const SignUp = (props) =>{
     }
     
     const send_data= async (e) =>{
-        setErrors([])
         e.preventDefault()
+        setErrors([])
         const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
         const formSignUp= new FormData();
         formSignUp.append("userFirstName",userFirstName)
@@ -54,22 +56,22 @@ const SignUp = (props) =>{
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
             setErrors([['All required(*) fields must be completed']])
-            return false
+            
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
             setErrors([['All required(*) fields must be completed']])
-            return false
+           
         }
-        const data = await props.createNewUser(formSignUp)     
-
-        if(data && !data.sucess){
-            console.log(data)
+        const data = await props.createNewUser(formSignUp) 
+        console.log(data)    
+        if(data && !data.success){
             setErrors([data.errors])
-        }else {
+        }else if(data.success){
             Swal.fire({
                 icon: 'success',
                 title:  `Welcome ${localStorage.getItem("userFirstName")}!`,
                 text: 'Enjoy all our content!',
-              })
+            })
+            // window.location="/"
         }
         
     }
@@ -85,7 +87,7 @@ const SignUp = (props) =>{
     
    
     const responseGoogle = async (googleResponse) => {
-        console.log(googleResponse)
+    
         const formSignUp= new FormData();
         if(googleResponse.error){
             Swal.fire({
@@ -132,7 +134,7 @@ const SignUp = (props) =>{
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
-                if(response && !response.sucess){
+                if(response && !response.success){
                     setErrors([response.errors])
                 }else{
                     Swal.fire({
@@ -177,10 +179,11 @@ const SignUp = (props) =>{
                         <input type='text' name='userPayPal' placeholder='Your PayPal.me*' onChange={read_input}/>
                     </div>}
 
-                <button type='submit' onClick={send_data}>Send</button>
+                <button onClick={send_data}>Send</button>
+                
                 {errors[0] && (
                 <div className="signUpErrorContainer">
-                    {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}
+                    {errors[0].map(error=> <><p className="signUpErrorText">{error}</p> <br/></> )}
                 </div>
                 )}
 

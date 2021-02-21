@@ -60,7 +60,7 @@ function App({loggedUser,login_with_LS}) {
           </>
           }   
               
-          <Redirect to='/123'/>
+          <Redirect to='/'/>
         </Switch>
         <WhatsApp/>
         <Footer/>

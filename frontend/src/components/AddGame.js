@@ -53,36 +53,15 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
-        console.log(data)
+        
         Swal.fire({
             icon: 'success',
             title: 'Excellent!',
             text: 'The game has been uploaded successfully!',
           })
-        
-        props.history.push('/developers')
-
-        // if(data && !data.sucess){
-        //     setErrors([data.errors])
-        //     alert('Error recording a new game')
-        //     console.log(errors)
-        // }else {
-        //     alert('New game saved successfully')
-
-        // } 
-    }
     
-    //  if(data && !data.sucess){
-    //         setErrors([data.errors])
-    //          alert('Error recording a new game')
-    //         console.log(errors)
-    //     }else {
-    //        alert('New game saved successfully')
 
-    //              window.location='/library'
-    //     }
-   
-
+    }
     
     return(<>
         <h2 className="centerCenter">Upload your game</h2>

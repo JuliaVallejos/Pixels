@@ -13,9 +13,7 @@ const emailController= require('../controllers/emailController');
 // RUTAS PARA USUARIOS
 /*.post(userController.signUp) */
 router.route("/user/signUp")
-.post(userController.signUp) 
-
-// .post(validator.validateNewAccount,userController.signUp)
+.post(validator.validateNewAccount,userController.signUp)
 router.route("/user/logIn")
 .post(userController.logIn)
     

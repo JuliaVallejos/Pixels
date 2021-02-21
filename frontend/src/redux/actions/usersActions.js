@@ -10,7 +10,7 @@ const usersActions = {
         }); 
         console.log("ENTRO AL ACTION")
         console.log(data.data)
-        if (data.data.sucess){
+        if (data.data.success){
           dispatch({type:'LOGIN', payload:data.data.response})
         } else{
           return data.data
@@ -26,7 +26,7 @@ const usersActions = {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
         
-        if(data.data.sucess){
+        if(data.data.success){
           dispatch({type:'LOGIN', payload:data.data.response})
           return data.data
         }else{
@@ -51,7 +51,7 @@ const usersActions = {
             Authorization: `Bearer ${token}` 
           }
         })
-        if(response.data.sucess){
+        if(response.data.success){
           dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
@@ -71,7 +71,7 @@ const usersActions = {
       try{
         const data = await axios.post('http://localhost:4000/api/recoverPassword',password)
        
-        if(data.data.sucess){
+        if(data.data.success){
           dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
         }else{
           return data.data
@@ -88,7 +88,7 @@ const usersActions = {
       try{
         const data = await axios.post('http://localhost:4000/api/contact/send',email)
         
-        if(data.data.sucess){
+        if(data.data.success){
           dispatch({type:'CONTACTEMAIL', payload:data.data.response})
           return data.data.response
         }else{

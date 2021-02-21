@@ -269,7 +269,7 @@ box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
   align-items: center;
   width: 70%;
   height: 100%;
-  padding: 0 4vw;
+  padding: 0 10vw;
   background-color: rgba(39, 0, 36, 0.616);  
 }
 .footerLinks p{
@@ -302,7 +302,7 @@ box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
   background-color:rgba(58, 0, 0, 0.678);
   margin-bottom: 2vh;
 }
-.signUpErrorText{
+.signUpErrorText{ 
 color: rgb(255, 250, 200);
 }
 .signUp h2 {
@@ -748,7 +748,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 /* ------ JUEGOS (CATEGORIA) ------ */
 
 .portadaJuego {
-  min-width: 30vw;
+  width: 320px;
   height: 40vh;
   background-position: center;
   background-size: cover;  
@@ -788,7 +788,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cajaInformacion{
-  min-width: 30vw ;
+  width: 320px ;
   background-color: var(--background-color);
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
@@ -1088,7 +1088,7 @@ textarea{
   transition: 0.3s ease;
   background-color:rgba(39, 0, 36, 0.616);
   color: white;
-  min-height: 30vh;
+  min-height: 5vh;
 }
 
 /* ------ COMMENTARY ------ */
@@ -1137,7 +1137,7 @@ textarea{
   width: auto;
   max-width: 60vw;
   overflow: auto;
-  height: auto;
+  height: 10vh;
   margin: 20px 10px;
   padding: 5px;
   background-color: #DADADA;
@@ -1154,11 +1154,15 @@ textarea{
   line-height: 1.5;
   color: #797979;
 }
-
+.message button{
+  height: 3vh;
+  width: 5vw;
+}
 .cajaComentarios{
   overflow-y: auto; 
   min-width: 60vw;
   height: 50vh;
+  width: 90vw;
   padding: 1.5vh 0;
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
@@ -1168,6 +1172,33 @@ textarea{
   background-color: rgba(247,104,247,0.8);
   margin-top: 5vh;
   margin-bottom: 5vh;
+}
+#userImgComment{
+  padding: 0;
+  margin: 0;
+}
+#edited_comment button{
+  padding: 1vh 2vw;
+  color: white;
+  border: none;
+  background-color: var(--background-color);
+}
+.editComment {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.editComment textarea{
+  width: 90%;
+}
+.editComment button{
+  padding: 1vh 2vw;
+  color: white;
+  border: none;
+  background-color: var(--background-color);
+  border-radius: 50px;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -1349,9 +1380,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     padding:0 1vw;
   }
   /*----- COMENTARIOS ------ */
-  .cajaComentarios{
-    width: 90vw;
-  }
+ 
   .backGames, .paypal, .iconPaypal{
     width: 35vw;
     padding-right: 1vw;
@@ -1374,7 +1403,8 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   }
   .footerLinks{ 
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;  
+    padding: 0 2vw;  
   }
   .footerLinks p{
     padding: 1vh;

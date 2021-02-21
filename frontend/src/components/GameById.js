@@ -4,9 +4,6 @@ import Swal from "sweetalert2"
 import gamesActions from "../redux/actions/gamesActions"
 import ReactStars from "react-rating-stars-component";
 import Commentary from "./Commentary";
-
-import Swal from 'sweetalert2'
-
 import {Link} from 'react-router-dom'
 import { GrPaypal } from 'react-icons/gr'
 import { BiJoystick } from 'react-icons/bi'
@@ -30,7 +27,6 @@ const GameById = (props)=>{
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
-        console.log(comment)
     }
     const enviarInfo = async e => {
         e.preventDefault()
@@ -47,7 +43,6 @@ const GameById = (props)=>{
     }
     const ratingChanged = (newRating) => {
         newValoration=newRating
-        console.log(newValoration)
     }
     const send_rate = async() =>{
       const data = await props.setValoration(id,newValoration)
@@ -72,13 +67,12 @@ const GameById = (props)=>{
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                               {console.log(game)}
                                 {(game.userComments) && game.userComments.map(comment => <Commentary game={game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
                                 <input name="comment" onChange={info} value={comment}  type="text" class="form-control" placeholder="Write your message here!" id="inputEmail4"/>
-                                <input id="sendMessage" class=" btn btn-primary"  onClick={enviarInfo}  type="submit" value="SEND MESSAGE"/> 
+                                <input id="sendMessage" class=" btn btn-primary"  onClick={enviarInfo}  type="submit" value="SEND"/> 
                             </div>    
                         </div>
                     </div>
