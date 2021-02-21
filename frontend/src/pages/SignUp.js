@@ -149,20 +149,24 @@ const SignUp = (props) =>{
                 <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
                 <label htmlFor="userImg"><p>Upload your pic</p></label>
                 <input type='file' id="userImg" name='userImg' onChange={read_input}/>
-                <div className="selection">
-                    <div className="radioButtons">
+                <div className="selection ">
+                    
+                    <div className="radioButtons displayFlex centerCenter" >
                         <label htmlFor='userRol' onChange={read_input}><p>Account Type:</p>
-                        <input type='radio'  onClick={()=>setDev(false)}  value='User' name='userRol'/><p>User</p>
-                        <input type='radio' onClick={()=>setDev(true)} value='Developer' name='userRol'/><p>Developer</p>
+                        <div id="inputId" className="displayFlex">
+                            <input type='radio'  onClick={()=>setDev(false)}  value='User' name='userRol'/><p>User</p>
+                            <input type='radio' onClick={()=>setDev(true)} value='Developer' name='userRol'/><p>Developer</p>
+                        </div>
                         </label>
                     </div>
 
-                    {dev && 
+                    
+                </div>
+                {dev && 
                     <div className="devInputs">
                         <input type='text' name='userPhone'  placeholder='Phone*' onChange={read_input}/>
                         <input type='text' name='userPayPal' placeholder='Your PayPal.me*' onChange={read_input}/>
                     </div>}
-                </div>
 
                 <button type='submit' onClick={send_data}>Send</button>
                 {errors[0] && (
