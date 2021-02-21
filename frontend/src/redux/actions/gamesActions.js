@@ -10,12 +10,14 @@ const gamesActions = {
             });
            
             if (data.data.success){
+                console.log('success')
               dispatch({type:'NEW_GAME', payload:data.data.response})
-              return data.data.response
+              return data.data
             } else{
             return data.data
             }
         }catch(error){
+            console.log(error)
           const data ={errores:{details:[{message:'An error occurred'}]}}
           return data
         }}},

@@ -4,7 +4,10 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = ({newGamesList}) =>{
+  const Games = (props) =>{
+      console.log(props)
+     
+    const {newGamesList,filterGames} = props
     const [newOrder,setNewOrder] =  useState([])
     const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
@@ -141,17 +144,10 @@ import {Link} from 'react-router-dom'
                                         edit= {false}
                                 /></div>                         
                             </div> 
-                            <div className="valoracion justifyCenter">
-                                <ReactStars
-                                    count={5}
-                                    isHalf={true}
-                                    value={prom}
-                                    size={50}
-                                    activeColor="#ffd700"
-                                    edit= {false}
-                            /></div>                         
+                                                   
                         </div> 
-                </Link>  
+                   
+                    </Link>  
                 )
               })}
             </div>
