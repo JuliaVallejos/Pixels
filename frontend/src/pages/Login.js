@@ -7,11 +7,12 @@ import Swal from "sweetalert2"
 
 
 const LogIn = (props) => {
+    const [errors,setErrors] = useState([])
     const [loggedUser,setLoggedUser] = useState({
         userName:'',
         userPass:''
     })
-    const [errors,setErrors] = useState([])
+
 
     const read_input = e =>{
         const property= e.target.name
@@ -24,23 +25,23 @@ const LogIn = (props) => {
        
     }
     const send_data = async (e) =>{
+        setErrors([])
         e.preventDefault()
         if(loggedUser.userName==='' || loggedUser.userPass===''){
-            setErrors([ 'All fields must be completed'])
+            setErrors([[ 'All fields must be completed']])
             return false;
         }
-        const data = await props.login_user(loggedUser)   
+        const data = await props.login_user(loggedUser) 
+        console.log(data)  
         if(data && !data.sucess){
             setErrors([data.errors])
             return false;
         }else{
-            
             Swal.fire({
                 icon: 'success',
                 title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                 text: 'Enjoy all our content!',
               })
-            
         }
         
     }
@@ -55,8 +56,10 @@ const LogIn = (props) => {
         }else{
             const response= await props.login_user({
                 userName: googleResponse.profileObj.email,
-                userPass: googleResponse.profileObj.googleId
+                userPass: googleResponse.profileObj.googleId,
+                loginGoogle: true
             })
+            console.log(response)
             if(response && !response.sucess){
                 setErrors([response.response])
             }else{
@@ -65,8 +68,7 @@ const LogIn = (props) => {
                     title:`Welcome ${localStorage.getItem("userFirstName")}!`,
                     text: 'Enjoy all our content!',
                   })
-                props.history.push('/')
-                // <Redirect to="/" />
+
             }
         }
     }
@@ -79,7 +81,12 @@ const LogIn = (props) => {
                 <input id='password'name='userPass' type='password' placeholder='Password' onChange={read_input}/>
 
                     <button onClick={send_data} type='submit'>Log In</button>
-                    {errors && errors.map(error=> <p>{error}</p> )}
+                    {errors[0] && (
+                <div className="signUpErrorContainer">
+                    {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}
+                </div>
+                )}
+                
                 </form>
                     <GoogleLogin
                         clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"

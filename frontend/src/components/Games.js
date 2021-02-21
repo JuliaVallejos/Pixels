@@ -4,9 +4,9 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = (props) =>{
+
+const Games = (props) =>{
     
-     
     const {newGamesList,filterGames} = props
     const [newOrder,setNewOrder] =  useState([])
     const [noResults,setNoResults] = useState(false)
@@ -64,9 +64,7 @@ import {Link} from 'react-router-dom'
             setNoResults(false)
             setCategories(gamesConcat)
         }    
-
         {(gamesFiltered.length === 0 && gamesConcat.length===0) && setFilterByAge(false)}
-  
     }
     
     
@@ -111,14 +109,17 @@ import {Link} from 'react-router-dom'
                     <button onClick={filt_games}>Search</button>
                     </label>}
             
-                <select defaultValue='' onChange={read_sort}>
+                    <select defaultValue='' onChange={read_sort}>
                     <option value='' >Sort by</option>
                     <option value='most_valued'>Most Valued</option>
                     <option value='less_valued'>Less Valued</option>
                 </select>
 
             </div>
-            {noResults? <h2>No games</h2>:
+            {noResults? <div id="noGames" style={{backgroundImage: `url("/assets/noGames.jpg")` }}>
+                <h2 className="centerCenter">No results</h2>
+            </div> 
+            :
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
       
                 {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
@@ -126,13 +127,13 @@ import {Link} from 'react-router-dom'
                     <Link key={_id} to={`/games/${_id}`}>
                         <div className="zoom" key={_id}> 
                                                   
-                            <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}>
+                            <div className="portadaJuego" style={{backgroundImage:`url(/gamesImages/${gameImg})`}}>
                                 <p className="pegiClasification centerCenter">{clasificationPEGI}</p>  
                             </div>                            
                             <div className="cajaInformacion">
                                <div className="infoJuego">
-                                    <h4 className="tituloJuego">{gameTitle}</h4>
-                                    <p className="gameInfo">{gameInfo}</p>
+                                    <h4 className="tituloJuego">{gameTitle.length <= 10 ? gameTitle : gameTitle.slice(0,8)+"..."}</h4>
+                                    <p className="gameInfo">{gameInfo.length <=26 ? gameInfo : gameInfo.slice(0,23)+"..."}</p>
                                 </div> 
                                 <div className="valoracion justifyCenter">
                                     <ReactStars
@@ -143,15 +144,13 @@ import {Link} from 'react-router-dom'
                                         activeColor="#ffd700"
                                         edit= {false}
                                 /></div>                         
-                            </div> 
-                                                   
+                            </div>                 
                         </div> 
-                   
                     </Link>  
-                )
-              })}
+                    )
+                })}
             </div>
-  }
+                }
             </div>
             </>
         ) 

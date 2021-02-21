@@ -267,9 +267,9 @@ box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
 .footerLinks {
   flex: 1;
   align-items: center;
-  width: 70%;
+  width: 60%;
   height: 100%;
-  padding: 0 4vw;
+  padding: 0 10vw;
   background-color: rgba(39, 0, 36, 0.616);  
 }
 .footerLinks p{
@@ -527,7 +527,7 @@ box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
 .gameLibItem{
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 320px;
   height: 30vh;
   margin: 1vh 1vw;
   border: 3px solid var(--secondary-color);
@@ -656,8 +656,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cardHijoCategory {
-  min-width:330px;
-  min-height:35vh;
+  width:320px;
+  height:30vh;
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;
@@ -673,7 +673,13 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   -webkit-text-stroke: 1px black;
   color: white;
 }
-
+#noGames{
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position-x: 50%;
+}
 /* ------ HOME ------ */
 .homeContainer{
   background-color: var(--background-color);
@@ -741,7 +747,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 /* ------ JUEGOS (CATEGORIA) ------ */
 
 .portadaJuego {
-  width: 300px;
+  width: 320px;
   height: 40vh;
   background-position: center;
   background-size: cover;  
@@ -781,7 +787,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cajaInformacion{
-  width: 300px;
+  width: 320px;
   background-color: var(--background-color);
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
@@ -904,7 +910,7 @@ background-color: rgba(247,104,247,0.8);
 
 /* ------ ADD NEWS ------ */
 #uploadButton{
- display: none;
+  display: none;
 }
 .inputFile{
   display: flex;
@@ -925,6 +931,7 @@ background-color: rgba(247,104,247,0.8);
 .inputFile:active{
   color: black;
   background-color: var(--terciary-color);
+  
 }
 .inputFile:hover{
   transform: scale(1.05);
@@ -1126,7 +1133,9 @@ textarea{
 
 .dialogbox .body {
   position: relative;
-  width: 20vw;
+  width: auto;
+  max-width: 60vw;
+  overflow: auto;
   height: auto;
   margin: 20px 10px;
   padding: 5px;
@@ -1158,6 +1167,33 @@ textarea{
   background-color: rgba(247,104,247,0.8);
   margin-top: 5vh;
   margin-bottom: 5vh;
+}
+#userImgComment{
+  padding: 0;
+  margin: 0;
+}
+#edited_comment button{
+  padding: 1vh 2vw;
+  color: white;
+  border: none;
+  background-color: var(--background-color);
+}
+.editComment {
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.editComment textarea{
+  width: 90%;
+}
+.editComment button{
+  padding: 1vh 2vw;
+  color: white;
+  border: none;
+  background-color: var(--background-color);
+  border-radius: 50px;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -1293,8 +1329,8 @@ border: 0.5rem solid rgba(247,104,247,0.8);
       display: none;
     }
   #linksResponsive{
-      display: none;
-    }
+    display: none;
+  }
   }
 
   @media(max-width:900px){
@@ -1391,19 +1427,28 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .cardHijo{
     width: 90%;
   }
-/* ---- HOME RECOMMEND ----- */
-.Recommend {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50vh;
-}
-.Recommend h5 {
-  font-size: 1.5rem;
-}
-.cardHijoRecommend{
-  width: 80vw;
-}
-
+  /* ---- HOME RECOMMEND ----- */
+  .Recommend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
   }
 
+  .Recommend h5 {
+    font-size: 1.5rem;
+  }
+  .cardHijoRecommend{
+    width: 80vw;
+  }
+}
+
+/* -------LOADER-------- */
+.loader{
+  width: 100%;
+  min-height: 80vh;
+  height: 30vh;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+}

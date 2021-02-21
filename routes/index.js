@@ -1,5 +1,6 @@
 const express = require("express");
 const router= express.Router();
+const { Router } = require("express");
 const GameController = require('../controllers/GameController')
 const newsController= require('../controllers/newsController')
 const validator=require("../controllers/validator");
@@ -7,7 +8,6 @@ const passport= require("passport");
 require("../config/passport");
 const userController=require("../controllers/userController");
 const emailController= require('../controllers/emailController');
-const { Router } = require("express");
 
 
 // RUTAS PARA USUARIOS
@@ -52,9 +52,11 @@ router.route('/games/:idGame/:idComment')
 
 /* ruta para envío de emails */
 router.route('/contact/send')
-.post(emailController.sendEmail)
+// .post(validator.validateEmail,emailController.sendEmail)
+.post(validator.validateEmail,emailController.sendEmail)
+
 //ruta para recuperar contraseña 
 router.route('/recoverPassword')
-.post(emailController.recoverPassword)
+.post(validator.validateNewPass,emailController.recoverPassword)
 
 module.exports=router;

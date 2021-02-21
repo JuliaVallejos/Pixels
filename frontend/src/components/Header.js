@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router-dom'
+import {NavLink,Link} from 'react-router-dom'
 import {connect} from "react-redux"
 import usersActions from "../redux/actions/usersActions"
 import Hamburger from 'hamburger-react'
@@ -13,18 +13,18 @@ const Header = ({loggedUser,logOut}) =>{
         <>
         <div id="headerContainer" className="justifyBetween">
             
-            <div className="logo"  style={{backgroundImage: `url("../assets/logo.png")`}}></div>
+            <Link className="logo"  style={{backgroundImage: `url("../assets/logo.png")`}} to ='/'></Link>
             <div className="links justifyBetween">
                 <NavLink exact to='/'><p>Home</p></NavLink>
                 <NavLink to='/library'><p>Library</p></NavLink>
                 <NavLink to='/news'><p>News</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
                     ? <NavLink exact to='/developers'><p>Developers</p></NavLink>
-                    : <NavLink Redirect to='/home' onClick={()=> Swal.fire({
+                    : <Link Redirect to='/' onClick={()=> Swal.fire({
                         icon: 'warning',    
                         title: 'Attention!',
                         text: 'You need to login with a developer account!',
-                      })} ><p>Developers</p></NavLink>
+                      })} ><p>Developers</p></Link>
                     }
                 {loggedUser===null
                 ? <>
@@ -58,10 +58,10 @@ const Header = ({loggedUser,logOut}) =>{
                     }
                     {loggedUser===null
                     ? <>
-                        <NavLink to ='/login'><p>LogIn</p></NavLink>
-                        <NavLink to ='/signup'><p>SignUp</p></NavLink>
+                        <NavLink to='/login'><p>LogIn</p></NavLink>
+                        <NavLink to='/signup'><p>SignUp</p></NavLink>
                       </>
-                    :   <NavLink to ="/" onClick={logOut}>LogOut</NavLink>
+                    :   <NavLink to="/" onClick={logOut}>LogOut</NavLink>
                 }
                 </div>
                 </>                

@@ -9,8 +9,6 @@ import gamesActions from '../redux/actions/gamesActions'
 
 const CategoryList = (props) =>{
 
-    
-      
     const category= props.match.params.category
     const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
     

@@ -8,6 +8,8 @@ const usersActions = {
         const data = await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
           headers: {"Content-Type": "multipart: form-data"}
         }); 
+        console.log("ENTRO AL ACTION")
+        console.log(data.data)
         if (data.data.sucess){
           dispatch({type:'LOGIN', payload:data.data.response})
         } else{
@@ -26,6 +28,7 @@ const usersActions = {
         
         if(data.data.sucess){
           dispatch({type:'LOGIN', payload:data.data.response})
+          return data.data
         }else{
           return data.data
         }
@@ -52,7 +55,7 @@ const usersActions = {
           dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
-        console.log(error)
+        
         if(error.status===401){
           Swal.fire({
             icon: 'error',
@@ -66,7 +69,7 @@ const usersActions = {
   recoverPassword: (password)=>{
     return async (dispatch, getstate)=>{
       try{
-        const data = await axios.post('http://localhost:4000/api/recoverPassword/',password)
+        const data = await axios.post('http://localhost:4000/api/recoverPassword',password)
        
         if(data.data.sucess){
           dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
@@ -87,6 +90,7 @@ const usersActions = {
         
         if(data.data.sucess){
           dispatch({type:'CONTACTEMAIL', payload:data.data.response})
+          return data.data.response
         }else{
           return data.data
         }

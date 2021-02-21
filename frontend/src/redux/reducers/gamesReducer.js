@@ -6,18 +6,18 @@ const initialState ={
     newGamesList:[],
     mostValuedList:[],
     categories:[
-        {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
+        {name:"Horror",img:'https://images8.alphacoders.com/827/thumb-1920-827457.jpg'},
         {name:"Action",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
-        {name:"RPG",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
-        {name:"Adventure",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
-        {name:"Survival",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
+        {name:"RPG",img:'https://images3.alphacoders.com/219/thumb-1920-219847.jpg'},
+        {name:"Adventure",img:'https://1.bp.blogspot.com/-GzD0hMIhIIM/W5gJn6UPdcI/AAAAAAAAOx8/5hhc-azFinkQxcOuwWBoG-y4Z7bhhy0vACLcBGAs/s1600/shadowofthetombraider-5826c8c2a86d347c85d481597fd035a6-1200x600.jpg'},
+        {name:"Survival",img:'https://pbs.twimg.com/media/Cw7DP4KWQAAf37-.jpg'},
         {name:"Arcade",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
-        {name:"Shooter",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
-        {name:"MOBA",img:'https://images5.alphacoders.com/104/thumb-1920-1046767.jpg'}]
+        {name:"Shooter",img:'https://dmarket.com/blog/best-csgo-wallpapers/cs-go-wallpaper_hub6d22fdcaa8629b6f1a6781f6a106093_183473_1920x1080_resize_q75_lanczos.jpg'},
+        {name:"MOBA",img:'https://i.pinimg.com/originals/6f/93/50/6f93508f78319faf2a9929632b3fc041.jpg'}]
 }
 
  function gamesReducer(state= initialState,action){
-     function prom(game){
+     function getProm(game){
        let prom = 0
   /*       const newPayload= action.payload.map(game =>{   */           
            game.valoration.map(() =>{      
@@ -66,7 +66,8 @@ const initialState ={
         
         }
         case 'CHANGES':
-            const newGameChanged= prom(action.payload)
+            const newGameChanged= getProm(action.payload)
+           
                 return {
                     ...state,
                     loading:false,
@@ -75,9 +76,9 @@ const initialState ={
                 }
             
         case "GAMEBYID":
-            console.log(action.payload)
-            console.log("ENTRO AL REDUCER")
-            const newGame= prom(action.payload)
+
+            var newGame= getProm(action.payload)
+            
             return{
                 ...state,
                 gameById:newGame

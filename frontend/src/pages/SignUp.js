@@ -6,6 +6,7 @@ import { GoogleLogin } from 'react-google-login'
 import Swal from 'sweetalert2'
 
 const SignUp = (props) =>{
+    
     const [errors,setErrors] = useState([])
     const [dev,setDev]= useState(false)
     const [newUser,setNewUser] = useState({
@@ -111,9 +112,14 @@ const SignUp = (props) =>{
                 inputAttributes: {
                   'accept': 'image/*',
                   'aria-label': 'Upload your profile picture'
-                }
+                },
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'You need to choose something!'
+                    }
+                },
+                showCancelButton: true 
               })
-            
             if (userRol  && imgFile) {
                 formSignUp.append("userFirstName",googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "))
                 formSignUp.append("userLastName",googleResponse.profileObj.name.split(" ").slice(-1).join(" "))
@@ -121,19 +127,19 @@ const SignUp = (props) =>{
                 formSignUp.append("userPass",googleResponse.profileObj.googleId)
                 formSignUp.append("imgFile",imgFile)
                 formSignUp.append("userRol",userRol)
+                formSignUp.append("userGoogle",true)
                 formSignUp.append("userPhone","")
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
                 if(response && !response.sucess){
                     setErrors([response.errors])
-                }else {
+                }else{
                     Swal.fire({
                         icon: 'success',
-                        title: 'Welcome!' `${localStorage.getItem("userFirstName")}`,
+                        title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                         text: 'Enjoy all our content!',
-                      })
-                    props.history.push('/')
+                    })
                 }
             }
         }
@@ -148,7 +154,6 @@ const SignUp = (props) =>{
                 <input type='email' name='userName' placeholder='Username (email)*' onChange={read_input}/>
                 <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
                 <label htmlFor="userImg"><p>Upload your pic</p></label>
-                {/* <input type='file' id="userImg" name='userImg' onChange={read_input}/> */}
                 <label htmlFor="uploadButton" className="inputFile">
                         <p >Click here to Upload a User Image</p>
                         <input id="uploadButton" className="fileGame" type='file'  name='userImg' onChange={read_input}/>

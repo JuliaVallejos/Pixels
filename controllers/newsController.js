@@ -17,7 +17,7 @@ const newsController ={
         if(error){
             console.log(error)}
         else{ 
-            console.log("IMAGEN GUARDADA")
+        
             createNews.save()
             .then(savedNews=>{
                 console.log("NEWS GRABADA")

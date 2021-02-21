@@ -2,18 +2,20 @@ import {connect} from 'react-redux'
 import newsActions from "../redux/actions/newsActions"
 import {useEffect} from "react"
 import {Link} from 'react-router-dom'
+import Loader from "../components/Loader"
 
 const News = (props) => {
     useEffect(() => {
         props.mostrarNews()
     },[])
-    if(!props.news){return <h2>loading...</h2> }
+    // if(props.news.length===0){return <Loader/>}
     return(
         <>
         <h2 id="newsTitle" className="newsTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>NEWS</h2>
         <div className="newsSection">
+            {props.news.length===0 && <Loader></Loader>}
             {props.news && (props.news).map(article=> {
-           return(
+                return(
             <Link to={`/news/${article._id}`}>
                 <div className="centerCenter">               
                     <div className="cajaNoticia zoom">
