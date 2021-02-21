@@ -4,6 +4,7 @@ import gamesActions from "../redux/actions/gamesActions"
 import ReactStars from "react-rating-stars-component";
 import Commentary from "./Commentary";
 import { set } from "mongoose";
+import Swal from 'sweetalert2'
 
 
 
@@ -26,16 +27,21 @@ const GameById = (props)=>{
     
     }
     const enviarInfo = async e => {
+        if(comment===''){
+            Swal.fire('You cannot send an empty comment!')
+            return false
+        }
         e.preventDefault()
         props.addComment(comment, id)
         setComment('')
     }
     const ratingChanged = (newRating) => {
         newValoration=newRating
-        console.log(newValoration)
+     
     }
-    const send_rate = () =>{
-        props.setValoration(id,newValoration)
+    const send_rate = async() =>{
+      const data = await props.setValoration(id,newValoration)
+
         setEdit(false)
     }
 
@@ -61,18 +67,19 @@ const GameById = (props)=>{
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                                {console.log(props.game.userComments)}
+                               
                                 {props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
-                                <input name="comment" onChange={info} value={comment}  type="text" class="form-control" placeholder="Write your message here!" id="inputEmail4"/>
+                                <input name="comment" disabled={!props.loggedUser&&'true'}onChange={info} value={comment}  type="text" class="form-control" placeholder={props.loggedUser? "Write your message here!" :"Please Login to comment"}id="inputEmail4"/>
                                 <input id="sendMessage" class=" btn btn-primary"  onClick={enviarInfo}  type="submit" value="SEND MESSAGE"/> 
                             </div>    
                         </div>
                     </div>
                     {props.loggedUser&& <button onClick={() => setEdit(true)}>Rate this game</button>}
                     <div className="valoracion justifyCenter">
+                        {console.log(props.game.prom)}
                             {edit?
                             <>
                                 <ReactStars
