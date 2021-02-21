@@ -21,7 +21,6 @@ const CategoryList = (props) =>{
             }
         },[])
     
-
     return (
             <div className="categorySectionTitle">
                 <h2 className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}} >{category}</h2><Link to='/library' className="centerCenter seeAllGames"><p>SEE ALL GAMES</p></Link> 

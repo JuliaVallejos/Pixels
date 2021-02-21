@@ -39,7 +39,7 @@ const LogIn = (props) => {
             
             Swal.fire({
                 icon: 'success',
-                title: 'Welcome!' `${localStorage.getItem("userFirstName")}`,
+                title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                 text: 'Enjoy all our content!',
               })
             

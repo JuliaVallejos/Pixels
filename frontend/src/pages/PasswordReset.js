@@ -5,7 +5,7 @@ import Swal from "sweetalert2"
 
 const PasswordReset = (props)=>{
 
-  console.log(props)
+
   const [errors,setErrors] = useState([])
   const [email, setEmail]= useState({})
     
@@ -19,13 +19,13 @@ const PasswordReset = (props)=>{
         })
     }
     const sendContact = async e =>{
+
         setErrors([])
         e.preventDefault()
         
         const data = await props.contactEmail(email)
         
         if(!data.errors){
-            console.log("entró en data")
             Swal.fire({
                 icon: 'success',
                 title: 'Congratulation!',
@@ -34,22 +34,14 @@ const PasswordReset = (props)=>{
             window.location='/'
         }
         else if (data.errors){
-            console.log("entró en error")
-            setErrors([['Email must be a valid email']])
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Error :(',
-            //     text: 'Email must be a valid email',
-            // })
+            console.log(data)
+
+            setErrors([[data.errors]])
             return false
         }
         else{
-            setErrors([data.errors])
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Error :(',
-            //     text: 'There was a failure sending the email, please try again!',
-            // })
+            console.log(data)
+            setErrors([data])
             return false
         }
     }
@@ -67,7 +59,7 @@ const PasswordReset = (props)=>{
                     {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}
                 </div>
                 )}
-                <p className="centerCenter">An email will be sent to your email to reset your password.</p>
+                <p className="centerCenter">An email will be sent to your mailbox to reset your password</p>
             </form>
             
         </div>

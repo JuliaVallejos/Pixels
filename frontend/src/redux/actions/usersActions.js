@@ -52,7 +52,7 @@ const usersActions = {
           dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
-        console.log(error)
+        
         if(error.status===401){
           Swal.fire({
             icon: 'error',
@@ -87,6 +87,7 @@ const usersActions = {
         
         if(data.data.sucess){
           dispatch({type:'CONTACTEMAIL', payload:data.data.response})
+          return data.data.response
         }else{
           return data.data
         }

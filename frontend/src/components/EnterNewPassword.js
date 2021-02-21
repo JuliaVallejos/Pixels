@@ -4,11 +4,10 @@ import { connect } from "react-redux"
 import usersActions from "../redux/actions/usersActions"
 
 const EnterNewPassword = (props) => {
-    const [errors,setErrors] = useState([])
-    const [password, setPassword]=useState({
-        userPass:''
-    })
-
+const [password, setPassword]=useState({
+    userPass:''
+})
+const [errors, setErrors]=useState([])
     const readInput= e =>{
         const property = e.target.name
         var value = e.target.value
@@ -45,7 +44,8 @@ const EnterNewPassword = (props) => {
             return false
         }
     }
-   
+
+  
     return(
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
@@ -59,7 +59,7 @@ const EnterNewPassword = (props) => {
                     {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}
                 </div>
                 )}
-                <p className="centerCenter">Your password will be reseted.</p>
+                <p className="centerCenter">Your password will be reseted</p>
             </form>            
         </div>
         </>

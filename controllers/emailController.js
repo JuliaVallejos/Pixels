@@ -4,22 +4,28 @@ const User = require('../models/User')
 const bcrypt=require("bcryptjs")
 const emailController = {
 
-    sendEmail: (req, res) =>{
-        console.log(req.body)
+   sendEmail: async (req, res) =>{
+       console.log(req)
+
+       const email=req.body.userName
+
+       const userAwait = await User.findOne({userName:email})
+        if(!userAwait){ 
+            res.json({success: false, errors:"User don't exist"})
+        }
+        else{     
         var transporter = nodemailer.createTransport({
             port: 465,
             host: 'smtp.gmail.com',
             auth: {
-                user: 'proyectopixels0@gmail.com',
-                pass: 'pixels123'
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS
             },
             tls: {
                   rejectedUnauthorized:false
                 } 
         })
-        
-        const email=req.body.userName
-        
+                
         var mailOptions = {
             from: 'proyectopixels0@gmail.com <don`t reply>',
             to: email,
@@ -34,21 +40,21 @@ const emailController = {
         }
         transporter.sendMail(mailOptions, (error, info) =>{
             if(error){
-                console.log(error)
                 res.status(500).send(error.message)
             }else {
                 console.log("Email enviado.")
-                res.status(200).json(req.body)
+                res.status(200).json({respuesta:req.body})
             }
-        })
+        })} 
+    
     },
     resetPassword: (req,res)=> {
         var transporter = nodemailer.createTransport({
             port: 465,
             host: 'smtp.gmail.com',
             auth: {
-                user: 'proyectopixels0@gmail.com',
-                pass: 'pixels123'
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS
             },
             tls: {
                   rejectedUnauthorized:false
@@ -75,21 +81,25 @@ const emailController = {
     },
     
 recoverPassword: async (req, res) =>{
-    console.log(req.body)
+    
     const passHasheado= await bcrypt.hashSync(req.body.userPass,10)
-    console.log(passHasheado)
-    User.findOneAndUpdate({'userName':req.body.userName}, {
+    User.findOneAndUpdate({"userName":req.body.userName}, {
      $set:{
         userPass:userPass=(req.body.userPass=passHasheado)
      }
  })
 
- .then(respuesta =>{
-     return res.json({success:true, response:respuesta})
- })
- .catch(error=>{
-     return res.json({success:false, response:error})
- })  
+    .then(respuesta =>{
+        if(!respuesta){
+            return res.json({success:false, response:'non-existent user'})
+        }
+        else{
+            return res.json({success:true, response:respuesta})
+        }
+    })
+    .catch(error=>{
+        return res.json({success:false, response:error})
+    })  
 
 }
 }
