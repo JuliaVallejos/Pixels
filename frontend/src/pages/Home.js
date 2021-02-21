@@ -37,7 +37,7 @@ const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
                 </div>  
                 <div>
                     <h2 className="homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>RECOMMENDED</h2>
-                    <div className="displayFlex justifyAround">
+                    <div id="recommendedParent"className="displayFlex justifyAround">
                         {mostValuedList.map(game=><RecommendedGame key={game._id} game={game}/>)}
                     </div>
                 </div>

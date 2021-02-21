@@ -34,13 +34,11 @@ function App({loggedUser,login_with_LS}) {
         <Route exact path='/' component={Home}/>
         <Route path='/contact' component={Contact}/>
         <Route path='/library' component={Library}/> 
-
         <Route path='/categories/:category' component={CategoryList}/> 
         <Route path='/games/:id' component={gameById}/>
         <Route path='/news/:id' component={NewsById}/>
         <Route path='/news' component={News}/>
       
-
         <Route path='/commentary' component={Commentary}/>
         <Route path='/passwordReset' component={PasswordReset}/>
         <Route path='/enterNewPassword' component={EnterNewPassword}/>

@@ -91,19 +91,20 @@ const GameById = (props)=>{
                                     </div>
                                     <h3>BACK TO ALL GAMES</h3>
                                 </div>
-                            </Link>
-                            <a href="https://www.paypal.com/" target="_blank">
-                                <div className="caja centerCenter paypal zoom" >
-                                    <div className="iconPaypal centerCenter">
-                                        <GrPaypal/>
-                                    </div>
-                                    <h3>SUPPORT TO CREATOR</h3>
+                                <h3>BACK TO ALL GAMES</h3>
+                        </Link>
+                        <a href="https://www.paypal.com/" target="_blank">
+                            <div className="caja centerCenter paypal zoom" >
+                                <div className="iconPaypal centerCenter">
+                                    <GrPaypal/>
                                 </div>
-                            </a>
+                                <h3>SUPPORT TO CREATOR</h3>
+                            </div>
+                        </a>
                         
                     </div>
                     <div className="commentsRate centerCenter paypal ">
-                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 style={{cursor:'pointer'}} className="centerCenter">RATE THIS GAME</h3></div>}
+                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 className="centerCenter">RATE THIS GAME</h3></div>}
                    </div>
                 
                    
