@@ -32,8 +32,8 @@ const LogIn = (props) => {
             return false;
         }
         const data = await props.login_user(loggedUser) 
-        console.log(data)  
-        if(data && !data.sucess){
+        
+        if(data && !data.success){
             setErrors([data.errors])
             return false;
         }else{
@@ -41,7 +41,7 @@ const LogIn = (props) => {
                 icon: 'success',
                 title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                 text: 'Enjoy all our content!',
-              })
+            })
         }
         
     }
@@ -59,8 +59,7 @@ const LogIn = (props) => {
                 userPass: googleResponse.profileObj.googleId,
                 loginGoogle: true
             })
-            console.log(response)
-            if(response && !response.sucess){
+            if(response && !response.success){
                 setErrors([response.response])
             }else{
                 Swal.fire({

@@ -1,8 +1,11 @@
+const { compareSync } = require("bcryptjs");
 const Joi=require("joi");
 
 const validator={
     validateNewAccount: (req,res,next)=>{
+        console.log(req.body)
         if(!req.body.userGoogle){
+            var errors=[]
             const schema=Joi.object({
                 userName: Joi.string().trim().required().email().rule({ message: '"username" must be a valid email' }),
                 userPass: Joi.string().required().regex(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/).rule({ message: '"password" must contain at least one number, one lowercase and one uppercase letter, six characters' }),
@@ -18,7 +21,7 @@ const validator={
                     "any.required": "This field is required",
                     "string.min": "Must contain at least 2 letters",
                   }),
-                userImg:Joi.string().uri().required().trim().rule({ message: '"user pic" must be a valid url' }),
+                userImg:Joi.string().uri().trim().rule({ message: '"user pic" must be a valid url' }),
                 userPhone:Joi.number(),
                 userPayPal:Joi.string(),
                 userGoogle:Joi.boolean(),
@@ -27,8 +30,9 @@ const validator={
             const validation = schema.validate(req.body,{abortEarly:false});
             if(!validation.error){next();
             }else{
-                console.log(validation.error.details.message)
-                res.json({sucess:false,errors:validation.error.details})
+                errors=(validation.error.details.map(error=>error.message))
+                
+                res.json({sucess:false,errors})
             }
         }else{
             next();
@@ -43,7 +47,6 @@ const validator={
             const validation = schema.validate(req.body,{abortEarly:false});
             if(!validation.error){next();
             }else{
-                console.log(validation.error.details.message)
                 res.json({sucess:false,errors:validation.error.details})
             }
         }else{
@@ -56,7 +59,8 @@ const validator={
                 userName: Joi.string().trim().required().email().rule({ message: '"username" must be a valid email' })
             })
             const validation = schema.validate(req.body,{abortEarly:false});
-            if(!validation.error){next();
+            if(!validation.error){
+                next();
             }else{
                 res.json({sucess:false,errors:validation.error.details})
             }

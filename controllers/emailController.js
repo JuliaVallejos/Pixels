@@ -11,7 +11,7 @@ const emailController = {
 
        const userAwait = await User.findOne({userName:email})
         if(!userAwait){ 
-            res.json({success: false, errors:"User don't exist"})
+            res.json({success: false, errors:[{message:"User don't exist"}]})
         }
         else{     
         var transporter = nodemailer.createTransport({

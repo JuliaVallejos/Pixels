@@ -27,7 +27,13 @@ const Games = (props) =>{
 
     useEffect(() =>{
         let filterElement=  newGamesList.filter((element) =>{
-            return(element.gameTitle.toLowerCase().trim().indexOf(search.toLocaleLowerCase().trim()) !== -1)                              
+            if (element.gameTitle.split(" ")[1]){
+                return(element.gameTitle.split(" ")[0].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0
+                    || element.gameTitle.split(" ")[1].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0) 
+            } 
+            else {
+                return(element.gameTitle.toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0)
+            }   
         })
 
         if(filterElement.length===0){

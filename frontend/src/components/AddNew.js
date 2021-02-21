@@ -19,7 +19,6 @@ const read_input = e=>{
         [property]:value
     })
 }
-console.log(loggedUser)
 
 const send_data = async e=>{
     setErrors([])

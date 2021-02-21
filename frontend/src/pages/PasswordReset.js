@@ -30,17 +30,19 @@ const PasswordReset = (props)=>{
                 icon: 'success',
                 title: 'Congratulation!',
                 text: 'Please check your mailbox! :)',
-              })
-            window.location='/'
+                showConfirmButton: false,
+                timer: 2500
+            })
+            setTimeout(
+                () => window.location="/", 
+                1500
+            );
         }
         else if (data.errors){
-            console.log(data)
-
-            setErrors([[data.errors]])
+            setErrors([[data.errors[0].message]])
             return false
         }
         else{
-            console.log(data)
             setErrors([data])
             return false
         }
@@ -51,8 +53,8 @@ const PasswordReset = (props)=>{
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
             <h2>Enter your Email Account</h2>
-            <form>
-                <input type='email' name="userName" placeholder="Enter your email" onChange={readInput}></input>
+            <form> 
+                 <input type='email' name="userName"  placeholder="Enter your email" onChange={readInput}></input>
                 <button onClick={sendContact}>Send</button>
                 {errors[0] && (
                 <div className="signUpErrorContainer">

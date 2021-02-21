@@ -10,10 +10,8 @@ import Loader from "../components/Loader"
 const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
 
     useEffect(() => {
-    //     if( !news ||news.length===0 || !mostValuedList||  mostValuedList.length===0 || !latestNews){
-            allGames()
-            allNews()
-    //     }
+        allGames()
+        allNews()
     },[])
    
     if(!news){return <Loader/>}

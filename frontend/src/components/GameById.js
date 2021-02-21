@@ -27,7 +27,6 @@ const GameById = (props)=>{
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
-        console.log(comment)
     }
     const enviarInfo = async e => {
         e.preventDefault()
@@ -44,7 +43,6 @@ const GameById = (props)=>{
     }
     const ratingChanged = (newRating) => {
         newValoration=newRating
-        console.log(newValoration)
     }
     const send_rate = async() =>{
       const data = await props.setValoration(id,newValoration)
@@ -69,7 +67,6 @@ const GameById = (props)=>{
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                               {console.log(game)}
                                 {(game.userComments) && game.userComments.map(comment => <Commentary game={game} comment={comment}/>)}
                             </div>
 

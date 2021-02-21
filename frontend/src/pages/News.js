@@ -8,7 +8,6 @@ const News = (props) => {
     useEffect(() => {
         props.mostrarNews()
     },[])
-    // if(props.news.length===0){return <Loader/>}
     return(
         <>
         <h2 id="newsTitle" className="newsTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>NEWS</h2>
