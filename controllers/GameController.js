@@ -1,7 +1,8 @@
 const { populate } = require('../models/Game');
 const Game = require('../models/Game')
-
+const errors =[]
 const GameController ={
+    
     addGame: async (req, res) =>{
         var prom = 0
         const {gameTitle, gameCategories, gameInfo, valoration, userComments, clasificationPEGI, idUser}=req.body

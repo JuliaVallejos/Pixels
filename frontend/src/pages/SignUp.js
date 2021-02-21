@@ -42,7 +42,7 @@ const SignUp = (props) =>{
     
     const send_data= async (e) =>{
         e.preventDefault()
-        setErrors([])
+       /*  setErrors([]) */
         const {userFirstName,userLastName,userName,userPass,userImg,userRol,userPhone,userPayPal} = newUser
         const formSignUp= new FormData();
         formSignUp.append("userFirstName",userFirstName)
@@ -62,7 +62,8 @@ const SignUp = (props) =>{
            
         }
         const data = await props.createNewUser(formSignUp) 
-        console.log(data)    
+  
+        
         if(data && !data.success){
             setErrors([data.errors])
         }else if(data.success){
@@ -71,7 +72,7 @@ const SignUp = (props) =>{
                 title:  `Welcome ${localStorage.getItem("userFirstName")}!`,
                 text: 'Enjoy all our content!',
             })
-            // window.location="/"
+           
         }
         
     }

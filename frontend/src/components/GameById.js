@@ -71,8 +71,8 @@ const GameById = (props)=>{
                             </div>
 
                             <div className="enviarMensaje">
-                                <input name="comment" onChange={info} value={comment}  type="text" class="form-control" placeholder="Write your message here!" id="inputEmail4"/>
-                                <input id="sendMessage" class=" btn btn-primary"  onClick={enviarInfo}  type="submit" value="SEND"/> 
+                                <input name="comment" disabled={!props.loggedUser&&'true'}onChange={info} value={comment}  type="text" class="form-control" placeholder={props.loggedUser? "Write your message here!" :"Please Login to comment"}id="inputEmail4"/>
+                                <input style={{cursor:'pointer'}} id="sendMessage" class=" btn btn-primary"  onClick={enviarInfo}  type="submit" value="SEND"/> 
                             </div>    
                         </div>
                     </div>
@@ -84,22 +84,22 @@ const GameById = (props)=>{
                                     <div className="iconPaypal centerCenter">
                                         <BiJoystick/>
                                     </div>
-                                    <h3>BACK TO ALL GAMES</h3>
+                                    <h3 style={{cursor:'pointer'}}>BACK TO ALL GAMES</h3>
                                 </div>
-                                <h3>BACK TO ALL GAMES</h3>
+                              
                         </Link>
                         <a href="https://www.paypal.com/" target="_blank">
                             <div className="caja centerCenter paypal zoom" >
                                 <div className="iconPaypal centerCenter">
                                     <GrPaypal/>
                                 </div>
-                                <h3>SUPPORT TO CREATOR</h3>
+                                <h3 style={{cursor:'pointer'}}>SUPPORT TO CREATOR</h3>
                             </div>
                         </a>
                         
                     </div>
                     <div className="commentsRate centerCenter paypal ">
-                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 className="centerCenter">RATE THIS GAME</h3></div>}
+                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 style={{cursor:'pointer'}} className="centerCenter">RATE THIS GAME</h3></div>}
                    </div>
                 
                    

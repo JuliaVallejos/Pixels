@@ -33,7 +33,7 @@ const [errors, setErrors]=useState([])
                 title: 'Congratulation!',
                 text: 'Your password has been updated! :)',
               })
-            window.location='/'
+            window.location.href='/'
         }
         else if (data && !data.success){
             setErrors([['Email must be a valid email and password must contain at least one number, one lowercase and one uppercase letter and six characters']])

@@ -56,7 +56,7 @@ const Commentary = (props) =>{
                       <h3 className="NombreUsuario">{props.comment.idUser.userFirstName}  </h3>
                       {!edit?<span className="comentarioTexto">{props.comment.comment}</span> 
                       : <div className="editComment"><textarea col='1' onChange={readInput} id='edited_comment' value={editedComment}/>
-                        <button onClick={send_new_comment}><span>Send</span></button>
+                        <button onClick={send_new_comment}><span style={{cursor:'pointer'}}>Send</span></button>
                       </div>}
               
                   </div>
