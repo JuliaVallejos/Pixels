@@ -52,9 +52,10 @@ router.route('/games/:idGame/:idComment')
 
 /* ruta para envío de emails */
 router.route('/contact/send')
-.post(emailController.sendEmail)
+.post(validator.validateEmail,emailController.sendEmail)
+
 //ruta para recuperar contraseña 
 router.route('/recoverPassword')
-.post(emailController.recoverPassword)
+.post(validator.validateNewPass,emailController.recoverPassword)
 
 module.exports=router;

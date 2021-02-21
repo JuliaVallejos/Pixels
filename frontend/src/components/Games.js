@@ -5,9 +5,8 @@ import {Link} from 'react-router-dom'
 
  
 
-  const Games = (props) =>{
+const Games = (props) =>{
     
-     
     const {newGamesList,filterGames} = props
 
     const [newOrder,setNewOrder] =  useState([])
@@ -66,9 +65,7 @@ import {Link} from 'react-router-dom'
             setNoResults(false)
             setCategories(gamesConcat)
         }    
-
         {(gamesFiltered.length === 0 && gamesConcat.length===0) && setFilterByAge(false)}
-  
     }
     
     
@@ -113,7 +110,7 @@ import {Link} from 'react-router-dom'
                     <button onClick={filt_games}>Search</button>
                     </label>}
             
-                <select defaultValue='' onChange={read_sort}>
+                    <select defaultValue='' onChange={read_sort}>
                     <option value='' >Sort by</option>
                     <option value='most_valued'>Most Valued</option>
                     <option value='less_valued'>Less Valued</option>
@@ -145,15 +142,13 @@ import {Link} from 'react-router-dom'
                                         activeColor="#ffd700"
                                         edit= {false}
                                 /></div>                         
-                            </div> 
-                                                   
+                            </div>                 
                         </div> 
-                   
                     </Link>  
-                )
-              })}
+                    )
+                })}
             </div>
-  }
+                }
             </div>
             </>
         ) 

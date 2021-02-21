@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import usersActions from '../redux/actions/usersActions'
-import userActions from '../redux/actions/usersActions'
+import Swal from "sweetalert2"
 
 const PasswordReset = (props)=>{
     const [email, setEmail]=useState({})
@@ -17,14 +17,42 @@ const PasswordReset = (props)=>{
         e.preventDefault()
         console.log(email)
         if(email.userName === ''){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error :(',
+                text: 'Please introduce your email and try again.',
+              })
             return false
         }
         const data = await props.contactEmail(email)
         console.log(data)
-        if(data && !data.success){
-            console.log(data)
+        if(data && data.success){
+            Swal.fire({
+                icon: 'success',
+                title: 'Congratulation!',
+                text: 'Please check your mailbox! :)',
+              })
+            window.location='/'
+        }
+        else if (data && !data.success){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error :(',
+                text: 'Email must be a valid email',
+            })
+            return false
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Error :(',
+                text: 'There was a failure sending the email, please try again!',
+            })
+            return false
         }
     }
+
+
     return(
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
