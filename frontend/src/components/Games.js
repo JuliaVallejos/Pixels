@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
  
   const Games = (props) =>{
+      console.log(props)
      
     const {newGamesList,filterGames} = props
     const [newOrder,setNewOrder] =  useState([])
