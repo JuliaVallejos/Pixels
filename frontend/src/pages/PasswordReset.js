@@ -4,10 +4,13 @@ import usersActions from '../redux/actions/usersActions'
 import Swal from "sweetalert2"
 
 const PasswordReset = (props)=>{
-    const [email, setEmail]=useState({})
+  console.log(props)
+    const [email, setEmail]= useState({})
+    
     const readInput= e =>{
         const property = e.target.name
         var value = e.target.value
+
         setEmail({
             ...email,
             [property]:value
@@ -16,17 +19,19 @@ const PasswordReset = (props)=>{
     const sendContact = async e =>{
         e.preventDefault()
         console.log(email)
-        if(email.userName === ''){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error :(',
-                text: 'Please introduce your email and try again.',
-              })
-            return false
-        }
+
+        // if(email === ''){
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Error :(',
+        //         text: 'Please introduce your email and try again.',
+        //       })
+        //     return false
+        // }
         const data = await props.contactEmail(email)
-        console.log(data)
-        if(data && data.success){
+        
+        if(!data.errors){
+            console.log("entró en data")
             Swal.fire({
                 icon: 'success',
                 title: 'Congratulation!',
@@ -34,7 +39,8 @@ const PasswordReset = (props)=>{
               })
             window.location='/'
         }
-        else if (data && !data.success){
+        else if (data.errors){
+            console.log("entró en !data")
             Swal.fire({
                 icon: 'error',
                 title: 'Error :(',

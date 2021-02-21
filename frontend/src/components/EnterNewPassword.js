@@ -4,9 +4,10 @@ import { connect } from "react-redux"
 import usersActions from "../redux/actions/usersActions"
 
 const EnterNewPassword = (props) => {
-const [password, setPassword]=useState({
-    userPass:''
-})
+    const [password, setPassword]=useState({
+        userPass:''
+    })
+    console.log(props)
     const readInput= e =>{
         const property = e.target.name
         var value = e.target.value
@@ -15,6 +16,7 @@ const [password, setPassword]=useState({
             [property]:value
         })
     }
+    console.log(props)
     const sendPassword= async e =>{
         e.preventDefault()
         if(password.userPass===''|| password.userName === ''){
@@ -26,6 +28,8 @@ const [password, setPassword]=useState({
             return false
         }
         const data = await props.recoverPassword(password)
+        console.log(data)
+
         if(data && data.success){
             Swal.fire({
                 icon: 'success',
