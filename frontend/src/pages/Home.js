@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {useEffect} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import newsActions from '../redux/actions/newsActions'
+import Loader from "../components/Loader"
 
 const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
 
@@ -14,10 +15,8 @@ const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
             allNews()
     //     }
     },[])
-    if(!news || !allGames ){
-        return <h1>loading...</h1> 
-    }
-    
+   
+    if(!news){return <Loader/>}
     return (
         <> 
             <div className="homeContainer">

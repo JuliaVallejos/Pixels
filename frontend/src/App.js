@@ -26,6 +26,7 @@ function App({loggedUser,login_with_LS}) {
     login_with_LS(localStorage.getItem("token"))
   
   }
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -48,17 +49,17 @@ function App({loggedUser,login_with_LS}) {
           && 
           <>
             <Route exact path='/developers' component={DeveloperPage}/>
-            <Route path='/addnews' component={AddNew}/>
+            <Route exact path='/addnews' component={AddNew}/>
           </>
           }
-
-          {!loggedUser && 
+          {(!loggedUser || loggedUser===null) && 
           <>
             <Route path='/signup' component={SignUp}/>
-            <Route path='/login' component={LogIn}/>
+            <Route exact path='/login' component={LogIn}/>
             <Route path="/passwordReset" component={PasswordReset}/>
             <Route path='/enternewpassword' component={EnterNewPassword}/>
-          </>}       
+          </>
+          }       
           <Redirect to='/'/>
         </Switch>
         <WhatsApp/>

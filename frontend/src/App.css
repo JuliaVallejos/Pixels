@@ -905,7 +905,7 @@ background-color: rgba(247,104,247,0.8);
 
 /* ------ ADD NEWS ------ */
 #uploadButton{
-  display: block;
+  display: none;
 }
 .inputFile{
   display: flex;
@@ -1296,7 +1296,11 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   #headerResponsive{
       display: none;
     }
+  #linksResponsive{
+    display: none;
   }
+  }
+
   @media(max-width:900px){
   #headerContainer{
     display:none;
@@ -1406,4 +1410,12 @@ border: 0.5rem solid rgba(247,104,247,0.8);
 }
 
   }
-
+/* -------LOADER-------- */
+.loader{
+  width: 100%;
+  min-height: 80vh;
+  height: 30vh;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+}

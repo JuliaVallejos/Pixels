@@ -24,15 +24,14 @@ console.log(loggedUser)
 const send_data = async e=>{
     setErrors([])
     e.preventDefault()
-    const {newsTitle,newsImg,newsDescription,newsBody,newsAuthor,dateOfTheNews} = news
+    const {newsTitle,newsImg,newsDescription,newsBody} = news
     const formNews= new FormData();
 
     formNews.append("newsTitle", newsTitle)
     formNews.append("newsImg", newsImg)
     formNews.append("newsDescription", newsDescription)
     formNews.append("newsBody", newsBody)
-    // formNews.append("newsAuthor", newsAuthor)
-    formNews.append("newsAuthor", loggedUser.userFirstName)
+    formNews.append("newsAuthor", loggedUser.userFirstName+" "+loggedUser.userLastName)
 
   if(newsTitle ==='' || newsImg === '' || newsDescription === '' || newsBody === ''   ){
      setErrors([{message:'All required(*) fields must be completed'}])
@@ -65,13 +64,12 @@ return(
         <form className="addNews">
             <input type="text" placeholder="Title of the news" name="newsTitle" onChange={read_input}/>
             <label htmlFor='newsImg'><p>Image for the news</p></label>
-            <label htmlFor="uploadButton" className="inputFile" htmlFor="newsImg">
+            <label htmlFor="uploadButton" className="inputFile" >
                 <p>Click here to Upload a news image</p>
                 <input type='file' id="uploadButton" name='newsImg' onChange={read_input}/>
             </label>            
             <input type="text" placeholder="Description of the news" name="newsDescription" onChange={read_input}/>
             <textarea type="text" placeholder="Body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
-            {/* <input type="text" placeholder="Author of the news" name="newsAuthor" onChange={read_input}/> */}
             <button onClick={send_data} >Create News</button>
             {errors&& errors.map((error,index) =>{
                                     return (<p key={index}>{error.message}</p>)
