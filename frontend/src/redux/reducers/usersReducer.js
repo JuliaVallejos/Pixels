@@ -26,6 +26,12 @@ function usersReducer(state= initialState,action){
                     ...state,
                     loggedUser:action.payload
                 }
+                break
+                case 'CONTACTEMAIL':
+                    return{
+                        ...state,
+                        loggedUser:action.payload
+                    }
         default:
             return state;
 }}
