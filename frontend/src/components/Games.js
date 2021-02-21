@@ -90,7 +90,7 @@ import {Link} from 'react-router-dom'
          return(
             <>
             <div id="library">
-            <h2 className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}} >Find your favorite games</h2>
+            <h2 className="textCenter centerCenter" >Find your favorite games</h2>
 
             <div className="libraryFilters">
 

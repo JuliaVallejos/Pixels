@@ -101,19 +101,16 @@ const GameById = (props)=>{
                                     </div>
                                     <h3>SUPPORT TO CREATOR</h3>
                                 </div>
-                            </a>  
-                        </div>
-                    <div className=" centerCenter paypal ">
-                     {props.loggedUser&& 
-                     <div style={{cursor:'pointer'}}className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}>
-                         <div className="iconPaypal centerCenter"><RiStarSmileLine/>
-                         </div> RATE THIS GAME
-                     </div>}
+                            </a>
+                        
                     </div>
+                    <div className="commentsRate centerCenter paypal ">
+                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 style={{cursor:'pointer'}} className="centerCenter">RATE THIS GAME</h3></div>}
+                   </div>
                 
                    
                     <div className="valoracion centerCenter">
-                        {console.log(edit)}
+                     
                     {edit?
                             <div className='rateGame'>
                                 <ReactStars
@@ -123,18 +120,17 @@ const GameById = (props)=>{
                                     activeColor="#ffd700"
                                     edit={true}
                                     onChange={ratingChanged} />
-                                <div className="cajaRate centerCenter" style={{cursor:'pointer'}} onClick={send_rate}>Vote</div>
+                                <div style={{cursor:'pointer'}}className="cajaRate centerCenter" onClick={send_rate}><p>VOTE</p></div>
                             </div>
-                            :
-                          
-                               <ReactStars
-                                count={5}
-                                isHalf={true}
-                                value={props.game.prom}
-                                size={50}
-                                activeColor="#ffd700"
-                                edit= {false}/> 
-                             
+                            :   
+                            <ReactStars
+                            count={5}
+                            isHalf={true}
+                            value={props.game.prom}
+                            size={50}
+                            activeColor="#ffd700"
+                            edit= {false}/>
+
                             }
                     </div> 
                  </div>

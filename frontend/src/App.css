@@ -156,7 +156,9 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 #cardPadre {
-  padding: 3vh 0;
+  padding: 3vh 1vw;
+  display: flex;
+  flex-wrap: wrap;
 
 }
 
@@ -431,8 +433,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 #cardPadreRecommend {
   padding-top: 5vh;
   padding-bottom: 5vh;
-  
-
+  margin: 1vw;
+  min-width: 20vw;
 }
 
 .Recommend {
@@ -448,8 +450,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 .cardHijoRecommend {
   
-  width:30vw;
-  height:30vh;
+  min-width:40vh;
+  min-height:30vh;
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;
@@ -540,8 +542,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   padding: 10px 0;
 }
 .searchLibrary{
-  width: 40vw;
-  padding: 1vh 3vw;
+  min-width: 25vw;
+  padding: 1vh 1vw;
   border-radius: 50px;
   outline:none;
   border: 2px solid var(--secondary-color);
@@ -562,6 +564,23 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 
 /* ----- CATEGORY ----- */
+.categorySectionTitle{
+  background-color: var(--background-color);
+}
+.seeAllGames{
+  padding: 3vh 0;
+  height: 5vh;
+}
+.seeAllGames p{
+  border: 3px solid var(--secondary-color);
+  padding: 1vh 3vh;
+  border-radius: 100px;
+  transition: 0.2s ease;
+}
+.seeAllGames p:hover{
+  color: var(--active-color);
+  transform: scale(1.05);
+}
 
 .estiloCardCategory{
   color: black;
@@ -663,6 +682,9 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   text-shadow: 0px 0px 10px var(--secondary-color);
   font-size: 2rem;
 }
+.homeNewsCards{
+  margin: 2vh 0;
+}
 .homeHero button {
   color: rgb(255, 255, 255);
   background-color: rgba(247,104,247,0.8);
@@ -690,6 +712,11 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   height: 10vh;
   background-color: rgba(247,104,247,0.67);
   box-shadow: 0px 0px 10px var(--secondary-color);
+}
+#recommendedHomeContainer{
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
@@ -834,6 +861,7 @@ border-radius: 43px 43px 43px 43px;
 
 .cajaPadreSingleGame {
   background-color: var(--background-color);
+  padding-bottom: 3vh;
 }
 
 .cajaPadreNoticia{
@@ -891,54 +919,7 @@ background-color: rgba(247,104,247,0.8);
 
 
 
-/* ------- MEDIA QUERIES ------- */
-@media(min-width:900px){
-#headerResponsive{
-    display: none;
-  }
-}
-@media(max-width:900px){
-#headerContainer{
-  display:none;
-}
-#headerResponsive{
-  display:flex;
-  height: 15vh;
-  background-color: var(--background-color);
-  align-items: center;
-  justify-content: space-around;
-}
-.homeHero h1{
-  font-size: 2rem;
-}
-.homeHero h3{
-  font-size: 1.5rem;
-  text-align: center;
-}
-.tituloNoticia{
-  font-size: 1.5rem;
-}
-.homeTitle{
-  font-size: 2rem;
-}
-.cardHijoRecommend h5{
-  font-size:1rem;
-  text-align: center;
-}
-.descripcionNoticia{
-  font-size: 1.25rem;
-}
-.logo{
-  width: 45vw;
-  margin: 0;
-}
-.links{
-  max-width: 100vw;
-}
-.links p{
-  padding:0 1vw;
-}
-}
+
 
 /* ------- MENU DE HAMBURGESA ------- */
 
@@ -1139,28 +1120,73 @@ textarea{
   font-size: 14px;
   line-height: 1.5;
   color: #797979;
- 
 }
 
 .cajaComentarios{
-  overflow-y: auto ; 
-  
- 
-  width: 50vw;
-  height: 60vh;
-  padding-bottom: 3vh;
+  overflow-y: auto; 
+  min-width: 60vw;
+  height: 50vh;
+  padding: 1.5vh 0;
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
-  border-radius: 43px 43px 43px 43px;
-  -moz-border-radius: 43px 43px 43px 43px;
-  -webkit-border-radius: 43px 43px 43px 43px ;
+  border-radius: 10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px ;
   background-color: rgba(247,104,247,0.8);
   margin-top: 5vh;
   margin-bottom: 5vh;
-
-  
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  height: 20vh;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+#sendMessage{
+  border:none;
+  background-color: var(--background-color);
+  color: white;
+  padding: 1vh 3vw;
+  margin-left: 1vw;
+  margin-right: 3vw;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+#sendMessage:hover{
+  background-color: var(--active-color);
+  color: black;
+  box-shadow: 0px 0px 10px var(--active-color);
+}
+#inputEmail4{
+  width: 100%;
+  margin-left: 2vw ;
+  padding: 0 2vw;
+  border-radius: 100px;
+  border: none;
+  background-color: var(--background-color);
+  color: white;
+  outline: none;
+}
+#inputEmail4::placeholder{
+  color: white;
+}
 
 .mensajes{
   padding-top: 5vh;
@@ -1212,7 +1238,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
 }
 
 .iconPaypal{
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding-right: 1vh;
 }
 
@@ -1234,3 +1260,89 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   align-items: center;
   flex-direction: column;
 }
+
+
+/* ------- MEDIA QUERIES ------- */
+@media(min-width:900px){
+  #headerResponsive{
+      display: none;
+    }
+  }
+  @media(max-width:900px){
+  #headerContainer{
+    display:none;
+  }
+  #headerResponsive{
+    display:flex;
+    height: 15vh;
+    background-color: var(--background-color);
+    align-items: center;
+    justify-content: space-around;
+  }
+  .homeHero h1{
+    font-size: 2rem;
+  }
+  .homeHero h3{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .tituloNoticia{
+    font-size: 1.5rem;
+  }
+  .homeTitle{
+    font-size: 2rem;
+  }
+  .cardHijoRecommend h5{
+    font-size:1rem;
+    text-align: center;
+  }
+  .descripcionNoticia{
+    font-size: 1.25rem;
+  }
+  .logo{
+    width: 45vw;
+    margin: 0;
+  }
+  .links{
+    max-width: 100vw;
+  }
+  .links p{
+    padding:0 1vw;
+  }
+  /*----- COMENTARIOS ------ */
+  .cajaComentarios{
+    width: 90vw;
+  }
+  .backGames, .paypal, .iconPaypal{
+    width: 35vw;
+    padding-right: 1vw;
+    cursor: pointer;
+  }
+  .backGames h3, .paypal h3, .iconPaypal h3{
+    font-size: 0.75rem;
+  }
+  .commentsRate{
+    display: flex;
+    width: 100%;
+  }
+  .cajaRate p{
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  /* ---- FOOTER ---- */
+  .footer{
+    min-height: 40vh;
+  }
+  .footerLinks{ 
+    display: flex;
+    flex-direction: column;    
+  }
+  .footerLinks p{
+    padding: 1vh;
+  }
+
+  /* ------ HEADER ----- */
+  .headerContainer p {
+    padding: 1vh;
+  }
+  }

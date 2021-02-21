@@ -2,7 +2,7 @@ const HomeNews = ({news:{newsImg,newsTitle,news,newsDescription}}) =>{
     
     return (
         <>
-            <div className="bordes estiloCardIt estiloCard cardHijo justifyFlexEnd" 
+            <div className="bordes estiloCardIt estiloCard cardHijo justifyFlexEnd homeNewsCards" 
                 style={{ backgroundImage: `url("/newsImages/${newsImg}")` }}>
                 <div className="news ">
                     <div className="texto">
