@@ -148,7 +148,11 @@ const SignUp = (props) =>{
                 <input type='email' name='userName' placeholder='Username (email)*' onChange={read_input}/>
                 <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
                 <label htmlFor="userImg"><p>Upload your pic</p></label>
-                <input type='file' id="userImg" name='userImg' onChange={read_input}/>
+                {/* <input type='file' id="userImg" name='userImg' onChange={read_input}/> */}
+                <label htmlFor="uploadButton" className="inputFile">
+                        <p >Click here to Upload a Uuser Image</p>
+                        <input id="uploadButton" className="fileGame" type='file'  name='userImg' onChange={read_input}/>
+                    </label>
                 <div className="selection ">
                     
                     <div className="radioButtons displayFlex centerCenter" >
