@@ -4,15 +4,13 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = (props) =>{
-      console.log(props)
-     
-    const {newGamesList,filterGames} = props
+  const Games = ({newGamesList}) =>{
+
     const [newOrder,setNewOrder] =  useState([])
     const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
-    var elements = newGamesList
-    const [categories,setCategories] = useState(elements)
+    
+    const [categories,setCategories] = useState(newGamesList)
     const [search, setSearch] = useState ('')
     var ages=[]
     var gamesFiltered=[]
@@ -21,12 +19,12 @@ import {Link} from 'react-router-dom'
     const [filterByAge,setFilterByAge] = useState(false)
 
     var arrayGames = ((filterBySort===false) ?
-     ((categories.length===0 ) ? elements : categories)
+     ((categories.length===0 ) ? newGamesList : categories)
      : newOrder)
   
 
     useEffect(() =>{
-        let filterElement=  elements.filter((element) =>{
+        let filterElement=  newGamesList.filter((element) =>{
             return(element.gameTitle.toLowerCase().trim().indexOf(search.toLocaleLowerCase().trim()) !== -1)                              
         })
 

@@ -24,7 +24,7 @@ console.log( props.loggedUser.userFirstName)
 const send_data = async e=>{
     setErrors([])
     e.preventDefault()
-    const {newsTitle,newsImg,newsDescription,newsBody,newsAuthor,dateOfTheNews} = news
+    const {newsTitle,newsImg,newsDescription,newsBody} = news
     const formNews= new FormData();
 
     formNews.append("newsTitle", newsTitle)
@@ -40,10 +40,10 @@ const send_data = async e=>{
   }
 
   const data = await props.createNews(formNews)
-  console.log(data)
+  
   if(data && data.success){
     alert("news created")
-    // window.location='/news'
+    window.location='/news'
   }
   else{
       alert("error to create news")

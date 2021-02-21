@@ -17,9 +17,9 @@ import { RiStarSmileLine } from 'react-icons/ri'
 
 
 const GameById = (props)=>{
-
     var newValoration=0
     const {id}= props.match.params
+    console.log(id)
     const [edit,setEdit] = useState(false)
     const [comment, setComment] = useState('')
 
@@ -58,7 +58,7 @@ const GameById = (props)=>{
         <>
             <div>
                 
-                {props.game ?
+                {props.gameById ?
 
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
@@ -148,7 +148,7 @@ const GameById = (props)=>{
 
 const mapStateToProps = state =>{
     return {
-        game: state.game.gameById,
+        gameById: state.game.gameById,
         newGamesList: state.game.newGamesList,
         loggedUser:state.user.loggedUser
     }
