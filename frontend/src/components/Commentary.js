@@ -42,7 +42,7 @@ const Commentary = (props) =>{
     return(
   
   
-    <div className="displayFlex">
+    <div className="displayFlex ">
        
         <div className="centerCenter">
           <div className=" userImg " style={{backgroundImage:`url("${props.comment.idUser.userImg}")`}}></div>

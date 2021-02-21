@@ -1,6 +1,8 @@
 import { connect } from "react-redux"
 import {useEffect} from "react"
 import newsActions from "../redux/actions/newsActions"
+import {Link} from 'react-router-dom'
+import { BiNews } from 'react-icons/bi'
 
 
 const NewsById = (props) =>{
@@ -16,7 +18,7 @@ useEffect(()=>{
 
 
 return(
-<div className="justifyCenter">
+<div className="justifyCenter cajaPadreNoticia">
 
 {props.newsId ?
 <div className="cajaNoticias">
@@ -38,9 +40,16 @@ return(
         <h2>{props.newsId.newsBody}</h2>
     </div>
 
-
-
-
+    <div className="justifyCenter">
+        <Link to="/news">
+            <div className="caja centerCenter backGames zoom " >
+                <div className="iconPaypal centerCenter">
+                    <BiNews/>
+                </div>
+            <h3>BACK TO ALL NEWS</h3>
+            </div>
+        </Link>
+    </div>
 </div>
 
             
