@@ -5,14 +5,16 @@ import ReactStars from "react-rating-stars-component";
 import Commentary from "./Commentary";
 import { set } from "mongoose";
 import Swal from 'sweetalert2'
-
-
+import {Link} from 'react-router-dom'
+import { GrPaypal } from 'react-icons/gr'
+import { BiJoystick } from 'react-icons/bi'
+import { RiStarSmileLine } from 'react-icons/ri'
 
 
 const GameById = (props)=>{
     var newValoration=0
     const {id}= props.match.params
-    console.log(id)
+    console.log(props)
     const [edit,setEdit] = useState(false)
     const [comment, setComment] = useState('')
 
@@ -53,7 +55,7 @@ const GameById = (props)=>{
                 
                 {props.gameById ?
 
-                <>
+                <div className="cajaPadreSingleGame">
                     <div className="singleGame">
                         
                         <div className="cajaTituloSingleGame">
@@ -77,11 +79,35 @@ const GameById = (props)=>{
                             </div>    
                         </div>
                     </div>
-                    {props.loggedUser&& <button onClick={() => setEdit(true)}>Rate this game</button>}
+
+                    <div className="justifyCenter">
+                        <Link to="/library">
+                            <div className="caja centerCenter backGames zoom" >
+                                <div className="iconPaypal centerCenter">
+                                    <BiJoystick/>
+                                </div>
+                                <h3>BACK TO ALL GAMES</h3>
+                            </div>
+                        </Link>
+                        <a href="https://www.paypal.com/" target="_blank">
+                            <div className="caja centerCenter paypal zoom" >
+                                <div className="iconPaypal centerCenter">
+                                    <GrPaypal/>
+                                </div>
+                                <h3>SUPPORT TO CREATOR</h3>
+                            </div>
+                        </a>
+                        
+                    </div>
+                    <div className=" centerCenter paypal ">
+                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div> RATE THIS GAME</div>}
+                   </div>
+                
+                   
                     <div className="valoracion justifyCenter">
                         {console.log(props.game.prom)}
                             {edit?
-                            <>
+                            <div>
                                 <ReactStars
                                     count={5}
                                     isHalf={true}
@@ -89,19 +115,14 @@ const GameById = (props)=>{
                                     activeColor="#ffd700"
                                     edit={true}
                                     onChange={ratingChanged} />
-                                <button onClick={send_rate}>Vote</button>
-                            </>
+                                <div className="cajaRate centerCenter" onClick={send_rate}>VOTE</div>
+                            </div>
                             :
-                                <ReactStars
-                                count={5}
-                                isHalf={true}
-                                value={props.game.prom}
-                                size={50}
-                                activeColor="#ffd700"
-                                edit= {false}/>
+                                <div></div>
                             }
                     </div>
-                </>
+                
+                </div>
                 : <h1> Cargando...</h1>                
                 }
             </div> 
