@@ -66,7 +66,9 @@ const initialState ={
         
         }
         case 'CHANGES':
-            const newGameChanged= prom(action.payload)
+            console.log(action.payload)
+            // const newGameChanged= prom(action.payload)
+            const newGameChanged= action.payload
                 return {
                     ...state,
                     loading:false,
@@ -75,9 +77,9 @@ const initialState ={
                 }
             
         case "GAMEBYID":
-            console.log(action.payload)
-            console.log("ENTRO AL REDUCER")
-            const newGame= prom(action.payload)
+
+            // var newGame= prom(action.payload)
+            var newGame= action.payload
             return{
                 ...state,
                 gameById:newGame

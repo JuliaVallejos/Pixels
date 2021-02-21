@@ -23,19 +23,23 @@ const GameById = (props)=>{
     useEffect(()=>{        
         props.gamesById(id)
     },[])
+    if(props.game==={}){return <h1>loading...</h1> }
     
-    console.log()
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
     
     }
     const enviarInfo = async e => {
+        e.preventDefault()
+        if(!props.loggedUser){
+            Swal.fire('You need be logged to comment!')
+            return false;
+        }
         if(comment===''){
             Swal.fire('You cannot send an empty comment!')
             return false
         }
-        e.preventDefault()
         props.addComment(comment, id)
         setComment('')
     }
@@ -59,7 +63,7 @@ const GameById = (props)=>{
                         <div className="cajaTituloSingleGame centerCenter">
                             <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
                         </div>
-                        <div className="portadaSingleGame" style={{backgroundImage:`url(${props.game.gameImg})`}}/>
+                        <div className="portadaSingleGame" style={{backgroundImage:`url("/gamesImages/${props.game.gameImg}")`}}/>
                         <div className="cajaTituloSingleGame centerCenter">
                             <h3 className="centerCenter uppercase">{props.game.gameInfo}</h3>
                         </div>
