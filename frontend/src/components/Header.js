@@ -19,12 +19,12 @@ const Header = ({loggedUser,logOut}) =>{
                 <NavLink to='/library'><p>Library</p></NavLink>
                 <NavLink to='/news'><p>News</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
-                    ? <NavLink to='/developers'><p>Developers</p></NavLink>
-                    : <NavLink onClick={()=> Swal.fire({
-                        icon: 'warning',
+                    ? <NavLink exact to='/developers'><p>Developers</p></NavLink>
+                    : <NavLink Redirect to='/home' onClick={()=> Swal.fire({
+                        icon: 'warning',    
                         title: 'Attention!',
                         text: 'You need to login with a developer account!',
-                      })} exact to='#'><p>Developers</p></NavLink>
+                      })} ><p>Developers</p></NavLink>
                     }
                 {loggedUser===null
                 ? <>
@@ -49,7 +49,7 @@ const Header = ({loggedUser,logOut}) =>{
                     <NavLink exact to='/'><p>Home</p></NavLink>
                     <NavLink to='/library'><p>Library</p></NavLink>
                     {(loggedUser && loggedUser.userRol==="Developer")
-                    ? <NavLink to='/developers'><p>Developers</p></NavLink>
+                    ? <NavLink exact to='/developers'><p>Developers</p></NavLink>
                     : <NavLink onClick={()=> Swal.fire({
                         icon: 'warning',
                         title: 'Attention!',

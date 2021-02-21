@@ -23,7 +23,7 @@ const usersActions = {
     return async (dispatch,getstate) => {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
-        console.log(data.data.response)
+        
         if(data.data.sucess){
           dispatch({type:'LOGIN', payload:data.data.response})
         }else{
@@ -67,7 +67,7 @@ const usersActions = {
     return async (dispatch, getstate)=>{
       try{
         const data = await axios.post('http://localhost:4000/api/recoverPassword/',password)
-        console.log(data)
+       
         if(data.data.sucess){
           dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
         }else{
@@ -84,7 +84,7 @@ const usersActions = {
     return async (dispatch,getstate)=>{
       try{
         const data = await axios.post('http://localhost:4000/api/contact/send',email)
-        console.log(data)
+        
         if(data.data.sucess){
           dispatch({type:'CONTACTEMAIL', payload:data.data.response})
         }else{
