@@ -1395,6 +1395,12 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   justify-content: center;
   height: 50vh;
 }
+.Recommend h5 {
+  font-size: 1.5rem;
+}
+.cardHijoRecommend{
+  width: 80vw;
+}
 
   }
 
