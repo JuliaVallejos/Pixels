@@ -48,10 +48,10 @@ const Header = ({loggedUser,logOut}) =>{
                     }
                     {loggedUser===null
                     ? <>
-                        <NavLink to ='/login'><p>LogIn</p></NavLink>
-                        <NavLink to ='/signup'><p>SignUp</p></NavLink>
+                        <NavLink to='/login'><p>LogIn</p></NavLink>
+                        <NavLink to='/signup'><p>SignUp</p></NavLink>
                       </>
-                    :   <NavLink to ="/" onClick={logOut}>LogOut</NavLink>
+                    :   <NavLink to="/" onClick={logOut}>LogOut</NavLink>
                 }
                 </div>
                 </>                

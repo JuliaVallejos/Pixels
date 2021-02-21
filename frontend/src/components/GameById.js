@@ -19,7 +19,7 @@ import { RiStarSmileLine } from 'react-icons/ri'
 const GameById = (props)=>{
     var newValoration=0
     const {id}= props.match.params
-    console.log(id)
+    const [loading,setLoading] = useState(false)
     const [edit,setEdit] = useState(false)
     const [comment, setComment] = useState('')
 
@@ -27,7 +27,7 @@ const GameById = (props)=>{
     useEffect(()=>{        
         props.gamesById(id)
     },[])
-
+   
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
@@ -57,8 +57,8 @@ const GameById = (props)=>{
     return(            
         <>
             <div>
-                
-                {props.gameById ?
+               
+                {props.game?
 
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
@@ -75,7 +75,7 @@ const GameById = (props)=>{
                         <div className="cajaComentarios">
                             <div className="mensajes">
                                
-                                {props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
+                                {(props.game.userComments)&&props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
@@ -148,7 +148,7 @@ const GameById = (props)=>{
 
 const mapStateToProps = state =>{
     return {
-        gameById: state.game.gameById,
+        game: state.game.gameById,
         newGamesList: state.game.newGamesList,
         loggedUser:state.user.loggedUser
     }
