@@ -5,7 +5,6 @@ const bcrypt=require("bcryptjs")
 const emailController = {
 
    sendEmail: async (req, res) =>{
-       console.log(req)
 
        const email=req.body.userName
 
