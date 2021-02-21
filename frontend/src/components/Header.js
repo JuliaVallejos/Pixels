@@ -13,7 +13,7 @@ const Header = ({loggedUser,logOut}) =>{
         <>
         <div id="headerContainer" className="justifyBetween">
             
-            <div className="logo"  style={{backgroundImage: `url("../assets/logo.png")`}}></div>
+            <Link className="logo"  style={{backgroundImage: `url("../assets/logo.png")`}} to ='/'></Link>
             <div className="links justifyBetween">
                 <NavLink exact to='/'><p>Home</p></NavLink>
                 <NavLink to='/library'><p>Library</p></NavLink>
@@ -45,10 +45,9 @@ const Header = ({loggedUser,logOut}) =>{
         </div>
         {isOpen && 
                 <>
-                <div id="linksResponsive" className="links sideMenu justifyBetween" style={{marginRight: "0"}}>
+                <div className="links sideMenu justifyBetween" >
                     <NavLink exact to='/'><p>Home</p></NavLink>
                     <NavLink to='/library'><p>Library</p></NavLink>
-                    <NavLink to='/news'><p>News</p></NavLink>
                     {(loggedUser && loggedUser.userRol==="Developer")
                     ? <NavLink exact to='/developers'><p>Developers</p></NavLink>
                     : <NavLink onClick={()=> Swal.fire({
@@ -59,10 +58,10 @@ const Header = ({loggedUser,logOut}) =>{
                     }
                     {loggedUser===null
                     ? <>
-                        <NavLink to ='/login'><p>LogIn</p></NavLink>
-                        <NavLink to ='/signup'><p>SignUp</p></NavLink>
+                        <NavLink to='/login'><p>LogIn</p></NavLink>
+                        <NavLink to='/signup'><p>SignUp</p></NavLink>
                       </>
-                    :   <NavLink to ="/" onClick={logOut}>LogOut</NavLink>
+                    :   <NavLink to="/" onClick={logOut}>LogOut</NavLink>
                 }
                 </div>
                 </>                

@@ -73,9 +73,9 @@ const emailController = {
     },
     
 recoverPassword: async (req, res) =>{
-    console.log(req.body)
+
     const passHasheado= await bcrypt.hashSync(req.body.userPass,10)
-    console.log(passHasheado)
+
     User.findOneAndUpdate({'userName':req.body.userName}, {
      $set:{
         userPass:userPass=(req.body.userPass=passHasheado)
