@@ -1,7 +1,7 @@
 const RecommendedGame = () =>{ 
     
     return(
-        <div className="displayFlex justifyAround">
+        <div className="displayFlex justifyAround" id="recommendedHomeContainer">
             <div>
                 <div id="cardPadreRecommend" className="justifyCenter">  
                     <div className="bordesRecommend estiloCardItRecommend estiloCardRecommend cardHijoRecommend justifyFlexEnd" style={{ backgroundImage: `url("https://e00-marca.uecdn.es/assets/multimedia/imagenes/2019/07/18/15634789301233.jpg")` }}>

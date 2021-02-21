@@ -95,7 +95,7 @@ const AddGame = (props) =>{
                     </select>
 
                     <label htmlFor='gameImg'><p>Upload your game pic</p></label>
-                    <label for="uploadButton" className="inputFile" htmlFor="gameImg">
+                    <label htmlFor="uploadButton" className="inputFile">
                         <p >Click here to Upload a news image</p>
                         <input id="uploadButton" className="fileGame" type='file'  name='gameImg' onChange={read_input}/>
                     </label>

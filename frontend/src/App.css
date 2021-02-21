@@ -156,7 +156,9 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 #cardPadre {
-  padding: 3vh 0;
+  padding: 3vh 1vw;
+  display: flex;
+  flex-wrap: wrap;
 
 }
 
@@ -431,8 +433,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 #cardPadreRecommend {
   padding-top: 5vh;
   padding-bottom: 5vh;
-  
-
+  margin: 1vw;
+  min-width: 20vw;
 }
 
 .Recommend {
@@ -448,8 +450,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 .cardHijoRecommend {
   
-  width:30vw;
-  height:30vh;
+  min-width:40vh;
+  min-height:30vh;
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;
@@ -540,8 +542,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   padding: 10px 0;
 }
 .searchLibrary{
-  width: 40vw;
-  padding: 1vh 3vw;
+  min-width: 25vw;
+  padding: 1vh 1vw;
   border-radius: 50px;
   outline:none;
   border: 2px solid var(--secondary-color);
@@ -562,6 +564,23 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 
 /* ----- CATEGORY ----- */
+.categorySectionTitle{
+  background-color: var(--background-color);
+}
+.seeAllGames{
+  padding: 3vh 0;
+  height: 5vh;
+}
+.seeAllGames p{
+  border: 3px solid var(--secondary-color);
+  padding: 1vh 3vh;
+  border-radius: 100px;
+  transition: 0.2s ease;
+}
+.seeAllGames p:hover{
+  color: var(--active-color);
+  transform: scale(1.05);
+}
 
 .estiloCardCategory{
   color: black;
@@ -663,6 +682,9 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   text-shadow: 0px 0px 10px var(--secondary-color);
   font-size: 2rem;
 }
+.homeNewsCards{
+  margin: 2vh 0;
+}
 .homeHero button {
   color: rgb(255, 255, 255);
   background-color: rgba(247,104,247,0.8);
@@ -690,6 +712,11 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   height: 10vh;
   background-color: rgba(247,104,247,0.67);
   box-shadow: 0px 0px 10px var(--secondary-color);
+}
+#recommendedHomeContainer{
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 

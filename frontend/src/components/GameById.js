@@ -113,8 +113,15 @@ const GameById = (props)=>{
                                     onChange={ratingChanged} />
                                 <div className="cajaRate centerCenter" onClick={send_rate}>VOTE</div>
                             </div>
-                            :
-                                <div></div>
+                            :   
+                            <ReactStars
+                            count={5}
+                            isHalf={true}
+                            value={props.game.prom}
+                            size={50}
+                            activeColor="#ffd700"
+                            edit= {false}/>
+
                             }
                     </div>
                 
