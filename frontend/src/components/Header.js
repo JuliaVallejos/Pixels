@@ -20,11 +20,11 @@ const Header = ({loggedUser,logOut}) =>{
                 <NavLink to='/news'><p>News</p></NavLink>
                 {(loggedUser && loggedUser.userRol==="Developer")
                     ? <NavLink exact to='/developers'><p>Developers</p></NavLink>
-                    : <NavLink Redirect to='/home' onClick={()=> Swal.fire({
+                    : <Link Redirect to='/' onClick={()=> Swal.fire({
                         icon: 'warning',    
                         title: 'Attention!',
                         text: 'You need to login with a developer account!',
-                      })} ><p>Developers</p></NavLink>
+                      })} ><p>Developers</p></Link>
                     }
                 {loggedUser===null
                 ? <>
@@ -45,9 +45,10 @@ const Header = ({loggedUser,logOut}) =>{
         </div>
         {isOpen && 
                 <>
-                <div className="links sideMenu justifyBetween" >
+                <div id="linksResponsive" className="links sideMenu justifyBetween" style={{marginRight: "0"}}>
                     <NavLink exact to='/'><p>Home</p></NavLink>
                     <NavLink to='/library'><p>Library</p></NavLink>
+                    <NavLink to='/news'><p>News</p></NavLink>
                     {(loggedUser && loggedUser.userRol==="Developer")
                     ? <NavLink exact to='/developers'><p>Developers</p></NavLink>
                     : <NavLink onClick={()=> Swal.fire({

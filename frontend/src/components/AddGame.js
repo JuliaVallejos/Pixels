@@ -53,14 +53,12 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
-
         console.log(data)
         Swal.fire({
             icon: 'success',
             title: 'Excellent!',
             text: 'The game has been uploaded successfully!',
           })
-
         
         props.history.push('/developers')
 

@@ -4,8 +4,10 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = ({newGamesList}) =>{
-
+  const Games = (props) =>{
+    
+     
+    const {newGamesList,filterGames} = props
     const [newOrder,setNewOrder] =  useState([])
     const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
@@ -124,7 +126,7 @@ import {Link} from 'react-router-dom'
                     <Link key={_id} to={`/games/${_id}`}>
                         <div className="zoom" key={_id}> 
                                                   
-                            <div className="portadaJuego" style={{backgroundImage:`url(${gameImg})`}}>
+                            <div className="portadaJuego" style={{backgroundImage:`url(/gamesImages/${gameImg})`}}>
                                 <p className="pegiClasification centerCenter">{clasificationPEGI}</p>  
                             </div>                            
                             <div className="cajaInformacion">

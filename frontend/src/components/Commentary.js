@@ -8,11 +8,9 @@ import Swal from 'sweetalert2'
 const Commentary = (props) =>{ 
   const [edit,setEdit] = useState(false)
   const [editedComment,setEditedComment] = useState(props.comment.comment)
- const [gameNew,setGameNew] =useState(props.game)
-  useEffect(()=>{        
-    
-},[])
+  const [gameNew,setGameNew] =useState(props.game)
 
+  console.log("HOLAAA")
   const deleteComment =async()=>{
      
           const data = await props.deleteComment( props.game._id, props.comment._id)
@@ -38,14 +36,14 @@ const Commentary = (props) =>{
         setEdit(false)
     }  
 } 
-
+console.log(props.comment.idUser.userImg)
     return(
   
   
     <div className="displayFlex ">
        
         <div className="centerCenter">
-          <div className=" userImg " style={{backgroundImage:`url("${props.comment.idUser.userImg}")`}}></div>
+          <div className=" userImg " style={{backgroundImage:`url("/userImages/${props.comment.idUser.userImg}")`}}></div>
           
         </div>
 

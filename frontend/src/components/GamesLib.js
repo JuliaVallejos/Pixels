@@ -6,7 +6,7 @@
         return(
             <>           
            <div style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
-          
+            
              {props.newGamesList && props.newGamesList.map( ({_id,gameTitle,gameImg,prom,gameInfo,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
              
                 return(

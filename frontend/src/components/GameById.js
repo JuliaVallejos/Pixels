@@ -3,7 +3,6 @@ import { connect } from "react-redux"
 import gamesActions from "../redux/actions/gamesActions"
 import ReactStars from "react-rating-stars-component";
 import Commentary from "./Commentary";
-import { set } from "mongoose";
 import Swal from 'sweetalert2'
 import {Link} from 'react-router-dom'
 import { GrPaypal } from 'react-icons/gr'
@@ -24,18 +23,23 @@ const GameById = (props)=>{
     useEffect(()=>{        
         props.gamesById(id)
     },[])
-  
+    if(props.game==={}){return <h1>loading...</h1> }
+    
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
     
     }
     const enviarInfo = async e => {
+        e.preventDefault()
+        if(!props.loggedUser){
+            Swal.fire('You need be logged to comment!')
+            return false;
+        }
         if(comment===''){
             Swal.fire('You cannot send an empty comment!')
             return false
         }
-        e.preventDefault()
         props.addComment(comment, id)
         setComment('')
     }
@@ -50,8 +54,7 @@ const GameById = (props)=>{
     return(            
         <>
             <div>
-                
-                {game ?
+                {props.game ?
 
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
@@ -59,7 +62,7 @@ const GameById = (props)=>{
                         <div className="cajaTituloSingleGame centerCenter">
                             <h1 className="textCenter uppercase">{game.gameTitle}</h1>
                         </div>
-                        <div className="portadaSingleGame" style={{backgroundImage:`url(${game.gameImg})`}}/>
+                        <div className="portadaSingleGame" style={{backgroundImage:`url("/gamesImages/${props.game.gameImg}")`}}/>
                         <div className="cajaTituloSingleGame centerCenter">
                             <h3 className="centerCenter uppercase">{game.gameInfo}</h3>
                         </div>
@@ -87,19 +90,20 @@ const GameById = (props)=>{
                                     </div>
                                     <h3>BACK TO ALL GAMES</h3>
                                 </div>
-                            </Link>
-                            <a href="https://www.paypal.com/" target="_blank">
-                                <div className="caja centerCenter paypal zoom" >
-                                    <div className="iconPaypal centerCenter">
-                                        <GrPaypal/>
-                                    </div>
-                                    <h3>SUPPORT TO CREATOR</h3>
+                                <h3>BACK TO ALL GAMES</h3>
+                        </Link>
+                        <a href="https://www.paypal.com/" target="_blank">
+                            <div className="caja centerCenter paypal zoom" >
+                                <div className="iconPaypal centerCenter">
+                                    <GrPaypal/>
                                 </div>
-                            </a>
+                                <h3>SUPPORT TO CREATOR</h3>
+                            </div>
+                        </a>
                         
                     </div>
                     <div className="commentsRate centerCenter paypal ">
-                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 style={{cursor:'pointer'}} className="centerCenter">RATE THIS GAME</h3></div>}
+                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 className="centerCenter">RATE THIS GAME</h3></div>}
                    </div>
                 
                    
@@ -132,10 +136,7 @@ const GameById = (props)=>{
                     </div> 
                  </div>
                  : <h1> Cargando...</h1>
-                 }   
-                
-                             
-         
+                }   
             </div> 
         </> 
     )

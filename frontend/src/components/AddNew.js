@@ -2,10 +2,9 @@ import { useState } from "react"
 import { connect } from "react-redux"
 import Swal from "sweetalert2"
 import newsActions from "../redux/actions/newsActions"
-import {Redirect} from "react-router-dom"
-import News from "../pages/News"
 
-const AddNew = (props)=>{
+
+const AddNew = ({loggedUser,createNews})=>{
     const [errors,setErrors] = useState([])
     const [news, setNews]=useState({})
 
@@ -20,8 +19,8 @@ const read_input = e=>{
         [property]:value
     })
 }
+console.log(loggedUser)
 
-console.log( props.loggedUser.userFirstName)
 const send_data = async e=>{
     setErrors([])
     e.preventDefault()
@@ -32,15 +31,14 @@ const send_data = async e=>{
     formNews.append("newsImg", newsImg)
     formNews.append("newsDescription", newsDescription)
     formNews.append("newsBody", newsBody)
-    formNews.append("newsAuthor", props.loggedUser.userFirstName)
-
+    formNews.append("newsAuthor", loggedUser.userFirstName+" "+loggedUser.userLastName)
 
   if(newsTitle ==='' || newsImg === '' || newsDescription === '' || newsBody === ''   ){
      setErrors([{message:'All required(*) fields must be completed'}])
       return false 
   }
 
-  const data = await props.createNews(formNews)
+  const data = await createNews(formNews)
   
   if(data && data.success){
     Swal.fire({
@@ -48,7 +46,6 @@ const send_data = async e=>{
         title: 'Congratulation!',
         text: 'The news was successfully created!',
       })
-    window.location='/news'
   }
   else{
     Swal.fire({
@@ -69,11 +66,10 @@ return(
             <label htmlFor='newsImg'><p>Image for the news</p></label>
             <label htmlFor="uploadButton" className="inputFile" >
                 <p>Click here to Upload a news image</p>
-                <input id="uploadButton" type='file' name='newsImg' onChange={read_input}/>
+                <input type='file' id="uploadButton" name='newsImg' onChange={read_input}/>
             </label>            
             <input type="text" placeholder="Description of the news" name="newsDescription" onChange={read_input}/>
             <textarea type="text" placeholder="Body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
-         
             <button onClick={send_data} >Create News</button>
             {errors&& errors.map((error,index) =>{
                                     return (<p key={index}>{error.message}</p>)
@@ -86,8 +82,8 @@ return(
 }
 const mapStateToProps =state=>{
     return{
-        news: state.news.news,
-        loggedUser : state.user.loggedUser
+        loggedUser:state.user.loggedUser,
+        news: state.news.news
     }
 }
 const mapDispatchToProps ={

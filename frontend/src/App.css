@@ -123,9 +123,7 @@ font-family: 'Roboto', sans-serif;
     align-items: center;
     background-size: cover;
     font-weight: bold;
-    text-transform: uppercase;
-    
-    
+    text-transform: uppercase;    
   }
   .estiloCardIt{
     color: black;
@@ -151,7 +149,7 @@ border-radius: 44px 44px 44px 44px;
 border: 0px solid #000000;
 -webkit-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 -moz-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
     
 }
 
@@ -174,7 +172,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cardHijo {
-  width:60vw;
+  width:70vw;
   height:50vh;
   background-Size: cover;
   background-Repeat: no-repeat;
@@ -313,10 +311,16 @@ color: rgb(255, 250, 200);
   text-shadow: 0px 0px 10px var(--secondary-color);
   margin-bottom: 2vh;
 }
-.radioButtons{
-  display: block;
-
+#inputId {
+  display: flex;
+ align-items: center;
+  justify-content: space-around;
 }
+
+#inputId input {
+  margin-left: 2vh;
+}
+
 .devInputs {
   display: block;
 }
@@ -420,14 +424,18 @@ form button:active{
 -webkit-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
 -moz-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
 box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
-border-radius: 44px 44px 44px 44px;
--moz-border-radius: 44px 44px 44px 44px;
--webkit-border-radius: 44px 44px 44px 44px;
+border-radius: 20px 20px 20px 20px;
+-moz-border-radius: 20px 20px 20px 20px;
+-webkit-border-radius: 20px 20px 20px 20px;
 border: 0px solid #000000;
--webkit-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
--moz-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+-webkit-box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
+-moz-box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
+box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
     
+}
+#recommendedParent{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #cardPadreRecommend {
@@ -439,18 +447,17 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 .Recommend {
   width: 100%;
+  max-height: 30%;
   background-color: #fd90ff9a;
   position: absolute;
   bottom: 0;
-  border-radius: 0px 0px 44px 44px;
-  
-  padding-bottom: 1vh;
- 
+  border-radius: 0px 0px 20px 20px;  
+  padding-bottom: 1vh; 
 }
 
-.cardHijoRecommend {
-  
-  min-width:40vh;
+
+.cardHijoRecommend {  
+  min-width:50vh;
   min-height:30vh;
   background-Size: cover;
   background-Repeat: no-repeat;
@@ -461,7 +468,9 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   font-size: 3rem;
   color: white;
   -webkit-text-stroke: 1px black;
-  color: white;
+}
+.tituloRecommend h5 {
+  font-size: 1.25rem;
 }
 
 /* ------- LIBRARY ------ */
@@ -566,7 +575,13 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 /* ----- CATEGORY ----- */
 .categorySectionTitle{
   background-color: var(--background-color);
+  min-height: 60vh;
 }
+.categorySectionTitle h2 {
+  color: white;
+  text-align: center;
+}
+
 .seeAllGames{
   padding: 3vh 0;
   height: 5vh;
@@ -647,7 +662,11 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;
+  transition: 0.2s ease;
   
+}
+.cardHijoCategory:hover{
+  transform: scale(1.05);
 }
 .tituloCategory {
   font-size: 2rem;
@@ -886,7 +905,7 @@ background-color: rgba(247,104,247,0.8);
 
 /* ------ ADD NEWS ------ */
 #uploadButton{
- display: none;
+  display: none;
 }
 .inputFile{
   display: flex;
@@ -907,6 +926,7 @@ background-color: rgba(247,104,247,0.8);
 .inputFile:active{
   color: black;
   background-color: var(--terciary-color);
+  
 }
 .inputFile:hover{
   transform: scale(1.05);
@@ -949,7 +969,8 @@ background-color: rgba(247,104,247,0.8);
   box-shadow: 0px 0px 10px var(--secondary-color);
 }
 .cajaNoticia{
-  width: 70vw;  
+  width: 70vw;
+  
 }
 
 .tituloArticle{
@@ -1005,6 +1026,7 @@ background-color: rgba(247,104,247,0.8);
 
 .cajaNoticias{
   width: 80vw;
+  padding: 3vh 0;
 }
 
 .parrafoNoticia{
@@ -1017,7 +1039,7 @@ background-color: rgba(247,104,247,0.8);
 }
 
 .portadaSingleNews{
-  width:  80vw;
+  width:  100%;
   height: 70vh;
   background-position: center;
   background-size: cover;
@@ -1035,13 +1057,14 @@ background-color: rgba(247,104,247,0.8);
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  color: white;
+  color: var(--primary-color);
   
 }
 .subtitulo{
   font-size: 1.3rem;
   padding-bottom: 2vh;
   opacity: 0.6;
+  padding-top: 1vh;
   color: white;
 }
 
@@ -1105,7 +1128,9 @@ textarea{
 
 .dialogbox .body {
   position: relative;
-  width: 20vw;
+  width: auto;
+  max-width: 60vw;
+  overflow: auto;
   height: auto;
   margin: 20px 10px;
   padding: 5px;
@@ -1271,7 +1296,11 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   #headerResponsive{
       display: none;
     }
+  #linksResponsive{
+    display: none;
   }
+  }
+
   @media(max-width:900px){
   #headerContainer{
     display:none;
@@ -1349,5 +1378,44 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .headerContainer p {
     padding: 1vh;
   }
-  }
 
+  /* ----- SIGN UP ----- */
+
+  form{
+    width: 90%;
+  }
+  /* ----- NOTICIAS ------ */
+  .cajaNoticias{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    
+  }
+  .cardHijo{
+    width: 90%;
+  }
+/* ---- HOME RECOMMEND ----- */
+.Recommend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+.Recommend h5 {
+  font-size: 1.5rem;
+}
+.cardHijoRecommend{
+  width: 80vw;
+}
+
+  }
+/* -------LOADER-------- */
+.loader{
+  width: 100%;
+  min-height: 80vh;
+  height: 30vh;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+}

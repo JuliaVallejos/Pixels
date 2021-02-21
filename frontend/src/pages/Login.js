@@ -29,18 +29,17 @@ const LogIn = (props) => {
             setErrors([ 'All fields must be completed'])
             return false;
         }
-        const data = await props.login_user(loggedUser)   
+        const data = await props.login_user(loggedUser) 
+        console.log(data)  
         if(data && !data.sucess){
             setErrors([data.errors])
             return false;
         }else{
-            
             Swal.fire({
                 icon: 'success',
-                title: 'Welcome!' `${localStorage.getItem("userFirstName")}`,
+                title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                 text: 'Enjoy all our content!',
               })
-            
         }
         
     }
@@ -55,18 +54,19 @@ const LogIn = (props) => {
         }else{
             const response= await props.login_user({
                 userName: googleResponse.profileObj.email,
-                userPass: googleResponse.profileObj.googleId
+                userPass: googleResponse.profileObj.googleId,
+                loginGoogle: true
             })
+            console.log(response)
             if(response && !response.sucess){
                 setErrors([response.response])
             }else{
+                alert("asdasd")
                 Swal.fire({
                     icon: 'success',
                     title:`Welcome ${localStorage.getItem("userFirstName")}!`,
                     text: 'Enjoy all our content!',
                   })
-                props.history.push('/')
-                // <Redirect to="/" />
             }
         }
     }

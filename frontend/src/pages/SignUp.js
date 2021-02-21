@@ -111,9 +111,14 @@ const SignUp = (props) =>{
                 inputAttributes: {
                   'accept': 'image/*',
                   'aria-label': 'Upload your profile picture'
-                }
+                },
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'You need to choose something!'
+                    }
+                },
+                showCancelButton: true 
               })
-            
             if (userRol  && imgFile) {
                 formSignUp.append("userFirstName",googleResponse.profileObj.name.split(" ").slice(0,-1).join(" "))
                 formSignUp.append("userLastName",googleResponse.profileObj.name.split(" ").slice(-1).join(" "))
@@ -121,19 +126,19 @@ const SignUp = (props) =>{
                 formSignUp.append("userPass",googleResponse.profileObj.googleId)
                 formSignUp.append("imgFile",imgFile)
                 formSignUp.append("userRol",userRol)
+                formSignUp.append("userGoogle",true)
                 formSignUp.append("userPhone","")
                 formSignUp.append("userPayPal","")
 
                 const response= await props.createNewUser(formSignUp)
                 if(response && !response.sucess){
                     setErrors([response.errors])
-                }else {
+                }else{
                     Swal.fire({
                         icon: 'success',
-                        title: 'Welcome!' `${localStorage.getItem("userFirstName")}`,
+                        title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                         text: 'Enjoy all our content!',
-                      })
-                    props.history.push('/')
+                    })
                 }
             }
         }
@@ -148,21 +153,28 @@ const SignUp = (props) =>{
                 <input type='email' name='userName' placeholder='Username (email)*' onChange={read_input}/>
                 <input type='password' name='userPass' placeholder='Password*' onChange={read_input}/>
                 <label htmlFor="userImg"><p>Upload your pic</p></label>
-                <input type='file' id="userImg" name='userImg' onChange={read_input}/>
-                <div className="selection">
-                    <div className="radioButtons">
+                <label htmlFor="uploadButton" className="inputFile">
+                        <p >Click here to Upload a User Image</p>
+                        <input id="uploadButton" className="fileGame" type='file'  name='userImg' onChange={read_input}/>
+                    </label>
+                <div className="selection ">
+                    
+                    <div className="radioButtons displayFlex centerCenter" >
                         <label htmlFor='userRol' onChange={read_input}><p>Account Type:</p>
-                        <input type='radio'  onClick={()=>setDev(false)}  value='User' name='userRol'/><p>User</p>
-                        <input type='radio' onClick={()=>setDev(true)} value='Developer' name='userRol'/><p>Developer</p>
+                        <div id="inputId" className="displayFlex">
+                            <input type='radio'  onClick={()=>setDev(false)}  value='User' name='userRol'/><p>User</p>
+                            <input type='radio' onClick={()=>setDev(true)} value='Developer' name='userRol'/><p>Developer</p>
+                        </div>
                         </label>
                     </div>
 
-                    {dev && 
+                    
+                </div>
+                {dev && 
                     <div className="devInputs">
                         <input type='text' name='userPhone'  placeholder='Phone*' onChange={read_input}/>
                         <input type='text' name='userPayPal' placeholder='Your PayPal.me*' onChange={read_input}/>
                     </div>}
-                </div>
 
                 <button type='submit' onClick={send_data}>Send</button>
                 {errors[0] && (
