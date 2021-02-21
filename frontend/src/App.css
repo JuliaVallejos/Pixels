@@ -579,7 +579,13 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 /* ----- CATEGORY ----- */
 .categorySectionTitle{
   background-color: var(--background-color);
+  min-height: 60vh;
 }
+.categorySectionTitle h2 {
+  color: white;
+  text-align: center;
+}
+
 .seeAllGames{
   padding: 3vh 0;
   height: 5vh;
