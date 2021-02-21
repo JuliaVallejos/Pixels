@@ -11,7 +11,6 @@ const DeveloperPage = (props) =>{
     return(
         <> 
         <div className="developerContainer signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
-
             <div className="developerSection">
             {!section ? 
             <>

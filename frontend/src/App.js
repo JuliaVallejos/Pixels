@@ -18,6 +18,8 @@ import News from './pages/News'
 import Commentary from './components/Commentary'
 import NewsById from './components/NewsById'
 
+import EnterNewPassword from './components/EnterNewPassword'
+import PasswordReset from './pages/PasswordReset'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -37,8 +39,10 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/games/:id' component={gameById}/>
         <Route path='/news/:id' component={NewsById}/>
         <Route path='/news' component={News}/>
-        <Route path='/categories/:category' component={Games}/>
+        {/* <Route path='/categories/:category' component={Games}/> */}
         <Route path='/commentary' component={Commentary}/>
+        <Route path='/passwordReset' component={PasswordReset}/>
+        <Route path='/enterNewPassword' component={EnterNewPassword}/>
 
 
           {(loggedUser && loggedUser.userRol==="Developer")
@@ -53,6 +57,8 @@ function App({loggedUser,login_with_LS}) {
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
+            <Route path="/passwordReset" component={PasswordReset}/>
+            <Route path='/enternewpassword' component={EnterNewPassword}/>
           </>}       
           <Redirect to='/'/>
         </Switch>

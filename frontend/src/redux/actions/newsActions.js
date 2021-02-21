@@ -8,7 +8,7 @@ const newsActions ={
               });  
                 if (data.data.success){
                   
-                  dispatch({type:'NEW_NEWS', payload:[getState().news.news,data.data.response]})
+                  dispatch({type:'NEW_NEWS', payload:data.data.response})
                   return data.data
                 }else{
                   return data.data
