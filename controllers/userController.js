@@ -5,10 +5,10 @@ const jasonWebToken=require("jsonwebtoken");
 const userController={
     signUp: async (req,res)=>{
         var errors=[];
-        // const {userName,userPass,userFirstName,userLastName,userImg,userPhone,userPayPal,userRol}=req.body;
+
         const {userName,userPass,userFirstName,userLastName,userPhone,userPayPal,userRol,userGoogle}=req.body;
         const {imgFile}= req.files;
-        // console.log(imgFile)
+
         const imgType=imgFile.name.split(".").slice(-1).join(" ");
         
         const userExists=await User.findOne({userName});
@@ -21,23 +21,24 @@ const userController={
             var imgPath= `${__dirname}/../frontend/public/userImages/${newUser._id}.${imgType}`
             await imgFile.mv(imgPath,error=>{
                 if(error){
-                    console.log(error)
+                 
                     errors.push(error)}
                 else{
-                    console.log(newUser)
+            
                 }})
             newUser.userImg=imgName;
             if(errors.length===0){
-            console.log("NO HAY ERRORES")
+
             const newUserSaved=await newUser.save()
             var token= jasonWebToken.sign({...newUserSaved},process.env.JWT_SECRET_KEY,{})
             }
         }
         return res.json({
             success: errors.length===0 ? true : false,
-            errors:errors,
+            errors: errors.length=== 0 ? null : errors,
             response: errors.length===0 && {token,id: newUser._id,userFirstName,userLastName,userImg:newUser.userImg,userRol}
         })
+        
     },
     logIn: async (req,res)=>{
         var errors=[];

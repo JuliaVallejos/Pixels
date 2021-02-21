@@ -3,7 +3,6 @@ const Joi=require("joi");
 
 const validator={
     validateNewAccount: (req,res,next)=>{
-        console.log(req.body)
         if(!req.body.userGoogle){
             var errors=[]
             const schema=Joi.object({
