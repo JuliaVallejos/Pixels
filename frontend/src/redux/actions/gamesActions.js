@@ -26,12 +26,8 @@ const gamesActions = {
                 const data = await axios.get("http://localhost:4000/api/games")
             
                 if (data.data.success){
-               
                     dispatch({type:'ALL_GAMES',payload:data.data.response})
-                  return data.data.response
-                } else{
-                return data.data
-                }
+                } 
             }catch(error){
             
               const data ={errores:{details:[{message:'An error occurred'}]}}
@@ -45,8 +41,6 @@ const gamesActions = {
       
     add_comment: (comment,idGame) =>{
     return async (dispatch,getstate) => {
-
-        console.log(idGame)
        
         const token = getstate().user.loggedUser? getstate().user.loggedUser.token : ''
         
@@ -75,15 +69,20 @@ const gamesActions = {
     }
     }},
     editComment: (idGame,idComment,editedComment) =>{
+        console.log(idGame)
         return async (dispatch,getstate) => {
         try{
             
-            const data = await axios.put(`http://localhost:4000/api/itineraries/${idGame}/${idComment}`,{editedComment})
+            const data = await axios.put(`http://localhost:4000/api/games/${idGame}/${idComment}`,{editedComment})
+            console.log(data)
             if (data.data.success){
-            dispatch({type:'CHANGES', payload:data.data.itinerary})
+              console.log('true')
+              console.log(data.data.response)
+            dispatch({type:'CHANGES', payload:data.data.response})
             return data
             }  
         } catch(error){
+            console.log(error)
         const data ={errores:{details:[{message:'An error occurred'}]}}
         return data
         }
@@ -91,13 +90,17 @@ const gamesActions = {
     }},
     deleteComment: (idGame,idComment)=>{
         return async (dispatch,getstate) => {
+        
         try{
-        const data = await axios.delete(`http://localhost:4000/api/itineraries/${idGame}/${idComment}`)
+        const data = await axios.delete(`http://localhost:4000/api/games/${idGame}/${idComment}`)
+        
         if (data.data.success){
-            dispatch({type:'CHANGES', payload:data.data.game})
+            console.log(data.data.response)
+            dispatch({type:'CHANGES', payload:data.data.response})
             return data
         }  }  
         catch(error){
+            console.log(error)
         
         const data ={errores:{details:[{message:'An error occurred'}]}}
         return data
@@ -105,21 +108,18 @@ const gamesActions = {
     }}},
     setValoration: (idGame,valoration) =>{
         return async (dispatch,getstate) =>{
-                console.log(valoration)
+           
         const idUser = getstate().user.loggedUser.id
-          let send_data={}
+          let send_data={idUser,valoration}
 
         getstate().game.gameById.valoration.map(user =>{
-               if (user.idUser===idUser){
+            console.log(user)
+               if (user.idUser&& user.idUser===idUser){
+                   console.log('ya habia votad0')
                    send_data={
-                       idUser,valoration,edit:true
+                       ...send_data,edit:true     
                    }
-
-               }else{
-                    send_data={idUser,valoration}
-               }
-               return send_data
-           })
+           } return send_data})
         
     
             try{
@@ -141,7 +141,7 @@ gamesById : (id)=>{
 
         try{
             const data = await axios.get(`http://localhost:4000/api/games/${id}`)
-          console.log(data)
+         console.log(data)
             if (data.data.success){
                 dispatch({type:'GAMEBYID', payload:data.data.response})
                 return data
@@ -154,14 +154,6 @@ gamesById : (id)=>{
             
         }
     }
-},
-
-mostValued : () =>{
-    return async (dispatch , getstate) =>{
-
-       const most_values = getstate().game.newGamesList.sort((a,b) => b.prom - a.prom)
-        dispatch({type:'MOST_VALUED',payload:most_values}) 
-}
 }
 }
 export default gamesActions

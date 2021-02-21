@@ -3,6 +3,7 @@ const initialState ={
     gamesList:[],
     loading:false,
     newGamesList:[],
+    mostValuedList:[],
     categories:[
         {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
         {name:"Action",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
@@ -15,82 +16,85 @@ const initialState ={
 }
 
  function gamesReducer(state= initialState,action){
+     function prom(game){
+       let prom = 0
+  /*       const newPayload= action.payload.map(game =>{   */           
+           game.valoration.map(() =>{      
+              const sum =game.valoration.reduce((a,b) =>{  
+                       return {
+                       valoration: (a.valoration+ b.valoration)
+                       }
+                   }, {valoration: 0})                     
+                  prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
+                   }) 
+            game= {...game,prom:prom} 
+                  
+            return game                    
+     }
+     
     switch (action.type) {
         case 'ALL_GAMES':
-          
             let prom = 0
-            let newPayload= action.payload.map(game =>{             
-               game.valoration.map(() =>{      
-                   const sum =game.valoration.reduce((a,b) =>{  
-                           return {
-                           valoration: (a.valoration+ b.valoration)
-                           }
-                       }, {valoration: 0})                     
-                      prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
-                       }) 
-                   game= {...game,prom:prom}              
-                   return game                   
-                   })            
+            let newGameList1= action.payload.map(game =>{             
+                game.valoration.map(() =>{      
+                    const sum =game.valoration.reduce((a,b) =>{  
+                        return {
+                            valoration:(a.valoration+ b.valoration)
+                        }
+                    }, {valoration: 0})                     
+                    prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
+                }) 
+                game= {...game,prom:prom}              
+                return game                   
+            })  
+            var mostValuedList1= newGameList1.sort((a,b) => a.prom < b.prom? 1:-1)
+            var aux=[]
+            mostValuedList1.filter((game,index)=>{
+                if(index<3) {aux.push(game)}
+            })
+            console.log(aux)
+            // const newPayload = action.payload.map(game =>{ 
+            //     return prom(game)})
+                
         return{
             ...state,
+            newGamesList:newGameList1,
+            mostValuedList:aux,
             gamesList:action.payload,
-            newGamesList:newPayload
-                }
-        
+        }
         case 'FILTER':
-         
         return {
             ...state,
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
         
         }
-        case "GAMEBYID":
-               
-                
-                return{
-                    ...state,
-                    gameById:action.payload
-                }
+      
         case 'CHANGES':
-           
-            let sum =action.payload.valoration.reduce((a,b) =>{  
-                return {
-                valoration: (a.valoration+ b.valoration)
-                }
-            }, {valoration: 0})
+            const newGameChanged= prom(action.payload)
+            console.log(newGameChanged)
+
           
-              let promed = action.payload.valoration.length===0? 0 : sum.valoration/action.payload.valoration.length
+                return {
                     
-              let newPayloadID= {...action.payload,prom:promed}
-                console.log(newPayloadID)
-            
-         
-         
-            return {
-                ...state,
-                loading:false,
-                newGamesList: state.newGamesList.map(game=> game._id===action.payload._id ? game=action.payload : game),
-                gameById: action.payload
-            }
+                    ...state,
+                    loading:false,
+                    newGamesList: state.newGamesList,
+                    gameById: newGameChanged
+                }
             break
             case "GAMEBYID":
+               
+                const newGame= prom(action.payload)
+                console.log(newGame)
                 return{
                     ...state,
-                    gameById:action.payload
+                    gameById:newGame
                 }
-                // gameById:newPayloadID
+        
             
             break
-            
-            case "MOST_VALUED":
-
-                return{
-                    ...state,
-                    mostValuedList:action.payload
-                }
         default:
             return state
-
-}}
-
+    }
+}
 export default gamesReducer

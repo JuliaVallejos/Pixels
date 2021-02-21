@@ -1,10 +1,11 @@
+const { populate } = require('../models/Game');
 const Game = require('../models/Game')
 
 const GameController ={
     addGame: async (req, res) =>{
         var prom = 0
         const {gameTitle, gameCategories, gameInfo, valoration, userComments, clasificationPEGI, idUser}=req.body
-        console.log(req.body)
+      
         const {gameFile} = req.files;
         
         const imgType = gameFile.name.split(".").slice(-1).join(" ");
@@ -18,7 +19,7 @@ const GameController ={
 
         await gameFile.mv(imgPath,error=>{
             if(error){
-                console.log("Todo mal")
+               
                 errors.push(error)}
             else{console.log("Todo OK")}
         })
@@ -29,8 +30,7 @@ const GameController ={
          
         .then( async savedGame =>{
            const game = await savedGame.populate('idUser').execPopulate() 
-           console.log("entró game") 
-           console.log(game)         
+             
             return res.json({success:true, response: game})
         })
         .catch(error=>{
@@ -40,7 +40,7 @@ const GameController ={
 
     allGames: (req, res)=>{
       
-        Game.find()
+        Game.find().populate('idGame').populate('userComments.idUser')
         .then(respuesta =>{
             return res.json({success: true, response: respuesta})
         })
@@ -56,16 +56,16 @@ const GameController ={
             return res.json({success: true, response: respuesta,message:'Game deleted'})
         })
         .catch(error =>{
+    
             return res.json({success: false, error: error})
         })
     
     },
     gameById:(req, res)=>{
-        console.log(req.params)
-
+ 
        const  id=req.params.idGame
 
-        Game.findOne({'_id':id}).populate('_id')
+        Game.findOne({'_id':id}).populate('idGame').populate('userComments.idUser')
 
         .then(respuesta=>{
             return res.json({success:true, response:respuesta})
@@ -80,7 +80,7 @@ const GameController ={
            const {comment}=req.body
            const id=req.params.idGame
 
-           console.log(comment)
+           
           
            Game.findOneAndUpdate({_id:id}, {
             $push:{
@@ -89,7 +89,7 @@ const GameController ={
             
         },
         {new: true}
-        )
+        ).populate('userComments.idUser')
 
         .then(respuesta =>{
             
@@ -98,33 +98,34 @@ const GameController ={
 
         })
         .catch(error=>{
-            console.log(error)
+     
             return res.json({success:false, response:error})
         })  
     },
     
-    modifyComment: (req, res)=>{
-        const {idUser, comment}=req.body
-        Game.findByIdAndUpdate({_id:req.body.id}, {
-         $set:{
-          userComments:{idUser:idUser, comment:comment}
-         }
-     })
-     .then(respuesta =>{
-         return res.json({success:true, response:respuesta})
-     })
-     .catch(error=>{
-         return res.json({success:false, response:error})
-     })  
+    editComment: (req, res)=>{
+       
+        const idGame= req.params.idGame
+        const idComment=req.params.idComment
+        const editedComment = req.body.editedComment
+ 
+       Game.findOneAndUpdate({_id:idGame,'userComments._id':idComment},{ $set: {'userComments.$.comment':editedComment}},{new:true}).populate('idUser').populate('userComments.idUser')
+        .then( response => {
+
+            res.json({success:true,message:'Comment edited',response})})
+        .catch(error => res.json({success:false,error}))
     }, 
+    
     deleteComment: (req, res)=>{
-        const idGames= req.params.idgame
-        const idComment = req.params.idcomment
+
+        const idGames= req.params.idGame
+        const idComment = req.params.idComment
+
         Game.findByIdAndUpdate({_id: idGames},{
             $pull:{
                 userComments:{_id:idComment}
             }
-        })
+        },{new:true}).populate('userComments.idUser')
         .then(respuesta=>{
             return res.json({success:true, response:respuesta, message:"delete comment"})
         })
@@ -135,13 +136,11 @@ const GameController ={
     },
     setValoration: (req,res) =>{
         const idGame= req.params.idGame
-        console.log(req.body)
-     const {idUser,valoration} = req.body
-       const newVal ={idUser,valoration}
-        console.log(idUser)
-        console.log(valoration) 
+        const {idUser,valoration} = req.body
+        const newVal ={idUser,valoration}
+      
         if(req.body.edit){
-            Game.findOneAndUpdate({_id:idGame,'valoration.idUser':idUser},{ $set: {'valoration.$.valoration':valoration}},{new:true})
+            Game.findOneAndUpdate({_id:idGame,'valoration.idUser':idUser},{ $set: {'valoration.$.valoration':valoration}},{new:true}).populate('userComments.idUser')
              .then(respuesta =>{
                 return res.json({success:true, response:respuesta})
             })
@@ -149,7 +148,7 @@ const GameController ={
                 return res.json({success:false, response:error})
             })
             }else{
-        Game.findOneAndUpdate({_id:idGame}, {$push:{valoration:newVal} },{new:true})
+        Game.findOneAndUpdate({_id:idGame}, {$push:{valoration:newVal} },{new:true}).populate('userComments.idUser')
         .then(respuesta =>{
             return res.json({success:true, response:respuesta})
         })

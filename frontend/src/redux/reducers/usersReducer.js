@@ -1,5 +1,5 @@
 const initialState ={
-    loggedUser:null,
+    loggedUser:null
 }
 
 function usersReducer(state= initialState,action){
@@ -21,6 +21,17 @@ function usersReducer(state= initialState,action){
                 loggedUser:null
             }
             break;
+            case 'RECOVERPASSWORD':
+                return{
+                    ...state,
+                    loggedUser:action.payload
+                }
+                break
+                case 'CONTACTEMAIL':
+                    return{
+                        ...state,
+                        loggedUser:action.payload
+                    }
         default:
             return state;
 }}
