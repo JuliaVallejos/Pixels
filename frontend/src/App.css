@@ -1368,5 +1368,11 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .headerContainer p {
     padding: 1vh;
   }
+
+  /* ----- SIGN UP ----- */
+
+  form{
+    width: 90%;
+  }
   }
 

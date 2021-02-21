@@ -150,7 +150,7 @@ const SignUp = (props) =>{
                 <label htmlFor="userImg"><p>Upload your pic</p></label>
                 {/* <input type='file' id="userImg" name='userImg' onChange={read_input}/> */}
                 <label htmlFor="uploadButton" className="inputFile">
-                        <p >Click here to Upload a Uuser Image</p>
+                        <p >Click here to Upload a User Image</p>
                         <input id="uploadButton" className="fileGame" type='file'  name='userImg' onChange={read_input}/>
                     </label>
                 <div className="selection ">
