@@ -861,6 +861,7 @@ border-radius: 43px 43px 43px 43px;
 
 .cajaPadreSingleGame {
   background-color: var(--background-color);
+  padding-bottom: 3vh;
 }
 
 .cajaPadreNoticia{
@@ -1119,40 +1120,69 @@ textarea{
   font-size: 14px;
   line-height: 1.5;
   color: #797979;
- 
 }
 
 .cajaComentarios{
-  overflow-y: auto ; 
-  
- 
-  width: 50vw;
-  height: 60vh;
-  padding-bottom: 3vh;
+  overflow-y: auto; 
+  min-width: 60vw;
+  height: 50vh;
+  padding: 1.5vh 0;
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
-  border-radius: 43px 43px 43px 43px;
-  -moz-border-radius: 43px 43px 43px 43px;
-  -webkit-border-radius: 43px 43px 43px 43px ;
+  border-radius: 10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px ;
   background-color: rgba(247,104,247,0.8);
   margin-top: 5vh;
   margin-bottom: 5vh;
-
-  
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  height: 20vh;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 #sendMessage{
   border:none;
   background-color: var(--background-color);
   color: white;
   padding: 1vh 3vw;
   margin-left: 1vw;
+  margin-right: 3vw;
   border-radius: 100px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+#sendMessage:hover{
+  background-color: var(--active-color);
+  color: black;
+  box-shadow: 0px 0px 10px var(--active-color);
 }
 #inputEmail4{
+  width: 100%;
+  margin-left: 2vw ;
+  padding: 0 2vw;
   border-radius: 100px;
   border: none;
   background-color: var(--background-color);
   color: white;
+  outline: none;
 }
 #inputEmail4::placeholder{
   color: white;
@@ -1208,7 +1238,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
 }
 
 .iconPaypal{
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding-right: 1vh;
 }
 
@@ -1278,5 +1308,25 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   }
   .links p{
     padding:0 1vw;
+  }
+  /*----- COMENTARIOS ------ */
+  .cajaComentarios{
+    width: 90vw;
+  }
+  .backGames, .paypal, .iconPaypal{
+    width: 35vw;
+    padding-right: 1vw;
+    cursor: pointer;
+  }
+  .backGames h3, .paypal h3, .iconPaypal h3{
+    font-size: 0.75rem;
+  }
+  .commentsRate{
+    display: flex;
+    width: 100%;
+  }
+  .cajaRate p{
+    font-size: 1rem;
+    cursor: pointer;
   }
   }

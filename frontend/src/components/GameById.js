@@ -96,8 +96,8 @@ const GameById = (props)=>{
                         </a>
                         
                     </div>
-                    <div className=" centerCenter paypal ">
-                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div> RATE THIS GAME</div>}
+                    <div className="commentsRate centerCenter paypal ">
+                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 className="centerCenter">RATE THIS GAME</h3></div>}
                    </div>
                 
                    
@@ -111,7 +111,7 @@ const GameById = (props)=>{
                                     activeColor="#ffd700"
                                     edit={true}
                                     onChange={ratingChanged} />
-                                <div className="cajaRate centerCenter" onClick={send_rate}>VOTE</div>
+                                <div className="cajaRate centerCenter" onClick={send_rate}><p>VOTE</p></div>
                             </div>
                             :   
                             <ReactStars
