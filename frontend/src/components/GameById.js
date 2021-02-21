@@ -4,6 +4,9 @@ import Swal from "sweetalert2"
 import gamesActions from "../redux/actions/gamesActions"
 import ReactStars from "react-rating-stars-component";
 import Commentary from "./Commentary";
+
+import Swal from 'sweetalert2'
+
 import {Link} from 'react-router-dom'
 import { GrPaypal } from 'react-icons/gr'
 import { BiJoystick } from 'react-icons/bi'
@@ -16,6 +19,7 @@ const GameById = (props)=>{
     const {id}= props.match.params
     const [edit,setEdit] = useState(false)
     const [comment, setComment] = useState('')
+    const {game} = props
     
     
     useEffect(()=>{        
@@ -58,18 +62,18 @@ const GameById = (props)=>{
                     <div className="singleGame">
                         
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
+                            <h1 className="textCenter uppercase">{game.gameTitle}</h1>
                         </div>
                         <div className="portadaSingleGame" style={{backgroundImage:`url("/gamesImages/${props.game.gameImg}")`}}/>
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h3 className="centerCenter uppercase">{props.game.gameInfo}</h3>
+                            <h3 className="centerCenter uppercase">{game.gameInfo}</h3>
                         </div>
                     </div>
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                               
-                                {(props.game.userComments) && props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
+                               {console.log(game)}
+                                {(game.userComments) && game.userComments.map(comment => <Commentary game={game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
@@ -125,7 +129,7 @@ const GameById = (props)=>{
                             <ReactStars
                             count={5}
                             isHalf={true}
-                            value={props.game.prom}
+                            value={game.prom}
                             size={50}
                             activeColor="#ffd700"
                             edit= {false}/>
@@ -134,10 +138,7 @@ const GameById = (props)=>{
                     </div> 
                  </div>
                  : <h1> Cargando...</h1>
-                 }   
-                
-                             
-         
+                }   
             </div> 
         </> 
     )

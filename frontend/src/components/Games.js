@@ -116,7 +116,10 @@ const Games = (props) =>{
                 </select>
 
             </div>
-            {noResults? <h2>No games</h2>:
+            {noResults? <div id="noGames" style={{backgroundImage: `url("/assets/noGames.jpg")` }}>
+                <h2 className="centerCenter">No results</h2>
+            </div> 
+            :
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
       
                 {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{

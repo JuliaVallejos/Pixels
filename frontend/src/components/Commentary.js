@@ -53,7 +53,7 @@ console.log(props.comment.idUser.userImg)
               <span className="tip tip-left"></span>
                   <div className="message">
                     
-                  
+                  {console.log(props.comment)}
                       <h3 className="NombreUsuario">{props.comment.idUser.userFirstName}  </h3>
                       {!edit?<span className="comentarioTexto">{props.comment.comment}</span> : <div ><textarea col='1' onChange={readInput} id='edited_comment' value={editedComment}/><button onClick={send_new_comment}><span>Send</span></button></div>}
               

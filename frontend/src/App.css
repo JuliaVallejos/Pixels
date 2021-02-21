@@ -674,7 +674,13 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   -webkit-text-stroke: 1px black;
   color: white;
 }
-
+#noGames{
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position-x: 50%;
+}
 /* ------ HOME ------ */
 .homeContainer{
   background-color: var(--background-color);
@@ -905,7 +911,7 @@ background-color: rgba(247,104,247,0.8);
 
 /* ------ ADD NEWS ------ */
 #uploadButton{
-  display: block;
+  display: none;
 }
 .inputFile{
   display: flex;
@@ -1296,7 +1302,11 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   #headerResponsive{
       display: none;
     }
+  #linksResponsive{
+    display: none;
   }
+  }
+
   @media(max-width:900px){
   #headerContainer{
     display:none;
@@ -1398,10 +1408,21 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     justify-content: center;
     height: 50vh;
   }
+
   .Recommend h5 {
     font-size: 1.5rem;
   }
   .cardHijoRecommend{
     width: 80vw;
   }
+}
+
+/* -------LOADER-------- */
+.loader{
+  width: 100%;
+  min-height: 80vh;
+  height: 30vh;
+  display: flex ;
+  justify-content: center;
+  align-items: center;
 }
