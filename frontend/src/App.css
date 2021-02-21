@@ -657,7 +657,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cardHijoCategory {
-  width:200px;
+  width:320px;
   height:30vh;
   background-Size: cover;
   background-Repeat: no-repeat;
@@ -1401,21 +1401,22 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .cardHijo{
     width: 90%;
   }
-/* ---- HOME RECOMMEND ----- */
-.Recommend {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50vh;
-}
-.Recommend h5 {
-  font-size: 1.5rem;
-}
-.cardHijoRecommend{
-  width: 80vw;
+  /* ---- HOME RECOMMEND ----- */
+  .Recommend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+  }
+
+  .Recommend h5 {
+    font-size: 1.5rem;
+  }
+  .cardHijoRecommend{
+    width: 80vw;
+  }
 }
 
-  }
 /* -------LOADER-------- */
 .loader{
   width: 100%;

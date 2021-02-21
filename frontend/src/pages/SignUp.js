@@ -6,6 +6,7 @@ import { GoogleLogin } from 'react-google-login'
 import Swal from 'sweetalert2'
 
 const SignUp = (props) =>{
+    
     const [errors,setErrors] = useState([])
     const [dev,setDev]= useState(false)
     const [newUser,setNewUser] = useState({

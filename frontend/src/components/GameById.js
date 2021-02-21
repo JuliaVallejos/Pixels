@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
+import Swal from "sweetalert2"
 import gamesActions from "../redux/actions/gamesActions"
 import ReactStars from "react-rating-stars-component";
 import Commentary from "./Commentary";
+
 import Swal from 'sweetalert2'
+
 import {Link} from 'react-router-dom'
 import { GrPaypal } from 'react-icons/gr'
 import { BiJoystick } from 'react-icons/bi'
 import { RiStarSmileLine } from 'react-icons/ri'
 
 
-
-
 const GameById = (props)=>{
+
     var newValoration=0
     const {id}= props.match.params
     const [edit,setEdit] = useState(false)
@@ -28,7 +30,7 @@ const GameById = (props)=>{
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
-    
+        console.log(comment)
     }
     const enviarInfo = async e => {
         e.preventDefault()
@@ -45,7 +47,7 @@ const GameById = (props)=>{
     }
     const ratingChanged = (newRating) => {
         newValoration=newRating
-     
+        console.log(newValoration)
     }
     const send_rate = async() =>{
       const data = await props.setValoration(id,newValoration)
@@ -75,7 +77,7 @@ const GameById = (props)=>{
                             </div>
 
                             <div className="enviarMensaje">
-                                <input name="comment" disabled={!props.loggedUser&&'true'}onChange={info} value={comment}  type="text" class="form-control" placeholder={props.loggedUser? "Write your message here!" :"Please Login to comment"}id="inputEmail4"/>
+                                <input name="comment" onChange={info} value={comment}  type="text" class="form-control" placeholder="Write your message here!" id="inputEmail4"/>
                                 <input id="sendMessage" class=" btn btn-primary"  onClick={enviarInfo}  type="submit" value="SEND MESSAGE"/> 
                             </div>    
                         </div>

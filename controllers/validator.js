@@ -33,7 +33,36 @@ const validator={
         }else{
             next();
         }
+    },
+    validateNewPass: (req,res,next)=>{
+        if(!req.body.userGoogle){
+            const schema=Joi.object({
+                userName: Joi.string().trim().required().email().rule({ message: '"username" must be a valid email' }),
+                userPass: Joi.string().required().regex(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/).rule({ message: '"password" must contain at least one number, one lowercase and one uppercase letter, six characters' })
+            })
+            const validation = schema.validate(req.body,{abortEarly:false});
+            if(!validation.error){next();
+            }else{
+                console.log(validation.error.details.message)
+                res.json({sucess:false,errors:validation.error.details})
+            }
+        }else{
+            next();
+        }
+    },
+    validateEmail: (req,res,next)=>{
+        if(!req.body.userGoogle){
+            const schema=Joi.object({
+                userName: Joi.string().trim().required().email().rule({ message: '"username" must be a valid email' })
+            })
+            const validation = schema.validate(req.body,{abortEarly:false});
+            if(!validation.error){next();
+            }else{
+                res.json({sucess:false,errors:validation.error.details})
+            }
+        }else{
+            next();
+        }
     }
-    
 }
 module.exports=validator;
