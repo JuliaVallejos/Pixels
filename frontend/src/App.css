@@ -1329,4 +1329,20 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     font-size: 1rem;
     cursor: pointer;
   }
+  /* ---- FOOTER ---- */
+  .footer{
+    min-height: 30vh;
+  }
+  .footerLinks{ 
+    display: flex;
+    flex-direction: column;    
+  }
+  .footerLinks p{
+    padding: 1vh;
+  }
+
+  /* ------ HEADER ----- */
+  .headerContainer p {
+    padding: 1vh;
+  }
   }
