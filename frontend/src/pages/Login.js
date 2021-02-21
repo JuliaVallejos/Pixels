@@ -25,7 +25,7 @@ const LogIn = (props) => {
         e.preventDefault()
         if(loggedUser.userName==='' || loggedUser.userPass===''){
             setErrors(['All fields must be completed'])
-            return false
+            
         }
         const data = await props.login_user(loggedUser)   
         if(data && !data.sucess){
