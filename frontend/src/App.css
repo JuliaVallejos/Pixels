@@ -1331,7 +1331,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   }
   /* ---- FOOTER ---- */
   .footer{
-    min-height: 30vh;
+    min-height: 40vh;
   }
   .footerLinks{ 
     display: flex;
