@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-import Swal from 'sweetalert2'
+
 import { connect } from 'react-redux'
 import usersActions from '../redux/actions/usersActions'
 import userActions from '../redux/actions/usersActions'

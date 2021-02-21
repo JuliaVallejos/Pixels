@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
 const usersActions = {
     createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
@@ -52,7 +54,10 @@ const usersActions = {
       }catch(error){
         console.log(error)
         if(error.status===401){
-          alert("Access denied")
+          Swal.fire({
+            icon: 'error',
+            title: 'ACCESS DENIED!',
+          })
           localStorage.clear()
         }
       }
@@ -77,7 +82,6 @@ const usersActions = {
   },
   contactEmail:(email)=>{
     return async (dispatch,getstate)=>{
-      console.log(email)
       try{
         const data = await axios.post('http://localhost:4000/api/contact/send',email)
         console.log(data)

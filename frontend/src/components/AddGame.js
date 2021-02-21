@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import {useState} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import {Redirect} from 'react-router-dom'
+import Swal from "sweetalert2"
 
 
 const AddGame = (props) =>{
@@ -53,8 +54,13 @@ const AddGame = (props) =>{
         }
      
         const data = await props.submitNewGame(formNewGame)
-        alert('Game ok')
-        console.log(data)
+        
+        Swal.fire({
+            icon: 'success',
+            title: 'Excellent!',
+            text: 'The game has been uploaded successfully!',
+          })
+        
         props.history.push('/developers')
 
         // if(data && !data.sucess){

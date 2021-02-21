@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
 import usersActions from '../redux/actions/usersActions'
 import { GoogleLogin } from  'react-google-login'
+import Swal from "sweetalert2"
+
 
 const LogIn = (props) => {
     const [loggedUser,setLoggedUser] = useState({
@@ -24,21 +26,35 @@ const LogIn = (props) => {
     const send_data = async (e) =>{
         e.preventDefault()
         if(loggedUser.userName==='' || loggedUser.userPass===''){
-            setErrors(['All fields must be completed'])
+            setErrors([ Swal.fire({
+                icon: 'warning',
+                title: 'Look out!',
+                text: 'All fields must be completed',
+              })])
             
         }
         const data = await props.login_user(loggedUser)   
         if(data && !data.sucess){
             setErrors([data.errors])
         }else{
-            alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Welcome!' `${localStorage.getItem("userFirstName")}`,
+                text: 'Enjoy all our content!',
+              })
+            
         }
         
     }
     // GOOGLE SIGN UP ACCOUNT
     const responseGoogle = async (googleResponse) => {
         if(googleResponse.error){
-            alert("error login con google")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'There was an error trying to log in with Google, try again later!',
+              })
         }else{
             const response= await props.login_user({
                 userName: googleResponse.profileObj.email,
@@ -47,7 +63,11 @@ const LogIn = (props) => {
             if(response && !response.sucess){
                 setErrors([response.response])
             }else{
-                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                Swal.fire({
+                    icon: 'success',
+                    title:`Welcome ${localStorage.getItem("userFirstName")}!`,
+                    text: 'Enjoy all our content!',
+                  })
                 props.history.push('/')
                 // <Redirect to="/" />
             }

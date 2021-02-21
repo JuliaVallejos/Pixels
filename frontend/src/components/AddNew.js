@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { connect } from "react-redux"
+import Swal from "sweetalert2"
 import newsActions from "../redux/actions/newsActions"
 
 
@@ -41,11 +42,19 @@ const send_data = async e=>{
   const data = await props.createNews(formNews)
   console.log(data)
   if(data && data.success){
-    alert("news created")
+    Swal.fire({
+        icon: 'success',
+        title: 'Congratulation!',
+        text: 'The news was successfully created!',
+      })
     window.location='/news'
   }
   else{
-      alert("error to create news")
+    Swal.fire({
+        icon: 'error',
+        title: 'Error :(',
+        text: 'There was a failure creating the news, please try again.',
+      })
   }
 //   if(data && !data.success){
 //     setErrors([{message:'All required(*) fields must be completed'}])
