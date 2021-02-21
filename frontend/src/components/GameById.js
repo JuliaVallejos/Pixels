@@ -19,7 +19,6 @@ import { RiStarSmileLine } from 'react-icons/ri'
 const GameById = (props)=>{
     var newValoration=0
     const {id}= props.match.params
-    console.log(id)
     const [edit,setEdit] = useState(false)
     const [comment, setComment] = useState('')
 
@@ -51,8 +50,6 @@ const GameById = (props)=>{
 
         setEdit(false)
     }
-
- 
 
     return(            
         <>
@@ -110,7 +107,7 @@ const GameById = (props)=>{
                 
                    
                     <div className="valoracion justifyCenter">
-                        {console.log(props.game.prom)}
+                    
                             {edit?
                             <div>
                                 <ReactStars
@@ -128,8 +125,8 @@ const GameById = (props)=>{
                     </div>
                 
                 </div>
-                : <h1> Cargando...</h1>                
-                }
+                : <h1> Cargando...</h1>                 
+                 } 
             </div> 
         </> 
     )
