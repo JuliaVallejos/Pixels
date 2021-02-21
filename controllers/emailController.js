@@ -5,7 +5,6 @@ const bcrypt=require("bcryptjs")
 const emailController = {
 
     sendEmail: (req, res) =>{
-        console.log(req.body)
         var transporter = nodemailer.createTransport({
             port: 465,
             host: 'smtp.gmail.com',
@@ -32,7 +31,6 @@ const emailController = {
         }
         transporter.sendMail(mailOptions, (error, info) =>{
             if(error){
-                console.log(error)
                 res.status(500).send(error.message)
             }else {
                 console.log("Email enviado.")
@@ -73,17 +71,21 @@ const emailController = {
     },
     
 recoverPassword: async (req, res) =>{
-    console.log(req.body)
+    
     const passHasheado= await bcrypt.hashSync(req.body.userPass,10)
-    console.log(passHasheado)
-    User.findOneAndUpdate({'userName':req.body.userName}, {
+    User.findOneAndUpdate({"userName":req.body.userName}, {
      $set:{
         userPass:userPass=(req.body.userPass=passHasheado)
      }
  })
 
  .then(respuesta =>{
-     return res.json({success:true, response:respuesta})
+     if(!respuesta){
+         return res.json({success:false, response:'non-existent user'})
+     }
+     else{
+        return res.json({success:true, response:respuesta})
+     }
  })
  .catch(error=>{
      return res.json({success:false, response:error})

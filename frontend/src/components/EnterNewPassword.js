@@ -7,6 +7,7 @@ const EnterNewPassword = (props) => {
 const [password, setPassword]=useState({
     userPass:''
 })
+const [error, setError]=useState([])
     const readInput= e =>{
         const property = e.target.name
         var value = e.target.value
@@ -23,14 +24,13 @@ const [password, setPassword]=useState({
             Swal(' add password')
             return false
         }
-        console.log(password)
         const data = await props.recoverPassword(password)
-        console.log(data)
         if(data && !data.success){
-            console.log(data)
+            setError(data.response)
         }
     }
-   
+
+  
     return(
         <>
         <div className="signUp centerCenter" style={{backgroundImage: `url("../assets/bricks.jpg")`, height: "65vh"}}>
@@ -40,6 +40,7 @@ const [password, setPassword]=useState({
                 <input type='password' name="userPass" placeholder="Enter your new password" onChange={readInput}></input>
                 <button onClick={sendPassword}>Send</button>
                 <p className="centerCenter">Your password will be reseted.</p>
+                <p>{error}</p>
             </form>
             
         </div>

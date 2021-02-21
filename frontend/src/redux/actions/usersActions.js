@@ -52,7 +52,7 @@ const usersActions = {
           dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
-        console.log(error)
+        
         if(error.status===401){
           Swal.fire({
             icon: 'error',
@@ -67,7 +67,7 @@ const usersActions = {
     return async (dispatch, getstate)=>{
       try{
         const data = await axios.post('http://localhost:4000/api/recoverPassword/',password)
-       
+       console.log(data)
         if(data.data.sucess){
           dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
         }else{
