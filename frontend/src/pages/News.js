@@ -10,7 +10,7 @@ const News = (props) => {
     },[])
     return(
         <>
-        <h2 className="newsTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>NEWS</h2>
+        <h2 id="newsTitle" className="newsTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>NEWS</h2>
         <div className="newsSection">
             {props.news.length===0 && <Loader></Loader>}
             {props.news && (props.news).map(article=> {
