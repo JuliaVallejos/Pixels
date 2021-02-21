@@ -64,16 +64,6 @@ return(
     <h2 className="centerCenter">Create your news</h2>
     <div className="addGameContainer centerCenter">
         
-<<<<<<< HEAD
-        {/* <form>
-            <input type="text" placeholder="title of the news" name="newsTitle" onChange={read_input}/>
-            <label htmlFor='newsImg'><p>Image of the news</p></label>
-            <input type='file' id='newsImg' name='newsImg' onChange={read_input}/>
-            <input type="text" placeholder="description of the news" name="newsDescription" onChange={read_input}/>
-            <textarea type="text" placeholder="body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
-            <input type="text" placeholder="author of the news" name="newsAuthor" onChange={read_input}/> */}
-=======
->>>>>>> 3e83313ff05279fe6a61e25aa77759cb0febab46
         <form className="addNews">
             <input type="text" placeholder="Title of the news" name="newsTitle" onChange={read_input}/>
             <label htmlFor='newsImg'><p>Image for the news</p></label>
@@ -83,11 +73,7 @@ return(
             </label>            
             <input type="text" placeholder="Description of the news" name="newsDescription" onChange={read_input}/>
             <textarea type="text" placeholder="Body of the news" name="newsBody" style={{resize: "unset", height:"150px" }} onChange={read_input}/>
-<<<<<<< HEAD
-            <input type="text" placeholder="Author of the news" name="newsAuthor" onChange={read_input}/>
-=======
            {/*  <input type="text" placeholder="Author of the news" name="newsAuthor" onChange={read_input}/> */}
->>>>>>> 3e83313ff05279fe6a61e25aa77759cb0febab46
             <button onClick={send_data} >Create News</button>
             {errors&& errors.map((error,index) =>{
                                     return (<p key={index}>{error.message}</p>)

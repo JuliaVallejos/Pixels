@@ -39,7 +39,6 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/news/:id' component={NewsById}/>
         <Route path='/news' component={News}/>
       
-
         <Route path='/commentary' component={Commentary}/>
         <Route path='/passwordReset' component={PasswordReset}/>
         <Route path='/enterNewPassword' component={EnterNewPassword}/>
