@@ -1,6 +1,7 @@
 
 const initialState ={
     gamesList:[],
+    gameById:{},
     loading:false,
     newGamesList:[],
     mostValuedList:[],
@@ -52,10 +53,6 @@ const initialState ={
             mostValuedList1.filter((game,index)=>{
                 if(index<3) {aux.push(game)}
             })
-            console.log(aux)
-            // const newPayload = action.payload.map(game =>{ 
-            //     return prom(game)})
-                
         return{
             ...state,
             newGamesList:newGameList1,
@@ -68,31 +65,23 @@ const initialState ={
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
         
         }
-      
         case 'CHANGES':
             const newGameChanged= prom(action.payload)
-            console.log(newGameChanged)
-
-          
                 return {
-                    
                     ...state,
                     loading:false,
                     newGamesList: state.newGamesList,
                     gameById: newGameChanged
                 }
-            break
-            case "GAMEBYID":
-               
-                const newGame= prom(action.payload)
-                console.log(newGame)
-                return{
-                    ...state,
-                    gameById:newGame
-                }
-        
             
-            break
+        case "GAMEBYID":
+            console.log(action.payload)
+            console.log("ENTRO AL REDUCER")
+            const newGame= prom(action.payload)
+            return{
+                ...state,
+                gameById:newGame
+            }
         default:
             return state
     }

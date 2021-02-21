@@ -12,6 +12,7 @@ const Footer = ({loggedUser,logOut}) => {
                     <NavLink exact to='/'><p>Home</p></NavLink>
                     <NavLink to='/library'><p>Library</p></NavLink>
                     <NavLink to='/news'><p>News</p></NavLink>
+
                     
                     <div>
                     <NavLink to='/Contact'><p>Contact</p></NavLink>

@@ -4,7 +4,12 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
  
-  const Games = ({newGamesList}) =>{
+
+  const Games = (props) =>{
+    
+     
+    const {newGamesList,filterGames} = props
+
     const [newOrder,setNewOrder] =  useState([])
     const [noResults,setNoResults] = useState(false)
     const [agesState,setAgesState] = useState([])
@@ -38,7 +43,7 @@ import {Link} from 'react-router-dom'
         
         ages = ages.concat(agesState)
         const value = parseInt(e.target.value)
-        console.log("el value es : "+value)
+       
         if(ages.indexOf(value)===-1){
              ages.push(value)
         }else{ 
@@ -118,6 +123,7 @@ import {Link} from 'react-router-dom'
             {noResults? <h2>No games</h2>:
             <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
       
+<<<<<<< HEAD
             {/* {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
                 return(
                 <Link key={_id} to={`/games/${_id}`}>
@@ -128,6 +134,8 @@ import {Link} from 'react-router-dom'
                             <div className="infoJuego">
                                 <h4 className="tituloJuego">{gameTitle}</h4>
                                 <p className="gameInfo">{gameInfo}</p> */}
+=======
+>>>>>>> 3e83313ff05279fe6a61e25aa77759cb0febab46
                 {arrayGames && arrayGames.map( ({_id,gameTitle,gameImg,gameInfo,prom,gameCategories,idUser,valoration,clasificationPEGI,userComments})  =>{
                  return(
                     <Link key={_id} to={`/games/${_id}`}>
@@ -151,6 +159,7 @@ import {Link} from 'react-router-dom'
                                         edit= {false}
                                 /></div>                         
                             </div> 
+<<<<<<< HEAD
                             {/* <div className="valoracion justifyCenter">
                                 <ReactStars
                                     count={5}
@@ -162,6 +171,12 @@ import {Link} from 'react-router-dom'
                             /></div>                          */}
                         </div>                     
                 </Link>  
+=======
+                                                   
+                        </div> 
+                   
+                    </Link>  
+>>>>>>> 3e83313ff05279fe6a61e25aa77759cb0febab46
                 )
               })}
             </div>
