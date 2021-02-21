@@ -123,9 +123,7 @@ font-family: 'Roboto', sans-serif;
     align-items: center;
     background-size: cover;
     font-weight: bold;
-    text-transform: uppercase;
-    
-    
+    text-transform: uppercase;    
   }
   .estiloCardIt{
     color: black;
@@ -151,7 +149,7 @@ border-radius: 44px 44px 44px 44px;
 border: 0px solid #000000;
 -webkit-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 -moz-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
     
 }
 
@@ -174,7 +172,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cardHijo {
-  width:60vw;
+  width:70vw;
   height:50vh;
   background-Size: cover;
   background-Repeat: no-repeat;
@@ -426,13 +424,13 @@ form button:active{
 -webkit-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
 -moz-box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
 box-shadow: 10px 10px 0px 0px rgba(247,104,247,0.67);
-border-radius: 44px 44px 44px 44px;
--moz-border-radius: 44px 44px 44px 44px;
--webkit-border-radius: 44px 44px 44px 44px;
+border-radius: 20px 20px 20px 20px;
+-moz-border-radius: 20px 20px 20px 20px;
+-webkit-border-radius: 20px 20px 20px 20px;
 border: 0px solid #000000;
--webkit-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
--moz-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
-box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
+-webkit-box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
+-moz-box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
+box-shadow: inset 10px 10px 50px 0px rgba(219,96,219,1);
     
 }
 #recommendedParent{
@@ -454,13 +452,12 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   position: absolute;
   bottom: 0;
   border-radius: 0px 0px 20px 20px;  
-  padding-bottom: 1vh;
- 
+  padding-bottom: 1vh; 
 }
 
-.cardHijoRecommend {
-  
-  min-width:40vh;
+
+.cardHijoRecommend {  
+  min-width:50vh;
   min-height:30vh;
   background-Size: cover;
   background-Repeat: no-repeat;
@@ -471,7 +468,6 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   font-size: 3rem;
   color: white;
   -webkit-text-stroke: 1px black;
-  color: white;
 }
 .tituloRecommend h5 {
   font-size: 1.25rem;
@@ -1383,6 +1379,18 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     flex-direction: column;
     justify-content: center;
     width: 90%;
+    
   }
+  .cardHijo{
+    width: 90%;
+  }
+/* ---- HOME RECOMMEND ----- */
+.Recommend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
   }
 
