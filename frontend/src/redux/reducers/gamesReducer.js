@@ -39,7 +39,7 @@ const initialState ={
                 game.valoration.map(() =>{      
                     const sum =game.valoration.reduce((a,b) =>{  
                         return {
-                            valoration: (a.valoration+ b.valoration)
+                            valoration:(a.valoration+ b.valoration)
                         }
                     }, {valoration: 0})                     
                     prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
@@ -47,23 +47,21 @@ const initialState ={
                 game= {...game,prom:prom}              
                 return game                   
             })  
-            var mostValuedList1= newGameList1.sort((a,b) => b.prom - a.prom? 1:-1)
+            var mostValuedList1= newGameList1.sort((a,b) => a.prom - b.prom? 1:-1)
             var aux=[]
             mostValuedList1.filter((game,index)=>{
                 if(index<3) {aux.push(game)}
             })
-            // console.log(newGameList1)
-            // console.log(aux[0])
-            const newPayload = action.payload.map(game =>{ 
-                return prom(game)})
-                // console.log(newPayload)
+            console.log(newGameList1)
+            console.log(aux)
+            // const newPayload = action.payload.map(game =>{ 
+            //     return prom(game)})
                 
-                console.log(newGameList1)
         return{
             ...state,
-            gamesList:action.payload,
             newGamesList:newGameList1,
-            mostValuedList:aux
+            mostValuedList:aux,
+            gamesList:action.payload,
         }
         case 'FILTER':
         return {
