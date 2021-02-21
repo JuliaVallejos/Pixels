@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import {useState} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import {Redirect} from 'react-router-dom'
+import Swal from "sweetalert2"
 
 
 const AddGame = (props) =>{
@@ -53,17 +54,35 @@ const AddGame = (props) =>{
      
         const data = await props.submitNewGame(formNewGame)
 
-          
-     if(data && !data.success){
-            setErrors([data.errors])
-             alert('Error recording a new game')
-            console.log(errors)
-        }else {
-           alert('New game saved successfully')
+        console.log(data)
+        Swal.fire({
+            icon: 'success',
+            title: 'Excellent!',
+            text: 'The game has been uploaded successfully!',
+          })
 
-                 window.location='/library'
         
-    }}
+        props.history.push('/developers')
+
+        // if(data && !data.sucess){
+        //     setErrors([data.errors])
+        //     alert('Error recording a new game')
+        //     console.log(errors)
+        // }else {
+        //     alert('New game saved successfully')
+
+        // } 
+    }
+    
+    //  if(data && !data.sucess){
+    //         setErrors([data.errors])
+    //          alert('Error recording a new game')
+    //         console.log(errors)
+    //     }else {
+    //        alert('New game saved successfully')
+
+    //              window.location='/library'
+    //     }
    
 
     

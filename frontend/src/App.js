@@ -16,9 +16,9 @@ import gameById  from '../src/components/GameById'
 import News from './pages/News'
 import Commentary from './components/Commentary'
 import NewsById from './components/NewsById'
-import PasswordReset from './pages/PasswordReset'
-import EnterNewPassword from './components/EnterNewPassword'
 
+import EnterNewPassword from './components/EnterNewPassword'
+import PasswordReset from './pages/PasswordReset'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -56,6 +56,8 @@ function App({loggedUser,login_with_LS}) {
           <>
             <Route path='/signup' component={SignUp}/>
             <Route path='/login' component={LogIn}/>
+            <Route path="/passwordReset" component={PasswordReset}/>
+            <Route path='/enternewpassword' component={EnterNewPassword}/>
           </>}       
           <Redirect to='/'/>
         </Switch>

@@ -13,21 +13,18 @@ import { RiStarSmileLine } from 'react-icons/ri'
 
 
 
-
-
-
 const GameById = (props)=>{
     var newValoration=0
     const {id}= props.match.params
-    const [loading,setLoading] = useState(false)
     const [edit,setEdit] = useState(false)
     const [comment, setComment] = useState('')
-
-
+    const {game} = props
+    
+    
     useEffect(()=>{        
         props.gamesById(id)
     },[])
-   
+  
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
@@ -48,34 +45,30 @@ const GameById = (props)=>{
     }
     const send_rate = async() =>{
       const data = await props.setValoration(id,newValoration)
-
-        setEdit(false)
+      setEdit(false)
     }
-
- 
-
     return(            
         <>
             <div>
-               
-                {props.game?
+                
+                {game ?
 
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
                         
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
+                            <h1 className="textCenter uppercase">{game.gameTitle}</h1>
                         </div>
-                        <div className="portadaSingleGame" style={{backgroundImage:`url(${props.game.gameImg})`}}/>
+                        <div className="portadaSingleGame" style={{backgroundImage:`url(${game.gameImg})`}}/>
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h3 className="centerCenter uppercase">{props.game.gameInfo}</h3>
+                            <h3 className="centerCenter uppercase">{game.gameInfo}</h3>
                         </div>
                     </div>
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                               
-                                {(props.game.userComments)&&props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
+                               {console.log(game)}
+                                {(game.userComments) && game.userComments.map(comment => <Commentary game={game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
@@ -84,6 +77,7 @@ const GameById = (props)=>{
                             </div>    
                         </div>
                     </div>
+
 
                         <div className="justifyCenter">
                             <Link to="/library">
@@ -111,8 +105,10 @@ const GameById = (props)=>{
                    
                     <div className="valoracion centerCenter">
                      
-                    {edit?
+                    {edit
+                    ?
                             <div className='rateGame'>
+
                                 <ReactStars
                                     count={5}
                                     isHalf={true}
@@ -120,25 +116,26 @@ const GameById = (props)=>{
                                     activeColor="#ffd700"
                                     edit={true}
                                     onChange={ratingChanged} />
+
                                 <div style={{cursor:'pointer'}}className="cajaRate centerCenter" onClick={send_rate}><p>VOTE</p></div>
                             </div>
                             :   
                             <ReactStars
                             count={5}
                             isHalf={true}
-                            value={props.game.prom}
+                            value={game.prom}
                             size={50}
                             activeColor="#ffd700"
                             edit= {false}/>
 
-                            }
+                    }
                     </div> 
                  </div>
                  : <h1> Cargando...</h1>
                  }   
                 
                              
-                
+         
             </div> 
         </> 
     )

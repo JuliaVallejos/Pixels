@@ -10,14 +10,12 @@ const gamesActions = {
             });
            
             if (data.data.success){
-                console.log('success')
               dispatch({type:'NEW_GAME', payload:data.data.response})
               return data.data
             } else{
             return data.data
             }
         }catch(error){
-            console.log(error)
           const data ={errores:{details:[{message:'An error occurred'}]}}
           return data
         }}},
@@ -71,20 +69,17 @@ const gamesActions = {
     }
     }},
     editComment: (idGame,idComment,editedComment) =>{
-        console.log(idGame)
+       
         return async (dispatch,getstate) => {
         try{
             
             const data = await axios.put(`http://localhost:4000/api/games/${idGame}/${idComment}`,{editedComment})
-            console.log(data)
+            
             if (data.data.success){
-              console.log('true')
-              console.log(data.data.response)
             dispatch({type:'CHANGES', payload:data.data.response})
             return data
             }  
         } catch(error){
-            console.log(error)
         const data ={errores:{details:[{message:'An error occurred'}]}}
         return data
         }
@@ -97,12 +92,10 @@ const gamesActions = {
         const data = await axios.delete(`http://localhost:4000/api/games/${idGame}/${idComment}`)
         
         if (data.data.success){
-            console.log(data.data.response)
             dispatch({type:'CHANGES', payload:data.data.response})
             return data
         }  }  
         catch(error){
-            console.log(error)
         
         const data ={errores:{details:[{message:'An error occurred'}]}}
         return data
@@ -115,9 +108,8 @@ const gamesActions = {
           let send_data={idUser,valoration}
 
         getstate().game.gameById.valoration.map(user =>{
-            console.log(user)
+           
                if (user.idUser&& user.idUser===idUser){
-                   console.log('ya habia votad0')
                    send_data={
                        ...send_data,edit:true     
                    }
@@ -140,17 +132,17 @@ const gamesActions = {
 },
 gamesById : (id)=>{
     return async (dispatch , getstate) =>{
-
         try{
             const data = await axios.get(`http://localhost:4000/api/games/${id}`)
-         console.log(data)
             if (data.data.success){
+                console.log(data)
+                console.log("ENTRO A LA ACTION")
                 dispatch({type:'GAMEBYID', payload:data.data.response})
-                return data
+                return data.data.response
             }  }  
 
             catch(error){
-            
+            console.log(error)
             const data ={errores:{details:[{message:'An error occurred'}]}}
             return data
             

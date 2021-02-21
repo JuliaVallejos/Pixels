@@ -39,7 +39,7 @@ import {Link} from 'react-router-dom'
         
         ages = ages.concat(agesState)
         const value = parseInt(e.target.value)
-        console.log("el value es : "+value)
+       
         if(ages.indexOf(value)===-1){
              ages.push(value)
         }else{ 

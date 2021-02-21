@@ -1,6 +1,7 @@
 
 const initialState ={
     gamesList:[],
+    gameById:{},
     loading:false,
     newGamesList:[],
     mostValuedList:[],
@@ -16,9 +17,8 @@ const initialState ={
 }
 
  function gamesReducer(state= initialState,action){
-     function prom(game){
-       let prom = 0
-  /*       const newPayload= action.payload.map(game =>{   */           
+     function promed(game){
+       let prom = 0 
            game.valoration.map(() =>{      
               const sum =game.valoration.reduce((a,b) =>{  
                        return {
@@ -52,10 +52,6 @@ const initialState ={
             mostValuedList1.filter((game,index)=>{
                 if(index<3) {aux.push(game)}
             })
-            console.log(aux)
-            // const newPayload = action.payload.map(game =>{ 
-            //     return prom(game)})
-                
         return{
             ...state,
             newGamesList:newGameList1,
@@ -68,31 +64,23 @@ const initialState ={
             newGamesList: state.gamesList.filter(({gameTitle}) => gameTitle.toUpperCase().indexOf(action.payload.toUpperCase().trim())=== 0)
         
         }
-      
         case 'CHANGES':
-            const newGameChanged= prom(action.payload)
-            console.log(newGameChanged)
-
-          
+            const newGameChanged= promed(action.payload)
                 return {
-                    
                     ...state,
                     loading:false,
                     newGamesList: state.newGamesList,
                     gameById: newGameChanged
                 }
-            break
-            case "GAMEBYID":
-               
-                const newGame= prom(action.payload)
-                console.log(newGame)
-                return{
-                    ...state,
-                    gameById:newGame
-                }
-        
             
-            break
+        case "GAMEBYID":
+            console.log(action.payload)
+            console.log("ENTRO AL REDUCER")
+            const newGame= promed(action.payload)
+            return{
+                ...state,
+                gameById:newGame
+            }
         default:
             return state
     }
