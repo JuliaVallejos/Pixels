@@ -6,7 +6,8 @@ const validator=require("../controllers/validator");
 const passport= require("passport");
 require("../config/passport");
 const userController=require("../controllers/userController");
-const emailController= require('../controllers/emailController')
+const emailController= require('../controllers/emailController');
+const { Router } = require("express");
 
 
 // RUTAS PARA USUARIOS
@@ -52,5 +53,8 @@ router.route('/deletecomment/:idgame/:idcomment')
 /* ruta para envío de emails */
 router.route('/contact/send')
 .post(emailController.sendEmail)
+//ruta para recuperar contraseña 
+router.route('/recoverPassword')
+.post(emailController.recoverPassword)
 
 module.exports=router;
