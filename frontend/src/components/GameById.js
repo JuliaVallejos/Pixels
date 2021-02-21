@@ -18,12 +18,13 @@ const GameById = (props)=>{
     const {id}= props.match.params
     const [edit,setEdit] = useState(false)
     const [comment, setComment] = useState('')
-
-
+    
+    
     useEffect(()=>{        
         props.gamesById(id)
     },[])
-
+    
+    console.log()
     const info = e => {
         var comment = e.target.value       
         setComment(comment)        
@@ -44,15 +45,13 @@ const GameById = (props)=>{
     }
     const send_rate = async() =>{
       const data = await props.setValoration(id,newValoration)
-
-        setEdit(false)
+      setEdit(false)
     }
-
     return(            
         <>
             <div>
                 
-                {props.gameById ?
+                {props.game ?
 
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
@@ -69,7 +68,7 @@ const GameById = (props)=>{
                         <div className="cajaComentarios">
                             <div className="mensajes">
                                
-                                {props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
+                                {(props.game.userComments) && props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
@@ -106,7 +105,8 @@ const GameById = (props)=>{
                    
                     <div className="valoracion centerCenter">
                      
-                    {edit?
+                    {edit
+                    ?
                             <div className='rateGame'>
 
                                 <ReactStars
@@ -128,7 +128,7 @@ const GameById = (props)=>{
                             activeColor="#ffd700"
                             edit= {false}/>
 
-                            }
+                    }
                     </div> 
                  </div>
                  : <h1> Cargando...</h1>
@@ -145,7 +145,7 @@ const GameById = (props)=>{
 
 const mapStateToProps = state =>{
     return {
-        gameById: state.game.gameById,
+        game: state.game.gameById,
         newGamesList: state.game.newGamesList,
         loggedUser:state.user.loggedUser
     }

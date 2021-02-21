@@ -9,19 +9,16 @@ import gamesActions from '../redux/actions/gamesActions'
 
 const CategoryList = (props) =>{
 
-    console.log(props.newGamesList)
+    
       
     const category= props.match.params.category
     const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
-    console.log(props.newGamesList)
+    
 
     useEffect(() => {
-        //     if( !news ||news.length===0 || !mostValuedList||  mostValuedList.length===0 || !latestNews){
-               if(props.newGamesList.length==0){
-                   props.allGames()
-               }
-         
-        //     }
+            if(props.newGamesList.length==0){
+               props.allGames()
+            }
         },[])
     
 
