@@ -74,7 +74,7 @@ const LogIn = (props) => {
                   
 
             }
-            window.location.pathname='/'
+            window.location.href='/'
 
         }
     }
