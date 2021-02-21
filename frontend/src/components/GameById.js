@@ -13,11 +13,7 @@ import { RiStarSmileLine } from 'react-icons/ri'
 
 
 
-
-
-
 const GameById = (props)=>{
-
     var newValoration=0
     const {id}= props.match.params
     const [edit,setEdit] = useState(false)
@@ -52,13 +48,11 @@ const GameById = (props)=>{
         setEdit(false)
     }
 
- 
-
     return(            
         <>
             <div>
                 
-                {props.game ?
+                {props.gameById ?
 
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
@@ -84,6 +78,7 @@ const GameById = (props)=>{
                             </div>    
                         </div>
                     </div>
+
 
                         <div className="justifyCenter">
                             <Link to="/library">
@@ -113,6 +108,7 @@ const GameById = (props)=>{
                      
                     {edit?
                             <div className='rateGame'>
+
                                 <ReactStars
                                     count={5}
                                     isHalf={true}
@@ -120,6 +116,7 @@ const GameById = (props)=>{
                                     activeColor="#ffd700"
                                     edit={true}
                                     onChange={ratingChanged} />
+
                                 <div style={{cursor:'pointer'}}className="cajaRate centerCenter" onClick={send_rate}><p>VOTE</p></div>
                             </div>
                             :   
@@ -138,7 +135,7 @@ const GameById = (props)=>{
                  }   
                 
                              
-                
+         
             </div> 
         </> 
     )
@@ -148,7 +145,7 @@ const GameById = (props)=>{
 
 const mapStateToProps = state =>{
     return {
-        game: state.game.gameById,
+        gameById: state.game.gameById,
         newGamesList: state.game.newGamesList,
         loggedUser:state.user.loggedUser
     }

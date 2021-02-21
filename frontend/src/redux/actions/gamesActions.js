@@ -28,12 +28,8 @@ const gamesActions = {
                 const data = await axios.get("http://localhost:4000/api/games")
             
                 if (data.data.success){
-               
                     dispatch({type:'ALL_GAMES',payload:data.data.response})
-                  return data.data.response
-                } else{
-                return data.data
-                }
+                } 
             }catch(error){
             
               const data ={errores:{details:[{message:'An error occurred'}]}}
@@ -47,8 +43,6 @@ const gamesActions = {
       
     add_comment: (comment,idGame) =>{
     return async (dispatch,getstate) => {
-
-        console.log(idGame)
        
         const token = getstate().user.loggedUser? getstate().user.loggedUser.token : ''
         
@@ -162,14 +156,6 @@ gamesById : (id)=>{
             
         }
     }
-},
-
-mostValued : () =>{
-    return async (dispatch , getstate) =>{
-
-       const most_values = getstate().game.newGamesList.sort((a,b) => b.prom - a.prom)
-        dispatch({type:'MOST_VALUED',payload:most_values}) 
-}
 }
 }
 export default gamesActions

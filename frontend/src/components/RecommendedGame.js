@@ -1,6 +1,7 @@
 const RecommendedGame = ({game}) =>{ 
     
     return(
+
         <div className="displayFlex justifyAround" id="recommendedHomeContainer">
             <div>
                 <div id="cardPadreRecommend" className="justifyCenter">  
@@ -37,6 +38,7 @@ const RecommendedGame = ({game}) =>{
             </div>
         </div>
         
+
     )
     }
     

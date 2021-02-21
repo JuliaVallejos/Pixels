@@ -1,6 +1,8 @@
 import {NavLink} from 'react-router-dom'
 import {connect} from "react-redux"
+import Swal from "sweetalert2"
 import usersActions from "../redux/actions/usersActions"
+import { TiSocialInstagram, TiSocialLinkedin, TiSocialFacebook, TiSocialTwitter } from 'react-icons/ti';
 
 const Footer = ({loggedUser,logOut}) => {
     return(
@@ -10,10 +12,25 @@ const Footer = ({loggedUser,logOut}) => {
                     <NavLink exact to='/'><p>Home</p></NavLink>
                     <NavLink to='/library'><p>Library</p></NavLink>
                     <NavLink to='/news'><p>News</p></NavLink>
+
+                    
+                    <div>
                     <NavLink to='/Contact'><p>Contact</p></NavLink>
+                        <div className="resdesSociales">
+                            <TiSocialInstagram/>
+                            <TiSocialLinkedin/>
+                            <TiSocialFacebook/>
+                            <TiSocialTwitter/>
+                        </div>
+                    </div>
+                    
                     {(loggedUser && loggedUser.userRol==="Developer")
                     ? <NavLink to='/developers'><p>Developers</p></NavLink>
-                    : <NavLink onClick={()=>alert("You need to be a developer")} exact to='#'><p>Developers</p></NavLink>
+                    : <NavLink onClick={()=> Swal.fire({
+                        icon: 'warning',
+                        title: 'Attention!',
+                        text: 'You need to login with a developer account!',
+                      })} exact to='#'><p>Developers</p></NavLink>
                     }
                     {loggedUser===null
                     ? <>

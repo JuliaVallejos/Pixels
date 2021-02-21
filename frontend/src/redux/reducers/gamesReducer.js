@@ -3,6 +3,7 @@ const initialState ={
     gamesList:[],
     loading:false,
     newGamesList:[],
+    mostValuedList:[],
     categories:[
         {name:"Horror",img:'https://www.xtrafondos.com/wallpapers/resoluciones/20/chico-jugando-en-arcade_1920x1080_6342.jpg'},
         {name:"Action",img:'https://miro.medium.com/max/3400/1*V2dd0ty7jnMaq_swEGZNuw.jpeg'},
@@ -33,14 +34,33 @@ const initialState ={
      
     switch (action.type) {
         case 'ALL_GAMES':
-            const newPayload = action.payload.map(game =>{ 
-            return prom(game)})
-            console.log(newPayload)
-                       
+            let prom = 0
+            let newGameList1= action.payload.map(game =>{             
+                game.valoration.map(() =>{      
+                    const sum =game.valoration.reduce((a,b) =>{  
+                        return {
+                            valoration:(a.valoration+ b.valoration)
+                        }
+                    }, {valoration: 0})                     
+                    prom = game.valoration.length===0? 0 : sum.valoration/game.valoration.length                      
+                }) 
+                game= {...game,prom:prom}              
+                return game                   
+            })  
+            var mostValuedList1= newGameList1.sort((a,b) => a.prom < b.prom? 1:-1)
+            var aux=[]
+            mostValuedList1.filter((game,index)=>{
+                if(index<3) {aux.push(game)}
+            })
+            console.log(aux)
+            // const newPayload = action.payload.map(game =>{ 
+            //     return prom(game)})
+                
         return{
             ...state,
+            newGamesList:newGameList1,
+            mostValuedList:aux,
             gamesList:action.payload,
-            newGamesList:newPayload
         }
         case 'FILTER':
         return {
@@ -73,11 +93,6 @@ const initialState ={
         
             
             break
-        case "MOST_VALUED":
-            return{
-                ...state,
-                mostValuedList:action.payload
-            }
         default:
             return state
     }

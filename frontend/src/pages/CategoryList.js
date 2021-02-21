@@ -1,11 +1,14 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Games from '../components/Games'
+
 import {useEffect} from 'react'
+
 import gamesActions from '../redux/actions/gamesActions'
 
 
 const CategoryList = (props) =>{
+
     console.log(props.newGamesList)
       
     const category= props.match.params.category
@@ -21,6 +24,7 @@ const CategoryList = (props) =>{
         //     }
         },[])
     
+
     return (
             <div className="categorySectionTitle">
                 <h2 className="textCenter sectionTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}} >{category}</h2><Link to='/library' className="centerCenter seeAllGames"><p>SEE ALL GAMES</p></Link> 
@@ -37,7 +41,9 @@ const mapStateToProps= state =>{
         newGamesList:state.game.newGamesList
     }
 }
+
 const mapDispatchToProps = {
     allGames:gamesActions.allGames
+
 }
 export default connect(mapStateToProps,mapDispatchToProps)(CategoryList)

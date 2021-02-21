@@ -861,7 +861,9 @@ border-radius: 43px 43px 43px 43px;
 
 .cajaPadreSingleGame {
   background-color: var(--background-color);
+
   padding-bottom: 3vh;
+
 }
 
 .cajaPadreNoticia{
@@ -1239,6 +1241,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
 
 .iconPaypal{
   font-size: 1.25rem;
+
   padding-right: 1vh;
 }
 
@@ -1255,6 +1258,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   margin-top: 5vh;
   margin-bottom: 5vh;
 }
+
 .rateGame {
   display: flex;
   align-items: center;
@@ -1346,3 +1350,4 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     padding: 1vh;
   }
   }
+
