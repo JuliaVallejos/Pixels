@@ -647,8 +647,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 
 .padre {
   display: flex;
-  flex-wrap: wrap;
- 
+  flex-wrap: wrap; 
 }
 
 .Category {
@@ -657,8 +656,8 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cardHijoCategory {
-  width:200px;
-  height:30vh;
+  min-width:330px;
+  min-height:35vh;
   background-Size: cover;
   background-Repeat: no-repeat;
   background-Position:center;
@@ -742,7 +741,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 /* ------ JUEGOS (CATEGORIA) ------ */
 
 .portadaJuego {
-  min-width: 30vw;
+  width: 300px;
   height: 40vh;
   background-position: center;
   background-size: cover;  
@@ -782,7 +781,7 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
 }
 
 .cajaInformacion{
-  min-width: 30vw ;
+  width: 300px;
   background-color: var(--background-color);
   border: 0.5rem solid rgba(247,104,247,0.8);
   box-shadow: 0px 0px 20px var(--secondary-color);
@@ -964,8 +963,8 @@ background-color: rgba(247,104,247,0.8);
   padding: 2vh 0;
   background-color: var(--background-color);
 }
-.newsTitlte{
-  box-shadow: 0px 0px 10px var(--secondary-color);
+#newsTitlte{
+  box-shadow: 0px 0px 20px var(--secondary-color);
 }
 .cajaNoticia{
   width: 70vw;
@@ -1293,7 +1292,11 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   #headerResponsive{
       display: none;
     }
+  #linksResponsive{
+      display: none;
+    }
   }
+
   @media(max-width:900px){
   #headerContainer{
     display:none;

@@ -45,7 +45,7 @@ const Header = ({loggedUser,logOut}) =>{
         </div>
         {isOpen && 
                 <>
-                <div className="links sideMenu justifyBetween" >
+                <div id="linksResponsive" className="links sideMenu justifyBetween" >
                     <NavLink exact to='/'><p>Home</p></NavLink>
                     <NavLink to='/library'><p>Library</p></NavLink>
                     {(loggedUser && loggedUser.userRol==="Developer")
