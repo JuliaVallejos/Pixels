@@ -61,7 +61,6 @@ const LogIn = (props) => {
             if(response && !response.sucess){
                 setErrors([response.response])
             }else{
-                alert("asdasd")
                 Swal.fire({
                     icon: 'success',
                     title:`Welcome ${localStorage.getItem("userFirstName")}!`,

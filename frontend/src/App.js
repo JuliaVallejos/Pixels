@@ -59,8 +59,9 @@ function App({loggedUser,login_with_LS}) {
             <Route path="/passwordReset" component={PasswordReset}/>
             <Route path='/enternewpassword' component={EnterNewPassword}/>
           </>
-          }       
-          <Redirect to='/'/>
+          }   
+              
+          <Redirect to='/123'/>
         </Switch>
         <WhatsApp/>
         <Footer/>

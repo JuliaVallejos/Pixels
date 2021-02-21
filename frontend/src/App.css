@@ -674,7 +674,13 @@ box-shadow: inset 10px 10px 81px 0px rgba(219,96,219,1);
   -webkit-text-stroke: 1px black;
   color: white;
 }
-
+#noGames{
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position-x: 50%;
+}
 /* ------ HOME ------ */
 .homeContainer{
   background-color: var(--background-color);
