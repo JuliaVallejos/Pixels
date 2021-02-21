@@ -56,12 +56,12 @@ const GameById = (props)=>{
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
                         
-                        <div className="cajaTituloSingleGame">
+                        <div className="cajaTituloSingleGame centerCenter">
                             <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
                         </div>
                         <div className="portadaSingleGame" style={{backgroundImage:`url(${props.game.gameImg})`}}/>
-                        <div className="cajaTituloSingleGame">
-                            <h3 className="textCenter uppercase">{props.game.gameInfo}</h3>
+                        <div className="cajaTituloSingleGame centerCenter">
+                            <h3 className="centerCenter uppercase">{props.game.gameInfo}</h3>
                         </div>
                     </div>
                     <div className="justifyCenter">
@@ -96,14 +96,14 @@ const GameById = (props)=>{
                         </a>
                         
                     </div>
-                    <div className=" centerCenter paypal ">
-                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div> RATE THIS GAME</div>}
+                    <div className="commentsRate centerCenter paypal ">
+                     {props.loggedUser&& <div className="cajaRate centerCenter zoom iconPaypal" onClick={() => setEdit(true)}><div className="iconPaypal centerCenter"><RiStarSmileLine/></div><h3 className="centerCenter">RATE THIS GAME</h3></div>}
                    </div>
                 
                    
-                    <div className="valoracion justifyCenter">
+                    <div className="valoracion centerCenter">
                             {edit?
-                            <div>
+                            <div className="rateGame">
                                 <ReactStars
                                     count={5}
                                     isHalf={true}
@@ -111,10 +111,17 @@ const GameById = (props)=>{
                                     activeColor="#ffd700"
                                     edit={true}
                                     onChange={ratingChanged} />
-                                <div className="cajaRate centerCenter" onClick={send_rate}>VOTE</div>
+                                <div className="cajaRate centerCenter" onClick={send_rate}><p>VOTE</p></div>
                             </div>
-                            :
-                                <div></div>
+                            :   
+                            <ReactStars
+                            count={5}
+                            isHalf={true}
+                            value={props.game.prom}
+                            size={50}
+                            activeColor="#ffd700"
+                            edit= {false}/>
+
                             }
                     </div>
                 
