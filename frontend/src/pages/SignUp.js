@@ -52,18 +52,10 @@ const SignUp = (props) =>{
         formSignUp.append("userPayPal",userPayPal)
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
-            setErrors([[Swal.fire({
-                icon: 'warning',
-                title: 'Look out!',
-                text: 'All required(*) fields must be completed',
-              })]])
+            setErrors(['All required(*) fields must be completed'])
             return false
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
-            setErrors([[Swal.fire({
-                icon: 'warning',
-                title: 'Look out!',
-                text: 'All required(*) fields must be completed',
-              })]])
+            setErrors(['All required(*) fields must be completed'])
             return false
         }
         const data = await props.createNewUser(formSignUp)     

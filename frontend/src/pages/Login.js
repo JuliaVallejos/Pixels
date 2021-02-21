@@ -26,16 +26,13 @@ const LogIn = (props) => {
     const send_data = async (e) =>{
         e.preventDefault()
         if(loggedUser.userName==='' || loggedUser.userPass===''){
-            setErrors([ Swal.fire({
-                icon: 'warning',
-                title: 'Look out!',
-                text: 'All fields must be completed',
-              })])
-            
+            setErrors([ 'All fields must be completed'])
+            return false;
         }
         const data = await props.login_user(loggedUser)   
         if(data && !data.sucess){
             setErrors([data.errors])
+            return false;
         }else{
             
             Swal.fire({

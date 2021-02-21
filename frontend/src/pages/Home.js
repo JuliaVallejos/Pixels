@@ -6,25 +6,18 @@ import {useEffect} from 'react'
 import gamesActions from '../redux/actions/gamesActions'
 import newsActions from '../redux/actions/newsActions'
 
-const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValuedList,allNews,latestNews}) =>{
-    
+const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
+
     useEffect(() => {
-        allGames()
-        allNews()
-    },[update])
-    
-    if(news.length===0 || !news  ){
-        allNews()
-        return <h1>loading...</h1> }
-    
-
-    const getGames = async () =>{
-        const data = await allGames()
-        if (data){
-            mostValued()
-        }
+    //     if( !news ||news.length===0 || !mostValuedList||  mostValuedList.length===0 || !latestNews){
+            allGames()
+            allNews()
+    //     }
+    },[])
+    if(!news || !allGames ){
+        return <h1>loading...</h1> 
     }
-
+    
     return (
         <> 
             <div className="homeContainer">
@@ -39,12 +32,14 @@ const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValue
                 <div>
                     <h2 className="homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>LATEST NEWS</h2>
                     <div id="cardPadre" className="justifyCenter "> 
-                    {(news.splice(0,4)).map(news=><HomeNews key={news._id} news={news}/>)}  
+                        {latestNews.map(news=><HomeNews key={news._id} news={news}/>)}  
                     </div>      
                 </div>  
                 <div>
                     <h2 className="homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>RECOMMENDED</h2>
-                    <RecommendedGame/>
+                    <div className="displayFlex justifyAround">
+                        {mostValuedList.map(game=><RecommendedGame key={game._id} game={game}/>)}
+                    </div>
                 </div>
                 
             </div>
@@ -53,7 +48,7 @@ const Home = ({update,news,loggedUser,allGames,newGamesList,mostValued,mostValue
 }
 const mapStateToProps=state=>{
     return{
-        update: state.news.update,
+        latestNews:state.news.latestNews,
         news: state.news.news,
         loggedUser: state.user.loggedUser,
         newGamesList: state.game.newGamesList,
@@ -62,7 +57,6 @@ const mapStateToProps=state=>{
 }
 const mapDispatchToProps = {
     allGames:gamesActions.allGames,
-    mostValued: gamesActions.mostValued,
     allNews: newsActions.allNews
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Home)
