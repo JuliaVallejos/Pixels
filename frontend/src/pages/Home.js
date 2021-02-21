@@ -56,7 +56,7 @@ const mapStateToProps=state=>{
     }
 }
 const mapDispatchToProps = {
-    allGames:gamesActions.allGames,
+    allGames: gamesActions.allGames,
     allNews: newsActions.allNews
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

@@ -17,7 +17,7 @@ const initialState ={
 }
 
  function gamesReducer(state= initialState,action){
-     function prom(game){
+     function getProm(game){
        let prom = 0
   /*       const newPayload= action.payload.map(game =>{   */           
            game.valoration.map(() =>{      
@@ -66,9 +66,8 @@ const initialState ={
         
         }
         case 'CHANGES':
-            console.log(action.payload)
-            // const newGameChanged= prom(action.payload)
-            const newGameChanged= action.payload
+            const newGameChanged= getProm(action.payload)
+           
                 return {
                     ...state,
                     loading:false,
@@ -78,8 +77,8 @@ const initialState ={
             
         case "GAMEBYID":
 
-            // var newGame= prom(action.payload)
-            var newGame= action.payload
+            var newGame= getProm(action.payload)
+            
             return{
                 ...state,
                 gameById:newGame

@@ -905,7 +905,7 @@ background-color: rgba(247,104,247,0.8);
 
 /* ------ ADD NEWS ------ */
 #uploadButton{
- display: none;
+  display: block;
 }
 .inputFile{
   display: flex;
@@ -926,6 +926,7 @@ background-color: rgba(247,104,247,0.8);
 .inputFile:active{
   color: black;
   background-color: var(--terciary-color);
+  
 }
 .inputFile:hover{
   transform: scale(1.05);

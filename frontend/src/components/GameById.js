@@ -54,7 +54,6 @@ const GameById = (props)=>{
     return(            
         <>
             <div>
-                
                 {props.game ?
 
                 <div className="cajaPadreSingleGame">
