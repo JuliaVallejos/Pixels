@@ -9,11 +9,12 @@ const usersActions = {
           headers: {"Content-Type": "multipart: form-data"}
         }); 
         console.log("ENTRO AL ACTION")
-        console.log(data.data)
+      
         if (data.data.success){
           dispatch({type:'LOGIN', payload:data.data.response})
+          return data
         } else{
-          return data.data
+          return data
         }
         }catch(error){
           const data =[{errors:'An error occurred'}]
@@ -62,8 +63,12 @@ const usersActions = {
             title: 'ACCESS DENIED!',
           })
           localStorage.clear()
+          const backToHome ='/'
+          return backToHome
+        }else {
+        return error}
         }
-      }
+      
     }
   },
   recoverPassword: (password)=>{

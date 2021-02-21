@@ -42,6 +42,7 @@ const LogIn = (props) => {
                 title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                 text: 'Enjoy all our content!',
             })
+            window.location.href='/'
         }
         
     }
@@ -59,16 +60,22 @@ const LogIn = (props) => {
                 userPass: googleResponse.profileObj.googleId,
                 loginGoogle: true
             })
+            console.log(response)
             if(response && !response.success){
+                console.log(response)
                 setErrors([response.response])
             }else{
+                console.log(response)
                 Swal.fire({
                     icon: 'success',
                     title:`Welcome ${localStorage.getItem("userFirstName")}!`,
                     text: 'Enjoy all our content!',
                   })
+                  
 
             }
+            window.location.pathname='/'
+
         }
     }
     
@@ -79,7 +86,7 @@ const LogIn = (props) => {
                 <input id='username' name='userName' type='text' placeholder='Username(email)' onChange={read_input}/>
                 <input id='password'name='userPass' type='password' placeholder='Password' onChange={read_input}/>
 
-                    <button onClick={send_data} type='submit'>Log In</button>
+                    <button onClick={send_data}>Log In</button>
                     {errors[0] && (
                 <div className="signUpErrorContainer">
                     {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}

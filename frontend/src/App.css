@@ -1134,9 +1134,8 @@ textarea{
 .dialogbox .body {
   position: relative;
   width: auto;
-  max-width: 60vw;
   overflow: auto;
-  height: 10vh;
+  min-height: 10vh;
   margin: 20px 10px;
   padding: 5px;
   background-color: #DADADA;
@@ -1184,6 +1183,7 @@ textarea{
 }
 .editComment {
   width: 40vw;
+  min-height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1193,7 +1193,11 @@ textarea{
   width: 90%;
 }
 .editComment button{
-  padding: 1vh 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2vh 3vw;
   color: white;
   border: none;
   background-color: var(--background-color);
@@ -1252,8 +1256,8 @@ textarea{
 }
 
 .mensajes{
-  padding-top: 5vh;
-  padding-left: 2vh;
+  padding-top: 2vh;
+  padding: 0 0.5vh;
   
 }
 
@@ -1455,3 +1459,8 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   justify-content: center;
   align-items: center;
 }
+
+  /* ----- EDIT COMMENT ----- */
+  .editComment button{
+    padding: 1vh 20vw;
+  }
