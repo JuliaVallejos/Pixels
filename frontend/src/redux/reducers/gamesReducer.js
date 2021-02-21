@@ -47,12 +47,11 @@ const initialState ={
                 game= {...game,prom:prom}              
                 return game                   
             })  
-            var mostValuedList1= newGameList1.sort((a,b) => a.prom - b.prom? 1:-1)
+            var mostValuedList1= newGameList1.sort((a,b) => a.prom < b.prom? 1:-1)
             var aux=[]
             mostValuedList1.filter((game,index)=>{
                 if(index<3) {aux.push(game)}
             })
-            console.log(newGameList1)
             console.log(aux)
             // const newPayload = action.payload.map(game =>{ 
             //     return prom(game)})

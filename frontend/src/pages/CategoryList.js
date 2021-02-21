@@ -7,14 +7,11 @@ import gamesActions from '../redux/actions/gamesActions'
 const CategoryList = (props) =>{
       console.log(props.newGamesList)
     if(props.newGamesList.length===0){
-        allGames()
+        props.allGames()
         return <h1>loading...</h1> }
 
     const category= props.match.params.category
-    const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
-
-    const arrayCategory=newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)
-        console.log(arrayCategory)
+    const arrayCategory=props.newGamesList.filter(game => game.gameCategories.indexOf(category)!==-1)   
     return (
             <div>
                 <h2>{category}</h2><Link to='/library'>See all games</Link>

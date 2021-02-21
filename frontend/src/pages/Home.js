@@ -17,9 +17,7 @@ const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
     if(!news || !allGames ){
         return <h1>loading...</h1> 
     }
-    console.log("holas")
-    console.log(mostValuedList.length)
-    console.log("chau")
+    
     return (
         <> 
             <div className="homeContainer">
