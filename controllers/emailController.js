@@ -26,7 +26,8 @@ const emailController = {
             subject:"Welcome to Pixels!",
             html: `<div style="text-align:center; padding:20px; min-heigth: 250px; background-color:#11050F">
                         <h1 style="color:#FFB5FF">Hi! Greetings from Pixels!</h1>
-                        <link href="http://localhost:3000/passwordReset/${email}"></link>
+                        <h1 style="color:#FFB5FF">TESTEO!</h1>
+                        <link href="http://localhost:3000/passwordReset/${email}"><button>http://localhost:3000/enterNewPassword</button></link>
                     </div>`
         }
         transporter.sendMail(mailOptions, (error, info) =>{

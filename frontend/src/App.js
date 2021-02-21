@@ -17,7 +17,6 @@ import gameById  from '../src/components/GameById'
 import News from './pages/News'
 import Commentary from './components/Commentary'
 import NewsById from './components/NewsById'
-
 import EnterNewPassword from './components/EnterNewPassword'
 import PasswordReset from './pages/PasswordReset'
 
