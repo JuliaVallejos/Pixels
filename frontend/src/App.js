@@ -13,7 +13,7 @@ import usersActions from "./redux/actions/usersActions"
 import WhatsApp from "./components/WhatsApp"
 import Contact from "./pages/Contact"
 import AddNew from './components/AddNew'
-import gameById  from '../src/components/GameById'
+import gameById  from './components/GameById'
 import News from './pages/News'
 import Commentary from './components/Commentary'
 import NewsById from './components/NewsById'
