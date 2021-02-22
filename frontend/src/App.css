@@ -999,7 +999,10 @@ background-color: rgba(247,104,247,0.8);
   width: 70vw;
   
 }
+.cajaPadreSingleGame .caja,.cajaPadreSingleGame .cajaRate{
+  width: 18vw;
 
+}
 .tituloArticle{
   text-transform: uppercase;
 }

@@ -127,7 +127,7 @@ const Games = (props) =>{
                 </select>
 
             </div>
-            {noResults? <div id="noGames" style={{backgroundImage: `url("/assets/noGames.jpg")` }}>
+            {noResults? <div  className="centerCenter noGames" style={{backgroundImage: `url("/assets/noGames.jpg")` }}>
                 <h2 className="centerCenter">No results</h2>
             </div> 
             :

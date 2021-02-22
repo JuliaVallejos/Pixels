@@ -31,7 +31,7 @@ const validator={
             }else{
                 errors=(validation.error.details.map(error=>error.message))
                 
-                res.json({sucess:false,errors})
+                res.json({success:false,errors})
             }
         }else{
             next();
@@ -46,7 +46,7 @@ const validator={
             const validation = schema.validate(req.body,{abortEarly:false});
             if(!validation.error){next();
             }else{
-                res.json({sucess:false,errors:validation.error.details})
+                res.json({success:false,errors:validation.error.details})
             }
         }else{
             next();
@@ -61,7 +61,7 @@ const validator={
             if(!validation.error){
                 next();
             }else{
-                res.json({sucess:false,errors:validation.error.details})
+                res.json({success:false,errors:validation.error.details})
             }
         }else{
             next();
