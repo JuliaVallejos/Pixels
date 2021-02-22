@@ -1359,6 +1359,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
       display: none;
     }
   #linksResponsive{
+    width:90%;
     display: none;
   }
   }
@@ -1374,6 +1375,10 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     align-items: center;
     justify-content: space-around;
   }
+  .homeHero{
+    width:100vw
+  }
+
   .homeHero h1{
     font-size: 2rem;
   }

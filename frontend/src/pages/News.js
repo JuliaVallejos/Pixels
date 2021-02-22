@@ -12,7 +12,7 @@ const News = (props) => {
         <>
         <h2 id="newsTitle" className="newsTitle homeTitle centerCenter" style={{backgroundImage: `url(../assets/bricks.jpg)`}}>NEWS</h2>
         <div className="newsSection">
-            {props.news.length===0 && <Loader></Loader>}
+           {/*  {props.news.length===0 && <Loader></Loader>} */}
             {props.news && (props.news).map(article=> {
                 return(
             <Link to={`/news/${article._id}`}>

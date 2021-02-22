@@ -32,11 +32,12 @@ const LogIn = (props) => {
             return false;
         }
         const data = await props.login_user(loggedUser) 
-        
+   
         if(data && !data.success){
             setErrors([data.errors])
             return false;
-        }else{
+        }
+        else{
             Swal.fire({
                 icon: 'success',
                 title: `Welcome! ${localStorage.getItem("userFirstName")}`,
@@ -60,9 +61,9 @@ const LogIn = (props) => {
                 userPass: googleResponse.profileObj.googleId,
                 loginGoogle: true
             })
-
-            if(response && !response.success){
-                setErrors([response.response])
+            console.log(response)
+            if(response.errors && !response.success){
+                setErrors([response.errors])
             }else{
                 Swal.fire({
                     icon: 'success',
@@ -72,7 +73,7 @@ const LogIn = (props) => {
                   
 
             }
-            window.location.href='/'
+        /*     window.location.href='/' */
 
         }
     }

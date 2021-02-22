@@ -29,9 +29,11 @@ const usersActions = {
           dispatch({type:'LOGIN', payload:data.data.response})
           return data.data
         }else{
+          console.log(data)
           return data.data
         }
       }catch(error){
+        
         const data ={errors:['An error occurred']}
         return data
       }
