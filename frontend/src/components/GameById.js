@@ -57,17 +57,17 @@ const GameById = (props)=>{
                     <div className="singleGame">
                         
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h1 className="textCenter uppercase">{game.gameTitle}</h1>
+                            <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
                         </div>
                         <div className="portadaSingleGame" style={{backgroundImage:`url("/gamesImages/${props.game.gameImg}")`}}/>
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h3 className="centerCenter uppercase">{game.gameInfo}</h3>
+                            <h3 className="centerCenter uppercase">{props.game.gameInfo}</h3>
                         </div>
                     </div>
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                                {(game.userComments) && game.userComments.map(comment => <Commentary game={game} comment={comment}/>)}
+                                {(props.game.userComments) && props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
