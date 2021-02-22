@@ -56,14 +56,14 @@ const SignUp = (props) =>{
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
             setErrors([['All required(*) fields must be completed']])
-            
+            return false;
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
             setErrors([['All required(*) fields must be completed']])
-           
+           return false;
         }
         const data = await props.createNewUser(formSignUp) 
-  
-
+        console.log(data)
+        console.log(errors)
         if(data && !data.data.success){
             setErrors([data.data.errors])
         }else if(data.data.success){
@@ -74,8 +74,7 @@ const SignUp = (props) =>{
             }).then(function (result) {
                 if (result.value) {
                     window.location.href='/'
-                }})
-            
+            }})
         } 
         
     }

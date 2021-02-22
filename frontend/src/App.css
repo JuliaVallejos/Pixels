@@ -1471,6 +1471,9 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     width: 80vw;
   }
 }
+.Recommend h5 {
+  font-size: 1.5rem;
+}
 
 /* -------LOADER-------- */
 .loader{
