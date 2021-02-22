@@ -57,7 +57,6 @@ const GameById = (props)=>{
 
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
-                        
                         <div className="cajaTituloSingleGame centerCenter">
                             <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
                         </div>
@@ -78,7 +77,7 @@ const GameById = (props)=>{
                             </div>    
                         </div>
                     </div>
-                    {props.game.idUser && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
+                    {props.game.idUser.userFirstName && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
                     </div>}
 
 
