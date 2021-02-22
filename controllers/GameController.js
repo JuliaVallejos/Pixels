@@ -15,7 +15,7 @@ const GameController ={
             gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
         var imgName= `${createGame._id}.${imgType}`
-        var imgPath= `${__dirname}/../frontend/public/gamesImages/${createGame._id}.${imgType}`
+        var imgPath= `${__dirname}/../client/build/gamesImages/${createGame._id}.${imgType}`
 
 
         await gameFile.mv(imgPath,error=>{

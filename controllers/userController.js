@@ -18,7 +18,7 @@ const userController={
             var passHashed=await bcryptjs.hashSync(userPass,10);
             var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userPhone,userPayPal,userRol,userGoogle});
             var imgName= `${newUser._id}.${imgType}`
-            var imgPath= `${__dirname}/../frontend/public/userImages/${newUser._id}.${imgType}`
+            var imgPath= `${__dirname}/../client/build/userImages/${newUser._id}.${imgType}`
             await imgFile.mv(imgPath,error=>{
                 if(error){
                  
