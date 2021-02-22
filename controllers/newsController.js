@@ -1,19 +1,34 @@
+const { create } = require('../models/News');
 const News = require('../models/News')
 
 
 const newsController ={
-    addNews : (req,res)=>{
-       const {newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews} = req.body 
-       const creatNews =  new News ({
-        newsTitle, newsImg, newsDescription, newsBody, newsAuthor,dateOfTheNews
-       })
-       creatNews.save()
-       .then(savedNews=>{
-           return res.json({success:true, response:savedNews})
-       })
-       .catch(error =>{
-           return res.json({success: false, response: error})
-       })
+    addNews : (req,res) =>{
+        const {newsTitle, newsDescription, newsBody, newsAuthor} = req.body 
+        const {newsImg} = req.files;
+        const imgType = newsImg.name.split(".").slice(-1).join(" ");
+        const createNews = new News ({
+           newsTitle,newsImg:imgPath, newsDescription, newsBody, newsAuthor
+        })
+        var imgName=`${createNews._id}.${imgType}`
+        var imgPath=`${__dirname}/../frontend/public/newsImages/${imgName}`
+        createNews.newsImg=imgName;
+        newsImg.mv(imgPath,error=>{
+        if(error){
+            console.log(error)}
+        else{ 
+        
+            createNews.save()
+            .then(savedNews=>{
+                console.log("NEWS GRABADA")
+                return res.json({success: true, response: savedNews})
+            })
+            .catch(error =>{
+                console.log(error)
+                return res.json({success: false, response: error})
+            })
+        
+        }})
     },
     allNews : (req, res)=>{
         News.find()
@@ -36,7 +51,6 @@ const newsController ={
     },
     newsById: (req, res) =>{
         const id= req.params.idNews
-        console.log(id)
         News.find({"_id":id})
         .then(respuesta =>{
             return res.json({success:true, response: respuesta})

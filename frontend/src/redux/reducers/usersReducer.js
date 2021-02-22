@@ -1,5 +1,5 @@
 const initialState ={
-    loggedUser:null,
+    loggedUser:null
 }
 
 function usersReducer(state= initialState,action){
@@ -7,10 +7,8 @@ function usersReducer(state= initialState,action){
         case 'LOGIN':
             localStorage.setItem("userFirstName",action.payload.userFirstName);
             localStorage.setItem("token",action.payload.token);
-            localStorage.setItem("id",action.payload.id);
             localStorage.setItem("userImg",action.payload.userImg);
             localStorage.setItem("userRol",action.payload.userRol);
-
             return {
                 ...state,
                 loggedUser:action.payload,
@@ -23,6 +21,17 @@ function usersReducer(state= initialState,action){
                 loggedUser:null
             }
             break;
+            case 'RECOVERPASSWORD':
+                return{
+                    ...state,
+                    loggedUser:action.payload
+                }
+                break
+                case 'CONTACTEMAIL':
+                    return{
+                        ...state,
+                        loggedUser:action.payload
+                    }
         default:
             return state;
 }}

@@ -1,15 +1,18 @@
 import {useState} from 'react'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import usersActions from '../redux/actions/usersActions'
 import { GoogleLogin } from  'react-google-login'
+import Swal from "sweetalert2"
+
 
 const LogIn = (props) => {
+    const [errors,setErrors] = useState([])
     const [loggedUser,setLoggedUser] = useState({
         userName:'',
         userPass:''
     })
-    const [errors,setErrors] = useState([])
+
 
     const read_input = e =>{
         const property= e.target.name
@@ -21,34 +24,65 @@ const LogIn = (props) => {
         })
        
     }
+
     const send_data = async (e) =>{
+        setErrors([])
         e.preventDefault()
         if(loggedUser.userName==='' || loggedUser.userPass===''){
-            setErrors([{message:'All fields must be completed'}])
-            return false
+            setErrors([[ 'All fields must be completed']])
+            return false;
         }
-        const data = await props.login_user(loggedUser)   
-        if(data && !data.sucess){
+        const data = await props.login_user(loggedUser) 
+        
+        if(data && !data.success){
             setErrors([data.errors])
+            return false;
         }else{
-            alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+            Swal.fire({
+                icon: 'success',
+                title: `Welcome! ${localStorage.getItem("userFirstName")}`,
+                text: 'Enjoy all our content!',
+            }).then(function (result) {
+                if (result.value) {
+                    window.location.href='/'
+                }})
+            
         }
         
     }
     // GOOGLE SIGN UP ACCOUNT
     const responseGoogle = async (googleResponse) => {
         if(googleResponse.error){
-            alert("error login con google")
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'There was an error trying to log in with Google, try again later!',
+              })
         }else{
             const response= await props.login_user({
                 userName: googleResponse.profileObj.email,
-                userPass: googleResponse.profileObj.googleId
+                userPass: googleResponse.profileObj.googleId,
+                loginGoogle: true
             })
-            if(response && !response.sucess){
-                setErrors([response.response])
+
+            if(response && !response.success){
+                setErrors([response.errors])
             }else{
-                alert(`Welcome ${localStorage.getItem("userFirstName")}`)
+                Swal.fire({
+                    icon: 'success',
+                    title:`Welcome ${localStorage.getItem("userFirstName")}!`,
+                    text: 'Enjoy all our content!',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                  }).then(function (result) {
+                    if (result.value) {
+                        window.location.href='/'
+                    }})
+                  
+                  
             }
+            
+
         }
     }
     
@@ -59,8 +93,13 @@ const LogIn = (props) => {
                 <input id='username' name='userName' type='text' placeholder='Username(email)' onChange={read_input}/>
                 <input id='password'name='userPass' type='password' placeholder='Password' onChange={read_input}/>
 
-                    <button onClick={send_data} type='submit'>Log In</button>
-                    {errors && errors.map(error=> <p>{error}</p> )}
+                    <button onClick={send_data}>Log In</button>
+                    {errors[0] && (
+                <div className="signUpErrorContainer">
+                    {errors[0].map(error=> <p className="signUpErrorText">{error}</p>)}
+                </div>
+                )}
+                
                 </form>
                     <GoogleLogin
                         clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
@@ -70,7 +109,7 @@ const LogIn = (props) => {
                         cookiePolicy={'single_host_origin'}
                     />
                     <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
-                    <Link to ='/'><p>Home</p></Link>
+                    <Link to='/passwordReset'>Can't remember your password? <span className="logInRedirect">Click Here!</span></Link>
         </div>
                 )
 }

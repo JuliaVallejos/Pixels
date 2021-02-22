@@ -1,16 +1,21 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
 const usersActions = {
-  createNewUser: newUser => {
+    createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
       try{
-        const data = await axios.post("http://localhost:4000/api/user/signUp",newUser); 
-        if (data.data.sucess){
+        const data = await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
+          headers: {"Content-Type": "multipart: form-data"}
+        }); 
+        if (data.data.success){
           dispatch({type:'LOGIN', payload:data.data.response})
+          return data
         } else{
-          return data.data
+          return data
         }
         }catch(error){
-          const data ={errores:{details:[{message:'An error occurred'}]}}
+          const data =[{errors:'An error occurred'}]
           return data
         }
     }
@@ -19,14 +24,15 @@ const usersActions = {
     return async (dispatch,getstate) => {
       try{
         const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
-        console.log(data.data.response)
-        if(data.data.sucess){dispatch({type:'LOGIN', payload:data.data.response})
         
+        if(data.data.success){
+          dispatch({type:'LOGIN', payload:data.data.response})
+          return data.data
         }else{
           return data.data
         }
       }catch(error){
-        const data ={errores:{details:[{message:'An error occurred'}]}}
+        const data ={errors:['An error occurred']}
         return data
       }
     }
@@ -44,15 +50,58 @@ const usersActions = {
             Authorization: `Bearer ${token}` 
           }
         })
-        if(response.data.sucess){
+        if(response.data.success){
           dispatch({type:"LOGIN", payload: {...response.data.response}})
         }
       }catch(error){
-        if(error.response.status===401){
-          alert("Access denied")
+        
+        if(error.status===401){
+          Swal.fire({
+            icon: 'error',
+            title: 'ACCESS DENIED!',
+          })
           localStorage.clear()
+          const backToHome ='/'
+          return backToHome
+        }else {
+        return error}
         }
+      
+    }
+  },
+  recoverPassword: (password)=>{
+    return async (dispatch, getstate)=>{
+      try{
+        const data = await axios.post('http://localhost:4000/api/recoverPassword',password)
+       
+        if(data.data.success){
+          dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
+        }else{
+          return data.data
+        }
+      }catch(error){
+        const data ={errors:['An error occurred']}
+        return data
       }
+
+    }
+  },
+  contactEmail:(email)=>{
+    return async (dispatch,getstate)=>{
+      try{
+        const data = await axios.post('http://localhost:4000/api/contact/send',email)
+        
+        if(data.data.success){
+          dispatch({type:'CONTACTEMAIL', payload:data.data.response})
+          return data.data.response
+        }else{
+          return data.data
+        }
+      }catch(error){
+        const data ={errors:['An error occurred']}
+        return data
+      }
+
     }
   }
 }
