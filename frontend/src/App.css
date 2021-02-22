@@ -1367,6 +1367,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   }
 
   @media(max-width:900px){
+ 
   #headerContainer{
     display:none;
   }
@@ -1376,6 +1377,19 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     background-color: var(--background-color);
     align-items: center;
     justify-content: space-around;
+  }
+  #linksResponsive{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+    .homeContainer #cardPadre a{
+    width: 90vw;
+    padding: 0 0;
+    margin: 0 0;
+    display: flex;
+    justify-content: center;
+    
   }
   .homeHero h1{
     font-size: 2rem;

@@ -8,8 +8,8 @@ const HomeNews = ({news:{_id,newsImg,newsTitle,newsDescription}}) =>{
                 style={{ backgroundImage: `url("/newsImages/${newsImg}")` }}>
                 <div className="news">
                     <div className="texto">
-                        <h3 className="tituloNoticia">{newsTitle}</h3>
-                        <h2 className="descripcionNoticia">{newsDescription}</h2>
+                        <h3 className="tituloNoticia">{newsTitle.length <= 20 ? newsTitle : newsTitle.slice(0,15)+"..."}</h3>
+                        <h2 className="descripcionNoticia">{newsDescription.length <= 20 ? newsDescription : newsDescription.slice(0,8)+"..."}</h2>
                     </div>
                 </div>
             </div>

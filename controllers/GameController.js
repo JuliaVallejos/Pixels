@@ -41,7 +41,7 @@ const GameController ={
 
     allGames: (req, res)=>{
       
-        Game.find().populate('idGame').populate('userComments.idUser')
+        Game.find().populate('idUser').populate('userComments.idUser')
         .then(respuesta =>{
             return res.json({success: true, response: respuesta})
         })
@@ -66,7 +66,7 @@ const GameController ={
  
        const  id=req.params.idGame
 
-        Game.findOne({'_id':id}).populate('idGame').populate('userComments.idUser')
+        Game.findOne({'_id':id}).populate('idUser').populate('userComments.idUser')
 
         .then(respuesta=>{
             return res.json({success:true, response:respuesta})
@@ -81,8 +81,6 @@ const GameController ={
            const {comment}=req.body
            const id=req.params.idGame
 
-           
-          
            Game.findOneAndUpdate({_id:id}, {
             $push:{
              "userComments":{idUser:idUser, comment:comment}
@@ -90,13 +88,10 @@ const GameController ={
             
         },
         {new: true}
-        ).populate('userComments.idUser')
+        ).populate('userComments.idUser').populate("idUser")
 
         .then(respuesta =>{
-            
             return res.json({success:true, response:respuesta})
-        
-
         })
         .catch(error=>{
      
