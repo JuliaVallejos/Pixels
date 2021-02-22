@@ -6,7 +6,7 @@ const router=require("./routes/index");
 require("./config/database");
 
 
-const fileUpload =require("express-fileUpload");
+const fileUpload =require("express-fileupload");
 
 const app = express();
 
