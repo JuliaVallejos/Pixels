@@ -49,7 +49,7 @@ const GameById = (props)=>{
       const data = await props.setValoration(id,newValoration)
       setEdit(false)
     }
-    if(!props.game.idUser.userFirstName){return <Loader/>}
+    if(!props.game.idUser){return <Loader/>}
     return(            
         <>
             <div>
@@ -77,8 +77,8 @@ const GameById = (props)=>{
                             </div>    
                         </div>
                     </div>
-                    <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
-                    </div>
+                    {props.game && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
+                    </div>}
 
 
                         <div className="justifyCenter">
