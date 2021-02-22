@@ -17,6 +17,8 @@ import gameById  from './components/GameById'
 import News from './pages/News'
 import Commentary from './components/Commentary'
 import NewsById from './components/NewsById'
+import EnterNewPassword from './components/EnterNewPassword'
+import PasswordReset from './pages/PasswordReset'
 
 
 function App({loggedUser,login_with_LS}) {
@@ -84,8 +86,8 @@ function App({loggedUser,login_with_LS}) {
     <Route exact path='/news/:id' component={NewsById}/>
     <Route path='/signup' component={SignUp}/>
     <Route exact path='/login' component={LogIn}/>
-    
-    
+    <Route path='/passwordReset' component={PasswordReset}/>
+    <Route path='/enterNewPassword' component={EnterNewPassword}/>
   </>}
 
   return (
