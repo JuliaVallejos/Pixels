@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom'
 import { GrPaypal } from 'react-icons/gr'
 import { BiJoystick } from 'react-icons/bi'
 import { RiStarSmileLine } from 'react-icons/ri'
+import Loader from "../components/Loader"
 
 
 const GameById = (props)=>{
@@ -48,6 +49,7 @@ const GameById = (props)=>{
       const data = await props.setValoration(id,newValoration)
       setEdit(false)
     }
+    if(!props.game){return <Loader/>}
     return(            
         <>
             <div>
@@ -76,7 +78,7 @@ const GameById = (props)=>{
                             </div>    
                         </div>
                     </div>
-                    {game.idUser.userFirstName && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
+                    {props.game.idUser && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
                     </div>}
 
 
