@@ -47,7 +47,7 @@ const userController={
         const userExists= await User.findOne({userName})
        
         if(!userExists){
-            errors.push("Incorrect username or password, please try again");
+            errors.push("User doesn't exist");
         }else if (userExists){
             if (!loginGoogle && userExists.userGoogle ){
                 errors.push("You must logged with google")

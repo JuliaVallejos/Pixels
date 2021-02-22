@@ -71,8 +71,11 @@ const SignUp = (props) =>{
                 icon: 'success',
                 title:  `Welcome ${localStorage.getItem("userFirstName")}!`,
                 text: 'Enjoy all our content!',
-            })
-            window.location.href="/"
+            }).then(function (result) {
+                if (result.value) {
+                    window.location.href='/'
+                }})
+            
         } 
         
     }
@@ -144,8 +147,11 @@ const SignUp = (props) =>{
                         icon: 'success',
                         title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                         text: 'Enjoy all our content!',
-                    })
-                } window.location.href="/"
+                    }).then(function (result) {
+                        if (result.value) {
+                            window.location.href='/'
+                        }})
+                } 
             }
         }
     }

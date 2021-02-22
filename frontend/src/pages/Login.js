@@ -24,6 +24,7 @@ const LogIn = (props) => {
         })
        
     }
+
     const send_data = async (e) =>{
         setErrors([])
         e.preventDefault()
@@ -41,8 +42,11 @@ const LogIn = (props) => {
                 icon: 'success',
                 title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                 text: 'Enjoy all our content!',
-            })
-            window.location.href='/'
+            }).then(function (result) {
+                if (result.value) {
+                    window.location.href='/'
+                }})
+            
         }
         
     }
@@ -62,17 +66,22 @@ const LogIn = (props) => {
             })
 
             if(response && !response.success){
-                setErrors([response.response])
+                setErrors([response.errors])
             }else{
                 Swal.fire({
                     icon: 'success',
                     title:`Welcome ${localStorage.getItem("userFirstName")}!`,
                     text: 'Enjoy all our content!',
-                  })
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                  }).then(function (result) {
+                    if (result.value) {
+                        window.location.href='/'
+                    }})
                   
-
+                  
             }
-            window.location.href='/'
+            
 
         }
     }
@@ -101,7 +110,6 @@ const LogIn = (props) => {
                     />
                     <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
                     <Link to='/passwordReset'>Can't remember your password? <span className="logInRedirect">Click Here!</span></Link>
-                    <Link to ='/'><p>Home</p></Link>
         </div>
                 )
 }
