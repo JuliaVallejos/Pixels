@@ -76,8 +76,7 @@ const GameById = (props)=>{
                             </div>    
                         </div>
                     </div>
-                    {game.idUser.userFirstName
-                    && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
+                    {game.idUser.userFirstName && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
                     </div>}
 
 
