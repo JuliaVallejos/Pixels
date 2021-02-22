@@ -3,10 +3,9 @@ require("dotenv").config();
 // require('./db');
 const express=require("express");
 const router=require("./routes/index");
+const fileUpload =require("express-fileupload");
 require("./config/database");
 
-
-const fileUpload =require("express-fileupload");
 
 const app = express();
 
