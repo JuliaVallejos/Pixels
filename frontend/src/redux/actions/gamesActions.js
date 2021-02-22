@@ -5,7 +5,7 @@ const gamesActions = {
 
         return async (dispatch,getstate) => {
         try{
-            const data = await axios.post("http://localhost:4000/api/games", formNewGame,{
+            const data = await axios.post("https://app-pixels.herokuapp.com/api/games", formNewGame,{
                 headers: {"Content-Type": "multipart: form-data"}
             });
            
@@ -23,7 +23,7 @@ const gamesActions = {
     allGames: () =>{
         return async(dispatch,getstate) =>{
             try{
-                const data = await axios.get("http://localhost:4000/api/games")
+                const data = await axios.get("https://app-pixels.herokuapp.com/api/games")
             
                 if (data.data.success){
                     dispatch({type:'ALL_GAMES',payload:data.data.response})
@@ -45,7 +45,7 @@ const gamesActions = {
         const token = getstate().user.loggedUser? getstate().user.loggedUser.token : ''
         
         try{
-        const data = await axios.post(`http://localhost:4000/api/games/${idGame}`,{comment},
+        const data = await axios.post(`https://app-pixels.herokuapp.com/api/games/${idGame}`,{comment},
         {
             headers:{
             Authorization: `Bearer ${token}`
@@ -73,7 +73,7 @@ const gamesActions = {
         return async (dispatch,getstate) => {
         try{
             
-            const data = await axios.put(`http://localhost:4000/api/games/${idGame}/${idComment}`,{editedComment})
+            const data = await axios.put(`https://app-pixels.herokuapp.com/api/games/${idGame}/${idComment}`,{editedComment})
             
             if (data.data.success){
             dispatch({type:'CHANGES', payload:data.data.response})
@@ -89,7 +89,7 @@ const gamesActions = {
         return async (dispatch,getstate) => {
         
         try{
-        const data = await axios.delete(`http://localhost:4000/api/games/${idGame}/${idComment}`)
+        const data = await axios.delete(`https://app-pixels.herokuapp.com/api/games/${idGame}/${idComment}`)
         
         if (data.data.success){
             dispatch({type:'CHANGES', payload:data.data.response})
@@ -118,7 +118,7 @@ const gamesActions = {
     
             try{
                 
-            const data = await axios.post(`http://localhost:4000/api/valoration/${idGame}`,send_data)
+            const data = await axios.post(`https://app-pixels.herokuapp.com/api/valoration/${idGame}`,send_data)
             if (data.data.success){
                
                 dispatch({type:'CHANGES', payload:data.data.response})
@@ -133,7 +133,7 @@ const gamesActions = {
 gamesById : (id)=>{
     return async (dispatch , getstate) =>{
         try{
-            const data = await axios.get(`http://localhost:4000/api/games/${id}`)
+            const data = await axios.get(`https://app-pixels.herokuapp.com/api/games/${id}`)
             if (data.data.success){
                 dispatch({type:'GAMEBYID', payload:data.data.response})
                 return data.data.response

@@ -24,6 +24,7 @@ const LogIn = (props) => {
         })
        
     }
+
     const send_data = async (e) =>{
         setErrors([])
         e.preventDefault()
@@ -42,8 +43,11 @@ const LogIn = (props) => {
                 icon: 'success',
                 title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                 text: 'Enjoy all our content!',
-            })
-            window.location.href='/'
+            }).then(function (result) {
+                if (result.value) {
+                    window.location.href='/'
+                }})
+            
         }
         
     }
@@ -61,19 +65,24 @@ const LogIn = (props) => {
                 userPass: googleResponse.profileObj.googleId,
                 loginGoogle: true
             })
-            console.log(response)
-            if(response.errors && !response.success){
+
+            if(response && !response.success){
                 setErrors([response.errors])
             }else{
                 Swal.fire({
                     icon: 'success',
                     title:`Welcome ${localStorage.getItem("userFirstName")}!`,
                     text: 'Enjoy all our content!',
-                  })
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                  }).then(function (result) {
+                    if (result.value) {
+                        window.location.href='/'
+                    }})
                   
-
+                  
             }
-        /*     window.location.href='/' */
+            
 
         }
     }
@@ -94,7 +103,7 @@ const LogIn = (props) => {
                 
                 </form>
                     <GoogleLogin
-                        clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
+                        clientId="50357296791-qvh1kn17dv4cbi1fo4pfcne2nl6dts90.apps.googleusercontent.com"
                         buttonText="Login with Google"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
@@ -102,7 +111,6 @@ const LogIn = (props) => {
                     />
                     <Link to ='/signup'><p>Don't have account? <span className="logInRedirect">Create one!</span></p></Link>
                     <Link to='/passwordReset'>Can't remember your password? <span className="logInRedirect">Click Here!</span></Link>
-                    <Link to ='/'><p>Home</p></Link>
         </div>
                 )
 }

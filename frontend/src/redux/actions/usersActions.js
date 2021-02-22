@@ -5,7 +5,7 @@ const usersActions = {
     createNewUser: formSignUp =>{
     return async (dispatch,getstate) => {
       try{
-        const data = await axios.post("http://localhost:4000/api/user/signUp",formSignUp,{
+        const data = await axios.post("https://app-pixels.herokuapp.com/api/user/signUp",formSignUp,{
           headers: {"Content-Type": "multipart: form-data"}
         }); 
         if (data.data.success){
@@ -23,7 +23,7 @@ const usersActions = {
   login_user: (loginUser)=>{
     return async (dispatch,getstate) => {
       try{
-        const data = await axios.post("http://localhost:4000/api/user/logIn",loginUser);
+        const data = await axios.post("https://app-pixels.herokuapp.com/api/user/logIn",loginUser);
         
         if(data.data.success){
           dispatch({type:'LOGIN', payload:data.data.response})
@@ -47,7 +47,7 @@ const usersActions = {
   login_with_LS: (token)=>{
     return async (dispatch,getState)=>{
       try{ 
-        const response= await axios.post("http://localhost:4000/api/user/logInLS",{token},{
+        const response= await axios.post("https://app-pixels.herokuapp.com/api/user/logInLS",{token},{
           headers:{
             Authorization: `Bearer ${token}` 
           }
@@ -74,10 +74,11 @@ const usersActions = {
   recoverPassword: (password)=>{
     return async (dispatch, getstate)=>{
       try{
-        const data = await axios.post('http://localhost:4000/api/recoverPassword',password)
-       
+        const data = await axios.post('https://app-pixels.herokuapp.com/api/recoverPassword',password)
+       console.log(data)
         if(data.data.success){
           dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
+          return data.data
         }else{
           return data.data
         }
@@ -91,7 +92,7 @@ const usersActions = {
   contactEmail:(email)=>{
     return async (dispatch,getstate)=>{
       try{
-        const data = await axios.post('http://localhost:4000/api/contact/send',email)
+        const data = await axios.post('https://app-pixels.herokuapp.com/api/contact/send',email)
         
         if(data.data.success){
           dispatch({type:'CONTACTEMAIL', payload:data.data.response})

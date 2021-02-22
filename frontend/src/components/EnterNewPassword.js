@@ -26,7 +26,7 @@ const [errors, setErrors]=useState([])
             return false
         }
         const data = await props.recoverPassword(password)
-
+    
         if(data && data.success){
             Swal.fire({
                 icon: 'success',

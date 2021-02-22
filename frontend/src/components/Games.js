@@ -27,6 +27,11 @@ const Games = (props) =>{
 
     useEffect(() =>{
         let filterElement=  newGamesList.filter((element) =>{
+            if (element.gameTitle.split(" ")[2]){
+                return(element.gameTitle.split(" ")[0].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0
+                    || element.gameTitle.split(" ")[1].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0
+                    || element.gameTitle.split(" ")[2].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0) 
+            } 
             if (element.gameTitle.split(" ")[1]){
                 return(element.gameTitle.split(" ")[0].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0
                     || element.gameTitle.split(" ")[1].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0) 
@@ -122,7 +127,7 @@ const Games = (props) =>{
                 </select>
 
             </div>
-            {noResults? <div id="noGames" style={{backgroundImage: `url("/assets/noGames.jpg")` }}>
+            {noResults? <div  className="centerCenter noGames" style={{backgroundImage: `url("/assets/noGames.jpg")` }}>
                 <h2 className="centerCenter">No results</h2>
             </div> 
             :

@@ -927,6 +927,7 @@ background-color: rgba(247,104,247,0.8);
 }
 .cajaTituloSingleGame, p ,h3 {
   color: white;
+  font-size: 1.20rem;
 }
 
 
@@ -999,7 +1000,10 @@ background-color: rgba(247,104,247,0.8);
   width: 70vw;
   
 }
+.cajaPadreSingleGame .caja,.cajaPadreSingleGame .cajaRate{
+  width: 18vw;
 
+}
 .tituloArticle{
   text-transform: uppercase;
 }
@@ -1365,6 +1369,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   }
 
   @media(max-width:900px){
+ 
   #headerContainer{
     display:none;
   }
@@ -1375,10 +1380,19 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     align-items: center;
     justify-content: space-around;
   }
-  .homeHero{
-    width:100vw
+  #linksResponsive{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
   }
-
+    .homeContainer #cardPadre a{
+    width: 90vw;
+    padding: 0 0;
+    margin: 0 0;
+    display: flex;
+    justify-content: center;
+    
+  }
   .homeHero h1{
     font-size: 2rem;
   }
@@ -1475,6 +1489,9 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .cardHijoRecommend{
     width: 80vw;
   }
+}
+.Recommend h5 {
+  font-size: 1.5rem;
 }
 
 /* -------LOADER-------- */

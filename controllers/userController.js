@@ -18,7 +18,7 @@ const userController={
             var passHashed=await bcryptjs.hashSync(userPass,10);
             var newUser= new User({userName,userPass:passHashed,userFirstName,userLastName,userPhone,userPayPal,userRol,userGoogle});
             var imgName= `${newUser._id}.${imgType}`
-            var imgPath= `${__dirname}/../frontend/public/userImages/${newUser._id}.${imgType}`
+            var imgPath= `${__dirname}/../client/build/userImages/${newUser._id}.${imgType}`
             await imgFile.mv(imgPath,error=>{
                 if(error){
                  
@@ -47,7 +47,7 @@ const userController={
         const userExists= await User.findOne({userName})
        
         if(!userExists){
-            errors.push("User don't exists");
+            errors.push("User doesn't exist");
         }else if (userExists){
             if (!loginGoogle && userExists.userGoogle ){
                 errors.push("You must logged with google")

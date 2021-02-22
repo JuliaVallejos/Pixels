@@ -62,7 +62,7 @@ const GameById = (props)=>{
                         </div>
                         <div className="portadaSingleGame" style={{backgroundImage:`url("/gamesImages/${props.game.gameImg}")`}}/>
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h3 className="centerCenter uppercase">{game.gameInfo}</h3>
+                            <h3 className="centerCenter uppercase gameInfo">{game.gameInfo}</h3>
                         </div>
                     </div>
                 

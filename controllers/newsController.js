@@ -11,7 +11,7 @@ const newsController ={
            newsTitle,newsImg:imgPath, newsDescription, newsBody, newsAuthor
         })
         var imgName=`${createNews._id}.${imgType}`
-        var imgPath=`${__dirname}/../frontend/public/newsImages/${imgName}`
+        var imgPath=`${__dirname}/../client/build/newsImages/${imgName}`
         createNews.newsImg=imgName;
         newsImg.mv(imgPath,error=>{
         if(error){

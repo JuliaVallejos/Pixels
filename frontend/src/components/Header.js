@@ -40,7 +40,7 @@ const Header = ({loggedUser,logOut}) =>{
             </div>
         </div>
         <div id="headerResponsive">
-            <div className="logo" style={{backgroundImage: `url("../assets/logo.png")`}}></div>
+            <Link className="logo"  style={{backgroundImage: `url("../assets/logo.png")`}} to ='/'></Link>
             <Hamburger toggled={isOpen} toggle={setOpen} color="#FFB5FF" className="hamburgerIcon" />
         </div>
         {isOpen && 

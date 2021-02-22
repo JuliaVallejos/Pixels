@@ -46,6 +46,7 @@ const AddGame = (props) =>{
         formNewGame.append("clasificationPEGI",clasificationPEGI)
         formNewGame.append("gameFile",gameImg)
         formNewGame.append("idUser",idUser)
+        
 
         if(gameTitle ==='' || gameInfo===''|| gameCategories ==='' || clasificationPEGI ==='' || gameImg ===''){           
             setErrors([{message:'All required(*) fields must be completed'}])

@@ -56,14 +56,14 @@ const SignUp = (props) =>{
         
         if(userFirstName==='' || userLastName===''|| userName ==='' || userPass==='' || userImg==='' ||userRol===''){
             setErrors([['All required(*) fields must be completed']])
-            
+            return false;
         }else if(dev===true && (userPhone==='' || userPayPal==='')){
             setErrors([['All required(*) fields must be completed']])
-           
+           return false;
         }
         const data = await props.createNewUser(formSignUp) 
-  
-
+        console.log(data)
+        console.log(errors)
         if(data && !data.data.success){
             setErrors([data.data.errors])
         }else if(data.data.success){
@@ -71,8 +71,10 @@ const SignUp = (props) =>{
                 icon: 'success',
                 title:  `Welcome ${localStorage.getItem("userFirstName")}!`,
                 text: 'Enjoy all our content!',
-            })
-            window.location.href="/"
+            }).then(function (result) {
+                if (result.value) {
+                    window.location.href='/'
+            }})
         } 
         
     }
@@ -144,8 +146,11 @@ const SignUp = (props) =>{
                         icon: 'success',
                         title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                         text: 'Enjoy all our content!',
-                    })
-                } window.location.href="/"
+                    }).then(function (result) {
+                        if (result.value) {
+                            window.location.href='/'
+                        }})
+                } 
             }
         }
     }
@@ -193,7 +198,7 @@ const SignUp = (props) =>{
 
             </form>
                 <GoogleLogin
-                    clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
+                    clientId="50357296791-qvh1kn17dv4cbi1fo4pfcne2nl6dts90.apps.googleusercontent.com"
                     buttonText="Sign Up with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}

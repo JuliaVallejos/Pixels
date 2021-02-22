@@ -15,7 +15,7 @@ const GameController ={
             gameTitle, gameCategories, gameInfo, valoration, userComments,clasificationPEGI,idUser
         })
         var imgName= `${createGame._id}.${imgType}`
-        var imgPath= `${__dirname}/../frontend/public/gamesImages/${createGame._id}.${imgType}`
+        var imgPath= `${__dirname}/../client/build/gamesImages/${createGame._id}.${imgType}`
 
 
         await gameFile.mv(imgPath,error=>{
@@ -81,8 +81,6 @@ const GameController ={
            const {comment}=req.body
            const id=req.params.idGame
 
-           
-          
            Game.findOneAndUpdate({_id:id}, {
             $push:{
              "userComments":{idUser:idUser, comment:comment}
@@ -90,13 +88,10 @@ const GameController ={
             
         },
         {new: true}
-        ).populate('userComments.idUser')
+        ).populate('userComments.idUser').populate("idUser")
 
         .then(respuesta =>{
-            
             return res.json({success:true, response:respuesta})
-        
-
         })
         .catch(error=>{
      

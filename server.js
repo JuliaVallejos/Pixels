@@ -1,9 +1,11 @@
-require("dotenv").config();
-const express=require("express");
 const cors= require("cors");
+require("dotenv").config();
+// require('./db');
+const express=require("express");
+const path=require("path");
 const router=require("./routes/index");
-require("./config/database");
 const fileUpload =require("express-fileupload");
+require("./config/database");
 
 const app = express();
 
@@ -12,4 +14,16 @@ app.use(cors());
 app.use(fileUpload());
 
 app.use("/api",router);
-app.listen(4000,()=>console.log("App listening on port 4000"));
+
+if(process.env.NODE_ENV==="production"){
+    app.use(express.static("client/build"))
+    app.get("*",(req,res)=>{
+        res.sendFile(path.join(__dirname+"/client/build/index.html"))
+    })
+}
+
+const port=process.env.PORT;
+
+const host=process.env.HOST || '0.0.0.0';
+
+app.listen(port,()=>console.log("App listening on port 4000"))
