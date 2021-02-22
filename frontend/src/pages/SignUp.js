@@ -198,7 +198,7 @@ const SignUp = (props) =>{
 
             </form>
                 <GoogleLogin
-                    clientId="312438551447-nmud4jvr1cmj672mvc01vrmkhs6629r4.apps.googleusercontent.com"
+                    clientId="50357296791-qvh1kn17dv4cbi1fo4pfcne2nl6dts90.apps.googleusercontent.com"
                     buttonText="Sign Up with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
