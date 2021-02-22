@@ -881,6 +881,13 @@ border-radius: 43px 43px 43px 43px;
 #gameInfo::placeholder{
   color: white;
 }
+#gameInfo1{
+  height: fit-content;
+  padding: 1vh 0;
+}
+#gameInfo1 h3{
+  padding: 1vh 1vw;
+}
 #gameImg{
   min-width: 25vw;
   padding: 1vh 3vw;

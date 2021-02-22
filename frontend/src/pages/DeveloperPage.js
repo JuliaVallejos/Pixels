@@ -16,8 +16,8 @@ const DeveloperPage = (props) =>{
             <>
             <div  className="headerDeveloper">
                 <div className="links justifyEvenly optionsDevelopers  ">
-                    <p style={{cursor:'pointer'}} onClick={changeSection}>ADD GAME</p>
-                    <p style={{cursor:'pointer'}}>ADD NEWS</p>
+                    <p style={{cursor:'pointer',userSelect:"none"}} onClick={changeSection}>ADD GAME</p>
+                    <p style={{cursor:'pointer',userSelect:"none"}}>ADD NEWS</p>
                 </div>
             </div>
             <AddNew/> 
