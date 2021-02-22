@@ -9,7 +9,7 @@ const HomeNews = ({news:{_id,newsImg,newsTitle,newsDescription}}) =>{
                 <div className="news">
                     <div className="texto">
                         <h3 className="tituloNoticia">{newsTitle.length <= 17 ? newsTitle : newsTitle.slice(0,15)+"..."}</h3>
-                        <h2 className="descripcionNoticia">{newsDescription.length <= 17 ? newsDescription : newsDescription.slice(0,8)+"..."}</h2>
+                        <h2 className="descripcionNoticia">{newsDescription.length <= 17 ? newsDescription : newsDescription.slice(0,15)+"..."}</h2>
                     </div>
                 </div>
             </div>
