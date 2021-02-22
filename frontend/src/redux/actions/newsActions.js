@@ -3,7 +3,7 @@ const newsActions ={
     createNews:(formNews)=>{
         return async (dispatch, getState) =>{
             try{
-                const data = await axios.post("http://localhost:4000/api/news", formNews, {
+                const data = await axios.post("https://app-pixels.herokuapp.com/api/news", formNews, {
                   headers: {"Content-Type": "multipart: form-data"}
               });  
                 if (data.data.success){
@@ -20,7 +20,7 @@ const newsActions ={
             allNews: ()=>{
               return async (dispatch, setState)=>{
                 try{
-                  const data = await axios.get("http://localhost:4000/api/news")
+                  const data = await axios.get("https://app-pixels.herokuapp.com/api/news")
               
                   if (data.data.success){
                     dispatch({type:'ALL_NEWS',payload:data.data.response.sort((a,b)=>{return b.newsDate>a.newsDate? 1:-1})})
@@ -36,7 +36,7 @@ const newsActions ={
               newsById: (id)=>{
                 return async (dispatch, setState)=>{
                   try{
-                    const data = await axios.get(`http://localhost:4000/api/news/${id}`)
+                    const data = await axios.get(`https://app-pixels.herokuapp.com/api/news/${id}`)
                 
                     if (data.data.success){
             
