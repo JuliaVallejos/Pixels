@@ -25,7 +25,7 @@ return(
     
     <div className="tituloDescripcion">
         <h1 className="singleNewsTitle uppercase">{props.newsId.newsTitle}</h1>
-        <h3 className="singleNewsDescription">{props.newsId.newsDescription}</h3>
+        {props.newsId.newsDescription && <h3 className="singleNewsDescription">{props.newsId.newsDescription}</h3>}
     </div>
     
     <div className="portadaSingleNews" style={{backgroundImage:`url("/newsImages/${props.newsId.newsImg}")`}}></div>

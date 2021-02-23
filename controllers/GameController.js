@@ -136,7 +136,7 @@ const GameController ={
         const newVal ={idUser,valoration}
       
         if(req.body.edit){
-            Game.findOneAndUpdate({_id:idGame,'valoration.idUser':idUser},{ $set: {'valoration.$.valoration':valoration}},{new:true}).populate('userComments.idUser')
+            Game.findOneAndUpdate({_id:idGame,'valoration.idUser':idUser},{ $set: {'valoration.$.valoration':valoration}},{new:true}).populate('userComments.idUser').populate("idUser")
              .then(respuesta =>{
                 return res.json({success:true, response:respuesta})
             })
@@ -144,7 +144,7 @@ const GameController ={
                 return res.json({success:false, response:error})
             })
             }else{
-        Game.findOneAndUpdate({_id:idGame}, {$push:{valoration:newVal} },{new:true}).populate('userComments.idUser')
+        Game.findOneAndUpdate({_id:idGame}, {$push:{valoration:newVal} },{new:true}).populate('userComments.idUser').populate("idUser")
         .then(respuesta =>{
             return res.json({success:true, response:respuesta})
         })

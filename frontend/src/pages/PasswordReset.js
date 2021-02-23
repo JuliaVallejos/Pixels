@@ -72,4 +72,4 @@ const PasswordReset = (props)=>{
 const mapDispatchToProps ={
     contactEmail: usersActions.contactEmail
 }
-export default connect (null,mapDispatchToProps) (PasswordReset)
+export default connect (null,mapDispatchToProps)(PasswordReset)

@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom'
 import { GrPaypal } from 'react-icons/gr'
 import { BiJoystick } from 'react-icons/bi'
 import { RiStarSmileLine } from 'react-icons/ri'
+import Loader from "../components/Loader"
 
 
 const GameById = (props)=>{
@@ -48,7 +49,7 @@ const GameById = (props)=>{
       const data = await props.setValoration(id,newValoration)
       setEdit(false)
     }
- 
+    if(!props.game.idUser){return <Loader/>}
     return(            
         <>
             <div>
@@ -56,20 +57,19 @@ const GameById = (props)=>{
                     
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
-                        
                         <div className="cajaTituloSingleGame centerCenter">
-                            <h1 className="textCenter uppercase">{game.gameTitle}</h1>
+                            <h1 className="textCenter uppercase">{props.game.gameTitle}</h1>
                         </div>
                         <div className="portadaSingleGame" style={{backgroundImage:`url("/gamesImages/${props.game.gameImg}")`}}/>
-                        <div className="cajaTituloSingleGame centerCenter">
-                            <h3 className="centerCenter uppercase gameInfo">{game.gameInfo}</h3>
+                        <div className="cajaTituloSingleGame centerCenter" id="gameInfo1">
+                            <h3 className="centerCenter uppercase">{props.game.gameInfo}</h3>
                         </div>
                     </div>
                 
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
-                                {(game.userComments) && game.userComments.map(comment => <Commentary game={game} comment={comment}/>)}
+                                {(props.game.userComments) && props.game.userComments.map(comment => <Commentary game={props.game} comment={comment}/>)}
                             </div>
 
                             <div className="enviarMensaje">
@@ -79,9 +79,8 @@ const GameById = (props)=>{
                         </div>
 
                     </div>
-                    {game.idUser&& <div className="justifyCenter subtitulo uppercase">
-                            <h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
-                        </div>}
+                    {props.game && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
+                    </div>}
 
 
                         <div className="justifyCenter">

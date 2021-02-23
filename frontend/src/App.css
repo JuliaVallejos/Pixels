@@ -881,6 +881,13 @@ border-radius: 43px 43px 43px 43px;
 #gameInfo::placeholder{
   color: white;
 }
+#gameInfo1{
+  height: fit-content;
+  padding: 1vh 0;
+}
+#gameInfo1 h3{
+  padding: 1vh 1vw;
+}
 #gameImg{
   min-width: 25vw;
   padding: 1vh 3vw;
@@ -1508,3 +1515,10 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .editComment button{
     padding: 1vh 20vw;
   }
+
+.fondo{
+  height:75vh;
+  width:100%;
+  background-color: var(--background-color);
+  padding:0
+}

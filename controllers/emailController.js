@@ -87,17 +87,19 @@ recoverPassword: async (req, res) =>{
      $set:{
         userPass:userPass=(req.body.userPass=passHasheado)
      }
- })
+ },{new:true}).populate('idUser').populate('userComments.idUser')
 
     .then(respuesta =>{
+        console.log(respuesta)
         if(!respuesta){
-            return res.json({success:false, response:'non-existent user'})
+            return res.json({success:false, response:"This user don't exist"})
         }
         else{
             return res.json({success:true, response:respuesta})
         }
     })
     .catch(error=>{
+        console.log(error)
         return res.json({success:false, response:error})
     })  
 

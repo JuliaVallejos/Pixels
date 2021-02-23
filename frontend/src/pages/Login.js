@@ -75,10 +75,7 @@ const LogIn = (props) => {
                     text: 'Enjoy all our content!',
                     confirmButtonText: 'Ok',
                     closeOnConfirm: true
-                  }).then(function (result) {
-                    if (result.value) {
-                        window.location.href='/'
-                    }})
+                  })
                   
                   
             }

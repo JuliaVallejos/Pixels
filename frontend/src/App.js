@@ -13,7 +13,7 @@ import usersActions from "./redux/actions/usersActions"
 import WhatsApp from "./components/WhatsApp"
 import Contact from "./pages/Contact"
 import AddNew from './components/AddNew'
-import gameById  from '../src/components/GameById'
+import gameById  from './components/GameById'
 import News from './pages/News'
 import EnterNewPassword from './components/EnterNewPassword'
 import PasswordReset from './pages/PasswordReset'
@@ -25,11 +25,12 @@ function App({loggedUser,login_with_LS}) {
 
   const [renderAgain,setRenderAgain] = useState(false)
   var routes=null
-
+  console.log(loggedUser)
+/* 
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
   
-  }
+  } */
   
   if(loggedUser){
     routes=
@@ -41,7 +42,7 @@ function App({loggedUser,login_with_LS}) {
         <Route path='/games/:id' component={gameById}/>
         <Route exact path='/news/:id' component={NewsById}/>
         <Route exact path='/news' component={News}/>
-        <Route path='/commentary' component={Commentary}/>
+        <Redirect to='/'/> 
        
      
 
@@ -69,6 +70,7 @@ function App({loggedUser,login_with_LS}) {
     <Route path='/commentary' component={Commentary}/>
     <Route exact path='/developers' component={DeveloperPage}/>
     <Route exact path='/addnews' component={AddNew}/>
+    <Redirect to='/'/> 
 
 
     </>
@@ -85,12 +87,11 @@ function App({loggedUser,login_with_LS}) {
     <Route path='/games/:id' component={gameById}/>
     <Route exact path='/news' component={News}/>
     <Route exact path='/news/:id' component={NewsById}/>
-    <Route path='/signup' component={SignUp}/>
+    <Route exact path='/signup' component={SignUp}/>
     <Route exact path='/login' component={LogIn}/>
     <Route path='/passwordReset' component={PasswordReset}/>
-    <Route path='/enterNewPassword' component={EnterNewPassword}/>
-    
-    
+    <Route exact path='/enterNewPassword' component={EnterNewPassword}/>
+    <Redirect to='/'/> 
   </>}
 
   return (
@@ -99,9 +100,7 @@ function App({loggedUser,login_with_LS}) {
         <Header/>
         <Switch>   
         {routes}
-        <Redirect to='/'/> 
         </Switch>
-       
         <WhatsApp/>
         <Footer/>
       </BrowserRouter>    

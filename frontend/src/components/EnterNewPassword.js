@@ -26,14 +26,18 @@ const [errors, setErrors]=useState([])
             return false
         }
         const data = await props.recoverPassword(password)
-    
+        console.log(data)
         if(data && data.success){
             Swal.fire({
                 icon: 'success',
                 title: 'Congratulation!',
                 text: 'Your password has been updated! :)',
-              })
-            window.location.href='/'
+                confirmButtonText: 'Ok',
+                closeOnConfirm: true
+              }).then(function (result) {
+                if (result.value) {
+             /*       props.history.push('/') */
+                }})
         }
         else if (data && !data.success){
             setErrors([['Email must be a valid email and password must contain at least one number, one lowercase and one uppercase letter and six characters']])
