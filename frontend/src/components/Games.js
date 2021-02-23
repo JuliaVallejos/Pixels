@@ -19,13 +19,22 @@ const Games = (props) =>{
     var gamesConcat=[]
     const [filterBySort,setFilterBySort]= useState(false)
     const [filterByAge,setFilterByAge] = useState(false)
-
+    const [filterBySearch,setFilterBySearch] = useState(false)
+  
+    console.log(newOrder)
     var arrayGames = ((filterBySort===false) ?
      ((categories.length===0 ) ? newGamesList : categories)
      : newOrder)
-  
-
+  console.log(categories)
+    console.log(filterBySort)
+    console.log(filterByAge)
     useEffect(() =>{
+        if(search!==''){
+            setFilterBySearch(true)
+        }else{
+            setFilterBySearch(false)
+        }
+        
         let filterElement=  newGamesList.filter((element) =>{
             if (element.gameTitle.split(" ")[2]){
                 return(element.gameTitle.split(" ")[0].toLowerCase().indexOf(search.toLocaleLowerCase().trim()) === 0
@@ -64,6 +73,9 @@ const Games = (props) =>{
     
     const filt_games = () =>{
         setFilterByAge(true)
+        setCategories(newGamesList)
+       
+       
     agesState.map(age=>{
             gamesFiltered= newGamesList.filter(game=> game.clasificationPEGI===age)
             gamesConcat = gamesConcat.concat(gamesFiltered)
@@ -73,26 +85,28 @@ const Games = (props) =>{
             
         }else{
             setNoResults(false)
-            setCategories(gamesConcat)
-        }    
+            agesState.length===0?setCategories(newGamesList):setCategories(gamesConcat)
+        } 
         {(gamesFiltered.length === 0 && gamesConcat.length===0) && setFilterByAge(false)}
     }
     
     
     const read_sort= e =>{  
         const order = e.target.value
-
         setFilterBySort(true)
-
-        if(order==='less_valued'){          
+        console.log(categories)
+        if(order==='less_valued'){   
+            console.log('less')       
          return   setNewOrder([...categories].sort((a,b) => a.prom - b.prom))       
         }
         if (order==='most_valued'){   
+            console.log('most')
            return  setNewOrder([...categories].sort((a,b) => b.prom - a.prom))
             
-        }else{           
+        }else{   
+            console.log('nul')        
             setNewOrder(categories)
-            setFilterBySort(false)
+             setFilterBySort(false) 
         }
     }
     
@@ -100,15 +114,15 @@ const Games = (props) =>{
          return(
             <>
             <div id="library">
-            <h2 className="textCenter centerCenter" >Find your favorite games</h2>
-
-            <div className="libraryFilters">
-
-                {filterByAge === false &&
+              <div className="libraryFilters">
+            {(!filterByAge &&!filterBySort)&&   
+            <>
+                    <h2 className="textCenter centerCenter" >Find your favorite games</h2>
                     <input className="searchLibrary" type='text' onChange={e =>setSearch(e.target.value)} placeholder='Search'/>
+            </>
                 }
                 
-                {search === '' &&
+                {(search === '' && !filterBySort)&&
                     <label className="libraryLabel" onChange={selectAges} htmlFor='PEGI'>Select clasification PEGI
                     <div className="libraryCheckbox">
                         <input type='checkbox' name='PEGI' value='3' />3
@@ -120,11 +134,12 @@ const Games = (props) =>{
                     <button onClick={filt_games}>Search</button>
                     </label>}
             
-                    <select defaultValue='' onChange={read_sort}>
-                    <option value='' >Sort by</option>
-                    <option value='most_valued'>Most Valued</option>
-                    <option value='less_valued'>Less Valued</option>
-                </select>
+                   {(!filterByAge && !filterBySearch) &&
+                        <select defaultValue='' onChange={read_sort}>
+                        <option value='' >Sort by</option>
+                        <option value='most_valued'>Most Valued</option>
+                        <option value='less_valued'>Less Valued</option>
+                     </select>}
 
             </div>
             {noResults? <div  className="centerCenter noGames" style={{backgroundImage: `url("/assets/noGames.jpg")` }}>

@@ -25,14 +25,42 @@ function App({loggedUser,login_with_LS}) {
 
   const [renderAgain,setRenderAgain] = useState(false)
   var routes=null
-  console.log(loggedUser)
+  console.log('app')
 /* 
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
   
   } */
-  
+  if(!loggedUser){
+    console.log('soy no log')
+    routes=
+  <>
+    <Route exact path='/' component={Home}/>
+    <Route path='/contact' component={Contact}/>
+    <Route path='/library' component={Library}/> 
+    <Route path='/categories/:category' component={CategoryList}/> 
+    <Route path='/games/:id' component={gameById}/>
+    <Route exact path='/news' component={News}/>
+    <Route exact path='/news/:id' component={NewsById}/>
+    <Route exact path='/signup' component={SignUp}/>
+    <Route exact path='/login' component={LogIn}/>
+    <Route path='/passwordReset' component={PasswordReset}/>
+    <Route exact path='/enterNewPassword' component={EnterNewPassword}/>
+    <Redirect to='/'/> 
+  </>
+   }else if(!loggedUser && localStorage.getItem("token")){
+    console.log('sooy ls')
+    login_with_LS(localStorage.getItem('token'))
+    .then(backToHome => 
+      {
+        if(backToHome==='/'){
+        setRenderAgain(!renderAgain)}
+        
+    })
+    .catch(error => setRenderAgain(!renderAgain))
+  }
   if(loggedUser){
+    console.log('soy logged')
     routes=
     <>
        <Route exact path='/' component={Home}/>
@@ -47,17 +75,10 @@ function App({loggedUser,login_with_LS}) {
      
 
     </>
-  }else if(!loggedUser && localStorage.getItem("token")){
-    login_with_LS(localStorage.getItem('token'))
-    .then(backToHome => 
-      {
-        if(backToHome==='/'){
-        setRenderAgain(!renderAgain)}
-        
-    })
-    .catch(error => setRenderAgain(!renderAgain))
+ 
   }
   if(loggedUser && loggedUser.userRol==="Developer"){
+    console.log('soy dev')
    routes=
     <>
     <Route exact path='/' component={Home}/>
@@ -74,25 +95,8 @@ function App({loggedUser,login_with_LS}) {
 
 
     </>
-    
 
   }
-  else {
-    routes=
-  <>
-    <Route exact path='/' component={Home}/>
-    <Route path='/contact' component={Contact}/>
-    <Route path='/library' component={Library}/> 
-    <Route path='/categories/:category' component={CategoryList}/> 
-    <Route path='/games/:id' component={gameById}/>
-    <Route exact path='/news' component={News}/>
-    <Route exact path='/news/:id' component={NewsById}/>
-    <Route exact path='/signup' component={SignUp}/>
-    <Route exact path='/login' component={LogIn}/>
-    <Route path='/passwordReset' component={PasswordReset}/>
-    <Route exact path='/enterNewPassword' component={EnterNewPassword}/>
-    <Redirect to='/'/> 
-  </>}
 
   return (
     <div className="App">
