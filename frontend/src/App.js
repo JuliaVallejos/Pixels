@@ -25,6 +25,11 @@ function App({loggedUser,login_with_LS}) {
 
   const [renderAgain,setRenderAgain] = useState(false)
   var routes=null
+/* 
+  if (!loggedUser && localStorage.getItem("token")){
+    login_with_LS(localStorage.getItem("token"))
+  
+  } */
   if(!loggedUser && localStorage.getItem("token")){
    console.log('sooy ls')
    login_with_LS(localStorage.getItem('token'))
