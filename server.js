@@ -7,7 +7,6 @@ const router=require("./routes/index");
 const fileUpload =require("express-fileupload");
 require("./config/database");
 
-
 const app = express();
 
 app.use(express.json());

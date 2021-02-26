@@ -30,7 +30,7 @@ const GameController ={
         createGame.save()
          
         .then( async savedGame =>{
-           const game = await savedGame.populate('idUser').execPopulate() 
+           const game = await savedGame.populate('idUser').populate('userComments.idUser').execPopulate() 
              
             return res.json({success:true, response: game})
         })
@@ -121,7 +121,7 @@ const GameController ={
             $pull:{
                 userComments:{_id:idComment}
             }
-        },{new:true}).populate('userComments.idUser').populate("idUser")
+        },{new:true}).populate('idUser').populate('userComments.idUser')
         .then(respuesta=>{
             return res.json({success:true, response:respuesta, message:"delete comment"})
         })

@@ -33,11 +33,12 @@ const LogIn = (props) => {
             return false;
         }
         const data = await props.login_user(loggedUser) 
-        
+   
         if(data && !data.success){
             setErrors([data.errors])
             return false;
-        }else{
+        }
+        else{
             Swal.fire({
                 icon: 'success',
                 title: `Welcome! ${localStorage.getItem("userFirstName")}`,
@@ -74,10 +75,7 @@ const LogIn = (props) => {
                     text: 'Enjoy all our content!',
                     confirmButtonText: 'Ok',
                     closeOnConfirm: true
-                  }).then(function (result) {
-                    if (result.value) {
-                        window.location.href='/'
-                    }})
+                  })
                   
                   
             }

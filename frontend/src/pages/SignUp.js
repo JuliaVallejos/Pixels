@@ -19,6 +19,9 @@ const SignUp = (props) =>{
         userPhone:'', 
         userPayPal:''
     })
+    useEffect(() => {
+        window.scrollTo(0, 0)
+       }, [])
    useEffect(() => {
        if(!dev){
            setNewUser({
@@ -71,10 +74,7 @@ const SignUp = (props) =>{
                 icon: 'success',
                 title:  `Welcome ${localStorage.getItem("userFirstName")}!`,
                 text: 'Enjoy all our content!',
-            }).then(function (result) {
-                if (result.value) {
-                    window.location.href='/'
-            }})
+            })
         } 
         
     }
@@ -146,10 +146,7 @@ const SignUp = (props) =>{
                         icon: 'success',
                         title: `Welcome! ${localStorage.getItem("userFirstName")}`,
                         text: 'Enjoy all our content!',
-                    }).then(function (result) {
-                        if (result.value) {
-                            window.location.href='/'
-                        }})
+                    })
                 } 
             }
         }

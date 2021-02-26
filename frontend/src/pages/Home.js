@@ -13,6 +13,9 @@ const Home = ({news,loggedUser,allGames,mostValuedList,allNews,latestNews}) =>{
         allGames()
         allNews()
     },[])
+    useEffect(() => {
+        window.scrollTo(0, 0)
+       }, [])
    
     if(!news){return <Loader/>}
     return (

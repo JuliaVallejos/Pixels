@@ -57,6 +57,7 @@ const userController={
                 if(!passwordMatches){errors.push("Incorrect username or password, please try again ");}
                 var token=jasonWebToken.sign({...userExists}, process.env.JWT_SECRET_KEY, {});
             }
+        
         }
         return res.json({
             success: errors.length===0 ? true : false,

@@ -19,7 +19,7 @@ const GameById = (props)=>{
     const [comment, setComment] = useState('')
     const {game} = props
     
-    
+    console.log(game)
     useEffect(()=>{        
         props.gamesById(id)
     },[])
@@ -54,7 +54,7 @@ const GameById = (props)=>{
         <>
             <div>
                 {props.game ?
-
+                    
                 <div className="cajaPadreSingleGame">
                     <div className="singleGame">
                         <div className="cajaTituloSingleGame centerCenter">
@@ -65,6 +65,7 @@ const GameById = (props)=>{
                             <h3 className="centerCenter uppercase">{props.game.gameInfo}</h3>
                         </div>
                     </div>
+                
                     <div className="justifyCenter">
                         <div className="cajaComentarios">
                             <div className="mensajes">
@@ -76,6 +77,7 @@ const GameById = (props)=>{
                                 <input style={{cursor:'pointer'}} id="sendMessage" class=" btn btn-primary"  onClick={enviarInfo}  type="submit" value="SEND"/> 
                             </div>    
                         </div>
+
                     </div>
                     {props.game && <div className="justifyCenter subtitulo uppercase"><h4>Author:{` ${game.idUser.userFirstName} ${game.idUser.userLastName}`} </h4>
                     </div>}

@@ -1370,6 +1370,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
       display: none;
     }
   #linksResponsive{
+    width:90%;
     display: none;
   }
   }
@@ -1514,3 +1515,10 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .editComment button{
     padding: 1vh 20vw;
   }
+
+.fondo{
+  height:75vh;
+  width:100%;
+  background-color: var(--background-color);
+  padding:0
+}

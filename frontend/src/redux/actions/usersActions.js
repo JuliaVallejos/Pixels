@@ -29,9 +29,11 @@ const usersActions = {
           dispatch({type:'LOGIN', payload:data.data.response})
           return data.data
         }else{
+          console.log(data)
           return data.data
         }
       }catch(error){
+        
         const data ={errors:['An error occurred']}
         return data
       }
@@ -45,7 +47,7 @@ const usersActions = {
   login_with_LS: (token)=>{
     return async (dispatch,getState)=>{
       try{ 
-        const response= await axios.post("https://app-pixels.herokuapp.com/api/user/logInLS",{token},{
+        const response= await axios.post("http://localhost:4000/api/user/logInLS",{token},{
           headers:{
             Authorization: `Bearer ${token}` 
           }
@@ -73,9 +75,10 @@ const usersActions = {
     return async (dispatch, getstate)=>{
       try{
         const data = await axios.post('https://app-pixels.herokuapp.com/api/recoverPassword',password)
-       
+       console.log(data)
         if(data.data.success){
           dispatch({type:'RECOVERPASSWORD', payload:data.data.response})
+          return data.data
         }else{
           return data.data
         }
