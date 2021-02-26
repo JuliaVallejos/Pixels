@@ -25,14 +25,12 @@ function App({loggedUser,login_with_LS}) {
 
   const [renderAgain,setRenderAgain] = useState(false)
   var routes=null
-  console.log('app')
 /* 
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
   
   } */
   if(!loggedUser){
-    console.log('soy no log')
     routes=
   <>
     <Route exact path='/' component={Home}/>
@@ -60,7 +58,6 @@ function App({loggedUser,login_with_LS}) {
     .catch(error => setRenderAgain(!renderAgain))
   }
   if(loggedUser){
-    console.log('soy logged')
     routes=
     <>
        <Route exact path='/' component={Home}/>
@@ -78,7 +75,6 @@ function App({loggedUser,login_with_LS}) {
  
   }
   if(loggedUser && loggedUser.userRol==="Developer"){
-    console.log('soy dev')
    routes=
     <>
     <Route exact path='/' component={Home}/>
