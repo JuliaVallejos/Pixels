@@ -25,9 +25,9 @@ const Games = (props) =>{
     var arrayGames = ((filterBySort===false) ?
      ((categories.length===0 ) ? newGamesList : categories)
      : newOrder)
-  console.log(categories)
-    console.log(filterBySort)
-    console.log(filterByAge)
+     useEffect(() => {
+        window.scrollTo(0, 0)
+       }, [])
     useEffect(() =>{
         if(search!==''){
             setFilterBySearch(true)
