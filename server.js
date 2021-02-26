@@ -25,4 +25,4 @@ const port=process.env.PORT || 4000;
 
 const host=process.env.HOST || '0.0.0.0';
 
-app.listen(port,host,()=>console.log("App listening on port 4000"))
+app.listen(port,()=>console.log("App listening on port 4000"))
