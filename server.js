@@ -1,6 +1,5 @@
 const cors= require("cors");
 require("dotenv").config();
-// require('./db');
 const express=require("express");
 const path=require("path");
 const router=require("./routes/index");
@@ -22,7 +21,7 @@ if(process.env.NODE_ENV==="production"){
     })
 }
 
-const port=process.env.PORT;
+const port=process.env.PORT || 4000;
 
 const host=process.env.HOST || '0.0.0.0';
 

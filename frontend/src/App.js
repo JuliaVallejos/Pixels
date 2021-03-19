@@ -25,13 +25,13 @@ function App({loggedUser,login_with_LS}) {
 
   const [renderAgain,setRenderAgain] = useState(false)
   var routes=null
-  console.log('app')
 /* 
   if (!loggedUser && localStorage.getItem("token")){
     login_with_LS(localStorage.getItem("token"))
   
   } */
   if(!loggedUser && localStorage.getItem("token")){
+<<<<<<< HEAD
     console.log('sooy ls')
     login_with_LS(localStorage.getItem('token'))
     .then(backToHome => 
@@ -42,8 +42,19 @@ function App({loggedUser,login_with_LS}) {
     })
     .catch(error => setRenderAgain(!renderAgain))
   }
+=======
+   console.log('sooy ls')
+   login_with_LS(localStorage.getItem('token'))
+   .then(backToHome => 
+     {
+       if(backToHome==='/'){
+       setRenderAgain(!renderAgain)}
+       
+   })
+   .catch(error => setRenderAgain(!renderAgain))
+ }
+>>>>>>> 83649127997f1c7f8fa189a2e1a83e7a63b4ece5
   if(!loggedUser){
-    console.log('soy no log')
     routes=
   <>
     <Route exact path='/' component={Home}/>
@@ -61,7 +72,6 @@ function App({loggedUser,login_with_LS}) {
   </>
    }
   if(loggedUser){
-    console.log('soy logged')
     routes=
     <>
        <Route exact path='/' component={Home}/>
@@ -79,7 +89,6 @@ function App({loggedUser,login_with_LS}) {
  
   }
   if(loggedUser && loggedUser.userRol==="Developer"){
-    console.log('soy dev')
    routes=
     <>
     <Route exact path='/' component={Home}/>

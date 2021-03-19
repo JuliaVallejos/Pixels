@@ -47,7 +47,7 @@ const usersActions = {
   login_with_LS: (token)=>{
     return async (dispatch,getState)=>{
       try{ 
-        const response= await axios.post("http://localhost:4000/api/user/logInLS",{token},{
+        const response= await axios.post("https://app-pixels.herokuapp.com/api/user/logInLS",{token},{
           headers:{
             Authorization: `Bearer ${token}` 
           }
