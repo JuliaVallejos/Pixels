@@ -10,7 +10,6 @@ const usersActions = {
         }); 
         if (data.data.success){
           dispatch({type:'LOGIN', payload:data.data.response})
-          return data
         } else{
           return data
         }

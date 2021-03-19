@@ -5,7 +5,7 @@ const jasonWebToken=require("jsonwebtoken");
 const userController={
     signUp: async (req,res)=>{
         var errors=[];
-
+        
         const {userName,userPass,userFirstName,userLastName,userPhone,userPayPal,userRol,userGoogle}=req.body;
         const {imgFile}= req.files;
 
