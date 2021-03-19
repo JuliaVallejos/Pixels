@@ -31,6 +31,17 @@ function App({loggedUser,login_with_LS}) {
     login_with_LS(localStorage.getItem("token"))
   
   } */
+  if(!loggedUser && localStorage.getItem("token")){
+    console.log('sooy ls')
+    login_with_LS(localStorage.getItem('token'))
+    .then(backToHome => 
+      {
+        if(backToHome==='/'){
+        setRenderAgain(!renderAgain)}
+        
+    })
+    .catch(error => setRenderAgain(!renderAgain))
+  }
   if(!loggedUser){
     console.log('soy no log')
     routes=
@@ -48,17 +59,7 @@ function App({loggedUser,login_with_LS}) {
     <Route exact path='/enterNewPassword' component={EnterNewPassword}/>
     <Redirect to='/'/> 
   </>
-   }else if(!loggedUser && localStorage.getItem("token")){
-    console.log('sooy ls')
-    login_with_LS(localStorage.getItem('token'))
-    .then(backToHome => 
-      {
-        if(backToHome==='/'){
-        setRenderAgain(!renderAgain)}
-        
-    })
-    .catch(error => setRenderAgain(!renderAgain))
-  }
+   }
   if(loggedUser){
     console.log('soy logged')
     routes=
