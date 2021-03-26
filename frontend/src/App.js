@@ -31,18 +31,6 @@ function App({loggedUser,login_with_LS}) {
   
   } */
   if(!loggedUser && localStorage.getItem("token")){
-<<<<<<< HEAD
-    console.log('sooy ls')
-    login_with_LS(localStorage.getItem('token'))
-    .then(backToHome => 
-      {
-        if(backToHome==='/'){
-        setRenderAgain(!renderAgain)}
-        
-    })
-    .catch(error => setRenderAgain(!renderAgain))
-  }
-=======
    console.log('sooy ls')
    login_with_LS(localStorage.getItem('token'))
    .then(backToHome => 
@@ -53,7 +41,6 @@ function App({loggedUser,login_with_LS}) {
    })
    .catch(error => setRenderAgain(!renderAgain))
  }
->>>>>>> 83649127997f1c7f8fa189a2e1a83e7a63b4ece5
   if(!loggedUser){
     routes=
   <>

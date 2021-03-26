@@ -1430,10 +1430,20 @@ border: 0.5rem solid rgba(247,104,247,0.8);
   .links p{
     padding:0 1vw;
   }
+  .singleNewsTitle,.singleNewsDescription{
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .parrafoNoticia h2{
+    font-size:1rem
+  }
+ .noGames h2{
+    font-size:1.5rem
+  }
   /*----- COMENTARIOS ------ */
  
   .backGames, .paypal, .iconPaypal{
-    width: 35vw;
+    width: 35vw!important;
     padding-right: 1vw;
     cursor: pointer;
   }
@@ -1448,6 +1458,7 @@ border: 0.5rem solid rgba(247,104,247,0.8);
     font-size: 1rem;
     cursor: pointer;
   }
+  
   /* ---- FOOTER ---- */
   .footer{
     min-height: 40vh;
